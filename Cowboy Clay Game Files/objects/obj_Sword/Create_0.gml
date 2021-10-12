@@ -2,7 +2,7 @@
 // You can write your code in this editor
 
 offset = 30;
-swordTime = 7;
+swordTime = 12;
 timer = swordTime;
 my_sword_state = sword_state.neutral;
 grav = 0.95;
