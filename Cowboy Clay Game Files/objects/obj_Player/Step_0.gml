@@ -7,15 +7,18 @@ if !place_meeting(x,y, obj_Ground) && vspeed < max_gravity
 	vspeed += grav;
 }
 
+// Basic controls
 Run();
 Jump();
 AttackControls();
 
+// If no inputs are being pushed play the idle animation
 if keyboard_check(vk_nokey){
 	sprite_index = spr_SwordIdle;
 }
 
-if(!place_meeting(x+1,y+1, obj_Ground)){
+// Plays jump sprite if not on ground
+if(!place_meeting(x,y+1, obj_Ground)){
 	sprite_index = spr_ProtoJump;
 }
 
@@ -30,14 +33,14 @@ if (place_meeting(x, y + vspeed, obj_Ground)){
 		//}
 		vspeed = 0;
 		grounded = true;		
-	}
-	
-if(keyboard_check_pressed(ord("E"))){
+}
+else
+{
+	grounded = false;
+}
+
+// Debugging code to respawn enemy
+if(keyboard_check_pressed(ord("E")))
+{
 	instance_activate_object(obj_Enemy);
 }
-
-if place_meeting(x, y, obj_EnemySword) {
-	my_player_state = player_state.hurt;
-}
-
-//show_debug_message ("Invincibility is " + string(invin_timer));
