@@ -17,6 +17,14 @@ if keyboard_check(vk_nokey){
 	sprite_index = spr_SwordIdle;
 }
 
+if !instance_exists(obj_Sword)
+{
+if sprite_index == spr_FrontSlash 
+{
+	sprite_index = spr_SwordIdle;
+}
+}
+
 // Plays jump sprite if not on ground
 if(!place_meeting(x,y+1, obj_Ground)){
 	sprite_index = spr_ProtoJump;
