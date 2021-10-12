@@ -13,5 +13,16 @@ if my_sword_state == sword_state.neutral
 		offset *= -1;
 	}
 
-	image_xscale = obj_Player.image_xscale;
+	image_xscale = 6 * sign(obj_Player.image_xscale);
+	image_yscale = 3;
+}
+if my_sword_state == sword_state.flung
+{
+	image_xscale = 1;
+	image_yscale = 1;
+}
+if my_sword_state == sword_state.stuck
+{
+	image_xscale = 2;
+	image_yscale = 2;
 }

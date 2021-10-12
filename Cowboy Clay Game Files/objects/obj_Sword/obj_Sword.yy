@@ -5,7 +5,10 @@
   },
   "solid": false,
   "visible": true,
-  "spriteMaskId": null,
+  "spriteMaskId": {
+    "name": "spr_Sword",
+    "path": "sprites/spr_Sword/spr_Sword.yy",
+  },
   "persistent": false,
   "parentObjectId": null,
   "physicsObject": false,

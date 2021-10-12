@@ -18,13 +18,13 @@ switch my_sword_state{
 	
 	case sword_state.flung:
 		Flinging();
-		
+		sprite_index = protospin;
 	break;
 	
 	case sword_state.stuck:
 		hspeed = 0;
 		vspeed = 0;
-		sprite_index = spr_StuckSword;
+		sprite_index = protoswordstuck;
 	break;
 	
 }
@@ -37,5 +37,7 @@ if my_sword_state == sword_state.stuck && abs(obj_Player.x - x) < retrieve_dista
 	//my_sword_state = sword_state.neutral;
 	sprite_index = spr_Sword;
 	my_sword_state = sword_state.neutral;
+	obj_Player.attacking = false;
 	obj_Player.Retrieve_Sword();
+	instance_deactivate_object(obj_Sword);
 }

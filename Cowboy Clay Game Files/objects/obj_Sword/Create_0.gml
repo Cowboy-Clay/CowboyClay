@@ -39,11 +39,11 @@ function Flinging(){
 	//Collision with ground
 	if (place_meeting(x, y + vspeed, obj_Ground))
 		{
-			while (!place_meeting(x, y + sign(vspeed), obj_Ground)) 
+			while (!place_meeting(x, y + vspeed, obj_Ground)) 
 			{
-				y += sign(vspeed);
+				y -= sign(vspeed);
 			}
-
+			
 		my_sword_state = sword_state.stuck;
 	}
 }

@@ -81,6 +81,7 @@ function Hurt(enemy_x)
 // Called when colliding with the sword to pick it up
 function Retrieve_Sword()
 {
+	
 	armed = true;
 }
 
