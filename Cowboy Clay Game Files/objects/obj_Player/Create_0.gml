@@ -13,7 +13,15 @@ function Run()
 		{
 			hspeed = -max_velocity;
 		}
-		sprite_index = spr_Run;
+		
+		if armed 
+		{
+			sprite_index = spr_Run;
+		}
+		else
+		{
+			sprite_index = spr_RunDisarmed;
+		}
 	}
 	// Right movement
 	else if keyboard_check(vk_right) && !keyboard_check(vk_left)
@@ -24,6 +32,15 @@ function Run()
 			hspeed = max_velocity;
 		}
 		sprite_index = spr_Run;
+		
+		if armed 
+		{
+			sprite_index = spr_Run;
+		}
+		else
+		{
+			sprite_index = spr_RunDisarmed;
+		}
 	}
 	
 	frict();
