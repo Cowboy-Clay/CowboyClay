@@ -1,7 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-offset = 30;
+offset = 49;
 swordTime = 12;
 timer = swordTime;
 my_sword_state = sword_state.neutral;
@@ -36,13 +36,44 @@ function Flung(enemy_x)
 function Flinging(){
 	
 	Gravity();
+	
+	if place_meeting(x + hspeed, y, obj_Wall)
+	{
+		if hspeed > 0
+		{
+			image_angle = 90;
+		}
+		else
+		{
+			image_angle = -90;
+		}
+		
+		while place_meeting(x + hspeed, y, obj_Wall)
+		{
+			x -= 0.1 * sign(hspeed);
+		}
+		while place_meeting(x, y + vspeed, obj_Ground)
+		{
+			y -= 0.1 * sign(vspeed);
+		}
+		
+		my_sword_state = sword_state.stuck;
+	}
+	
 	//Collision with ground
 	if (place_meeting(x, y + vspeed, obj_Ground))
+	{
+		while place_meeting(x + hspeed, y, obj_Wall)
 		{
-			while (!place_meeting(x, y + vspeed, obj_Ground)) 
-			{
-				y -= sign(vspeed);
-			}
+			x -= 0.1 * sign(hspeed);
+		}
+		while place_meeting(x, y + vspeed, obj_Ground)
+		{
+			y -= 0.1 * sign(vspeed);
+		}
+		
+		//hspeed = 0;
+		//vspeed = 0;
 			
 		my_sword_state = sword_state.stuck;
 	}

@@ -26,6 +26,11 @@ function Run()
 		else { sprite_index = spr_RunDisarmed; }
 	}
 	
+	if place_meeting(x + hspeed, y, obj_Wall)
+	{
+		hspeed = 0;
+	}
+	
 	frict();
 	zero_velocity();
 }
