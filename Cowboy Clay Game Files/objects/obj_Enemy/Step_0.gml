@@ -6,12 +6,19 @@ Gravity();
 
 //Collision with ground
 if (place_meeting(x, y + vspeed, obj_Ground)){
-		while (!place_meeting(x, y + sign(vspeed), obj_Ground)) {
-			y += sign(vspeed);
-		}
-		vspeed = 0;
-				
+	while (!place_meeting(x, y + sign(vspeed), obj_Ground)) {
+		y += sign(vspeed);
 	}
+	vspeed = 0;		
+}
+	
+if place_meeting(x + hspeed, y, obj_Wall)
+{
+	while !place_meeting(x + hspeed, y, obj_Wall)
+	{
+		y -= 0.1 * sign(vspeed);
+	}
+}
 
 //collision with sword
 if instance_exists(obj_Sword) && obj_Sword.my_sword_state == sword_state.neutral && place_meeting(x, y, obj_Sword)
