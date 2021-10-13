@@ -67,6 +67,11 @@ function Knockback(enemy_x){
 		// Knockback velocity
 		hspeed += 30 * sign(obj_Player.x - enemy_x);
 		vspeed -= 50;
+		
+		if hspeed > max_velocity hspeed = max_velocity;
+		if hspeed < -max_velocity hspeed = -max_velocity;
+		if vspeed > max_vertical_velocity vspeed = max_vertical_velocity;
+		if vspeed < -max_vertical_velocity vspeed = -max_vertical_velocity;
 }
 
 // Called to hurt the player
