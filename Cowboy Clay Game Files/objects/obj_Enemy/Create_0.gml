@@ -15,23 +15,23 @@ player_is_attacking = false;
 
 enum enemy_state
 {
-	neutral, charging, attacking, wander
+	neutral, charging, attacking, wander, search
 };
 
 function Approaching(){
 	
 	if obj_Player.attacking
-{
-	
-	player_is_attacking = true;
-	
-}
+	{
+		player_is_attacking = true;
+	}
 
-else if player_is_attacking
-{
-	my_enemy_state = enemy_state.charging;
-	player_is_attacking = false;
-}
+	else if player_is_attacking
+	{
+		// Attack if armed
+		if(armed)
+			my_enemy_state = enemy_state.charging;
+		player_is_attacking = false;
+	}
 
 	
 	if abs(obj_Player.x - x) > approach_distance{
@@ -66,6 +66,7 @@ else if player_is_attacking
 }
 
 function Charging(){
+	
 	instance_activate_object(obj_EnemySword);
 	obj_EnemySword.swordTrue = true;
 	if abs(obj_Player.x - x) > attacking_distance {
@@ -95,10 +96,6 @@ function Charging(){
 		obj_EnemySword.swordTrue = false;
 		//obj_EnemySword.EnemyReset();
 	}
-	
-	
-
-	
 }
 
 function Wander(){
@@ -110,4 +107,41 @@ function Wander(){
 	}
 	my_enemy_state = enemy_state.neutral;
 	
+}
+
+function TakeHit()
+{
+	if armed
+	{
+		instance_activate_object(obj_EnemySword);
+		obj_EnemySword.Flung();
+		invuln_timer = invuln_time;
+		armed = false;
+	}
+	
+	// Kill self when hit while disarmed
+	else if(!armed && invuln_timer <= 0)
+	{
+		instance_deactivate_object(self)
+	}
+}
+
+function Search()
+{
+	if instance_exists(obj_EnemySword) 
+	{
+		if obj_EnemySword.x < x hspeed -= h_accel;
+		else if obj_EnemySword.x > x hspeed += h_accel;
+			
+		if hspeed < -1 * max_hspeed hspeed = -1 * max_hspeed;
+		else if hspeed > max_hspeed hspeed = max_hspeed;
+		
+		if place_meeting(x+hspeed, y+vspeed, obj_EnemySword) && obj_EnemySword.my_sword_state == sword_state.stuck
+		{
+			armed = true;
+			my_enemy_state = enemy_state.neutral;
+			obj_EnemySword.my_sword_state = sword_state.neutral;
+			instance_deactivate_object(obj_EnemySword);
+		}
+	}
 }

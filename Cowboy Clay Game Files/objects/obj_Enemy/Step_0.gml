@@ -11,7 +11,8 @@ if (place_meeting(x, y + vspeed, obj_Ground)){
 	}
 	vspeed = 0;		
 }
-	
+
+//Collisions with walls
 if place_meeting(x + hspeed, y, obj_Wall)
 {
 	while !place_meeting(x + hspeed, y, obj_Wall)
@@ -23,10 +24,16 @@ if place_meeting(x + hspeed, y, obj_Wall)
 //collision with sword
 if instance_exists(obj_Sword) && obj_Sword.my_sword_state == sword_state.neutral && place_meeting(x, y, obj_Sword)
 {
-	instance_deactivate_object(self)
+	TakeHit();
 }
 
+if(invuln_timer > 0)
+{
+	invuln_timer--;
+}
 
+if armed == false
+	my_enemy_state = enemy_state.search;
 
 switch my_enemy_state
 {
@@ -37,6 +44,9 @@ switch my_enemy_state
 	break;
 	
 	case enemy_state.wander: Wander();
+	break;
+	
+	case enemy_state.search: Search();
 	break;
 }
 

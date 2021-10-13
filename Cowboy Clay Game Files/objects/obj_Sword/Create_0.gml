@@ -9,7 +9,6 @@ grav = 0.95;
 max_gravity = 160;
 flinging_h_accel = 50;
 flinging_v_accel = 70;
-retrieve_distance = 8;
 
 enum sword_state
 {

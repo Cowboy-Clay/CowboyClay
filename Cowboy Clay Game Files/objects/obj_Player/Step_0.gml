@@ -17,12 +17,9 @@ if keyboard_check(vk_nokey){
 	sprite_index = spr_SwordIdle;
 }
 
-if !instance_exists(obj_Sword)
-{
-if sprite_index == spr_FrontSlash 
+if !instance_exists(obj_Sword) && sprite_index == spr_FrontSlash
 {
 	sprite_index = spr_SwordIdle;
-}
 }
 
 // Plays jump sprite if not on ground
@@ -51,4 +48,5 @@ else
 if(keyboard_check_pressed(ord("E")))
 {
 	instance_activate_object(obj_Enemy);
+	obj_Enemy.armed = true;
 }
