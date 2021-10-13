@@ -52,6 +52,9 @@ if abs(hspeed) > max_hspeed{
 }
 
 if !place_meeting(x-300,y+5, obj_Ground) || !place_meeting(x+300,y+5, obj_Ground){
-	my_enemy_state = enemy_state.charging;
+	if(armed)
+			my_enemy_state = enemy_state.charging;
+		else if !armed && invuln_timer= 0
+			my_enemy_state = enemy_state.search;
 }
 

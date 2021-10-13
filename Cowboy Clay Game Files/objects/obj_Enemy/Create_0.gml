@@ -30,7 +30,7 @@ function Approaching(){
 		// Attack if armed
 		if(armed)
 			my_enemy_state = enemy_state.charging;
-		else if !armed && invuln_timer<= 0
+		else if !armed && invuln_timer= 0
 			my_enemy_state = enemy_state.search;
 		player_is_attacking = false;
 	}
