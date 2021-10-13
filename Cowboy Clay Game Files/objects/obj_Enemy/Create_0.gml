@@ -30,6 +30,8 @@ function Approaching(){
 		// Attack if armed
 		if(armed)
 			my_enemy_state = enemy_state.charging;
+		else if !armed && invuln_timer<= 0
+			my_enemy_state = enemy_state.search;
 		player_is_attacking = false;
 	}
 
@@ -65,7 +67,8 @@ function Approaching(){
 
 }
 
-function Charging(){
+function Charging()
+{
 	
 	instance_activate_object(obj_EnemySword);
 	obj_EnemySword.swordTrue = true;
@@ -136,7 +139,7 @@ function Search()
 		if hspeed < -1 * max_hspeed hspeed = -1 * max_hspeed;
 		else if hspeed > max_hspeed hspeed = max_hspeed;
 		
-		if place_meeting(x+hspeed, y+vspeed, obj_EnemySword) && obj_EnemySword.my_sword_state == sword_state.stuck
+		if place_meeting(x+hspeed, obj_EnemySword.y, obj_EnemySword) && obj_EnemySword.my_sword_state == sword_state.stuck
 		{
 			armed = true;
 			my_enemy_state = enemy_state.neutral;

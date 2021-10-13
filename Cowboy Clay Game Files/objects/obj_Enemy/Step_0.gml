@@ -32,9 +32,6 @@ if(invuln_timer > 0)
 	invuln_timer--;
 }
 
-if armed == false
-	my_enemy_state = enemy_state.search;
-
 switch my_enemy_state
 {
 	case enemy_state.neutral: Approaching(); 
