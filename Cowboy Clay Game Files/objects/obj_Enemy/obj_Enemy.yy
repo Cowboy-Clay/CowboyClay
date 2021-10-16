@@ -1,11 +1,14 @@
 {
   "spriteId": {
-    "name": "spr_Enemy",
-    "path": "sprites/spr_Enemy/spr_Enemy.yy",
+    "name": "spr_PirateIdle",
+    "path": "sprites/spr_PirateIdle/spr_PirateIdle.yy",
   },
   "solid": false,
   "visible": true,
-  "spriteMaskId": null,
+  "spriteMaskId": {
+    "name": "spr_Enemy",
+    "path": "sprites/spr_Enemy/spr_Enemy.yy",
+  },
   "persistent": false,
   "parentObjectId": null,
   "physicsObject": false,
