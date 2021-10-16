@@ -55,7 +55,7 @@
     "backdropXOffset": 0.0,
     "backdropYOffset": 0.0,
     "xorigin": 94,
-    "yorigin": 99,
+    "yorigin": 94,
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_PirateIdle","path":"sprites/spr_PirateIdle/spr_PirateIdle.yy",},
