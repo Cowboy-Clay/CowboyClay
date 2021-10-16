@@ -1,6 +1,10 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+enum enemy_state
+{
+	neutral, charging, attacking, wander, search, inactive
+};
 //Give him a sword!
 frict = 0;
 h_accel = 1;
@@ -10,13 +14,12 @@ max_gravity = 160;
 approach_distance = 375;
 attacking_distance = 120;
 retreat_distance = 350;
-my_enemy_state = enemy_state.neutral;
+if start_Inactive
+	my_enemy_state = enemy_state.inactive;
+else
+	my_enemy_state = enemy_state.neutral;
 player_is_attacking = false;
 
-enum enemy_state
-{
-	neutral, charging, attacking, wander, search
-};
 
 function Approaching(){
 	

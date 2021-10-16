@@ -68,7 +68,7 @@ function Knockback(enemy_x){
 //Collision Between Player and Enemy Sword, if invincibility is inactive
 		// Knockback velocity
 		hspeed += 30 * sign(obj_Player.x - enemy_x);
-		vspeed -= 50;
+		vspeed -= max_vertical_velocity;
 		
 		if hspeed > max_velocity hspeed = max_velocity;
 		if hspeed < -max_velocity hspeed = -max_velocity;
@@ -142,5 +142,18 @@ function invin_update()
 	if invin_timer <= 0 
 	{
 		invin = false;
+	}
+}
+
+function EnemyCollision()
+{
+	if instance_exists(obj_Enemy) && place_meeting(x+hspeed, y+vspeed, obj_Enemy)
+	{
+		Knockback(obj_Enemy);
+		
+		if instance_exists(obj_TestSceneController) && obj_TestSceneController.state == 0 && y < obj_Enemy.y
+		{
+			obj_TestSceneController.ToState1();
+		}
 	}
 }

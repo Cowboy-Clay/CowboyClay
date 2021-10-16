@@ -52,3 +52,5 @@ if(keyboard_check_pressed(ord("E")))
 	instance_activate_object(obj_Enemy);
 	obj_Enemy.armed = true;
 }
+
+EnemyCollision();

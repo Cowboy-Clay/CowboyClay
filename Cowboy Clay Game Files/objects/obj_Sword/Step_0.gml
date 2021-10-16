@@ -45,3 +45,4 @@ if my_sword_state == sword_state.stuck && place_meeting(x,y,obj_Player){
 		instance_deactivate_object(obj_Sword);
 	}
 }
+

@@ -45,13 +45,16 @@ switch my_enemy_state
 	
 	case enemy_state.search: Search();
 	break;
+	
+	case enemy_state.inactive:
+	break;
 }
 
 if abs(hspeed) > max_hspeed{
 	hspeed = max_hspeed * sign(hspeed);
 }
 
-if !place_meeting(x-300,y+5, obj_Ground) || !place_meeting(x+300,y+5, obj_Ground){
+if !place_meeting(x-300,y+5, obj_Ground) || !place_meeting(x+300,y+5, obj_Ground) && my_enemy_state != enemy_state.inactive{
 	if(armed)
 			my_enemy_state = enemy_state.charging;
 		else if !armed && invuln_timer= 0

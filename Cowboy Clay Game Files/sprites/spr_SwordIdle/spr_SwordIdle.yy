@@ -55,7 +55,7 @@
     "backdropXOffset": 0.0,
     "backdropYOffset": 0.0,
     "xorigin": 30,
-    "yorigin": 40,
+    "yorigin": 39,
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_SwordIdle","path":"sprites/spr_SwordIdle/spr_SwordIdle.yy",},

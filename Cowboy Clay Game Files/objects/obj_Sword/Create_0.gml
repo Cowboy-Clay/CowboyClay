@@ -4,7 +4,12 @@
 offset = 49;
 swordTime = 12;
 timer = swordTime;
-my_sword_state = sword_state.neutral;
+
+if stuckOnStart
+	my_sword_state = sword_state.stuck;
+else
+	my_sword_state = sword_state.neutral;
+
 grav = 0.95;
 max_gravity = 160;
 flinging_h_accel = 50;
@@ -80,6 +85,3 @@ function Flinging(){
 		my_sword_state = sword_state.stuck;
 	}
 }
-
-
-
