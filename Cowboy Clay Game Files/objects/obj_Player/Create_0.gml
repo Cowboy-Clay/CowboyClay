@@ -53,12 +53,14 @@ function Jump(){
 // Controls attacks
 function AttackControls(){	
 	// If you press Z and are armed you attack
-	if keyboard_check_pressed(ord("Z")) && armed
+	if keyboard_check_pressed(ord("Z")) && armed && !attack_disallowed
 	{
 		instance_activate_object(obj_Sword); // Activates the sword object
 		obj_Sword.Reset(); // Gets the sword to swing
 		sprite_index = spr_FrontSlash; // Plays swords swing animation
 	}
+	
+	if attack_disallowed attack_disallowed = false;
 }
 
 // Causes the player to get knockedback
@@ -92,6 +94,7 @@ function Hurt(enemy_x)
 function Retrieve_Sword()
 {
 	armed = true;
+	attack_disallowed = true;
 }
 
 // Used to turn the player sprite left or right

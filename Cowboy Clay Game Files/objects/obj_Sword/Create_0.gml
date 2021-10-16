@@ -36,6 +36,7 @@ function Flinging(){
 	
 	Gravity();
 	
+	// Collision with wall
 	if place_meeting(x + hspeed, y, obj_Wall)
 	{
 		if hspeed > 0
@@ -62,6 +63,8 @@ function Flinging(){
 	//Collision with ground
 	if (place_meeting(x, y + vspeed, obj_Ground))
 	{
+		image_angle = 0;
+		
 		while place_meeting(x + hspeed, y, obj_Wall)
 		{
 			x -= 0.1 * sign(hspeed);

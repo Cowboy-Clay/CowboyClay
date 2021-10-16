@@ -32,12 +32,16 @@ switch my_sword_state{
 //show_debug_message("Sword Location: " + string(x) + " , " + string(y));
 show_debug_message(string(my_sword_state));
 
-//if my_sword_state == sword_state.stuck && abs(obj_Player.x - x) < retrieve_distance {
+// The sword is ready to be picked up
 if my_sword_state == sword_state.stuck && place_meeting(x,y,obj_Player){
-//my_sword_state = sword_state.neutral;
-	sprite_index = spr_Sword;
-	my_sword_state = sword_state.neutral;
-	obj_Player.attacking = false;
-	obj_Player.Retrieve_Sword();
-	instance_deactivate_object(obj_Sword);
+	
+	if keyboard_check_pressed(ord("Z"))
+	{
+		image_angle = 0;
+		sprite_index = spr_Sword;
+		my_sword_state = sword_state.neutral;
+		obj_Player.attacking = false;
+		obj_Player.Retrieve_Sword();
+		instance_deactivate_object(obj_Sword);
+	}
 }
