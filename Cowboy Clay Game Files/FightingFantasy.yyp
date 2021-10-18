@@ -1,5 +1,6 @@
 {
   "resources": [
+    {"id":{"name":"protodagger","path":"sprites/protodagger/protodagger.yy",},"order":19,},
     {"id":{"name":"obj_Sword","path":"objects/obj_Sword/obj_Sword.yy",},"order":2,},
     {"id":{"name":"spr_StuckSword","path":"sprites/spr_StuckSword/spr_StuckSword.yy",},"order":5,},
     {"id":{"name":"protoswordstuck","path":"sprites/protoswordstuck/protoswordstuck.yy",},"order":13,},
@@ -9,6 +10,7 @@
     {"id":{"name":"spr_SwordIdle","path":"sprites/spr_SwordIdle/spr_SwordIdle.yy",},"order":10,},
     {"id":{"name":"spr_Run","path":"sprites/spr_Run/spr_Run.yy",},"order":6,},
     {"id":{"name":"spr_DisarmedJumpUp","path":"sprites/spr_DisarmedJumpUp/spr_DisarmedJumpUp.yy",},"order":18,},
+    {"id":{"name":"PirateProtoPull","path":"sprites/PirateProtoPull/PirateProtoPull.yy",},"order":21,},
     {"id":{"name":"spr_FrontSlash","path":"sprites/spr_FrontSlash/spr_FrontSlash.yy",},"order":7,},
     {"id":{"name":"obj_Ground","path":"objects/obj_Ground/obj_Ground.yy",},"order":0,},
     {"id":{"name":"spr_PirateIdle","path":"sprites/spr_PirateIdle/spr_PirateIdle.yy",},"order":16,},
@@ -28,6 +30,7 @@
     {"id":{"name":"obj_Wall","path":"objects/obj_Wall/obj_Wall.yy",},"order":7,},
     {"id":{"name":"Gravity","path":"scripts/Gravity/Gravity.yy",},"order":0,},
     {"id":{"name":"spr_Enemy","path":"sprites/spr_Enemy/spr_Enemy.yy",},"order":3,},
+    {"id":{"name":"PirateProtoDisarmed","path":"sprites/PirateProtoDisarmed/PirateProtoDisarmed.yy",},"order":20,},
     {"id":{"name":"obj_Player","path":"objects/obj_Player/obj_Player.yy",},"order":1,},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},
   ],

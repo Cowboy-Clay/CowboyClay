@@ -1,11 +1,14 @@
 {
   "spriteId": {
-    "name": "spr_EnemySword",
-    "path": "sprites/spr_EnemySword/spr_EnemySword.yy",
+    "name": "protodagger",
+    "path": "sprites/protodagger/protodagger.yy",
   },
   "solid": false,
   "visible": true,
-  "spriteMaskId": null,
+  "spriteMaskId": {
+    "name": "spr_EnemySword",
+    "path": "sprites/spr_EnemySword/spr_EnemySword.yy",
+  },
   "persistent": false,
   "parentObjectId": null,
   "physicsObject": false,
