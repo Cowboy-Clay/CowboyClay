@@ -6,7 +6,9 @@ if armed
 else
 		sprite_index = PirateProtoDisarmed;
 	
-
+if my_enemy_state = enemy_state.inactive{
+		sprite_index = PirateProtoPull;
+}
 Gravity();
 
 //Collision with ground

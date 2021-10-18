@@ -55,7 +55,7 @@
     "backdropXOffset": 0.0,
     "backdropYOffset": 0.0,
     "xorigin": 160,
-    "yorigin": 90,
+    "yorigin": 99,
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"PirateProtoDisarmed","path":"sprites/PirateProtoDisarmed/PirateProtoDisarmed.yy",},

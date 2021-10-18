@@ -5,10 +5,7 @@
   },
   "solid": false,
   "visible": true,
-  "spriteMaskId": {
-    "name": "spr_EnemySword",
-    "path": "sprites/spr_EnemySword/spr_EnemySword.yy",
-  },
+  "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": null,
   "physicsObject": false,
