@@ -26,7 +26,10 @@ if !instance_exists(obj_Sword) && sprite_index == spr_FrontSlash
 
 // Plays jump sprite if not on ground
 if(!place_meeting(x,y+1, obj_Ground)){
-	sprite_index = spr_ProtoJump;
+	if armed
+		sprite_index = spr_JumpUp;
+	else
+		sprite_index = spr_DisarmedJumpUp;
 }
 
 turn_sprite();
