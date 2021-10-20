@@ -1,23 +1,15 @@
-/// @description Insert description here
-// You can write your code in this editor
+/// @description Code that is executed every frame for the player.
 
-//Gravity
-if !place_meeting(x,y, obj_Ground) && vspeed < max_gravity
-{
-	vspeed += grav;
-}
+// Physics
+Gravity();
 
 // Basic controls
 Run();
 Jump();
 AttackControls();
 
-// If no inputs are being pushed play the idle animation
-if keyboard_check(vk_nokey){
-	if armed
-		sprite_index = spr_SwordIdle;
-	else sprite_index = spr_Idle;
-}
+ReturnToIdleAnimation();
+SwitchSwordAnimations();
 
 if !instance_exists(obj_Sword) && sprite_index == spr_FrontSlash
 {

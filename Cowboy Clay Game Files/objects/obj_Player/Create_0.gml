@@ -40,7 +40,7 @@ function Jump(){
 	// If you will reach the ground this frame and you press X you jump
 	if (place_meeting(x, y + vspeed, obj_Ground)) && keyboard_check_pressed(ord("X"))
 	{
-		vspeed -= jump_accel;
+		vspeed = -jump_accel;
 	}
 	
 	// If you are not holding the X button and are moving up your speed is cut
@@ -60,6 +60,7 @@ function AttackControls(){
 		sprite_index = spr_FrontSlash; // Plays swords swing animation
 	}
 	
+	// If the player has been prevented from attacking for any reason
 	if attack_disallowed attack_disallowed = false;
 }
 
@@ -81,9 +82,11 @@ function Hurt(enemy_x)
 {
 	// Knocks the player back and causes you to be disarmed
 	Knockback(enemy_x);
+	// Disarms the player
 	armed = false;
 	// Activates the sword object and makes it go flying
 	instance_activate_object(obj_Sword);
+	// Fling sword
 	obj_Sword.Flung(enemy_x);
 	// Sets you to be invinsible
 	invin = true;
@@ -93,19 +96,20 @@ function Hurt(enemy_x)
 // Called when colliding with the sword to pick it up
 function Retrieve_Sword()
 {
+	// Rearm player
 	armed = true;
+	// Prevent the player from attacking the same frame they pick up their sword
 	attack_disallowed = true;
 }
 
 // Used to turn the player sprite left or right
 function turn_sprite()
 {
-	if image_xscale < 0 && hspeed > 0
+	// If the player is facing left and they are moving right
+	// or if the player is facing right and moving left
+	if (image_xscale < 0 && hspeed > 0) || (image_xscale  > 0 && hspeed < 0)
 	{
-		image_xscale *= -1;
-	}
-	else if image_xscale > 0 && hspeed < 0
-	{
+		// Flip the sprite
 		image_xscale *= -1;
 	}
 }
@@ -147,13 +151,60 @@ function invin_update()
 
 function EnemyCollision()
 {
+	// If the enemy exists and they will collide with the player this frame
 	if instance_exists(obj_Enemy) && place_meeting(x+hspeed, y+vspeed, obj_Enemy)
 	{
-		Knockback(obj_Enemy);
+		// Knockback the player
+		Knockback(obj_Enemy.x);
 		
+		// If the test scene is going and the player is higher than the enemy
 		if instance_exists(obj_TestSceneController) && obj_TestSceneController.state == 0 && y < obj_Enemy.y
 		{
+			// Move to next step
 			obj_TestSceneController.ToState1();
 		}
+	}
+}
+
+function Gravity()
+{
+	if !place_meeting(x,y, obj_Ground) && vspeed < max_gravity
+	{
+		vspeed += grav;
+	}
+}
+
+function ReturnToIdleAnimation()
+{
+	if keyboard_check(vk_left) || keyboard_check(vk_right) return;
+	
+	if sprite_index == spr_Run
+	{
+		sprite_index = spr_SwordIdle;
+	}
+	if sprite_index == spr_RunDisarmed
+	{
+		sprite_index = spr_Idle;
+	}
+	
+	if sprite_index == spr_JumpUp && place_meeting(x+hspeed, y+vspeed, obj_Ground)
+		sprite_index = spr_SwordIdle;
+	if sprite_index == spr_DisarmedJumpUp && place_meeting(x+hspeed, y+vspeed, obj_Ground)
+		sprite_index = spr_Idle;
+}
+
+function SwitchSwordAnimations()
+{
+	if(armed)
+	{
+		if sprite_index == spr_Idle sprite_index = spr_SwordIdle;
+		if sprite_index == spr_RunDisarmed sprite_index = spr_Run;
+		if sprite_index == spr_DisarmedJumpUp sprite_index = spr_JumpUp;
+	}
+	else
+	{
+		if sprite_index == spr_SwordIdle sprite_index = spr_Idle;
+		if sprite_index == spr_Run sprite_index = spr_RunDisarmed;
+		if sprite_index == spr_JumpUp sprite_index = spr_DisarmedJumpUp;
 	}
 }
