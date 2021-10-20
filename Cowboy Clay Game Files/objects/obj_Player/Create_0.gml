@@ -186,4 +186,9 @@ function ReturnToIdleAnimation()
 	{
 		sprite_index = spr_Idle;
 	}
+	
+	if sprite_index == spr_JumpUp && place_meeting(x+hspeed, y+vspeed, obj_Ground)
+		sprite_index = spr_SwordIdle;
+	if sprite_index == spr_DisarmedJumpUp && place_meeting(x+hspeed, y+vspeed, obj_Ground)
+		sprite_index = spr_Idle;
 }
