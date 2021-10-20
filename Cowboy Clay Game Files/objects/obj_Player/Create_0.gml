@@ -31,7 +31,8 @@ function Run()
 		hspeed = 0;
 	}
 	
-	frict();
+	if !(keyboard_check(vk_left) || keyboard_check(vk_right))
+		frict();
 	zero_velocity();
 }
 
@@ -117,14 +118,7 @@ function turn_sprite()
 // Slows the players horizontal movement
 function frict()
 {
-	if hspeed >= frict_value
-	{
-		hspeed -= frict_value;
-	}
-	if hspeed <= -frict_value
-	{
-		 hspeed += frict_value;
-	}
+	hspeed *= frict_value;
 }
 
 // Allows the players horizontal velocity to reach 0
