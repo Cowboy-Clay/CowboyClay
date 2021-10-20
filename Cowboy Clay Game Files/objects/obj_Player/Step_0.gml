@@ -9,6 +9,7 @@ Jump();
 AttackControls();
 
 ReturnToIdleAnimation();
+SwitchSwordAnimations();
 
 if !instance_exists(obj_Sword) && sprite_index == spr_FrontSlash
 {

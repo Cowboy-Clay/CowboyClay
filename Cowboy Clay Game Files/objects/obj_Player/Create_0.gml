@@ -192,3 +192,19 @@ function ReturnToIdleAnimation()
 	if sprite_index == spr_DisarmedJumpUp && place_meeting(x+hspeed, y+vspeed, obj_Ground)
 		sprite_index = spr_Idle;
 }
+
+function SwitchSwordAnimations()
+{
+	if(armed)
+	{
+		if sprite_index == spr_Idle sprite_index = spr_SwordIdle;
+		if sprite_index == spr_RunDisarmed sprite_index = spr_Run;
+		if sprite_index == spr_DisarmedJumpUp sprite_index = spr_JumpUp;
+	}
+	else
+	{
+		if sprite_index == spr_SwordIdle sprite_index = spr_Idle;
+		if sprite_index == spr_Run sprite_index = spr_RunDisarmed;
+		if sprite_index == spr_JumpUp sprite_index = spr_DisarmedJumpUp;
+	}
+}
