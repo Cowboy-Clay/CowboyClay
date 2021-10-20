@@ -173,3 +173,17 @@ function Gravity()
 		vspeed += grav;
 	}
 }
+
+function ReturnToIdleAnimation()
+{
+	if keyboard_check(vk_left) || keyboard_check(vk_right) return;
+	
+	if sprite_index == spr_Run
+	{
+		sprite_index = spr_SwordIdle;
+	}
+	if sprite_index == spr_RunDisarmed
+	{
+		sprite_index = spr_Idle;
+	}
+}
