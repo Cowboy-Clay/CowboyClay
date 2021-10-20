@@ -6,8 +6,8 @@ default_image_scale = image_xscale;
 swordTime = 7;
 swordTrue = false;
 my_sword_state = sword_state.neutral;
-flinging_h_accel = 50;
-flinging_v_accel = 70;
+flinging_h_accel = 25;
+flinging_v_accel = 35;
 max_gravity = 160;
 grav = 0.95;
 

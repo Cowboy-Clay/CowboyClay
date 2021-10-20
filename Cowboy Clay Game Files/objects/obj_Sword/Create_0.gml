@@ -12,8 +12,8 @@ else
 
 grav = 0.95;
 max_gravity = 160;
-flinging_h_accel = 50;
-flinging_v_accel = 70;
+flinging_h_accel = 25;
+flinging_v_accel = 35;
 
 enum sword_state
 {
@@ -83,5 +83,13 @@ function Flinging(){
 		//vspeed = 0;
 			
 		my_sword_state = sword_state.stuck;
+	}
+}
+
+function Gravity()
+{
+	if !place_meeting(x,y, obj_Ground) && vspeed < max_gravity
+	{
+		vspeed += grav;
 	}
 }
