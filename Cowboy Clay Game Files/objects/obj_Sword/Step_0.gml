@@ -1,15 +1,11 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-timer--;
-
-
 
 switch my_sword_state{
 	
 	case sword_state.neutral:
-	
-		if timer <= 0
+		if obj_Player.sprite_index != spr_FrontSlash
 		{
 			obj_Player.attacking = false;
 			instance_deactivate_object(obj_Sword);
