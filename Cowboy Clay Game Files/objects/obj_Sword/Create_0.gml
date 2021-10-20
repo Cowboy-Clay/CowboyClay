@@ -12,8 +12,8 @@ else
 
 grav = 0.95;
 max_gravity = 160;
-flinging_h_accel = 25;
-flinging_v_accel = 35;
+flinging_h_accel = 35;
+flinging_v_accel = 25;
 
 enum sword_state
 {
