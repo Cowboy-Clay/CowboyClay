@@ -1,11 +1,7 @@
-/// @description Insert description here
-// You can write your code in this editor
+/// @description Code that is executed every frame for the player.
 
-//Gravity
-if !place_meeting(x,y, obj_Ground) && vspeed < max_gravity
-{
-	vspeed += grav;
-}
+// Physics
+Gravity();
 
 // Basic controls
 Run();

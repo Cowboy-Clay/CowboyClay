@@ -151,3 +151,11 @@ function Search()
 		}
 	}
 }
+
+function Gravity()
+{
+	if !place_meeting(x,y, obj_Ground) && vspeed < max_gravity
+	{
+		vspeed += grav;
+	}
+}
