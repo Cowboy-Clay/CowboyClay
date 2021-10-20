@@ -159,3 +159,15 @@ function Gravity()
 		vspeed += grav;
 	}
 }
+
+function CollideWithWalls()
+{
+	if place_meeting(x+hspeed, y, obj_Wall)
+	{
+		while place_meeting(x+hspeed, y, obj_Wall)
+		{
+			if hspeed > 0 hspeed -= 0.1;
+			else hspeed += 0.1
+		}
+	}
+}

@@ -68,3 +68,4 @@ if !place_meeting(x-300,y+5, obj_Ground) || !place_meeting(x+300,y+5, obj_Ground
 			my_enemy_state = enemy_state.search;
 }
 
+CollideWithWalls();
