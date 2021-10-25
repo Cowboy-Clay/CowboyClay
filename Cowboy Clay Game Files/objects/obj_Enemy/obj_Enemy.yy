@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_PirateIdle",
-    "path": "sprites/spr_PirateIdle/spr_PirateIdle.yy",
+    "name": "spr_Moose",
+    "path": "sprites/spr_Moose/spr_Moose.yy",
   },
   "solid": false,
   "visible": true,

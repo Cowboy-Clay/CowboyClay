@@ -25,6 +25,7 @@
     {"id":{"name":"obj_EnemySword","path":"objects/obj_EnemySword/obj_EnemySword.yy",},"order":4,},
     {"id":{"name":"obj_camera","path":"objects/obj_camera/obj_camera.yy",},"order":5,},
     {"id":{"name":"spr_Idle","path":"sprites/spr_Idle/spr_Idle.yy",},"order":15,},
+    {"id":{"name":"spr_Moose","path":"sprites/spr_Moose/spr_Moose.yy",},"order":22,},
     {"id":{"name":"spr_EnemySword","path":"sprites/spr_EnemySword/spr_EnemySword.yy",},"order":4,},
     {"id":{"name":"Untitled","path":"sprites/Untitled/Untitled.yy",},"order":8,},
     {"id":{"name":"obj_Wall","path":"objects/obj_Wall/obj_Wall.yy",},"order":7,},
