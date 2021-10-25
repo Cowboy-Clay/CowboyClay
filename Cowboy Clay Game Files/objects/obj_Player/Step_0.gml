@@ -30,10 +30,9 @@ invin_update();
 
 //Collision with ground
 if (place_meeting(x, y + vspeed, obj_Ground)){
-		//while (!place_meeting(x, y + sign(vspeed), obj_Ground)) {
-		//	y += sign(vspeed);
-		//}
-		vspeed = 0;
+		while place_meeting(x, y + vspeed, obj_Ground) {
+			y -= 0.01;
+		}
 		grounded = true;		
 }
 else
