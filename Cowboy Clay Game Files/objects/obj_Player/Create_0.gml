@@ -26,7 +26,7 @@ function Run()
 		else { sprite_index = spr_RunDisarmed; }
 	}
 	
-	if place_meeting(x + hspeed, y, obj_Wall)
+	if place_meeting(x + hspeed, y, obj_Wall) || place_meeting(x+hspeed,y,obj_Ground)
 	{
 		hspeed = 0;
 	}
