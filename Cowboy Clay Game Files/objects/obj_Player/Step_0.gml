@@ -33,6 +33,8 @@ if (place_meeting(x, y + vspeed, obj_Ground)){
 		while place_meeting(x, y + vspeed, obj_Ground) {
 			y -= 0.01;
 		}
+		y += vspeed;
+		vspeed = 0;
 		grounded = true;		
 }
 else

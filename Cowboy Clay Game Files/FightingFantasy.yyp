@@ -1,6 +1,7 @@
 {
   "resources": [
     {"id":{"name":"protodagger","path":"sprites/protodagger/protodagger.yy",},"order":19,},
+    {"id":{"name":"ProtoRoom","path":"rooms/ProtoRoom/ProtoRoom.yy",},"order":1,},
     {"id":{"name":"obj_Sword","path":"objects/obj_Sword/obj_Sword.yy",},"order":2,},
     {"id":{"name":"spr_StuckSword","path":"sprites/spr_StuckSword/spr_StuckSword.yy",},"order":5,},
     {"id":{"name":"protoswordstuck","path":"sprites/protoswordstuck/protoswordstuck.yy",},"order":13,},
@@ -17,6 +18,7 @@
     {"id":{"name":"spr_Ground","path":"sprites/spr_Ground/spr_Ground.yy",},"order":0,},
     {"id":{"name":"protospin","path":"sprites/protospin/protospin.yy",},"order":12,},
     {"id":{"name":"spr_Wall","path":"sprites/spr_Wall/spr_Wall.yy",},"order":14,},
+    {"id":{"name":"Environment_test","path":"sprites/Environment_test/Environment_test.yy",},"order":23,},
     {"id":{"name":"spr_RunDisarmed","path":"sprites/spr_RunDisarmed/spr_RunDisarmed.yy",},"order":9,},
     {"id":{"name":"obj_TestSceneController","path":"objects/obj_TestSceneController/obj_TestSceneController.yy",},"order":8,},
     {"id":{"name":"spr_ProtoJump","path":"sprites/spr_ProtoJump/spr_ProtoJump.yy",},"order":11,},
@@ -54,6 +56,7 @@
     "children": [],
   },
   "RoomOrderNodes": [
+    {"roomId":{"name":"ProtoRoom","path":"rooms/ProtoRoom/ProtoRoom.yy",},},
     {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
   "Folders": [
