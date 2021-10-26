@@ -2,8 +2,6 @@
 // You can write your code in this editor
 
 offset = 49;
-swordTime = 12;
-timer = swordTime;
 
 if stuckOnStart
 	my_sword_state = sword_state.stuck;
@@ -22,7 +20,6 @@ enum sword_state
 
 function Reset()
 {
-	timer = swordTime;
 	obj_Player.attacking = true;
 }
 
