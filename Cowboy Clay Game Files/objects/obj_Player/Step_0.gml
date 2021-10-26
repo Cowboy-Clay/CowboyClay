@@ -1,7 +1,8 @@
 /// @description Code that is executed every frame for the player.
 
 // Physics
-Gravity();
+if(!Grounded())
+	Gravity();
 
 // Basic controls
 Run();
@@ -29,18 +30,17 @@ turn_sprite();
 invin_update();
 
 //Collision with ground
-if (place_meeting(x, y + vspeed, obj_Ground)){
-		while place_meeting(x, y + vspeed, obj_Ground) {
-			y -= 0.01;
-		}
-		y += vspeed;
-		vspeed = 0;
-		grounded = true;		
-}
-else
+if PredictiveGrounded() && vspeed > 0
 {
-	grounded = false;
+	y += vspeed;
+	while Grounded()
+	{
+		y -= 0.01;
+	}
+	y += 0.01;
+	vspeed = 0;
 }
+
 
 // Debugging code to respawn enemy
 if(keyboard_check_pressed(ord("E")))

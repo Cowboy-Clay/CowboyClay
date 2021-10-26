@@ -39,7 +39,7 @@ function Run()
 // Controls jumping
 function Jump(){
 	// If you will reach the ground this frame and you press X you jump
-	if (place_meeting(x, y + vspeed, obj_Ground)) && keyboard_check_pressed(ord("X"))
+	if (Grounded() || PredictiveGrounded())  && keyboard_check_pressed(ord("X"))
 	{
 		vspeed = -jump_accel;
 	}
@@ -181,9 +181,9 @@ function ReturnToIdleAnimation()
 		sprite_index = spr_Idle;
 	}
 	
-	if sprite_index == spr_JumpUp && place_meeting(x+hspeed, y+vspeed, obj_Ground)
+	if sprite_index == spr_JumpUp && Grounded()
 		sprite_index = spr_SwordIdle;
-	if sprite_index == spr_DisarmedJumpUp && place_meeting(x+hspeed, y+vspeed, obj_Ground)
+	if sprite_index == spr_DisarmedJumpUp && Grounded()
 		sprite_index = spr_Idle;
 }
 
@@ -201,4 +201,14 @@ function SwitchSwordAnimations()
 		if sprite_index == spr_Run sprite_index = spr_RunDisarmed;
 		if sprite_index == spr_JumpUp sprite_index = spr_DisarmedJumpUp;
 	}
+}
+
+function Grounded()
+{
+	return collision_point(x-62, y+64, obj_Ground, false, false) || collision_point(x+62, y+64, obj_Ground, false, false);
+}
+
+function PredictiveGrounded()
+{
+	return collision_point(x-62, y+64+vspeed, obj_Ground, false, false) || collision_point(x+62, y+64+vspeed, obj_Ground, false, false);
 }
