@@ -50,6 +50,7 @@
     {"id":{"name":"spr_Enemy","path":"sprites/spr_Enemy/spr_Enemy.yy",},"order":3,},
     {"id":{"name":"PirateProtoDisarmed","path":"sprites/PirateProtoDisarmed/PirateProtoDisarmed.yy",},"order":20,},
     {"id":{"name":"ProtoClayKick","path":"sprites/ProtoClayKick/ProtoClayKick.yy",},"order":26,},
+    {"id":{"name":"obj_Moose","path":"objects/obj_Moose/obj_Moose.yy",},"order":9,},
     {"id":{"name":"ProtoBlocking","path":"sprites/ProtoBlocking/ProtoBlocking.yy",},"order":24,},
     {"id":{"name":"obj_Player","path":"objects/obj_Player/obj_Player.yy",},"order":1,},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},

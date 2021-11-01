@@ -8,7 +8,7 @@ function Run()
 		hspeed -= h_accel;
 		// Maxes out velocity
 		if hspeed < -max_velocity { hspeed = -max_velocity; }
-
+ 
 		// Assigns different running animations based on armed status
 		if armed { sprite_index = spr_Run; }
 		else { sprite_index = spr_RunDisarmed; }
@@ -146,13 +146,13 @@ function invin_update()
 function EnemyCollision()
 {
 	// If the enemy exists and they will collide with the player this frame
-	if instance_exists(obj_Enemy) && place_meeting(x+hspeed, y+vspeed, obj_Enemy)
+	if instance_exists(obj_Moose) && place_meeting(x+hspeed, y+vspeed, obj_Moose)
 	{
 		// Knockback the player
-		Knockback(obj_Enemy.x);
+		Knockback(obj_Moose.x);
 		
 		// If the test scene is going and the player is higher than the enemy
-		if instance_exists(obj_TestSceneController) && obj_TestSceneController.state == 0 && y < obj_Enemy.y
+		if instance_exists(obj_TestSceneController) && obj_TestSceneController.state == 0 && y < obj_Moose.y
 		{
 			// Move to next step
 			obj_TestSceneController.ToState1();

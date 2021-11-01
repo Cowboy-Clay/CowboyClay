@@ -45,8 +45,8 @@ if PredictiveGrounded() && vspeed > 0
 // Debugging code to respawn enemy
 if(keyboard_check_pressed(ord("E")))
 {
-	instance_activate_object(obj_Enemy);
-	obj_Enemy.armed = true;
+	instance_activate_object(obj_Moose);
+	obj_Moose.armed = true;
 }
 
 EnemyCollision();
