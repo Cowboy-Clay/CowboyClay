@@ -2,14 +2,14 @@
 // You can write your code in this editor
 if my_sword_state == sword_state.neutral
 {
-x = obj_Enemy.x + offset;
-y = obj_Enemy.y;
+x = obj_Moose.x + offset;
+y = obj_Moose.y;
 
-if obj_Enemy.x < obj_Player.x {
+if obj_Moose.x < obj_Player.x {
 	offset = default_offset;
 	image_xscale = default_image_scale;
 }
-else if obj_Enemy.x > obj_Player.x{
+else if obj_Moose.x > obj_Player.x{
 	offset = (default_offset * -1);
 	image_xscale = (default_image_scale * -1);
 }

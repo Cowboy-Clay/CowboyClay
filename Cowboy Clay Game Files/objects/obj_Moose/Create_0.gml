@@ -15,20 +15,26 @@ tauntTimer = 0;
 tauntTime = 2;
 // Slide variables
 slideWaitTimer = 0;
-slideWaitTime = 0.5;
-slideVelocity = 5;
-slideDeadening = 0.95;
+slideWaitTime = 1;
+slideVelocity = 10;
+slideDeadening = 0.9;
 // Space variables
 idealDistance = 500;
 spaceAccell = 1;
 spaceMaxVel = 10;
-spaceDeadening = 0.9;
+spaceDeadening = 0.75;
 // Avoid variables
 avoidTimer = 0;
 avoidTime = 10;
 // Hit variables
-hitVel = 10;
+hitVel = 20;
 hitDeadening = 0.9;
+// Retrieve variables
+retrAcc = 1;
+retrMaxVel = 10;
+// Charge variables
+chargeVel = 10;
+chargeWait = false;
 
 function UpdateState()
 {
@@ -57,7 +63,7 @@ function UpdateState()
 			else
 			{
 				hspeed *= slideDeadening;
-				if hspeed < 0.01 GoToSpace();
+				if hspeed < 1 GoToSpace();
 			}
 			break;
 		case State.SPACE:
@@ -69,17 +75,42 @@ function UpdateState()
 				GoToRetrieve();
 			break;
 		case State.RETRIEVE:
+			Retrieve();
 			break;
 		case State.CHARGE:
+			if(!chargeWait)
+			{
+				if place_meeting(x+vspeed, y, obj_Wall)
+				{
+					vspeed = 0;
+					if obj_EnemySword.image_angle == 90 obj_EnemySword.x -= 10;
+					else obj_EnemySword.x += 10;
+					chargeWait = true;
+				}
+			}
+			else
+			{
+				if obj_EnemySword.image_angle == 90 x-= 10;
+				else x += 10;
+				obj_EnemySword.y += 15;
+				if obj_EnemySword.y >= y
+				{
+					show_debug_message("FUCK");
+	obj_EnemySword.my_sword_state = sword_state.neutral;
+	armed = true;
+	instance_deactivate_object(obj_EnemySword);
+	GoToSpace();
+				}
+			}
 			break;
 		case State.HIT:
 			hspeed *= hitDeadening;
-			if hspeed < 0.05 && !armed
+			if abs(hspeed) < 1 && !armed
 			{
 				ZeroVelocity();
 				GoToAvoid();
 			}
-			if hspeed < 0.05 && armed
+			if abs(hspeed) < 1 && armed
 			{
 				ZeroVelocity();
 				GoToSpace();
@@ -126,7 +157,7 @@ function GoToRetrieve()
 		GoToSpace();
 		return;
 	}
-	if (x < obj_Player.x && obj_Player.x < obj_EnemySword.x) || (x > obj_Player.x && obj_Player.x > obj_EnemySword.x)
+	if (x < obj_Player.x && obj_Player.x < obj_EnemySword.x) || (x > obj_Player.x && obj_Player.x > obj_EnemySword.x) || (obj_EnemySword.stuckInWall && obj_EnemySword.my_sword_state == sword_state.stuck)
 	{
 		GoToCharge();
 		return;
@@ -136,6 +167,9 @@ function GoToRetrieve()
 
 function GoToCharge()
 {
+	chargeWait = false;
+	if obj_Player.x > x hspeed = -chargeVel;
+	else hspeed = chargeVel;
 	currentState = State.CHARGE;
 }
 
@@ -155,6 +189,8 @@ function TakeHit()
 	}
 	
 	armed = false;
+	instance_activate_object(obj_EnemySword);
+	obj_EnemySword.Flung();
 	GoToHit();
 }
 
@@ -210,6 +246,20 @@ function SetAnimation()
 		{
 			sprite_index = spr_Moose;
 		}
+	}
+}
+
+function Retrieve()
+{
+	if instance_exists(obj_EnemySword) && obj_EnemySword.x > x
+	{
+		hspeed += retrAcc;
+		if hspeed > retrMaxVel hspeed = retrMaxVel;
+	}
+	else if instance_exists(obj_EnemySword)
+	{
+		hspeed -= retrAcc;
+		if hspeed < -retrMaxVel hspeed = - retrMaxVel;
 	}
 }
 

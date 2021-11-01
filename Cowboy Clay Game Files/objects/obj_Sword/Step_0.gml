@@ -26,7 +26,7 @@ switch my_sword_state{
 
 
 //show_debug_message("Sword Location: " + string(x) + " , " + string(y));
-show_debug_message(string(my_sword_state));
+//show_debug_message(string(my_sword_state));
 
 // The sword is ready to be picked up
 if my_sword_state == sword_state.stuck && place_meeting(x,y,obj_Player){

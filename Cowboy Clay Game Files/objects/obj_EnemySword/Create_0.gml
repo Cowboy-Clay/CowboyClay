@@ -11,12 +11,14 @@ flinging_v_accel = 25;
 max_gravity = 160;
 grav = 0.95;
 
+stuckInWall = false;
+
 function Flung()
 {
 	if(my_sword_state == sword_state.neutral){
-		x = obj_Enemy.x;
-		y = obj_Enemy.y;
-		hspeed = flinging_h_accel * sign(obj_Enemy.x - obj_Player.x);
+		x = obj_Moose.x;
+		y = obj_Moose.y;
+		hspeed = flinging_h_accel * sign(obj_Moose.x - obj_Player.x);
 		vspeed = -flinging_v_accel;
 		my_sword_state = sword_state.flung;
 	}
@@ -28,6 +30,8 @@ function Flinging(){
 	
 	if place_meeting(x + hspeed, y, obj_Wall)
 	{
+		stuckInWall = true;
+		
 		if hspeed > 0
 		{
 			image_angle = 90;
@@ -52,6 +56,8 @@ function Flinging(){
 	//Collision with ground
 	if (place_meeting(x, y + vspeed, obj_Ground))
 	{
+		stuckInWall = false;
+		
 		while place_meeting(x + hspeed, y, obj_Wall)
 		{
 			x -= 0.1 * sign(hspeed);
