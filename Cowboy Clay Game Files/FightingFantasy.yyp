@@ -17,6 +17,7 @@
     {"id":{"name":"protoDeath","path":"sprites/protoDeath/protoDeath.yy",},"order":35,},
     {"id":{"name":"spr_DisarmedJumpUp","path":"sprites/spr_DisarmedJumpUp/spr_DisarmedJumpUp.yy",},"order":18,},
     {"id":{"name":"PirateProtoPull","path":"sprites/PirateProtoPull/PirateProtoPull.yy",},"order":21,},
+    {"id":{"name":"moosewalk","path":"sprites/moosewalk/moosewalk.yy",},"order":38,},
     {"id":{"name":"spr_FrontSlash","path":"sprites/spr_FrontSlash/spr_FrontSlash.yy",},"order":7,},
     {"id":{"name":"ProtoCrouchDisarmed","path":"sprites/ProtoCrouchDisarmed/ProtoCrouchDisarmed.yy",},"order":28,},
     {"id":{"name":"obj_Ground","path":"objects/obj_Ground/obj_Ground.yy",},"order":0,},
