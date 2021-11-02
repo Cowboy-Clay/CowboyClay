@@ -75,7 +75,7 @@
     "backdropXOffset": 0.0,
     "backdropYOffset": 0.0,
     "xorigin": 179,
-    "yorigin": 113,
+    "yorigin": 116,
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"ProtoMooseTaunt","path":"sprites/ProtoMooseTaunt/ProtoMooseTaunt.yy",},
