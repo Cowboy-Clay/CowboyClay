@@ -186,8 +186,8 @@ function GoToCharge()
 
 function GoToHit()
 {
-	if obj_Player.x > x hspeed = -hitVel;
-	if obj_Player.x < x hspeed = hitVel;
+	if obj_Player.x > x-136 hspeed = -hitVel;
+	if obj_Player.x < x-136 hspeed = hitVel;
 	currentState = State.HIT;
 }
 
