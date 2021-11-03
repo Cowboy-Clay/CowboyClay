@@ -54,7 +54,7 @@ function UpdateState()
 		case State.TAUNT:
 			tauntTimer -= delta_time/1000000;
 			if instance_exists(obj_Sword) GoToSlide();
-			if tauntTimer <= 0 GoToWait();
+			if tauntTimer <= 0 GoToSlide();
 			break;
 		case State.SLIDE:
 			if slideWaitTimer > 0
