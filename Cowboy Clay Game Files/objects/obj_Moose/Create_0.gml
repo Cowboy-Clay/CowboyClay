@@ -196,6 +196,13 @@ function TakeHit()
 
 function SpaceWalk()
 {
+	if place_meeting(x,y,obj_Wall)
+	{
+		hspeed = 0;
+		GoToWait();
+		return;
+	}
+	
 	if distance_to_object(obj_Player) < idealDistance
 	{
 		if obj_Player.x < x
