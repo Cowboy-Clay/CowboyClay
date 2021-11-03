@@ -20,3 +20,8 @@ if instance_exists(obj_EnemySword) && obj_EnemySword.my_sword_state == sword_sta
 	instance_deactivate_object(obj_EnemySword);
 	GoToSpace();
 }
+
+if place_meeting(x,y,obj_Player)
+{
+	TouchedPlayer();
+}

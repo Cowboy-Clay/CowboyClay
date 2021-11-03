@@ -312,3 +312,11 @@ function PrintState()
 			break;
 	}
 }
+
+function TouchedPlayer()
+{
+	if currentState == State.TAUNT || currentState == State.CHARGE || currentState == State.SLIDE
+	{
+		obj_Player.Hurt(x);
+	}
+}
