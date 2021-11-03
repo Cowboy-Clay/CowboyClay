@@ -16,8 +16,9 @@ tauntTime = 2;
 // Slide variables
 slideWaitTimer = 0;
 slideWaitTime = 1;
-slideVelocity = 10;
-slideDeadening = 0.9;
+slideVelocity = 25;
+slideDeadening = 0.97;
+slideFlag = false;
 // Space variables
 idealDistance = 500;
 spaceAccell = 1;
@@ -60,10 +61,16 @@ function UpdateState()
 			{
 				slideWaitTimer -= delta_time/1000000;
 			}
+			else if slideFlag == false
+			{
+				slideFlag = true;
+				if obj_Player.x > x hspeed = slideVelocity;
+				else hspeed = - slideVelocity;
+			}
 			else
 			{
 				hspeed *= slideDeadening;
-				if hspeed < 1 GoToSpace();
+				if abs(hspeed) < 1 GoToSpace();
 			}
 			break;
 		case State.SPACE:
@@ -133,9 +140,8 @@ function GoToTaunt()
 
 function GoToSlide()
 {
+	slideFlag = false;
 	slideWaitTimer = slideWaitTime;
-	if obj_Player.x > x hspeed = slideVelocity;
-	else hspeed = - slideVelocity;
 	currentState = State.SLIDE;
 }
 
@@ -236,7 +242,7 @@ function SetAnimation()
 	// Taunt animation
 	if currentState == State.TAUNT sprite_index = ProtoMooseTaunt;
 	// Slide animation
-	if currentState == State.SLIDE sprite_index = ProtoMooseSlide;
+	if currentState == State.SLIDE && abs(hspeed) > 1 sprite_index = ProtoMooseSlide;
 	// Charge animation
 	if currentState == State.CHARGE sprite_index = ProtoMooseCharge;
 	
