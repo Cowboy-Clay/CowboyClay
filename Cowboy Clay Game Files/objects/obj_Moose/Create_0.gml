@@ -20,7 +20,7 @@ slideVelocity = 25;
 slideDeadening = 0.97;
 slideFlag = false;
 // Space variables
-idealDistance = 500;
+idealDistance = 300;
 spaceAccell = 1;
 spaceMaxVel = 10;
 spaceDeadening = 0.75;
@@ -71,6 +71,11 @@ function UpdateState()
 			{
 				hspeed *= slideDeadening;
 				if abs(hspeed) < 1 GoToSpace();
+				if place_meeting(x,y,obj_Wall)
+				{
+					hspeed = 0;
+					GoToSpace();
+				}
 			}
 			break;
 		case State.SPACE:
