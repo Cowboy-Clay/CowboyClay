@@ -8,8 +8,8 @@ armed = true;
 
 // Wait variables
 waitTimer = 0;
-waitTimeMinimum = 2;
-waitTimeMaximum = 5;
+waitTimeMinimum = 1;
+waitTimeMaximum = 3;
 // Taunt variables
 tauntTimer = 0;
 tauntTime = 2;
