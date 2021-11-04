@@ -276,7 +276,11 @@ function SetAnimation()
 	// Taunt animation
 	if currentState == MooseState.TAUNT sprite_index = ProtoMooseTaunt;
 	// Slide animation
-	if currentState == MooseState.SLIDE && abs(hspeed) > 1 sprite_index = ProtoMooseSlide;
+	if currentState == MooseState.SLIDE
+	{
+		if abs(hspeed) > 1 sprite_index = ProtoMooseSlide;
+		else sprite_index = PirateProtoDisarmed;
+	}
 	// Charge animation
 	if currentState == MooseState.CHARGE sprite_index = ProtoMooseCharge;
 	
