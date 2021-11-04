@@ -14,7 +14,7 @@ attack_disallowed = false;
 function Run()
 {
 	// Left movement and animation
-	if keyboard_check(vk_left) && !keyboard_check(vk_right)
+	if keyboard_check(vk_left) && !keyboard_check(vk_right) && sprite_index != spr_FrontSlash
 	{
 		// Adjusts velocity
 		hspeed -= h_accel;
@@ -26,7 +26,7 @@ function Run()
 		else { sprite_index = spr_RunDisarmed; }
 	}
 	// Right movement and animation
-	else if keyboard_check(vk_right) && !keyboard_check(vk_left)
+	else if keyboard_check(vk_right) && !keyboard_check(vk_left) && sprite_index != spr_FrontSlash
 	{
 		// Adjusts velocity
 		hspeed += h_accel;
@@ -43,7 +43,7 @@ function Run()
 		hspeed = 0;
 	}
 	
-	if !(keyboard_check(vk_left) || keyboard_check(vk_right))
+	if (!(keyboard_check(vk_left) || keyboard_check(vk_right))) || sprite_index == spr_FrontSlash
 		frict();
 	zero_velocity();
 }
