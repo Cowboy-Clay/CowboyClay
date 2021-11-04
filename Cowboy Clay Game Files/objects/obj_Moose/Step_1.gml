@@ -4,7 +4,7 @@
 UpdateState();
 SetAnimation();
 
-//PrintState();
+PrintState();
 
 if instance_exists(obj_Sword) && place_meeting(x,y,obj_Sword) && currentState != State.WAIT && obj_Sword.my_sword_state == sword_state.neutral
 {

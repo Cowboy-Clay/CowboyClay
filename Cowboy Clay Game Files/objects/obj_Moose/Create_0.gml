@@ -102,16 +102,17 @@ function UpdateState()
 			}
 			else
 			{
+				show_debug_message("Sword should be falling");
 				if obj_EnemySword.image_angle == 90 x-= 10;
 				else x += 10;
 				obj_EnemySword.y += 15;
 				if obj_EnemySword.y >= y
 				{
 					show_debug_message("FUCK");
-	obj_EnemySword.my_sword_state = sword_state.neutral;
-	armed = true;
-	instance_deactivate_object(obj_EnemySword);
-	GoToSpace();
+					obj_EnemySword.my_sword_state = sword_state.neutral;
+					armed = true;
+					instance_deactivate_object(obj_EnemySword);
+					GoToSpace();
 				}
 			}
 			break;
@@ -166,6 +167,11 @@ function GoToRetrieve()
 	if armed 
 	{
 		GoToSpace();
+		return;
+	}
+	if obj_EnemySword.my_sword_state != sword_state.stuck
+	{
+		GoToAvoid();
 		return;
 	}
 	if (x < obj_Player.x && obj_Player.x < obj_EnemySword.x) || (x > obj_Player.x && obj_Player.x > obj_EnemySword.x) || (obj_EnemySword.stuckInWall && obj_EnemySword.my_sword_state == sword_state.stuck)
@@ -330,4 +336,10 @@ function TouchedPlayer()
 	{
 		obj_Player.Hurt(x);
 	}
+}
+
+function MoveInbounds()
+{
+	if x < minX x = minX;
+	if x > maxX x = maxX;
 }
