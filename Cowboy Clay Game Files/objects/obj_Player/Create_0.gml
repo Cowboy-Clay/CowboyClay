@@ -1,3 +1,15 @@
+frict_value = 0.9;
+h_accel = 1;
+jump_accel = 27.5;
+grav = 0.95;
+max_velocity = 20;
+max_gravity = 30;
+max_vertical_velocity = 30;
+attacking = false;
+invin = false;
+invin_timer = 0;
+attack_disallowed = false;
+
 // Controls left and right movement
 function Run()
 {
@@ -211,4 +223,12 @@ function Grounded()
 function PredictiveGrounded()
 {
 	return collision_point(x-62, y+64+vspeed, obj_Ground, false, false) || collision_point(x+62, y+64+vspeed, obj_Ground, false, false);
+}
+
+function MoveInbounds()
+{
+	if x > maxX x = maxX;
+	if x < minX x = minX;
+	if y > maxY y = maxY;
+	if y < minY y = minY;
 }
