@@ -204,7 +204,7 @@ function GoToRetrieve()
 function GoToCharge()
 {
 	chargeWait = false;
-	if obj_Player.x > x hspeed = -chargeVel;
+	if obj_EnemySword.x > x hspeed = -chargeVel;
 	else hspeed = chargeVel;
 	currentState = MooseState.CHARGE;
 }
@@ -359,8 +359,10 @@ function PrintState()
 
 function TouchedPlayer()
 {
+	show_debug_message("Touching player");
 	if currentState == MooseState.TAUNT || currentState == MooseState.CHARGE || currentState == MooseState.SLIDE
 	{
+		show_debug_message("Damaging player");
 		obj_Player.Hurt(x);
 	}
 }

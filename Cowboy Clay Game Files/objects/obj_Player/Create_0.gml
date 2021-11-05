@@ -40,7 +40,7 @@ function Run()
 	
 	if place_meeting(x + hspeed, y, obj_Wall) 
 	{
-		hspeed = 0;
+		//hspeed = 0;
 	}
 	
 	if (!(keyboard_check(vk_left) || keyboard_check(vk_right))) || sprite_index == spr_FrontSlash
@@ -88,6 +88,17 @@ function Knockback(enemy_x){
 		if hspeed < -max_velocity hspeed = -max_velocity;
 		if vspeed > max_vertical_velocity vspeed = max_vertical_velocity;
 		if vspeed < -max_vertical_velocity vspeed = -max_vertical_velocity;
+		
+		if x + hspeed > maxX
+		{
+			x = maxX;
+			hspeed = 0;
+		}
+		if x + hspeed < minX
+		{
+			x = minX;
+			hspeed = 0;
+		}
 }
 
 // Called to hurt the player
@@ -158,7 +169,7 @@ function invin_update()
 function EnemyCollision()
 {
 	// If the enemy exists and they will collide with the player this frame
-	if instance_exists(obj_Moose) && place_meeting(x+hspeed, y+vspeed, obj_Moose)
+	if instance_exists(obj_Moose) && place_meeting(x, y, obj_Moose)
 	{
 		// Knockback the player
 		Knockback(obj_Moose.x);
@@ -227,8 +238,24 @@ function PredictiveGrounded()
 
 function MoveInbounds()
 {
-	if x > maxX x = maxX;
-	if x < minX x = minX;
-	if y > maxY y = maxY;
-	if y < minY y = minY;
+	if x + hspeed > maxX
+	{
+		x = maxX;
+		hspeed = 0;
+	}
+	if x + hspeed < minX
+	{
+		x = minX;
+		hspeed = 0;
+	}
+	if y + vspeed > maxY
+	{
+		y = maxY;
+		vspeed = 0;
+	}
+	if y + vspeed < minY
+	{
+		y = minY;
+		vspeed = 0;
+	}
 }

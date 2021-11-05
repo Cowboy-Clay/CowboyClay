@@ -31,7 +31,7 @@
   ],
   "properties": [
     {"varType":3,"value":"True","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"armed","tags":[],"resourceType":"GMObjectProperty",},
-    {"varType":0,"value":"256","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"minX","tags":[],"resourceType":"GMObjectProperty",},
+    {"varType":0,"value":"275","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"minX","tags":[],"resourceType":"GMObjectProperty",},
     {"varType":0,"value":"1728","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"maxX","tags":[],"resourceType":"GMObjectProperty",},
     {"varType":0,"value":"320","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"minY","tags":[],"resourceType":"GMObjectProperty",},
     {"varType":0,"value":"960","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"maxY","tags":[],"resourceType":"GMObjectProperty",},
