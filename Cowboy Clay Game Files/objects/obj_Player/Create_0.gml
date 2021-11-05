@@ -172,7 +172,7 @@ function EnemyCollision()
 	if instance_exists(obj_Moose) && place_meeting(x, y, obj_Moose)
 	{
 		// Knockback the player
-		Knockback(obj_Moose.x);
+		Knockback(obj_Moose.x - 150);
 		
 		// If the test scene is going and the player is higher than the enemy
 		if instance_exists(obj_TestSceneController) && obj_TestSceneController.state == 0 && y < obj_Moose.y

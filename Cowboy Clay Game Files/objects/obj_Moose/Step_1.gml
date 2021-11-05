@@ -6,7 +6,7 @@ SetAnimation();
 
 // PrintState();
 
-if instance_exists(obj_Sword) && place_meeting(x,y,obj_Sword) && currentState != MooseState.WAIT && obj_Sword.my_sword_state == sword_state.neutral
+if instance_exists(obj_Sword) && place_meeting(x,y,obj_Sword) && !(currentState == MooseState.WAIT && blockTimer > blockTime) && obj_Sword.my_sword_state == sword_state.neutral
 {
 	TakeHit();
 }

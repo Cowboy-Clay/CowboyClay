@@ -21,6 +21,10 @@ minWanderWait = 0;
 walkingAccel = .5;
 walkingMaxVel = 3;
 
+// Block sub variable
+blockTimer = 0;
+blockTime = 0.5;
+
 // Taunt variables
 tauntTimer = 0;
 tauntTime = 2;
@@ -38,6 +42,7 @@ spaceAccell = 1;
 spaceMaxVel = 10;
 spaceDeadening = 0.75;
 // Avoid variables
+minAvoidTime = 1;
 avoidTimer = 0;
 avoidTime = 10;
 // Hit variables
@@ -97,7 +102,7 @@ function UpdateState()
 			break;
 		case MooseState.AVOID:
 			avoidTimer -= delta_time/1000000;
-			if avoidTimer <= 0 || instance_exists(obj_Sword) || place_meeting(x,y,obj_Wall)
+			if (avoidTimer <= 0 || instance_exists(obj_Sword) || place_meeting(x,y,obj_Wall)) && avoidTimer < avoidTime - minAvoidTime
 				GoToRetrieve();
 			break;
 		case MooseState.RETRIEVE:
@@ -204,7 +209,7 @@ function GoToRetrieve()
 function GoToCharge()
 {
 	chargeWait = false;
-	if obj_EnemySword.x > x hspeed = -chargeVel;
+	if obj_EnemySword.x < x hspeed = -chargeVel;
 	else hspeed = chargeVel;
 	currentState = MooseState.CHARGE;
 }
@@ -270,7 +275,8 @@ function SetAnimation()
 	// Waiting animation
 	if currentState == MooseState.WAIT
 	{
-		if currentWanderState == WanderState.WAIT sprite_index = spr_Moose;
+		if blockTimer > blockTime sprite_index = mooseblock;
+		else if (currentWanderState == WanderState.WAIT) || (distance_to_object(obj_Player) < minDistance) sprite_index = spr_Moose;
 		else sprite_index = moosewalk;
 	}
 	// Taunt animation
@@ -375,6 +381,15 @@ function MoveInbounds()
 
 function Wander()
 {
+	if distance_to_object(obj_Player) < minDistance
+	{
+		blockTimer += delta_time / 1000000;
+		hspeed = 0;
+		return;
+	}
+	
+	blockTimer = 0;
+	
 	wanderTimer -= delta_time / 1000000;
 	switch currentWanderState
 	{
