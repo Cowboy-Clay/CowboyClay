@@ -1,6 +1,6 @@
-frict_value = 0.9;
-h_accel = 1;
-jump_accel = 27.5;
+frict_value = 0.5;
+h_accel = 1.3;
+jump_accel = 17.5;
 grav = 0.95;
 max_velocity = 20;
 max_gravity = 30;
@@ -66,7 +66,7 @@ function Jump(){
 // Controls attacks
 function AttackControls(){	
 	// If you press Z and are armed you attack
-	if keyboard_check_pressed(ord("Z")) && armed && !attack_disallowed
+	if keyboard_check_pressed(ord("Z")) && armed && !attack_disallowed && !instance_exists(obj_Sword)
 	{
 		instance_activate_object(obj_Sword); // Activates the sword object
 		obj_Sword.Reset(); // Gets the sword to swing

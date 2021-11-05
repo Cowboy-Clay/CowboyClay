@@ -23,7 +23,7 @@ walkingMaxVel = 3;
 
 // Block sub variable
 blockTimer = 0;
-blockTime = 0.5;
+blockTime = 0.2;
 
 // Taunt variables
 tauntTimer = 0;
