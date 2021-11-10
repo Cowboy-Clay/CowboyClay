@@ -26,7 +26,6 @@
     {"id":{"name":"spr_FrontSlash","path":"sprites/spr_FrontSlash/spr_FrontSlash.yy",},"order":7,},
     {"id":{"name":"ProtoCrouchDisarmed","path":"sprites/ProtoCrouchDisarmed/ProtoCrouchDisarmed.yy",},"order":28,},
     {"id":{"name":"obj_Ground","path":"objects/obj_Ground/obj_Ground.yy",},"order":0,},
-    {"id":{"name":"spr_PirateIdle","path":"sprites/spr_PirateIdle/spr_PirateIdle.yy",},"order":16,},
     {"id":{"name":"spr_Ground","path":"sprites/spr_Ground/spr_Ground.yy",},"order":0,},
     {"id":{"name":"ProtoMooseChargeTelegraph","path":"sprites/ProtoMooseChargeTelegraph/ProtoMooseChargeTelegraph.yy",},"order":51,},
     {"id":{"name":"protospin","path":"sprites/protospin/protospin.yy",},"order":12,},
