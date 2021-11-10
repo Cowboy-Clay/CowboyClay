@@ -1,5 +1,6 @@
 {
   "resources": [
+    {"id":{"name":"ProtoMooseTauntTelegraph","path":"sprites/ProtoMooseTauntTelegraph/ProtoMooseTauntTelegraph.yy",},"order":50,},
     {"id":{"name":"protodagger","path":"sprites/protodagger/protodagger.yy",},"order":19,},
     {"id":{"name":"ProtoJumpSlash","path":"sprites/ProtoJumpSlash/ProtoJumpSlash.yy",},"order":30,},
     {"id":{"name":"ProtoRoom","path":"rooms/ProtoRoom/ProtoRoom.yy",},"order":1,},
@@ -10,6 +11,7 @@
     {"id":{"name":"Tile1background","path":"sprites/Tile1background/Tile1background.yy",},"order":44,},
     {"id":{"name":"ProtoMooseDeath","path":"sprites/ProtoMooseDeath/ProtoMooseDeath.yy",},"order":32,},
     {"id":{"name":"spr_StuckSword","path":"sprites/spr_StuckSword/spr_StuckSword.yy",},"order":5,},
+    {"id":{"name":"ProtoMooseSlideTelegraph","path":"sprites/ProtoMooseSlideTelegraph/ProtoMooseSlideTelegraph.yy",},"order":49,},
     {"id":{"name":"ProtoCrouch","path":"sprites/ProtoCrouch/ProtoCrouch.yy",},"order":27,},
     {"id":{"name":"protoswordstuck","path":"sprites/protoswordstuck/protoswordstuck.yy",},"order":13,},
     {"id":{"name":"obj_SwordSprite","path":"objects/obj_SwordSprite/obj_SwordSprite.yy",},"order":6,},
@@ -26,6 +28,7 @@
     {"id":{"name":"obj_Ground","path":"objects/obj_Ground/obj_Ground.yy",},"order":0,},
     {"id":{"name":"spr_PirateIdle","path":"sprites/spr_PirateIdle/spr_PirateIdle.yy",},"order":16,},
     {"id":{"name":"spr_Ground","path":"sprites/spr_Ground/spr_Ground.yy",},"order":0,},
+    {"id":{"name":"ProtoMooseChargeTelegraph","path":"sprites/ProtoMooseChargeTelegraph/ProtoMooseChargeTelegraph.yy",},"order":51,},
     {"id":{"name":"protospin","path":"sprites/protospin/protospin.yy",},"order":12,},
     {"id":{"name":"ProtoCrouchingAttack","path":"sprites/ProtoCrouchingAttack/ProtoCrouchingAttack.yy",},"order":29,},
     {"id":{"name":"ProtoMooseStruck","path":"sprites/ProtoMooseStruck/ProtoMooseStruck.yy",},"order":34,},
