@@ -2,9 +2,17 @@
 
 if !paused
 {
-	Walk();
+	UpdateState();
+	StateBasedMethods();
+	
+	
+	hspeed = sign(walkingSlider) * animcurve_channel_evaluate(walkingSpeedCurve, abs(walkingSlider / timeToFullSpeed)) * fullspeedMulti;
+	
+	// Physics
 	Gravity(gravityAccel, gravityMax);
+	
+	// States
 	UpdateAnimationState();
 	PlayAnimation();
 }
-CheckEnvironCollisions();
+CheckEnvironCollisions(spr_Guy);

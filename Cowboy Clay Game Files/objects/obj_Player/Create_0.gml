@@ -183,14 +183,6 @@ function EnemyCollision()
 	}
 }
 
-function Gravity()
-{
-	if !place_meeting(x,y, obj_Ground) && vspeed < max_gravity
-	{
-		vspeed += grav;
-	}
-}
-
 function ReturnToIdleAnimation()
 {
 	if keyboard_check(vk_left) || keyboard_check(vk_right) return;
