@@ -1,8 +1,20 @@
+frict_value = 0.5;
+h_accel = 1.3;
+jump_accel = 17.5;
+grav = 0.95;
+max_velocity = 20;
+max_gravity = 30;
+max_vertical_velocity = 30;
+attacking = false;
+invin = false;
+invin_timer = 0;
+attack_disallowed = false;
+
 // Controls left and right movement
 function Run()
 {
 	// Left movement and animation
-	if keyboard_check(vk_left) && !keyboard_check(vk_right)
+	if keyboard_check(vk_left) && !keyboard_check(vk_right) && sprite_index != spr_FrontSlash
 	{
 		// Adjusts velocity
 		hspeed -= h_accel;
@@ -14,7 +26,7 @@ function Run()
 		else { sprite_index = spr_RunDisarmed; }
 	}
 	// Right movement and animation
-	else if keyboard_check(vk_right) && !keyboard_check(vk_left)
+	else if keyboard_check(vk_right) && !keyboard_check(vk_left) && sprite_index != spr_FrontSlash
 	{
 		// Adjusts velocity
 		hspeed += h_accel;
@@ -28,10 +40,10 @@ function Run()
 	
 	if place_meeting(x + hspeed, y, obj_Wall) 
 	{
-		hspeed = 0;
+		//hspeed = 0;
 	}
 	
-	if !(keyboard_check(vk_left) || keyboard_check(vk_right))
+	if (!(keyboard_check(vk_left) || keyboard_check(vk_right))) || sprite_index == spr_FrontSlash
 		frict();
 	zero_velocity();
 }
@@ -54,7 +66,7 @@ function Jump(){
 // Controls attacks
 function AttackControls(){	
 	// If you press Z and are armed you attack
-	if keyboard_check_pressed(ord("Z")) && armed && !attack_disallowed
+	if keyboard_check_pressed(ord("Z")) && armed && !attack_disallowed && !instance_exists(obj_Sword)
 	{
 		instance_activate_object(obj_Sword); // Activates the sword object
 		obj_Sword.Reset(); // Gets the sword to swing
@@ -76,6 +88,17 @@ function Knockback(enemy_x){
 		if hspeed < -max_velocity hspeed = -max_velocity;
 		if vspeed > max_vertical_velocity vspeed = max_vertical_velocity;
 		if vspeed < -max_vertical_velocity vspeed = -max_vertical_velocity;
+		
+		if x + hspeed > maxX
+		{
+			x = maxX;
+			hspeed = 0;
+		}
+		if x + hspeed < minX
+		{
+			x = minX;
+			hspeed = 0;
+		}
 }
 
 // Called to hurt the player
@@ -146,10 +169,10 @@ function invin_update()
 function EnemyCollision()
 {
 	// If the enemy exists and they will collide with the player this frame
-	if instance_exists(obj_Moose) && place_meeting(x+hspeed, y+vspeed, obj_Moose)
+	if instance_exists(obj_Moose) && place_meeting(x, y, obj_Moose)
 	{
 		// Knockback the player
-		Knockback(obj_Moose.x);
+		Knockback(obj_Moose.x - 150);
 		
 		// If the test scene is going and the player is higher than the enemy
 		if instance_exists(obj_TestSceneController) && obj_TestSceneController.state == 0 && y < obj_Moose.y
@@ -157,14 +180,6 @@ function EnemyCollision()
 			// Move to next step
 			obj_TestSceneController.ToState1();
 		}
-	}
-}
-
-function Gravity()
-{
-	if !place_meeting(x,y, obj_Ground) && vspeed < max_gravity
-	{
-		vspeed += grav;
 	}
 }
 
@@ -211,4 +226,28 @@ function Grounded()
 function PredictiveGrounded()
 {
 	return collision_point(x-62, y+64+vspeed, obj_Ground, false, false) || collision_point(x+62, y+64+vspeed, obj_Ground, false, false);
+}
+
+function MoveInbounds()
+{
+	if x + hspeed > maxX
+	{
+		x = maxX;
+		hspeed = 0;
+	}
+	if x + hspeed < minX
+	{
+		x = minX;
+		hspeed = 0;
+	}
+	if y + vspeed > maxY
+	{
+		y = maxY;
+		vspeed = 0;
+	}
+	if y + vspeed < minY
+	{
+		y = minY;
+		vspeed = 0;
+	}
 }

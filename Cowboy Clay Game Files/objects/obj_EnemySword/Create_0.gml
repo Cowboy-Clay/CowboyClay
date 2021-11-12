@@ -17,7 +17,7 @@ function Flung()
 {
 	if(my_sword_state == sword_state.neutral){
 		x = obj_Moose.x;
-		y = obj_Moose.y;
+		y = obj_Moose.y - 100;
 		hspeed = flinging_h_accel * sign(obj_Moose.x - obj_Player.x);
 		vspeed = -flinging_v_accel;
 		my_sword_state = sword_state.flung;
@@ -80,4 +80,12 @@ function Gravity()
 	{
 		vspeed += grav;
 	}
+}
+
+function MoveInbounds()
+{
+	if x < minX -25 x = minX;
+	if x > maxX +25 x = maxX;
+	if y < minY -25 y = minY;
+	if y > maxY +25 y = maxY;
 }

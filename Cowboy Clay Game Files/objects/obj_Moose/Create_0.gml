@@ -1,15 +1,30 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-enum State { PULLING, WAIT, TAUNT, SLIDE, SPACE, AVOID, RETRIEVE, CHARGE, HIT };
-currentState = State.PULLING;
+enum MooseState { PULLING, WAIT, TAUNT, SLIDE, SPACE, AVOID, RETRIEVE, CHARGE, HIT };
+currentState = MooseState.PULLING;
 
 armed = true;
 
 // Wait variables
 waitTimer = 0;
-waitTimeMinimum = 1;
-waitTimeMaximum = 3;
+waitTimeMinimum = 5;
+waitTimeMaximum = 10;
+
+enum WanderState {LEFT, RIGHT, WAIT};
+currentWanderState = WanderState.WAIT;
+wanderTimer = 0;
+maxWanderTime = 1;
+minWanderTime = 0.25;
+maxWanderWait = .8;
+minWanderWait = 0;
+walkingAccel = .5;
+walkingMaxVel = 3;
+
+// Block sub variable
+blockTimer = 0;
+blockTime = 0.2;
+
 // Taunt variables
 tauntTimer = 0;
 tauntTime = 2;
@@ -20,11 +35,14 @@ slideVelocity = 25;
 slideDeadening = 0.97;
 slideFlag = false;
 // Space variables
-idealDistance = 300;
+idealDistance = 400;
+minDistance = 300;
+maxDistance = 550;
 spaceAccell = 1;
 spaceMaxVel = 10;
 spaceDeadening = 0.75;
 // Avoid variables
+minAvoidTime = 1;
 avoidTimer = 0;
 avoidTime = 10;
 // Hit variables
@@ -41,22 +59,23 @@ function UpdateState()
 {
 	switch currentState
 	{
-		case State.PULLING:
+		case MooseState.PULLING:
 			if place_meeting(x,y,obj_Player)
 			{
 				GoToSpace();
 			}
 			break;
-		case State.WAIT:
+		case MooseState.WAIT:
 			waitTimer -= delta_time/1000000;
+			Wander();
 			if waitTimer <= 0 GoToTaunt();
 			break;
-		case State.TAUNT:
+		case MooseState.TAUNT:
 			tauntTimer -= delta_time/1000000;
 			if instance_exists(obj_Sword) GoToSlide();
 			if tauntTimer <= 0 GoToSlide();
 			break;
-		case State.SLIDE:
+		case MooseState.SLIDE:
 			if slideWaitTimer > 0
 			{
 				slideWaitTimer -= delta_time/1000000;
@@ -78,18 +97,18 @@ function UpdateState()
 				}
 			}
 			break;
-		case State.SPACE:
+		case MooseState.SPACE:
 			SpaceWalk();
 			break;
-		case State.AVOID:
+		case MooseState.AVOID:
 			avoidTimer -= delta_time/1000000;
-			if avoidTimer <= 0 || instance_exists(obj_Sword) || place_meeting(x,y,obj_Wall)
+			if (avoidTimer <= 0 || instance_exists(obj_Sword) || place_meeting(x,y,obj_Wall)) && avoidTimer < avoidTime - minAvoidTime
 				GoToRetrieve();
 			break;
-		case State.RETRIEVE:
+		case MooseState.RETRIEVE:
 			Retrieve();
 			break;
-		case State.CHARGE:
+		case MooseState.CHARGE:
 			if(!chargeWait)
 			{
 				if place_meeting(x+vspeed, y, obj_Wall)
@@ -102,20 +121,21 @@ function UpdateState()
 			}
 			else
 			{
+				show_debug_message("Sword should be falling");
 				if obj_EnemySword.image_angle == 90 x-= 10;
 				else x += 10;
 				obj_EnemySword.y += 15;
 				if obj_EnemySword.y >= y
 				{
 					show_debug_message("FUCK");
-	obj_EnemySword.my_sword_state = sword_state.neutral;
-	armed = true;
-	instance_deactivate_object(obj_EnemySword);
-	GoToSpace();
+					obj_EnemySword.my_sword_state = sword_state.neutral;
+					armed = true;
+					instance_deactivate_object(obj_EnemySword);
+					GoToSpace();
 				}
 			}
 			break;
-		case State.HIT:
+		case MooseState.HIT:
 			hspeed *= hitDeadening;
 			if abs(hspeed) < 1 && !armed
 			{
@@ -134,31 +154,36 @@ function UpdateState()
 function GoToWait()
 {
 	waitTimer = random_range(waitTimeMinimum, waitTimeMaximum);
-	currentState = State.WAIT;
+	wanderTimer = random_range(minWanderWait, maxWanderWait);
+	currentWanderState = WanderState.WAIT;
+	currentState = MooseState.WAIT;
 }
 
 function GoToTaunt()
 {
+	hspeed = 0;
+	currentWanderState = WanderState.WAIT;
+	wanderTimer = 0;
 	tauntTimer = tauntTime;
-	currentState = State.TAUNT;
+	currentState = MooseState.TAUNT;
 }
 
 function GoToSlide()
 {
 	slideFlag = false;
 	slideWaitTimer = slideWaitTime;
-	currentState = State.SLIDE;
+	currentState = MooseState.SLIDE;
 }
 
 function GoToSpace()
 {
-	currentState = State.SPACE;
+	currentState = MooseState.SPACE;
 }
 
 function GoToAvoid()
 {
 	avoidTimer = avoidTime;
-	currentState = State.AVOID;
+	currentState = MooseState.AVOID;
 }
 
 function GoToRetrieve()
@@ -168,27 +193,32 @@ function GoToRetrieve()
 		GoToSpace();
 		return;
 	}
+	if obj_EnemySword.my_sword_state != sword_state.stuck
+	{
+		GoToAvoid();
+		return;
+	}
 	if (x < obj_Player.x && obj_Player.x < obj_EnemySword.x) || (x > obj_Player.x && obj_Player.x > obj_EnemySword.x) || (obj_EnemySword.stuckInWall && obj_EnemySword.my_sword_state == sword_state.stuck)
 	{
 		GoToCharge();
 		return;
 	}
-	currentState = State.RETRIEVE;
+	currentState = MooseState.RETRIEVE;
 }
 
 function GoToCharge()
 {
 	chargeWait = false;
-	if obj_Player.x > x hspeed = -chargeVel;
+	if obj_EnemySword.x < x hspeed = -chargeVel;
 	else hspeed = chargeVel;
-	currentState = State.CHARGE;
+	currentState = MooseState.CHARGE;
 }
 
 function GoToHit()
 {
 	if obj_Player.x > x-136 hspeed = -hitVel;
 	if obj_Player.x < x-136 hspeed = hitVel;
-	currentState = State.HIT;
+	currentState = MooseState.HIT;
 }
 
 function TakeHit()
@@ -241,20 +271,29 @@ function SpaceWalk()
 function SetAnimation()
 {
 	// Pulling animation
-	if currentState == State.PULLING sprite_index = PirateProtoPull;
+	if currentState == MooseState.PULLING sprite_index = PirateProtoPull;
 	// Waiting animation
-	if currentState == State.WAIT sprite_index = spr_Moose;
+	if currentState == MooseState.WAIT
+	{
+		if blockTimer > blockTime sprite_index = mooseblock;
+		else if (currentWanderState == WanderState.WAIT) || (distance_to_object(obj_Player) < minDistance) sprite_index = spr_Moose;
+		else sprite_index = moosewalk;
+	}
 	// Taunt animation
-	if currentState == State.TAUNT sprite_index = ProtoMooseTaunt;
+	if currentState == MooseState.TAUNT sprite_index = ProtoMooseTaunt;
 	// Slide animation
-	if currentState == State.SLIDE && abs(hspeed) > 1 sprite_index = ProtoMooseSlide;
+	if currentState == MooseState.SLIDE
+	{
+		if abs(hspeed) > 1 sprite_index = ProtoMooseSlide;
+		else sprite_index = PirateProtoDisarmed;
+	}
 	// Charge animation
-	if currentState == State.CHARGE sprite_index = ProtoMooseCharge;
+	if currentState == MooseState.CHARGE sprite_index = ProtoMooseCharge;
 	
-	if currentState == State.HIT sprite_index = ProtoMooseStruck;
+	if currentState == MooseState.HIT sprite_index = ProtoMooseStruck;
 	
 	// Walking animations
-	if (currentState == State.SPACE || currentState == State.AVOID)
+	if (currentState == MooseState.SPACE || currentState == MooseState.AVOID)
 	{
 		if abs(hspeed) > 0.05
 		{
@@ -294,31 +333,31 @@ function PrintState()
 {
 	switch currentState
 	{
-		case State.PULLING:
+		case MooseState.PULLING:
 			show_debug_message("Pulling");
 			break;
-		case State.WAIT:
+		case MooseState.WAIT:
 			show_debug_message("Wait");
 			break;
-		case State.TAUNT:
+		case MooseState.TAUNT:
 			show_debug_message("Taunt");
 			break;
-		case State.SLIDE:
+		case MooseState.SLIDE:
 			show_debug_message("Slide");
 			break;
-		case State.SPACE:
+		case MooseState.SPACE:
 			show_debug_message("Space");
 			break;
-		case State.AVOID:
+		case MooseState.AVOID:
 			show_debug_message("Avoid");
 			break;
-		case State.RETRIEVE:
+		case MooseState.RETRIEVE:
 			show_debug_message("Retrive");
 			break;
-		case State.CHARGE:
+		case MooseState.CHARGE:
 			show_debug_message("Charge");
 			break;
-		case State.HIT:
+		case MooseState.HIT:
 			show_debug_message("Hit");
 			break;
 	}
@@ -326,8 +365,73 @@ function PrintState()
 
 function TouchedPlayer()
 {
-	if currentState == State.TAUNT || currentState == State.CHARGE || currentState == State.SLIDE
+	show_debug_message("Touching player");
+	if currentState == MooseState.TAUNT || currentState == MooseState.CHARGE || currentState == MooseState.SLIDE
 	{
+		show_debug_message("Damaging player");
 		obj_Player.Hurt(x);
 	}
+}
+
+function MoveInbounds()
+{
+	if x < minX x = minX;
+	if x > maxX x = maxX;
+}
+
+function Wander()
+{
+	if distance_to_object(obj_Player) < minDistance
+	{
+		blockTimer += delta_time / 1000000;
+		hspeed = 0;
+		return;
+	}
+	
+	blockTimer = 0;
+	
+	wanderTimer -= delta_time / 1000000;
+	switch currentWanderState
+	{
+		case WanderState.WAIT:
+			if wanderTimer <= 0	PickWander();
+			break;
+		case WanderState.LEFT:
+			hspeed -= walkingAccel;
+			if hspeed < -walkingMaxVel hspeed = -walkingMaxVel;
+			if wanderTimer <= 0 WanderWait();
+			break;
+		case WanderState.RIGHT:
+			hspeed += walkingAccel;
+			if hspeed > walkingMaxVel hspeed = walkingMaxVel;
+			if wanderTimer <= 0 WanderWait();
+			break;
+	}
+}
+
+function PickWander()
+{
+	if distance_to_object(obj_Player) < minDistance
+	{
+		if x < obj_Player.x currentWanderState = WanderState.LEFT;
+		else currentWanderState = WanderState.RIGHT;
+	}
+	else if distance_to_object(obj_Player) > maxDistance
+	{
+		if x < obj_Player.x currentWanderState = WanderState.RIGHT;
+		else currentWanderState = WanderState.LEFT;
+	}
+	
+	if currentWanderState == WanderState.WAIT
+	{
+		if random(1) > 0.5 currentWanderState = WanderState.RIGHT;
+		else currentWanderState = WanderState.LEFT;
+	}
+	wanderTimer = random_range(minWanderTime, maxWanderTime);
+}
+function WanderWait()
+{
+	hspeed = 0;
+	wanderTimer = random_range(minWanderWait, maxWanderWait);
+	currentWanderState = WanderState.WAIT;
 }

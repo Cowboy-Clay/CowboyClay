@@ -18,3 +18,5 @@ else if obj_Moose.x > obj_Player.x{
 //show_debug_message("Player X " + string(obj_Player.x))
 
 //image_xscale = obj_Enemy.image_xscale;
+
+MoveInbounds();
