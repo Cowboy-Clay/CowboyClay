@@ -1,5 +1,5 @@
 {
-  "bboxMode": 2,
+  "bboxMode": 1,
   "collisionKind": 4,
   "type": 0,
   "origin": 3,
