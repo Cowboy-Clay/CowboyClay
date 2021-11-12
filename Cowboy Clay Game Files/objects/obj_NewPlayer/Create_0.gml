@@ -20,7 +20,7 @@ gravityMax = 20;
 walkingSlider = 0;
 timeToFullSpeed = .5;
 walkingSpeedCurve = animcurve_get_channel(WalkingSpeedCurve, 0);
-fullspeedMulti = 20;
+fullspeedMulti = 10;
 walkingFrictionMulti = .85;
 
 // Jumping
@@ -28,13 +28,14 @@ jumpFlag = false;
 jumpTimer = 0;
 minJumpTime = 0.1;
 maxJumpTime = .5;
-initialJumpForce = 25;
-extendedJumpForce = 5;
+initialJumpForce = 20;
+extendedJumpForce = 4;
 jumpSpeedCurve = animcurve_get_channel(PlayerJumpCurve, 0);
 
 // Animation
 enum PlayerAnimationState { IDLE, RUN };
 animationState = PlayerAnimationState.IDLE;
+currentAnimType = AnimationType.LOOP;
 frameCounter = 0;
 currentFPI = 1;
 // Idle animations
@@ -132,7 +133,8 @@ function PlayAnimation()
 		image_index ++;
 		if image_index >= sprite_get_number(sprite_index)
 		{
-			image_index = 0;
+			if currentAnimType == AnimationType.LOOP image_index = 0;
+			else if currentAnimType == AnimationType.HOLD image_index = sprite_get_number(sprite_index) - 1;
 		}
 	}
 }
@@ -210,6 +212,9 @@ function StateBasedMethods()
 			break;
 		case PlayerState.JUMPING:
 			Jump();
+			Walk();
+			break;
+		case PlayerState.FALLING:
 			Walk();
 			break;
 	}
