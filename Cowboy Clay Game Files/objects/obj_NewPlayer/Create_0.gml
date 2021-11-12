@@ -18,14 +18,16 @@ gravityMax = 20;
 // Full right is when walkingSlider/timeToFullSpeed == 1
 // Full left is when walkingSlider/timeToFullSpeed == -1
 walkingSlider = 0;
-timeToFullSpeed = .5;
+timeToFullSpeed = 0.1;
 walkingSpeedCurve = animcurve_get_channel(WalkingSpeedCurve, 0);
 fullspeedMulti = 10;
 walkingFrictionMulti = .85;
 
 // Jumping
 jumpFlag = false;
+jumpWindupFlag = false;
 jumpTimer = 0;
+jumpWindupTime = 0;
 minJumpTime = 0.1;
 maxJumpTime = .5;
 initialJumpForce = 20;
@@ -86,8 +88,16 @@ function Friction()
 
 function Jump()
 {
+	show_debug_message("Counting jump");
 	jumpTimer += delta_time / 1000000;
-	vspeed -= extendedJumpForce * animcurve_channel_evaluate(jumpSpeedCurve, jumpTimer/maxJumpTime);
+	if jumpWindupFlag && jumpTimer >= jumpWindupTime
+	{
+		jumpWindupFlag = false;
+		jumpTimer = 0;
+		vspeed -= initialJumpForce;
+	}
+	else if !jumpWindupFlag
+		vspeed -= extendedJumpForce * animcurve_channel_evaluate(jumpSpeedCurve, jumpTimer/maxJumpTime);
 }
 
 function UpdateAnimationState()
@@ -154,8 +164,8 @@ function UpdateState()
 		case PlayerState.JUMPING:
 			if grounded
 			{
-				if jumpFlag jumpFlag = false;
-				else
+				if jumpFlag && !jumpWindupFlag jumpFlag = false;
+				else if !jumpFlag && !jumpWindupFlag
 				{
 					if OneWalkKeyHeld() GoToWalking();
 					else GoToIdle();
@@ -185,8 +195,8 @@ function GoToJumping()
 {
 	if showDebugMessages show_debug_message("Player going to jumping state");
 	jumpFlag = true;
+	jumpWindupFlag = true;
 	jumpTimer = 0;
-	vspeed -= initialJumpForce;
 	currentState = PlayerState.JUMPING;
 }
 function GoToWalking()
