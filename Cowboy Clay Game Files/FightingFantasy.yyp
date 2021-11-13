@@ -52,6 +52,7 @@
     {"id":{"name":"Tile1Middleground","path":"sprites/Tile1Middleground/Tile1Middleground.yy",},"order":47,},
     {"id":{"name":"obj_EnemySword","path":"objects/obj_EnemySword/obj_EnemySword.yy",},"order":4,},
     {"id":{"name":"obj_camera","path":"objects/obj_camera/obj_camera.yy",},"order":5,},
+    {"id":{"name":"bumpy_trot","path":"animcurves/bumpy_trot/bumpy_trot.yy",},"order":2,},
     {"id":{"name":"spr_Idle","path":"sprites/spr_Idle/spr_Idle.yy",},"order":15,},
     {"id":{"name":"spr_Moose","path":"sprites/spr_Moose/spr_Moose.yy",},"order":22,},
     {"id":{"name":"Tile1oldTree","path":"sprites/Tile1oldTree/Tile1oldTree.yy",},"order":42,},

@@ -18,10 +18,16 @@ gravityMax = 20;
 // Full right is when walkingSlider/timeToFullSpeed == 1
 // Full left is when walkingSlider/timeToFullSpeed == -1
 walkingSlider = 0;
-timeToFullSpeed = 0.1;
-walkingSpeedCurve = animcurve_get_channel(WalkingSpeedCurve, 0);
-fullspeedMulti = 10;
-walkingFrictionMulti = .85;
+timeToFullSpeed = .6;
+walkingSpeedCurve = animcurve_get_channel(bumpy_trot, 0);
+fullspeedMulti = 6;
+walkingFrictionMulti = 0.85;
+
+//walkingSlider = 0;
+//timeToFullSpeed = 0.3;
+//walkingSpeedCurve = animcurve_get_channel(WalkingSpeedCurve, 0);
+//fullspeedMulti = 18;
+//walkingFrictionMulti = 0.92;
 
 // Jumping
 jumpFlag = false;
