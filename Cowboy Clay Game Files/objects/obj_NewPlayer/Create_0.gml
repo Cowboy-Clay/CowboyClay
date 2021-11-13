@@ -15,13 +15,15 @@ gravityAccel = 3;
 gravityMax = 20;
 
 // Walking
-// Full right is when walkingSlider/timeToFullSpeed == 1
-// Full left is when walkingSlider/timeToFullSpeed == -1
-walkingSlider = 0;
-timeToFullSpeed = .6;
-walkingSpeedCurve = animcurve_get_channel(bumpy_trot, 0);
-fullspeedMulti = 6;
-walkingFrictionMulti = 0.85;
+frictionValue = .67;
+walkAccel = 1;
+maxWalkSpeed = 12;
+
+//walkingSlider = 0;
+//timeToFullSpeed = .6;
+//walkingSpeedCurve = animcurve_get_channel(bumpy_trot, 0);
+//fullspeedMulti = 6;
+//walkingFrictionMulti = 0.85;
 
 //walkingSlider = 0;
 //timeToFullSpeed = 0.3;
@@ -60,36 +62,21 @@ function Walk()
 	// Left movement
 	if keyboard_check(vk_left) && !keyboard_check(vk_right)
 	{
-		facing = Direction.LEFT;
-		if walkingSlider > 0 && grounded Friction();
-		walkingSlider -= delta_time /1000000;
-		if collision_point(x-(sprite_get_width(spr_Guy)/2),y,obj_Wall,false,true) walkingSlider = 0;
+		hspeed -= walkAccel;
 	}
 	// Right movement
 	else if keyboard_check(vk_right) && !keyboard_check(vk_left)
 	{
-		facing = Direction.RIGHT;
-		if walkingSlider < 0 && grounded Friction();
-		walkingSlider += delta_time / 1000000;
-		if collision_point(x+(sprite_get_width(spr_Guy)/2),y,obj_Wall,false,true) walkingSlider = 0;
+		hspeed += walkAccel;
 	}
-	// Friction if not walking
-	else Friction();
 	
-	// Max out walkingSlider
-	if abs(walkingSlider) > timeToFullSpeed walkingSlider = sign(walkingSlider) * timeToFullSpeed;
-
-	// Print walkingSlider
-	if showDebugMessages 
+	if hspeed > 0 facing = Direction.RIGHT;
+	else if hspeed < 0 facing = Direction.LEFT;
+	
+	if abs(hspeed) > maxWalkSpeed
 	{
-		show_debug_message(walkingSlider);
-		show_debug_message(hspeed);
+		hspeed = sign(hspeed) * maxWalkSpeed;
 	}
-}
-
-function Friction()
-{
-	walkingSlider *= walkingFrictionMulti;
 }
 
 function Jump()
@@ -221,7 +208,6 @@ function StateBasedMethods()
 	switch currentState
 	{
 		case PlayerState.IDLE:
-			Friction();
 			break;
 		case PlayerState.WALKING:
 			Walk();

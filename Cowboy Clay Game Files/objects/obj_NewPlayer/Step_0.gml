@@ -5,7 +5,7 @@ if !paused
 	UpdateState();
 	StateBasedMethods();
 	
-	hspeed = sign(walkingSlider) * animcurve_channel_evaluate(walkingSpeedCurve, abs(walkingSlider / timeToFullSpeed)) * fullspeedMulti;
+	Friction(frictionValue);
 	
 	// Physics
 	Gravity(gravityAccel, gravityMax);
