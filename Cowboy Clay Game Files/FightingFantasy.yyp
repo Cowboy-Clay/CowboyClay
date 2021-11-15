@@ -25,6 +25,7 @@
     {"id":{"name":"PirateProtoPull","path":"sprites/PirateProtoPull/PirateProtoPull.yy",},"order":21,},
     {"id":{"name":"OneWalkKeyHeld","path":"scripts/OneWalkKeyHeld/OneWalkKeyHeld.yy",},"order":3,},
     {"id":{"name":"moosewalk","path":"sprites/moosewalk/moosewalk.yy",},"order":38,},
+    {"id":{"name":"Friction","path":"scripts/Friction/Friction.yy",},"order":4,},
     {"id":{"name":"spr_FrontSlash","path":"sprites/spr_FrontSlash/spr_FrontSlash.yy",},"order":7,},
     {"id":{"name":"ProtoCrouchDisarmed","path":"sprites/ProtoCrouchDisarmed/ProtoCrouchDisarmed.yy",},"order":28,},
     {"id":{"name":"obj_Ground","path":"objects/obj_Ground/obj_Ground.yy",},"order":0,},
@@ -123,7 +124,7 @@
     {"CopyToMask":153157610357391598,"filePath":"datafiles","resourceVersion":"1.0","name":"Idle.aseprite","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2.3.5.589",
+    "IDEVersion": "2.3.6.595",
   },
   "resourceVersion": "1.4",
   "name": "FightingFantasy",

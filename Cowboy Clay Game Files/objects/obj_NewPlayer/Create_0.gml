@@ -57,91 +57,7 @@ armedRunAnim = spr_Run;
 disarRunAnim = spr_RunDisarmed;
 runFPI = 7;
 
-function Walk()
-{
-	// Left movement
-	if keyboard_check(vk_left) && !keyboard_check(vk_right)
-	{
-		hspeed -= walkAccel;
-	}
-	// Right movement
-	else if keyboard_check(vk_right) && !keyboard_check(vk_left)
-	{
-		hspeed += walkAccel;
-	}
-	
-	if hspeed > 0 facing = Direction.RIGHT;
-	else if hspeed < 0 facing = Direction.LEFT;
-	
-	if abs(hspeed) > maxWalkSpeed
-	{
-		hspeed = sign(hspeed) * maxWalkSpeed;
-	}
-}
-
-function Jump()
-{
-	show_debug_message("Counting jump");
-	jumpTimer += delta_time / 1000000;
-	if jumpWindupFlag && jumpTimer >= jumpWindupTime
-	{
-		jumpWindupFlag = false;
-		jumpTimer = 0;
-		vspeed -= initialJumpForce;
-	}
-	else if !jumpWindupFlag
-		vspeed -= extendedJumpForce * animcurve_channel_evaluate(jumpSpeedCurve, jumpTimer/maxJumpTime);
-}
-
-function UpdateAnimationState()
-{
-	if facing == Direction.RIGHT image_xscale = 1;
-	else image_xscale = -1;
-	
-	switch animationState
-	{
-		case PlayerAnimationState.IDLE:
-			if currentState == PlayerState.WALKING ToRunAnim();
-			break;
-		case PlayerAnimationState.RUN:
-			if currentState == PlayerState.IDLE ToIdleAnim();
-			break;
-	}
-}
-
-function ToRunAnim()
-{
-	animationState = PlayerAnimationState.RUN;
-	frameCounter = 0;
-	currentFPI = runFPI;
-	if armed sprite_index = armedRunAnim;
-	else sprite_index = disarRunAnim;
-}
-
-function ToIdleAnim()
-{
-	animationState = PlayerAnimationState.IDLE;
-	frameCounter = 0;
-	currentFPI = idleFPI;
-	if armed sprite_index = armedIdleAnim;
-	else sprite_index = disarIdleAnim;
-}
-
-function PlayAnimation()
-{
-	frameCounter++;
-	if frameCounter >= currentFPI
-	{
-		frameCounter = 0;
-		image_index ++;
-		if image_index >= sprite_get_number(sprite_index)
-		{
-			if currentAnimType == AnimationType.LOOP image_index = 0;
-			else if currentAnimType == AnimationType.HOLD image_index = sprite_get_number(sprite_index) - 1;
-		}
-	}
-}
-
+#region  State Machine
 function UpdateState()
 {
 	switch currentState
@@ -179,6 +95,25 @@ function UpdateState()
 	}
 }
 
+function StateBasedMethods()
+{
+	switch currentState
+	{
+		case PlayerState.IDLE:
+			break;
+		case PlayerState.WALKING:
+			Walk();
+			break;
+		case PlayerState.JUMPING:
+			Jump();
+			Walk();
+			break;
+		case PlayerState.FALLING:
+			Walk();
+			break;
+	}
+}
+
 function GoToIdle()
 {
 	if showDebugMessages show_debug_message("Player going to idle state");
@@ -202,22 +137,98 @@ function GoToFalling()
 	if showDebugMessages show_debug_message("Player going to falling state");
 	currentState = PlayerState.FALLING;
 }
+#endregion
 
-function StateBasedMethods()
+#region Actions
+function Walk()
 {
-	switch currentState
+	// Left movement
+	if keyboard_check(vk_left) && !keyboard_check(vk_right)
 	{
-		case PlayerState.IDLE:
+		hspeed -= walkAccel;
+	}
+	// Right movement
+	else if keyboard_check(vk_right) && !keyboard_check(vk_left)
+	{
+		hspeed += walkAccel;
+	}
+	
+	if hspeed > 0 facing = Direction.RIGHT;
+	else if hspeed < 0 facing = Direction.LEFT;
+	
+	if abs(hspeed) > maxWalkSpeed
+	{
+		hspeed = sign(hspeed) * maxWalkSpeed;
+	}
+}
+
+function Jump()
+{
+	show_debug_message("Counting jump");
+	jumpTimer += delta_time / 1000000;
+	if jumpWindupFlag && jumpTimer >= jumpWindupTime
+	{
+		jumpWindupFlag = false;
+		jumpTimer = 0;
+		vspeed -= initialJumpForce;
+	}
+	else if !jumpWindupFlag
+		vspeed -= extendedJumpForce * animcurve_channel_evaluate(jumpSpeedCurve, jumpTimer/maxJumpTime);
+}
+#endregion
+
+#region Animation Controlls
+function UpdateAnimationState()
+{
+	if facing == Direction.RIGHT image_xscale = 1;
+	else image_xscale = -1;
+	
+	switch animationState
+	{
+		case PlayerAnimationState.IDLE:
+			if currentState == PlayerState.WALKING ToRunAnim();
 			break;
-		case PlayerState.WALKING:
-			Walk();
-			break;
-		case PlayerState.JUMPING:
-			Jump();
-			Walk();
-			break;
-		case PlayerState.FALLING:
-			Walk();
+		case PlayerAnimationState.RUN:
+			if currentState == PlayerState.IDLE ToIdleAnim();
 			break;
 	}
 }
+
+function PlayAnimation()
+{
+	frameCounter++;
+	if frameCounter >= currentFPI
+	{
+		frameCounter = 0;
+		image_index ++;
+		if image_index >= sprite_get_number(sprite_index)
+		{
+			if currentAnimType == AnimationType.LOOP image_index = 0;
+			else if currentAnimType == AnimationType.HOLD image_index = sprite_get_number(sprite_index) - 1;
+		}
+	}
+}
+
+function ToRunAnim()
+{
+	animationState = PlayerAnimationState.RUN;
+	frameCounter = 0;
+	currentFPI = runFPI;
+	if armed sprite_index = armedRunAnim;
+	else sprite_index = disarRunAnim;
+}
+
+function ToIdleAnim()
+{
+	animationState = PlayerAnimationState.IDLE;
+	frameCounter = 0;
+	currentFPI = idleFPI;
+	if armed sprite_index = armedIdleAnim;
+	else sprite_index = disarIdleAnim;
+}
+#endregion
+
+
+
+
+
