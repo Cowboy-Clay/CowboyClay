@@ -336,7 +336,7 @@ function ToAttackAntiAnim()
 	animationState = PlayerAnimationState.ATTACK_ANTI;
 	currentAnimType = AnimationType.HOLD;
 	frameCounter = 0;
-	currentFPI = 1;
+	currentFPI = sprite_get_number(attackAntiAnim) / anticipationFrames;
 	sprite_index = attackAntiAnim;
 }
 
@@ -345,7 +345,7 @@ function ToAttackSwingAnim()
 	animationState = PlayerAnimationState.ATTACK_SWING;
 	currentAnimType = AnimationType.HOLD;
 	frameCounter = 0;
-	currentFPI = 1;
+	currentFPI = sprite_get_number(attackSwingAnim) / swingFrames;
 	sprite_index = attackSwingAnim;
 }
 
@@ -354,7 +354,7 @@ function ToAttackFollowAnim()
 	animationState = PlayerAnimationState.ATTACK_FOLLOW;
 	currentAnimType = AnimationType.HOLD;
 	frameCounter = 0;
-	currentFPI = 1;
+	currentFPI = sprite_get_number(attackFollowAnim) / followthroughFrames;
 	sprite_index = attackFollowAnim;
 }
 
