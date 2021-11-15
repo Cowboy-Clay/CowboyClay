@@ -2,16 +2,17 @@
 
 if !paused
 {
+	// Physics
+	Friction(frictionValue);
+	Gravity(gravityAccel, gravityMax);
+	
+	// State system
 	UpdateState();
 	StateBasedMethods();
 	
-	Friction(frictionValue);
-	
-	// Physics
-	Gravity(gravityAccel, gravityMax);
-	
-	// States
+	// Animation
 	UpdateAnimationState();
+	SwitchArmedAnims();
 	PlayAnimation();
 }
 CheckEnvironCollisions(spr_Guy);
