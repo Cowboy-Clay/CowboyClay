@@ -36,6 +36,7 @@
     {"id":{"name":"obj_NewPlayer","path":"objects/obj_NewPlayer/obj_NewPlayer.yy",},"order":10,},
     {"id":{"name":"ProtoCrouchingAttack","path":"sprites/ProtoCrouchingAttack/ProtoCrouchingAttack.yy",},"order":29,},
     {"id":{"name":"ProtoMooseStruck","path":"sprites/ProtoMooseStruck/ProtoMooseStruck.yy",},"order":34,},
+    {"id":{"name":"ClaySlash","path":"sprites/ClaySlash/ClaySlash.yy",},"order":53,},
     {"id":{"name":"Tile1soil","path":"sprites/Tile1soil/Tile1soil.yy",},"order":45,},
     {"id":{"name":"PlayerJumpCurve","path":"animcurves/PlayerJumpCurve/PlayerJumpCurve.yy",},"order":1,},
     {"id":{"name":"spr_Wall","path":"sprites/spr_Wall/spr_Wall.yy",},"order":14,},
@@ -72,7 +73,9 @@
     {"id":{"name":"ProtoBlocking","path":"sprites/ProtoBlocking/ProtoBlocking.yy",},"order":24,},
     {"id":{"name":"WalkingSpeedCurve","path":"animcurves/WalkingSpeedCurve/WalkingSpeedCurve.yy",},"order":0,},
     {"id":{"name":"UniversalEnums","path":"scripts/UniversalEnums/UniversalEnums.yy",},"order":0,},
+    {"id":{"name":"ClaySlashAnticipation","path":"sprites/ClaySlashAnticipation/ClaySlashAnticipation.yy",},"order":52,},
     {"id":{"name":"obj_Player","path":"objects/obj_Player/obj_Player.yy",},"order":1,},
+    {"id":{"name":"ClaySlashFollowthrough","path":"sprites/ClaySlashFollowthrough/ClaySlashFollowthrough.yy",},"order":54,},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},
   ],
   "Options": [
@@ -126,7 +129,7 @@
     {"CopyToMask":153157610357391598,"filePath":"datafiles","resourceVersion":"1.0","name":"Idle.aseprite","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2.3.6.595",
+    "IDEVersion": "2.3.5.589",
   },
   "resourceVersion": "1.4",
   "name": "FightingFantasy",
