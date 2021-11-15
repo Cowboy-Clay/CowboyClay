@@ -3,15 +3,6 @@
 
 
 switch my_sword_state{
-	
-	case sword_state.neutral:
-		if obj_Player.sprite_index != spr_FrontSlash
-		{
-			obj_Player.attacking = false;
-			instance_deactivate_object(obj_Sword);
-		}
-		break;
-	
 	case sword_state.flung:
 		Flinging();
 		sprite_index = protospin;
@@ -29,9 +20,9 @@ switch my_sword_state{
 //show_debug_message(string(my_sword_state));
 
 // The sword is ready to be picked up
-if my_sword_state == sword_state.stuck && place_meeting(x,y,obj_Player){
+/*if my_sword_state == sword_state.stuck && place_meeting(x,y,obj_Player){
 	
-	if keyboard_check_pressed(ord("Z"))
+	if keyboard_check(ord("Z"))
 	{
 		image_angle = 0;
 		sprite_index = spr_Sword;
@@ -40,5 +31,5 @@ if my_sword_state == sword_state.stuck && place_meeting(x,y,obj_Player){
 		obj_Player.Retrieve_Sword();
 		instance_deactivate_object(obj_Sword);
 	}
-}
+}*/
 
