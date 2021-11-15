@@ -23,7 +23,7 @@ walkingMaxVel = 3;
 
 // Block sub variable
 blockTimer = 0;
-blockTime = 0.2;
+blockTime = 01;
 
 // Taunt variables
 tauntTimer = 0;
@@ -55,22 +55,32 @@ retrMaxVel = 10;
 chargeVel = 10;
 chargeWait = false;
 
+mooseSlideEffect = spr_FrontSlashEffect;
+mooseSlideHitbox = spr_EnemySword;
+mooseTauntEffect = spr_FrontSlashEffect;
+mooseTauntHitbox = spr_EnemySword;
+mooseChargeEffect = spr_FrontSlashEffect;
+mooseChargeHitbox = spr_EnemySword;
+
 function UpdateState()
 {
 	switch currentState
 	{
 		case MooseState.PULLING:
-			if place_meeting(x,y,obj_Player)
+			HideMooseAttack();
+			if place_meeting(x,y,obj_NewPlayer)
 			{
 				GoToSpace();
 			}
 			break;
 		case MooseState.WAIT:
+			HideMooseAttack();
 			waitTimer -= delta_time/1000000;
 			Wander();
 			if waitTimer <= 0 GoToTaunt();
 			break;
 		case MooseState.TAUNT:
+			ShowMooseAttack(mooseTauntEffect, mooseTauntHitbox);
 			tauntTimer -= delta_time/1000000;
 			if instance_exists(obj_Sword) GoToSlide();
 			if tauntTimer <= 0 GoToSlide();
@@ -78,16 +88,19 @@ function UpdateState()
 		case MooseState.SLIDE:
 			if slideWaitTimer > 0
 			{
+				HideMooseAttack();
 				slideWaitTimer -= delta_time/1000000;
 			}
 			else if slideFlag == false
 			{
+				HideMooseAttack();
 				slideFlag = true;
-				if obj_Player.x > x hspeed = slideVelocity;
+				if obj_NewPlayer.x > x hspeed = slideVelocity;
 				else hspeed = - slideVelocity;
 			}
 			else
 			{
+				ShowMooseAttack(mooseSlideEffect, mooseSlideHitbox);
 				hspeed *= slideDeadening;
 				if abs(hspeed) < 1 GoToSpace();
 				if place_meeting(x,y,obj_Wall)
@@ -98,17 +111,21 @@ function UpdateState()
 			}
 			break;
 		case MooseState.SPACE:
+			HideMooseAttack();
 			SpaceWalk();
 			break;
 		case MooseState.AVOID:
+			HideMooseAttack();
 			avoidTimer -= delta_time/1000000;
 			if (avoidTimer <= 0 || instance_exists(obj_Sword) || place_meeting(x,y,obj_Wall)) && avoidTimer < avoidTime - minAvoidTime
 				GoToRetrieve();
 			break;
 		case MooseState.RETRIEVE:
+			HideMooseAttack();
 			Retrieve();
 			break;
 		case MooseState.CHARGE:
+			ShowMooseAttack(mooseChargeEffect, mooseChargeHitbox);
 			if(!chargeWait)
 			{
 				if place_meeting(x+vspeed, y, obj_Wall)
@@ -136,6 +153,7 @@ function UpdateState()
 			}
 			break;
 		case MooseState.HIT:
+			HideMooseAttack();
 			hspeed *= hitDeadening;
 			if abs(hspeed) < 1 && !armed
 			{
@@ -198,7 +216,7 @@ function GoToRetrieve()
 		GoToAvoid();
 		return;
 	}
-	if (x < obj_Player.x && obj_Player.x < obj_EnemySword.x) || (x > obj_Player.x && obj_Player.x > obj_EnemySword.x) || (obj_EnemySword.stuckInWall && obj_EnemySword.my_sword_state == sword_state.stuck)
+	if (x < obj_NewPlayer.x && obj_NewPlayer.x < obj_EnemySword.x) || (x > obj_NewPlayer.x && obj_NewPlayer.x > obj_EnemySword.x) || (obj_EnemySword.stuckInWall && obj_EnemySword.my_sword_state == sword_state.stuck)
 	{
 		GoToCharge();
 		return;
@@ -216,8 +234,8 @@ function GoToCharge()
 
 function GoToHit()
 {
-	if obj_Player.x > x-136 hspeed = -hitVel;
-	if obj_Player.x < x-136 hspeed = hitVel;
+	if obj_NewPlayer.x > x-136 hspeed = -hitVel;
+	if obj_NewPlayer.x < x-136 hspeed = hitVel;
 	currentState = MooseState.HIT;
 }
 
@@ -244,9 +262,9 @@ function SpaceWalk()
 		return;
 	}
 	
-	if distance_to_object(obj_Player) < idealDistance
+	if distance_to_object(obj_NewPlayer) < idealDistance
 	{
-		if obj_Player.x < x
+		if obj_NewPlayer.x < x
 		{
 			hspeed += spaceAccell;
 			if hspeed > spaceMaxVel hspeed = spaceMaxVel;
@@ -276,7 +294,7 @@ function SetAnimation()
 	if currentState == MooseState.WAIT
 	{
 		if blockTimer > blockTime sprite_index = mooseblock;
-		else if (currentWanderState == WanderState.WAIT) || (distance_to_object(obj_Player) < minDistance) sprite_index = spr_Moose;
+		else if (currentWanderState == WanderState.WAIT) || (distance_to_object(obj_NewPlayer) < minDistance) sprite_index = spr_Moose;
 		else sprite_index = moosewalk;
 	}
 	// Taunt animation
@@ -363,16 +381,6 @@ function PrintState()
 	}
 }
 
-function TouchedPlayer()
-{
-	show_debug_message("Touching player");
-	if currentState == MooseState.TAUNT || currentState == MooseState.CHARGE || currentState == MooseState.SLIDE
-	{
-		show_debug_message("Damaging player");
-		obj_Player.Hurt(x);
-	}
-}
-
 function MoveInbounds()
 {
 	if x < minX x = minX;
@@ -381,7 +389,7 @@ function MoveInbounds()
 
 function Wander()
 {
-	if distance_to_object(obj_Player) < minDistance
+	if distance_to_object(obj_NewPlayer) < minDistance
 	{
 		blockTimer += delta_time / 1000000;
 		hspeed = 0;
@@ -411,14 +419,14 @@ function Wander()
 
 function PickWander()
 {
-	if distance_to_object(obj_Player) < minDistance
+	if distance_to_object(obj_NewPlayer) < minDistance
 	{
-		if x < obj_Player.x currentWanderState = WanderState.LEFT;
+		if x < obj_NewPlayer.x currentWanderState = WanderState.LEFT;
 		else currentWanderState = WanderState.RIGHT;
 	}
-	else if distance_to_object(obj_Player) > maxDistance
+	else if distance_to_object(obj_NewPlayer) > maxDistance
 	{
-		if x < obj_Player.x currentWanderState = WanderState.RIGHT;
+		if x < obj_NewPlayer.x currentWanderState = WanderState.RIGHT;
 		else currentWanderState = WanderState.LEFT;
 	}
 	
@@ -434,4 +442,23 @@ function WanderWait()
 	hspeed = 0;
 	wanderTimer = random_range(minWanderWait, maxWanderWait);
 	currentWanderState = WanderState.WAIT;
+}
+
+function MoveHitsToMoose()
+{
+	obj_EnemyAttackEffect.x = x;
+	obj_EnemyAttackEffect.y = y;
+	obj_EnemyHitbox.x = x;
+	obj_EnemyHitbox.y = y;
+}
+
+function ShowMooseAttack(Anim, Hitbox)
+{
+	obj_EnemyAttackEffect.ShowEnemyAttack(Anim, 1);
+	obj_EnemyHitbox.SpawnEnemyHitbox(Hitbox, 1);
+}
+function HideMooseAttack()
+{
+	obj_EnemyAttackEffect.HideEnemyAttack();
+	obj_EnemyHitbox.DespawnEnemyHitbox();
 }

@@ -252,7 +252,7 @@ function Attack()
 			GoToIdle();
 		}
 		
-		if currentAttackSubstate == AttackSubstate.SWING SpawnHit(spr_FrontSlashEffect, spr_Sword);
+		if currentAttackSubstate == AttackSubstate.SWING SpawnHit(spr_FrontSlashEffect, spr_EnemySword);
 		else DespawnHit();
 	}
 }
@@ -266,6 +266,25 @@ function DespawnHit()
 {
 	obj_PlayerAttackEffect.HidePlayerAttack();
 	obj_PlayerHitBox.DespawnPlayerHitbox();
+}
+
+function PickupSword()
+{
+	if !armed && keyboard_check(ord("Z")) && place_meeting(x,y,obj_Sword)
+	{
+		armed = true;
+		instance_deactivate_object(obj_Sword);
+	}
+}
+
+function PlayerGetHit()
+{
+	if armed
+	{
+		armed = false;
+		instance_activate_object(obj_Sword);
+		obj_Sword.Flung(obj_Moose.x);
+	}
 }
 #endregion
 

@@ -2,10 +2,7 @@
   "spriteId": null,
   "solid": false,
   "visible": true,
-  "spriteMaskId": {
-    "name": "spr_FrontSlashEffect",
-    "path": "sprites/spr_FrontSlashEffect/spr_FrontSlashEffect.yy",
-  },
+  "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": null,
   "physicsObject": false,
@@ -30,7 +27,7 @@
     "path": "folders/Objects.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_PlayerHitBox",
+  "name": "obj_EnemyHitbox",
   "tags": [],
   "resourceType": "GMObject",
 }

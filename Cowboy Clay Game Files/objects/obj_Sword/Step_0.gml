@@ -3,15 +3,6 @@
 
 
 switch my_sword_state{
-	
-	case sword_state.neutral:
-		if obj_Player.sprite_index != spr_FrontSlash
-		{
-			obj_Player.attacking = false;
-			instance_deactivate_object(obj_Sword);
-		}
-		break;
-	
 	case sword_state.flung:
 		Flinging();
 		sprite_index = protospin;

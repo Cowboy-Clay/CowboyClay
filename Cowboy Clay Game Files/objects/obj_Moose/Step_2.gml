@@ -3,7 +3,7 @@
 
 MoveInbounds();
 
-if place_meeting(x+hspeed,y,obj_Player)
+if place_meeting(x,y,obj_NewPlayer) && currentState == MooseState.PULLING
 {
-	TouchedPlayer();
+	obj_TestSceneController.ToState1();
 }
