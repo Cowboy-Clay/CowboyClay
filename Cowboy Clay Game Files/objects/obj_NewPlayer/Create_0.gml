@@ -251,6 +251,9 @@ function Attack()
 		{
 			GoToIdle();
 		}
+		
+		if currentAttackSubstate == AttackSubstate.SWING obj_PlayerAttackEffect.ShowAttack(spr_FrontSlashEffect, sprite_get_number(spr_FrontSlashEffect)/swingFrames);
+		else obj_PlayerAttackEffect.HideAttack();
 	}
 }
 #endregion

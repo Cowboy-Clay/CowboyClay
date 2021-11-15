@@ -44,6 +44,7 @@
     {"id":{"name":"protoThrow","path":"sprites/protoThrow/protoThrow.yy",},"order":37,},
     {"id":{"name":"ProtoMooseSlide","path":"sprites/ProtoMooseSlide/ProtoMooseSlide.yy",},"order":33,},
     {"id":{"name":"obj_TestSceneController","path":"objects/obj_TestSceneController/obj_TestSceneController.yy",},"order":8,},
+    {"id":{"name":"obj_PlayerAttackEffect","path":"objects/obj_PlayerAttackEffect/obj_PlayerAttackEffect.yy",},"order":11,},
     {"id":{"name":"CheckEnvironCollisions","path":"scripts/CheckEnvironCollisions/CheckEnvironCollisions.yy",},"order":2,},
     {"id":{"name":"spr_ProtoJump","path":"sprites/spr_ProtoJump/spr_ProtoJump.yy",},"order":11,},
     {"id":{"name":"mooseblock","path":"sprites/mooseblock/mooseblock.yy",},"order":40,},
