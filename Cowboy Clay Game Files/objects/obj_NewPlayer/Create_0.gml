@@ -53,7 +53,7 @@ jumpSpeedCurve = animcurve_get_channel(PlayerJumpCurve, 0);
 #region Basic Attack Variables
 anticipationFrames = 5;
 swingFrames = 18;
-followthroughFrames = 8;
+followthroughFrames = 2;
 basicAttackTimer = 0;
 #endregion
 
@@ -73,9 +73,9 @@ armedRunAnim = spr_Run;
 disarRunAnim = spr_RunDisarmed;
 runFPI = 7;
 // Attack animations
-attackAntiAnim = spr_Guy
-attackSwingAnim = protoThrow;
-attackFollowAnim = spr_FrontSlash;
+attackAntiAnim = ClaySlashAnticipation;
+attackSwingAnim = ClaySlash;
+attackFollowAnim = ClaySlashFollowthrough;
 #endregion
 
 #region  State Machine
