@@ -272,6 +272,8 @@ function PickupSword()
 {
 	if !armed && keyboard_check(ord("Z")) && place_meeting(x,y,obj_Sword)
 	{
+		obj_TestSceneController.flag = true;
+		if showDebugMessages show_debug_message("Picked up sword");
 		armed = true;
 		instance_deactivate_object(obj_Sword);
 	}

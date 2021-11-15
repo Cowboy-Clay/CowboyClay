@@ -4,7 +4,7 @@
 UpdateState();
 SetAnimation();
 
-// PrintState();
+PrintState();
 
 if place_meeting(x,y,obj_PlayerHitBox) && !(currentState == MooseState.WAIT && blockTimer > blockTime) && obj_PlayerHitBox.hitting
 {

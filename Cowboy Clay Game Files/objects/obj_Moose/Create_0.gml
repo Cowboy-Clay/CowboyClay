@@ -68,10 +68,6 @@ function UpdateState()
 	{
 		case MooseState.PULLING:
 			HideMooseAttack();
-			if place_meeting(x,y,obj_NewPlayer)
-			{
-				GoToSpace();
-			}
 			break;
 		case MooseState.WAIT:
 			HideMooseAttack();
@@ -117,7 +113,7 @@ function UpdateState()
 		case MooseState.AVOID:
 			HideMooseAttack();
 			avoidTimer -= delta_time/1000000;
-			if (avoidTimer <= 0 || instance_exists(obj_Sword) || place_meeting(x,y,obj_Wall)) && avoidTimer < avoidTime - minAvoidTime
+			if (avoidTimer <= 0 || obj_NewPlayer.currentState == PlayerState.BASIC_ATTACK || place_meeting(x,y,obj_Wall)) && avoidTimer < avoidTime - minAvoidTime
 				GoToRetrieve();
 			break;
 		case MooseState.RETRIEVE:
