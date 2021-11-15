@@ -1,17 +1,19 @@
 /// @description Insert description here
 // You can write your code in this editor
+hitting = false;
+
 currentFPI = 1;
 frameCounter = 0;
 
-function ShowPlayerAttack(Anim, FPI)
+function SpawnPlayerHitbox(Anim, FPI)
 {
-	if visible return;
+	if hitting return;
 	sprite_index = Anim;
 	currentFPI = FPI;
 	frameCounter = 0;
-	visible = true;
+	hitting = true;
 }
-function HidePlayerAttack()
+function DespawnPlayerHitbox()
 {
-	visible = false;
+	hitting = false;
 }

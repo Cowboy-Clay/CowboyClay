@@ -17,5 +17,7 @@ if !paused
 	
 	obj_PlayerAttackEffect.x = x;
 	obj_PlayerAttackEffect.y = y;
+	obj_PlayerHitBox.x = x;
+	obj_PlayerHitBox.y = y;
 }
 CheckEnvironCollisions(spr_Guy);

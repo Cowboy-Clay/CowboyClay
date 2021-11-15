@@ -252,9 +252,20 @@ function Attack()
 			GoToIdle();
 		}
 		
-		if currentAttackSubstate == AttackSubstate.SWING obj_PlayerAttackEffect.ShowAttack(spr_FrontSlashEffect, sprite_get_number(spr_FrontSlashEffect)/swingFrames);
-		else obj_PlayerAttackEffect.HideAttack();
+		if currentAttackSubstate == AttackSubstate.SWING SpawnHit(spr_FrontSlashEffect, spr_Sword);
+		else DespawnHit();
 	}
+}
+
+function SpawnHit(attackEffect, hitbox)
+{
+	obj_PlayerAttackEffect.ShowPlayerAttack(attackEffect, sprite_get_number(attackEffect)/swingFrames);
+	obj_PlayerHitBox.SpawnPlayerHitbox(hitbox, sprite_get_number(hitbox)/swingFrames);
+}
+function DespawnHit()
+{
+	obj_PlayerAttackEffect.HidePlayerAttack();
+	obj_PlayerHitBox.DespawnPlayerHitbox();
 }
 #endregion
 
@@ -375,8 +386,3 @@ function SwitchArmedAnims()
 	}
 }
 #endregion
-
-
-
-
-
