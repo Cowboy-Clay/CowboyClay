@@ -21,9 +21,9 @@ gravityMax = 20;
 #endregion
 
 #region Walk Variables
-frictionValue = .67;
-walkAccel = 1;
-maxWalkSpeed = 12;
+frictionValue = .37;
+walkAccel = 0.6;
+maxWalkSpeed = 4;
 
 //walkingSlider = 0;
 //timeToFullSpeed = .6;
@@ -42,11 +42,11 @@ maxWalkSpeed = 12;
 jumpFlag = false;
 jumpWindupFlag = false;
 jumpTimer = 0;
-jumpWindupTime = 0;
+jumpWindupTime = 15;
 minJumpTime = 0.1;
-maxJumpTime = .5;
-initialJumpForce = 20;
-extendedJumpForce = 4;
+maxJumpTime = 8;
+initialJumpForce = 32;
+extendedJumpForce = 2;
 jumpSpeedCurve = animcurve_get_channel(PlayerJumpCurve, 0);
 #endregion
 
@@ -214,7 +214,7 @@ function Walk()
 function Jump()
 {
 	show_debug_message("Counting jump");
-	jumpTimer += delta_time / 1000000;
+	jumpTimer ++;
 	if jumpWindupFlag && jumpTimer >= jumpWindupTime
 	{
 		jumpWindupFlag = false;
