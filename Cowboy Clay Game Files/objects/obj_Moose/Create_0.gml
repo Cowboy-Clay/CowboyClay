@@ -6,6 +6,8 @@ currentState = MooseState.PULLING;
 
 armed = true;
 
+facing = Direction.LEFT;
+
 // Wait variables
 waitTimer = 0;
 waitTimeMinimum = 5;
@@ -70,6 +72,7 @@ function UpdateState()
 			HideMooseAttack();
 			break;
 		case MooseState.WAIT:
+			FacePlayer();
 			HideMooseAttack();
 			waitTimer -= delta_time/1000000;
 			Wander();
@@ -107,10 +110,12 @@ function UpdateState()
 			}
 			break;
 		case MooseState.SPACE:
+			FacePlayer();
 			HideMooseAttack();
 			SpaceWalk();
 			break;
 		case MooseState.AVOID:
+			FacePlayer();
 			HideMooseAttack();
 			avoidTimer -= delta_time/1000000;
 			if (avoidTimer <= 0 || obj_NewPlayer.currentState == PlayerState.BASIC_ATTACK || place_meeting(x,y,obj_Wall)) && avoidTimer < avoidTime - minAvoidTime
@@ -457,4 +462,18 @@ function HideMooseAttack()
 {
 	obj_EnemyAttackEffect.HideEnemyAttack();
 	obj_EnemyHitbox.DespawnEnemyHitbox();
+}
+
+function FacePlayer()
+{
+	if obj_NewPlayer.x > x 
+	{
+		image_xscale = -1;
+		facing = Direction.RIGHT;
+	}
+	else
+	{
+		image_xscale = 1;
+		facing = Direction.LEFT;
+	}
 }
