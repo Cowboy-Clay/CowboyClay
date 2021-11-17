@@ -60,6 +60,7 @@
     {"id":{"name":"Gravity","path":"scripts/Gravity/Gravity.yy",},"order":1,},
     {"id":{"name":"Untitled","path":"sprites/Untitled/Untitled.yy",},"order":8,},
     {"id":{"name":"obj_Wall","path":"objects/obj_Wall/obj_Wall.yy",},"order":7,},
+    {"id":{"name":"SlowWalk","path":"sprites/SlowWalk/SlowWalk.yy",},"order":55,},
     {"id":{"name":"ProtoStruck","path":"sprites/ProtoStruck/ProtoStruck.yy",},"order":31,},
     {"id":{"name":"moosewalkDisarmed","path":"sprites/moosewalkDisarmed/moosewalkDisarmed.yy",},"order":41,},
     {"id":{"name":"spr_Enemy","path":"sprites/spr_Enemy/spr_Enemy.yy",},"order":3,},
