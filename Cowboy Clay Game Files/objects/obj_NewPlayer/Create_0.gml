@@ -76,7 +76,7 @@ idleAnimType = AnimationType.HOLD;
 // Run animations
 armedRunAnim = SlowWalk;
 disarRunAnim = spr_RunDisarmed;
-runFPI = 7;
+runFPI = 12;
 runAnimType = AnimationType.LOOP;
 // Attack animations
 attackAntiAnim = BigSwordAnticip;
