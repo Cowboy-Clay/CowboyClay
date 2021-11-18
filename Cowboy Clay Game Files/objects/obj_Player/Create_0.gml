@@ -21,7 +21,7 @@ global.player_gravityMax = 20; // The basic maximum of gravity
 #region Walk Variables
 global.player_frictionValue = .37; // The basic rate of friction
 global.player_walkAccel = 0.6; // The basic rate of acceloration from walking
-global.maxWalkSpeed = 4; // The basic max walking speed
+global.player_maxWalkSpeed = 4; // The basic max walking speed
 #endregion
 
 #region Jump Variables
@@ -38,7 +38,7 @@ global.player_maxHoriJumpForce = 10; // max horizontal force applied by a jump
 global.player_attackAntiFrames = 15; // # of frames the attack anti is shown
 global.player_attackSwingFrames = 10;
 global.player_attackFollowFrames = 15;
-basicAttackTimer = 0; // Frame counter to determine how long the player has been in each attack state
+player_attackTimer = 0; // Frame counter to determine how long the player has been in each attack state
 #endregion
 
 global.player_frictMulti_jumpAnti = .5;
@@ -133,7 +133,13 @@ function PlayerStateBasedMethods()
 			PlayerWalk();
 			PlayerAttack();
 			break;
-		case PlayerState.BASIC_ATTACK:
+		case PlayerState.BASIC_ATTACK_ANTI:
+			PlayerAttack();
+			break;
+		case PlayerState.BASIC_ATTACK_SWING:
+			PlayerAttack();
+			break;
+		case PlayerState.BASIC_ATTACK_FOLLOW:
 			PlayerAttack();
 			break;
 	}
@@ -143,16 +149,16 @@ function GoToPlayerIdle()
 {
 	if global.showDebugMessages show_debug_message("Player going to idle state");
 	player_currentState = PlayerState.IDLE;
-	if player_armed SetAnimation(global.player_idleAnim, global.player_idleFPI, global.player_idleAnimType);
-	else SetAnimation(global.player_idleAnim_disarmed, global.player_idelFPI, global.player_idleAnimType);
+	if player_armed SetPlayerAnimation(global.player_idleAnim, global.player_idleFPI, global.player_idleAnimType);
+	else SetPlayerAnimation(global.player_idleAnim_disarmed, global.player_idleFPI, global.player_idleAnimType);
 }
 function GoToPlayerJumpAnti()
 {
 	if global.showDebugMessages show_debug_message("Player going to jump anticipation state");
 	player_jumpTimer = 0;
 	player_currentState = PlayerState.JUMP_ANTI;
-	if player_armed SetAnimation(global.player_jumpAntiAnim, global.player_jumpAntiFPI, global.player_jumpAntiAnimType);
-	else SetAnimation(global.player_jumpAntiAnim_disarmed, global.player_jumpAntiFPI, global.player_jumpAntiAnimType);
+	if player_armed SetPlayerAnimation(global.player_jumpAntiAnim, global.player_jumpAntiFPI, global.player_jumpAntiAnimType);
+	else SetPlayerAnimation(global.player_jumpAntiAnim_disarmed, global.player_jumpAntiFPI, global.player_jumpAntiAnimType);
 }
 function GoToPlayerJump()
 {
@@ -163,53 +169,52 @@ function GoToPlayerJump()
 	if OneWalkKeyHeld() && keyboard_check(vk_right)
 	{
 		facing = Direction.RIGHT;
-		hspeed += lerp(minHoriJumpForce, maxHoriJumpForce, l);
+		hspeed += lerp(global.player_minHoriJumpForce, global.player_maxHoriJumpForce, l);
 	}
 	else if OneWalkKeyHeld() && keyboard_check(vk_left)
 	{
 		facing = Direction.LEFT;
-		hspeed -= lerp(minHoriJumpForce, maxHoriJumpForce, l);
+		hspeed -= lerp(global.player_minHoriJumpForce, global.player_maxHoriJumpForce, l);
 	}
 	player_currentState = PlayerState.JUMPING;
 	
-	if player_armed SetAnimation(armedJumpAnim, jumpFPI, jumpAnimType);
-	else SetAnimation(disarJumpAnim, jumpFPI, jumpAnimType);
+	if player_armed SetPlayerAnimation(global.player_jumpAnim, global.player_jumpFPI, global.player_jumpAnimType);
+	else SetPlayerAnimation(global.player_jumpAnim_disarmed, global.player_jumpFPI, global.player_jumpAnimType);
 }
 function GoToPlayerWalk()
 {
 	if global.showDebugMessages show_debug_message("Player going to walking state");
 	player_currentState = PlayerState.WALKING;
 	
-	if player_armed SetAnimation(armedRunAnim, runFPI, runAnimType);
-	else SetAnimation(disarRunAnim, runFPI,runAnimType);
+	if player_armed SetPlayerAnimation(global.player_walkAnim, global.player_walkFPI, global.player_walkAnimType);
+	else SetPlayerAnimation(global.player_walkAnim_disarmed, global.player_walkFPI, global.player_walkAnimType);
 }
 function GoToPlayerFall()
 {
 	if global.showDebugMessages show_debug_message("Player going to falling state");
 	player_currentState = PlayerState.FALLING;
-	if player_armed SetAnimation(armedFallAnim, fallFPI, fallAnimType);
-	else SetAnimation(disarFallAnim, fallFPI, fallAnimType);
+	if player_armed SetPlayerAnimation(global.player_fallAnim, global.player_fallFPI, global.player_fallAnimType);
+	else SetPlayerAnimation(global.player_fallAnim_disarmed, global.player_fallFPI, global.player_fallAnimType);
 }
-function GoToBasicAttack()
+function GoToPlayerBasicAttack()
 {
 	if global.showDebugMessages show_debug_message("Player going to basic attack state");
-	basicAttackTimer = anticipationFrames;
-	player_currentState = PlayerState.BASIC_ATTACK;
-	currentAttackSubstate = AttackSubstate.ANTICIPATION;
-	SetAnimation(attackAntiAnim, 1, AnimationType.HOLD);
-	if basicAttackTimer <= 0
+	player_attackTimer = global.player_attackAntiFrames;
+	player_currentState = PlayerState.BASIC_ATTACK_ANTI;
+	SetPlayerAnimation(global.player_attackAntiAnim, 1, AnimationType.HOLD);
+	if player_attackTimer <= 0
 	{
-		currentAttackSubstate = AttackSubstate.SWING;
-		SetAnimation(attackSwingAnim, 1, AnimationType.HOLD);
-		basicAttackTimer = swingFrames;
+		player_currentState = PlayerState.BASIC_ATTACK_SWING;
+		SetPlayerAnimation(global.player_attackSwingAnim, 1, AnimationType.HOLD);
+		player_attackTimer = global.player_attackSwingFrames;
 	}
-	if basicAttackTimer <= 0
+	if player_attackTimer <= 0
 	{
-		currentAttackSubstate = AttackSubstate.FOLLOWTHROUGH;
-		SetAnimation(attackFollowAnim, 1, AnimationType.HOLD);
-		basicAttackTimer = followthroughFrames;
+		player_currentState = PlayerState.BASIC_ATTACK_FOLLOW;
+		SetPlayerAnimation(global.player_attackFollowAnim, 1, AnimationType.HOLD);
+		player_attackTimer = global.player_attackFollowFrames;
 	}
-	if basicAttackTimer <= 0
+	if player_attackTimer <= 0
 	{
 		GoToPlayerIdle();
 	}
@@ -219,14 +224,14 @@ function GoToBasicAttack()
 #region Actions
 function PlayerWalk()
 {
-	var curAc = walkAccel;
+	var curAc = global.player_walkAccel;
 	switch player_currentState
 	{
 		case PlayerState.JUMPING:
-			curAc = curAc * speedMulti_jumping;
+			curAc = curAc * global.player_speedMulti_jumping;
 			break;
 		case PlayerState.FALLING:
-			curAc = curAc * speedMulti_jumping;
+			curAc = curAc * global.player_speedMulti_jumping;
 			break;
 	}
 	// Left movement
@@ -240,19 +245,19 @@ function PlayerWalk()
 		hspeed += curAc;
 	}
 	
-	if hspeed > 0 facing = Direction.RIGHT;
-	else if hspeed < 0 facing = Direction.LEFT;
+	if hspeed > 0 player_facing = Direction.RIGHT;
+	else if hspeed < 0 player_facing = Direction.LEFT;
 	
-	if abs(hspeed) > maxWalkSpeed && player_currentState != PlayerState.JUMPING && player_currentState != PlayerState.FALLING
+	if abs(hspeed) > global.player_maxWalkSpeed && player_currentState != PlayerState.JUMPING && player_currentState != PlayerState.FALLING
 	{
-		hspeed = sign(hspeed) * maxWalkSpeed;
+		hspeed = sign(hspeed) * global.player_maxWalkSpeed;
 	}
 }
 
 function PlayerJumpAnti()
 {
-	jumpTimer += 1;
-	if jumpTimer > maxJumpWindup || (jumpTimer > minJumpWindup && keyboard_check(ord("X")) == false)
+	player_jumpTimer += 1;
+	if player_jumpTimer > global.player_maxJumpWindup || (player_jumpTimer > global.player_minJumpWindup && keyboard_check(ord("X")) == false)
 	{
 		GoToPlayerJump();
 	}
@@ -261,56 +266,57 @@ function PlayerJumpAnti()
 function PlayerAttack()
 {
 	// If you are starting the attack
-	if player_currentState != PlayerState.BASIC_ATTACK && keyboard_check_pressed(ord("Z")) && player_armed
+	if player_currentState != PlayerState.BASIC_ATTACK_ANTI && player_currentState != PlayerState.BASIC_ATTACK_SWING 
+	&& player_currentState != PlayerState.BASIC_ATTACK_FOLLOW && keyboard_check_pressed(ord("Z")) && player_armed
 	{
-		GoToBasicAttack();
+		GoToPlayerBasicAttack();
 	}
-	else if player_currentState == PlayerState.BASIC_ATTACK
+	else if player_currentState == PlayerState.BASIC_ATTACK_ANTI || player_currentState == PlayerState.BASIC_ATTACK_SWING || player_currentState == PlayerState.BASIC_ATTACK_FOLLOW
 	{
 		// Increment the attack timer
-		basicAttackTimer -= 1;
+		player_attackTimer -= 1;
 		// Move through the different substates
-		if currentAttackSubstate == AttackSubstate.ANTICIPATION && basicAttackTimer <= 0
+		if player_currentState == PlayerState.BASIC_ATTACK_ANTI && player_attackTimer <= 0
 		{
-			currentAttackSubstate = AttackSubstate.SWING;
-			SetAnimation(attackSwingAnim, 1, AnimationType.HOLD);
-			basicAttackTimer = swingFrames;
+			player_currentState = PlayerState.BASIC_ATTACK_SWING;
+			SetPlayerAnimation(global.player_attackSwingAnim, 1, AnimationType.HOLD);
+			player_attackTimer = global.player_attackSwingFrames;
 		}
-		if currentAttackSubstate == AttackSubstate.SWING && basicAttackTimer <= 0
+		if player_currentState == PlayerState.BASIC_ATTACK_SWING && player_attackTimer <= 0
 		{
-			currentAttackSubstate = AttackSubstate.FOLLOWTHROUGH;
-			SetAnimation(attackFollowAnim, 1, AnimationType.HOLD);
-			basicAttackTimer = followthroughFrames;
+			player_currentState = PlayerState.BASIC_ATTACK_FOLLOW;
+			SetPlayerAnimation(global.player_attackFollowAnim, 1, AnimationType.HOLD);
+			player_attackTimer = global.player_attackFollowFrames;
 		}
-		if currentAttackSubstate == AttackSubstate.FOLLOWTHROUGH && basicAttackTimer <= 0
+		if player_currentState == PlayerState.BASIC_ATTACK_FOLLOW && player_attackTimer <= 0
 		{
 			GoToPlayerIdle();
 		}
 		
-		if currentAttackSubstate == AttackSubstate.SWING SpawnHit(BigSwordSlash, spr_EnemySword);
-		else DespawnHit();
+		if player_currentState == PlayerState.BASIC_ATTACK_SWING SpawnPlayerHit(spr_player_attackEffect, spr_player_collision);
+		else DespawnPlayerHit();
 	}
 }
 
-function SpawnHit(attackEffect, hitbox)
+function SpawnPlayerHit(attackEffect, hitbox)
 {
-	obj_PlayerAttackEffect.ShowPlayerAttack(attackEffect, sprite_get_number(attackEffect)/swingFrames);
-	obj_PlayerHitBox.SpawnPlayerHitbox(hitbox, sprite_get_number(hitbox)/swingFrames);
+	obj_player_attackEffect.ShowPlayerAttack(attackEffect, sprite_get_number(attackEffect)/global.player_attackSwingFrames);
+	obj_player_hitbox.SpawnPlayerHitbox(hitbox, sprite_get_number(hitbox)/global.player_attackSwingFrames);
 }
-function DespawnHit()
+function DespawnPlayerHit()
 {
-	obj_PlayerAttackEffect.HidePlayerAttack();
-	obj_PlayerHitBox.DespawnPlayerHitbox();
+	obj_player_attackEffect.HidePlayerAttack();
+	obj_player_hitbox.DespawnPlayerHitbox();
 }
 
-function PickupSword()
+function PlayerPickupSword()
 {
-	if !player_armed && keyboard_check(ord("Z")) && place_meeting(x,y,obj_Sword)
+	if !player_armed && keyboard_check(ord("Z")) && place_meeting(x,y,obj_player_sword)
 	{
-		obj_TestSceneController.flag = true;
+		obj_sceneControl_test.flag = true;
 		if global.showDebugMessages show_debug_message("Picked up sword");
 		player_armed = true;
-		instance_deactivate_object(obj_Sword);
+		instance_deactivate_object(obj_player_sword);
 	}
 }
 
@@ -319,92 +325,106 @@ function PlayerGetHit()
 	if player_armed
 	{
 		player_armed = false;
-		instance_activate_object(obj_Sword);
-		obj_Sword.Flung(obj_Moose.x);
+		instance_activate_object(obj_player_sword);
+		obj_player_sword.Flung(obj_Moose.x);
 	}
 }
 #endregion
 
 #region Animation Controls
-function PlayAnimation()
+function PlayPlayerAnimation()
 {
-	if currentAnimType == AnimationType.FIRST_FRAME
+	if player_currentAnimType == AnimationType.FIRST_FRAME
 	{
 		image_index = 0;
 		return;
 	}
-	frameCounter++;
-	if frameCounter >= currentFPI
+	player_animFrameCounter++;
+	if player_animFrameCounter >= player_currentFPI
 	{
-		frameCounter = 0;
+		player_animFrameCounter = 0;
 		image_index ++;
 		if image_index >= sprite_get_number(sprite_index)
 		{
-			if currentAnimType == AnimationType.LOOP image_index = 0;
-			else if currentAnimType == AnimationType.HOLD image_index = sprite_get_number(sprite_index) - 1;
+			if player_currentAnimType == AnimationType.LOOP image_index = 0;
+			else if player_currentAnimType == AnimationType.HOLD image_index = sprite_get_number(sprite_index) - 1;
 		}
 	}
 }
 
-function SetAnimation(animation, fpi, type)
+function SetPlayerAnimation(animation, fpi, type)
 {
 	sprite_index = animation;
-	currentFPI = fpi;
-	currentAnimType = type;
-	frameCounter = 0;
+	player_currentFPI = fpi;
+	player_currentAnimType = type;
+	player_animFrameCounter = 0;
 }
 
-function SetFacingDirection()
+function SetPlayerFacingDirection()
 {
-	if player_currentState == PlayerState.BASIC_ATTACK || player_currentState == PlayerState.JUMPING || player_currentState == PlayerState.FALLING
+	if player_currentState == PlayerState.BASIC_ATTACK_ANTI || player_currentState == PlayerState.BASIC_ATTACK_SWING
+	|| player_currentState == PlayerState.BASIC_ATTACK_FOLLOW|| player_currentState == PlayerState.JUMPING || player_currentState == PlayerState.FALLING
 		return;
-	if facing == Direction.RIGHT
+	if player_facing == Direction.RIGHT
 		image_xscale = 1;
 	else image_xscale = -1;
 }
 
-function SwitchArmedAnims()
+function SwitchPlayerArmedAnims()
 {
 	if player_armed
 	{
-		if sprite_index == disarRunAnim sprite_index = armedRunAnim;
-		if sprite_index == disarIdleAnim sprite_index = armedIdleAnim;
+		if sprite_index == global.player_walkAnim_disarmed sprite_index = global.player_walkAnim;
+		if sprite_index == global.player_idleAnim_disarmed sprite_index = global.player_idleAnim;
 	}
 	else
 	{
-		if sprite_index == armedRunAnim sprite_index = disarRunAnim;
-		if sprite_index == armedIdleAnim sprite_index = disarIdleAnim;
+		if sprite_index == global.player_walkAnim sprite_index = global.player_walkAnim_disarmed;
+		if sprite_index == global.player_idleAnim sprite_index = global.player_idleAnim_disarmed;
 	}
 }
 #endregion
 
-function PickFrict()
+function PickPlayerFrict()
 {
-	var fVal = frictionValue;
+	var fVal = global.player_frictionValue;
 	switch player_currentState
 	{
 		case PlayerState.JUMP_ANTI:
-			fVal *= frictMulti_jumpAnti;
+			fVal *= global.player_frictMulti_jumpAnti;
 			break;
 		case PlayerState.JUMPING:
-			fVal *= frictMulti_jumping;
+			fVal *= global.player_frictMulti_jumping;
 			break;
 		case PlayerState.FALLING:
-			fVal *= frictMulti_jumping;
+			fVal *= global.player_frictMulti_jumping;
 			break;
-		case PlayerState.BASIC_ATTACK:
-			fVal *= frictMulti_attacking;
+		case PlayerState.BASIC_ATTACK_ANTI:
+			fVal *= global.player_frictMulti_attacking;
+			break;
+		case PlayerState.BASIC_ATTACK_SWING:
+			fVal *= global.player_frictMulti_attacking;
+			break;
+		case PlayerState.BASIC_ATTACK_FOLLOW:
+			fVal *= global.player_frictMulti_attacking;
+			break;
 	}
 	return fVal;
 }
 
-function PickGravi()
+function PickPlayerGravi()
 {
-	var g = gravityAccel;
+	var g = global.player_gravityAccel;
 	switch player_currentState
 	{
-		case PlayerState.BASIC_ATTACK:
-			g *= graviMulti_attacking;
+		case PlayerState.BASIC_ATTACK_ANTI:
+			g *= global.player_graviMulti_attacking;
+			break;
+		case PlayerState.BASIC_ATTACK_SWING:
+			g *= global.player_graviMulti_attacking;
+			break;
+		case PlayerState.BASIC_ATTACK_FOLLOW:
+			g *= global.player_graviMulti_attacking;
 			break;
 	}
 	return g;

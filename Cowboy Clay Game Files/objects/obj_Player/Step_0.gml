@@ -1,28 +1,28 @@
 // @description All code run each frame
 
-if !paused
+if !global.paused
 {
 	// Physics
-	Friction(PickFrict());
-	Gravity(PickGravi(), gravityMax);
+	Friction(PickPlayerFrict());
+	Gravity(PickPlayerGravi(), global.player_gravityMax);
 	
 	// State system
-	PickupSword();
-	UpdateState();
-	StateBasedMethods();
+	PlayerPickupSword();
+	UpdatePlayerState();
+	PlayerStateBasedMethods();
 	
 	// Animation
-	SwitchArmedAnims();
-	PlayAnimation();
-	SetFacingDirection();
+	SwitchPlayerArmedAnims();
+	PlayPlayerAnimation();
+	SetPlayerFacingDirection();
 	
-	obj_PlayerAttackEffect.x = x;
-	obj_PlayerAttackEffect.y = y;
-	obj_PlayerAttackEffect.image_xscale = image_xscale;
-	obj_PlayerHitBox.image_xscale = image_xscale;
-	obj_PlayerHitBox.x = x;
-	obj_PlayerHitBox.y = y;
+	obj_player_attackEffect.x = x;
+	obj_player_attackEffect.y = y;
+	obj_player_attackEffect.image_xscale = image_xscale;
+	obj_player_hitbox.image_xscale = image_xscale;
+	obj_player_hitbox.x = x;
+	obj_player_hitbox.y = y;
 	
-	if place_meeting(x,y,obj_EnemyHitbox) && obj_EnemyHitbox.hitting PlayerGetHit();
+	if place_meeting(x,y,obj_enemy_hitbox) && obj_enemy_hitbox.hitting PlayerGetHit();
 }
-CheckEnvironCollisions(spr_Guy);
+CheckEnvironCollisions(spr_player_collision);
