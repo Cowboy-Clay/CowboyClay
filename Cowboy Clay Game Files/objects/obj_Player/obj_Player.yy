@@ -1,13 +1,13 @@
 {
   "spriteId": {
-    "name": "spr_Idle",
-    "path": "sprites/spr_Idle/spr_Idle.yy",
+    "name": "spr_player_idle_disarmed",
+    "path": "sprites/spr_player_idle_disarmed/spr_player_idle_disarmed.yy",
   },
   "solid": false,
   "visible": true,
   "spriteMaskId": {
-    "name": "spr_Guy",
-    "path": "sprites/spr_Guy/spr_Guy.yy",
+    "name": "spr_player_collision",
+    "path": "sprites/spr_player_collision/spr_player_collision.yy",
   },
   "persistent": false,
   "parentObjectId": null,
@@ -26,23 +26,17 @@
   "eventList": [
     {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":2,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":7,"eventType":7,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [
-    {"varType":3,"value":"True","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"armed","tags":[],"resourceType":"GMObjectProperty",},
-    {"varType":0,"value":"275","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"minX","tags":[],"resourceType":"GMObjectProperty",},
-    {"varType":0,"value":"1728","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"maxX","tags":[],"resourceType":"GMObjectProperty",},
-    {"varType":0,"value":"320","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"minY","tags":[],"resourceType":"GMObjectProperty",},
-    {"varType":0,"value":"960","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"maxY","tags":[],"resourceType":"GMObjectProperty",},
+    {"varType":3,"value":"0","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"startArmed","tags":[],"resourceType":"GMObjectProperty",},
   ],
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "Player",
+    "path": "folders/Objects/Player.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_Player",
+  "name": "obj_player",
   "tags": [],
   "resourceType": "GMObject",
 }

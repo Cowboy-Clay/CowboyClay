@@ -6,8 +6,8 @@
   "solid": false,
   "visible": true,
   "spriteMaskId": {
-    "name": "spr_Enemy",
-    "path": "sprites/spr_Enemy/spr_Enemy.yy",
+    "name": "spr_enemy_collision",
+    "path": "sprites/spr_enemy_collision/spr_enemy_collision.yy",
   },
   "persistent": false,
   "parentObjectId": null,
@@ -39,8 +39,8 @@
   ],
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "Enemy",
+    "path": "folders/Objects/Enemy.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_Moose",
