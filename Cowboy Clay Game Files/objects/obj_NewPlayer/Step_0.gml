@@ -12,7 +12,6 @@ if !paused
 	StateBasedMethods();
 	
 	// Animation
-	UpdateAnimationState();
 	SwitchArmedAnims();
 	PlayAnimation();
 	

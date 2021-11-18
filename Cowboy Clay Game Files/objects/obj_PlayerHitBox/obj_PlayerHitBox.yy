@@ -1,7 +1,7 @@
 {
   "spriteId": null,
   "solid": false,
-  "visible": true,
+  "visible": false,
   "spriteMaskId": {
     "name": "spr_FrontSlashEffect",
     "path": "sprites/spr_FrontSlashEffect/spr_FrontSlashEffect.yy",

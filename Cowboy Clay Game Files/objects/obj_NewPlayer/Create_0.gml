@@ -49,9 +49,9 @@ maxHoriJumpForce = 10;
 #endregion
 
 #region Basic Attack Variables
-anticipationFrames = 5;
-swingFrames = 18;
-followthroughFrames = 2;
+anticipationFrames = 15;
+swingFrames = 10;
+followthroughFrames = 15;
 basicAttackTimer = 0;
 #endregion
 
@@ -65,8 +65,6 @@ graviMulti_attacking = 0.8;
 
 #region Animation Variables
 // Animation
-enum PlayerAnimationState { IDLE, RUN, ATTACK_ANTI, ATTACK_SWING, ATTACK_FOLLOW };
-animationState = PlayerAnimationState.IDLE;
 currentAnimType = AnimationType.LOOP;
 frameCounter = 0;
 currentFPI = 1;
@@ -74,14 +72,30 @@ currentFPI = 1;
 armedIdleAnim = spr_SwordIdle;
 disarIdleAnim = spr_Idle
 idleFPI = 1;
+idleAnimType = AnimationType.HOLD;
 // Run animations
-armedRunAnim = spr_Run;
+armedRunAnim = SlowWalk;
 disarRunAnim = spr_RunDisarmed;
 runFPI = 7;
+runAnimType = AnimationType.LOOP;
 // Attack animations
-attackAntiAnim = ClaySlashAnticipation;
-attackSwingAnim = ClaySlash;
-attackFollowAnim = ClaySlashFollowthrough;
+attackAntiAnim = BigSwordAnticip;
+attackSwingAnim = BigSwordSwing;
+attackFollowAnim = BigSwordFollowthrough;
+attackAnimType = AnimationType.HOLD;
+// Jump anti anims
+armedJumpAnti = jumpAnticip;
+disarJumpAnti= ProtoCrouch;
+jumpAntiFPI = 1;
+jumpAntiAnimType = AnimationType.HOLD;
+armedJumpAnim = jump;
+disarJumpAnim = spr_DisarmedJumpUp;
+jumpFPI = 1;
+jumpAnimType = AnimationType.HOLD;
+armedFallAnim = jumpFall;
+disarFallAnim = jumpFall;
+fallFPI = 1;
+fallAnimType = AnimationType.HOLD;
 #endregion
 
 #region  State Machine
@@ -145,12 +159,16 @@ function GoToIdle()
 {
 	if showDebugMessages show_debug_message("Player going to idle state");
 	currentState = PlayerState.IDLE;
+	if armed SetAnimation(armedIdleAnim, idleFPI, idleAnimType);
+	else SetAnimation(disarIdleAnim, idleFPI, idleAnimType);
 }
 function GoToJumpAnti()
 {
 	if showDebugMessages show_debug_message("Player going to jump anticipation state");
 	jumpTimer = 0;
 	currentState = PlayerState.JUMP_ANTI;
+	if armed SetAnimation(armedJumpAnti, jumpAntiFPI, jumpAntiAnimType);
+	else SetAnimation(disarJumpAnti, jumpAntiFPI, jumpAntiAnimType);
 }
 function GoToJump()
 {
@@ -169,16 +187,24 @@ function GoToJump()
 		hspeed -= lerp(minHoriJumpForce, maxHoriJumpForce, l);
 	}
 	currentState = PlayerState.JUMPING;
+	
+	if armed SetAnimation(armedJumpAnim, jumpFPI, jumpAnimType);
+	else SetAnimation(disarJumpAnim, jumpFPI, jumpAnimType);
 }
 function GoToWalking()
 {
 	if showDebugMessages show_debug_message("Player going to walking state");
 	currentState = PlayerState.WALKING;
+	
+	if armed SetAnimation(armedRunAnim, runFPI, runAnimType);
+	else SetAnimation(disarRunAnim, runFPI,runAnimType);
 }
 function GoToFalling()
 {
 	if showDebugMessages show_debug_message("Player going to falling state");
 	currentState = PlayerState.FALLING;
+	if armed SetAnimation(armedFallAnim, fallFPI, fallAnimType);
+	else SetAnimation(disarFallAnim, fallFPI, fallAnimType);
 }
 function GoToBasicAttack()
 {
@@ -186,14 +212,17 @@ function GoToBasicAttack()
 	basicAttackTimer = anticipationFrames;
 	currentState = PlayerState.BASIC_ATTACK;
 	currentAttackSubstate = AttackSubstate.ANTICIPATION;
+	SetAnimation(attackAntiAnim, 1, AnimationType.HOLD);
 	if basicAttackTimer <= 0
 	{
 		currentAttackSubstate = AttackSubstate.SWING;
+		SetAnimation(attackSwingAnim, 1, AnimationType.HOLD);
 		basicAttackTimer = swingFrames;
 	}
 	if basicAttackTimer <= 0
 	{
 		currentAttackSubstate = AttackSubstate.FOLLOWTHROUGH;
+		SetAnimation(attackFollowAnim, 1, AnimationType.HOLD);
 		basicAttackTimer = followthroughFrames;
 	}
 	if basicAttackTimer <= 0
@@ -264,11 +293,13 @@ function Attack()
 		if currentAttackSubstate == AttackSubstate.ANTICIPATION && basicAttackTimer <= 0
 		{
 			currentAttackSubstate = AttackSubstate.SWING;
+			SetAnimation(attackSwingAnim, 1, AnimationType.HOLD);
 			basicAttackTimer = swingFrames;
 		}
 		if currentAttackSubstate == AttackSubstate.SWING && basicAttackTimer <= 0
 		{
 			currentAttackSubstate = AttackSubstate.FOLLOWTHROUGH;
+			SetAnimation(attackFollowAnim, 1, AnimationType.HOLD);
 			basicAttackTimer = followthroughFrames;
 		}
 		if currentAttackSubstate == AttackSubstate.FOLLOWTHROUGH && basicAttackTimer <= 0
@@ -276,7 +307,7 @@ function Attack()
 			GoToIdle();
 		}
 		
-		if currentAttackSubstate == AttackSubstate.SWING SpawnHit(spr_FrontSlashEffect, spr_EnemySword);
+		if currentAttackSubstate == AttackSubstate.SWING SpawnHit(BigSwordSlash, spr_EnemySword);
 		else DespawnHit();
 	}
 }
@@ -315,46 +346,6 @@ function PlayerGetHit()
 #endregion
 
 #region Animation Controls
-function UpdateAnimationState()
-{
-	if facing == Direction.RIGHT image_xscale = 1;
-	else image_xscale = -1;
-	
-	switch animationState
-	{
-		case PlayerAnimationState.IDLE:
-			if currentState == PlayerState.WALKING ToRunAnim();
-			else if currentState == PlayerState.BASIC_ATTACK
-			{
-				if currentAttackSubstate == AttackSubstate.ANTICIPATION ToAttackAntiAnim();
-				else if currentAttackSubstate == AttackSubstate.SWING ToAttackSwingAnim();
-				else if currentAttackSubstate == AttackSubstate.FOLLOWTHROUGH ToAttackFollowAnim();
-			}
-			break;
-		case PlayerAnimationState.RUN:
-			if currentState == PlayerState.IDLE ToIdleAnim();
-			else if currentState == PlayerState.BASIC_ATTACK
-			{
-				if currentAttackSubstate == AttackSubstate.ANTICIPATION ToAttackAntiAnim();
-				else if currentAttackSubstate == AttackSubstate.SWING ToAttackSwingAnim();
-				else if currentAttackSubstate == AttackSubstate.FOLLOWTHROUGH ToAttackFollowAnim();
-			}
-			break;
-		case PlayerAnimationState.ATTACK_ANTI:
-			if currentAttackSubstate == AttackSubstate.SWING ToAttackSwingAnim();
-			else if currentAttackSubstate == AttackSubstate.FOLLOWTHROUGH ToAttackFollowAnim();
-			else if currentState != PlayerState.BASIC_ATTACK ToIdleAnim();
-			break;	
-		case PlayerAnimationState.ATTACK_SWING:
-			if currentAttackSubstate == AttackSubstate.FOLLOWTHROUGH ToAttackFollowAnim();
-			else if currentState != PlayerState.BASIC_ATTACK ToIdleAnim();
-			break;
-		case PlayerAnimationState.ATTACK_FOLLOW:
-			if currentState != PlayerState.BASIC_ATTACK ToIdleAnim();
-			break;
-	}
-}
-
 function PlayAnimation()
 {
 	frameCounter++;
@@ -370,51 +361,12 @@ function PlayAnimation()
 	}
 }
 
-function ToRunAnim()
+function SetAnimation(animation, fpi, type)
 {
-	animationState = PlayerAnimationState.RUN;
-	currentAnimType = AnimationType.LOOP;
+	sprite_index = animation;
+	currentFPI = fpi;
+	currentAnimType = type;
 	frameCounter = 0;
-	currentFPI = runFPI;
-	if armed sprite_index = armedRunAnim;
-	else sprite_index = disarRunAnim;
-}
-
-function ToIdleAnim()
-{
-	animationState = PlayerAnimationState.IDLE;
-	currentAnimType = AnimationType.HOLD;
-	frameCounter = 0;
-	currentFPI = idleFPI;
-	if armed sprite_index = armedIdleAnim;
-	else sprite_index = disarIdleAnim;
-}
-
-function ToAttackAntiAnim()
-{
-	animationState = PlayerAnimationState.ATTACK_ANTI;
-	currentAnimType = AnimationType.HOLD;
-	frameCounter = 0;
-	currentFPI = sprite_get_number(attackAntiAnim) / anticipationFrames;
-	sprite_index = attackAntiAnim;
-}
-
-function ToAttackSwingAnim()
-{
-	animationState = PlayerAnimationState.ATTACK_SWING;
-	currentAnimType = AnimationType.HOLD;
-	frameCounter = 0;
-	currentFPI = sprite_get_number(attackSwingAnim) / swingFrames;
-	sprite_index = attackSwingAnim;
-}
-
-function ToAttackFollowAnim()
-{
-	animationState = PlayerAnimationState.ATTACK_FOLLOW;
-	currentAnimType = AnimationType.HOLD;
-	frameCounter = 0;
-	currentFPI = sprite_get_number(attackFollowAnim) / followthroughFrames;
-	sprite_index = attackFollowAnim;
 }
 
 function SwitchArmedAnims()
