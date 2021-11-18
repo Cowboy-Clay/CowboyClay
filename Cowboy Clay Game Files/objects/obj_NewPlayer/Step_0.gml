@@ -3,8 +3,8 @@
 if !paused
 {
 	// Physics
-	Friction(frictionValue);
-	Gravity(gravityAccel, gravityMax);
+	Friction(PickFrict());
+	Gravity(PickGravi(), gravityMax);
 	
 	// State system
 	PickupSword();

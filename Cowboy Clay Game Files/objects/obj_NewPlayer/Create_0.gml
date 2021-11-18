@@ -6,7 +6,7 @@ showDebugMessages = true;
 #endregion
 
 #region State Variables
-enum PlayerState { IDLE, WALKING, JUMPING, FALLING, BASIC_ATTACK };
+enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, BASIC_ATTACK };
 enum AttackSubstate { ANTICIPATION, SWING, FOLLOWTHROUGH };
 currentState = PlayerState.IDLE;
 currentAttackSubstate = AttackSubstate.ANTICIPATION;
@@ -16,7 +16,7 @@ armed = startArmed;
 #endregion
 
 #region Physics Variables
-gravityAccel = 3;
+gravityAccel = 1;
 gravityMax = 20;
 #endregion
 
@@ -39,15 +39,13 @@ maxWalkSpeed = 4;
 #endregion
 
 #region Jump Variables
-jumpFlag = false;
-jumpWindupFlag = false;
 jumpTimer = 0;
-jumpWindupTime = 15;
-minJumpTime = 0.1;
-maxJumpTime = 8;
-initialJumpForce = 32;
-extendedJumpForce = 2;
-jumpSpeedCurve = animcurve_get_channel(PlayerJumpCurve, 0);
+minJumpWindup = 3;
+maxJumpWindup = 30;
+minVertJumpForce = 15;
+maxVertJumpForce = 25;
+minHoriJumpForce = 0;
+maxHoriJumpForce = 10;
 #endregion
 
 #region Basic Attack Variables
@@ -56,6 +54,14 @@ swingFrames = 18;
 followthroughFrames = 2;
 basicAttackTimer = 0;
 #endregion
+
+frictMulti_jumpAnti = .5;
+frictMulti_jumping = 0.2;
+frictMulti_attacking = 1;
+
+speedMulti_jumping = 1.2;
+
+graviMulti_attacking = 0.8;
 
 #region Animation Variables
 // Animation
@@ -84,27 +90,17 @@ function UpdateState()
 	switch currentState
 	{
 		case PlayerState.IDLE:
-			if keyboard_check_pressed(ord("X")) GoToJumping();
+			if keyboard_check_pressed(ord("X")) GoToJumpAnti();
 			else if OneWalkKeyHeld() GoToWalking();
 			break;
 		case PlayerState.WALKING:
-			if keyboard_check_pressed(ord("X")) GoToJumping();
+			if keyboard_check_pressed(ord("X")) GoToJumpAnti();
 			else if !OneWalkKeyHeld() GoToIdle();
 			break;
+		case PlayerState.JUMP_ANTI:
+			break;
 		case PlayerState.JUMPING:
-			if grounded
-			{
-				if jumpFlag && !jumpWindupFlag jumpFlag = false;
-				else if !jumpFlag && !jumpWindupFlag
-				{
-					if OneWalkKeyHeld() GoToWalking();
-					else GoToIdle();
-				}
-			}
-			else if jumpTimer >= maxJumpTime || (jumpTimer > minJumpTime && !keyboard_check(ord("X")))
-			{
-				GoToFalling();
-			}
+			if vspeed <= 0 GoToFalling();
 			break;
 		case PlayerState.FALLING:
 			if grounded
@@ -127,6 +123,9 @@ function StateBasedMethods()
 			Walk();
 			Attack();
 			break;
+		case PlayerState.JUMP_ANTI:
+			JumpAnti();
+			break;
 		case PlayerState.JUMPING:
 			Jump();
 			Walk();
@@ -147,12 +146,28 @@ function GoToIdle()
 	if showDebugMessages show_debug_message("Player going to idle state");
 	currentState = PlayerState.IDLE;
 }
-function GoToJumping()
+function GoToJumpAnti()
 {
-	if showDebugMessages show_debug_message("Player going to jumping state");
-	jumpFlag = true;
-	jumpWindupFlag = true;
+	if showDebugMessages show_debug_message("Player going to jump anticipation state");
 	jumpTimer = 0;
+	currentState = PlayerState.JUMP_ANTI;
+}
+function GoToJump()
+{
+	if showDebugMessages show_debug_message("Player going to jump state");
+	var l = jumpTimer - minJumpWindup;
+	l = l / (maxJumpWindup - minJumpWindup);
+	vspeed -= lerp(minVertJumpForce, maxVertJumpForce, l);
+	if OneWalkKeyHeld() && keyboard_check(vk_right)
+	{
+		facing = Direction.RIGHT;
+		hspeed += lerp(minHoriJumpForce, maxHoriJumpForce, l);
+	}
+	else if OneWalkKeyHeld() && keyboard_check(vk_left)
+	{
+		facing = Direction.LEFT;
+		hspeed -= lerp(minHoriJumpForce, maxHoriJumpForce, l);
+	}
 	currentState = PlayerState.JUMPING;
 }
 function GoToWalking()
@@ -191,38 +206,47 @@ function GoToBasicAttack()
 #region Actions
 function Walk()
 {
+	var curAc = walkAccel;
+	switch currentState
+	{
+		case PlayerState.JUMPING:
+			curAc = curAc * speedMulti_jumping;
+			break;
+		case PlayerState.FALLING:
+			curAc = curAc * speedMulti_jumping;
+			break;
+	}
 	// Left movement
 	if keyboard_check(vk_left) && !keyboard_check(vk_right)
 	{
-		hspeed -= walkAccel;
+		hspeed -= curAc;
 	}
 	// Right movement
 	else if keyboard_check(vk_right) && !keyboard_check(vk_left)
 	{
-		hspeed += walkAccel;
+		hspeed += curAc;
 	}
 	
 	if hspeed > 0 facing = Direction.RIGHT;
 	else if hspeed < 0 facing = Direction.LEFT;
 	
-	if abs(hspeed) > maxWalkSpeed
+	if abs(hspeed) > maxWalkSpeed && currentState != PlayerState.JUMPING && currentState != PlayerState.FALLING
 	{
 		hspeed = sign(hspeed) * maxWalkSpeed;
 	}
 }
 
+function JumpAnti()
+{
+	jumpTimer += 1;
+	if jumpTimer > maxJumpWindup || (jumpTimer > minJumpWindup && keyboard_check(ord("X")) == false)
+	{
+		GoToJump();
+	}
+}
+
 function Jump()
 {
-	show_debug_message("Counting jump");
-	jumpTimer ++;
-	if jumpWindupFlag && jumpTimer >= jumpWindupTime
-	{
-		jumpWindupFlag = false;
-		jumpTimer = 0;
-		vspeed -= initialJumpForce;
-	}
-	else if !jumpWindupFlag
-		vspeed -= extendedJumpForce * animcurve_channel_evaluate(jumpSpeedCurve, jumpTimer/maxJumpTime);
 }
 
 function Attack()
@@ -407,3 +431,35 @@ function SwitchArmedAnims()
 	}
 }
 #endregion
+
+function PickFrict()
+{
+	var fVal = frictionValue;
+	switch currentState
+	{
+		case PlayerState.JUMP_ANTI:
+			fVal *= frictMulti_jumpAnti;
+			break;
+		case PlayerState.JUMPING:
+			fVal *= frictMulti_jumping;
+			break;
+		case PlayerState.FALLING:
+			fVal *= frictMulti_jumping;
+			break;
+		case PlayerState.BASIC_ATTACK:
+			fVal *= frictMulti_attacking;
+	}
+	return fVal;
+}
+
+function PickGravi()
+{
+	var g = gravityAccel;
+	switch currentState
+	{
+		case PlayerState.BASIC_ATTACK:
+			g *= graviMulti_attacking;
+			break;
+	}
+	return g;
+}
