@@ -124,6 +124,7 @@ function PlayerStateBasedMethods()
 			PlayerAttack();
 			break;
 		case PlayerState.JUMP_ANTI:
+			PlayerAttack();
 			PlayerJumpAnti();
 			break;
 		case PlayerState.JUMPING:
