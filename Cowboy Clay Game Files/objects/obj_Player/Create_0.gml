@@ -1,180 +1,165 @@
 /// @description Code to be executed when player is created
 
 #region Master Variables
-paused = false;
-showDebugMessages = true;
+global.paused = false; // true if the game should be paused
+global.showDebugMessages = true; // set to true if you want to print debug messages
 #endregion
 
 #region State Variables
-enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, BASIC_ATTACK };
-enum AttackSubstate { ANTICIPATION, SWING, FOLLOWTHROUGH };
-currentState = PlayerState.IDLE;
-currentAttackSubstate = AttackSubstate.ANTICIPATION;
-facing = Direction.RIGHT;
-grounded = false;
-armed = startArmed;
+enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW };
+player_currentState = PlayerState.IDLE;
+player_facing = Direction.RIGHT; // The direction the player is facing
+player_grounded = false;
+player_armed = startArmed; // Is the player armed. startArmed is set in the variable menu
 #endregion
 
 #region Physics Variables
-gravityAccel = 1;
-gravityMax = 20;
+global.player_gravityAccel = 1; // The basic rate of acceloration due to gravity
+global.player_gravityMax = 20; // The basic maximum of gravity
 #endregion
 
 #region Walk Variables
-frictionValue = .37;
-walkAccel = 0.6;
-maxWalkSpeed = 4;
-
-//walkingSlider = 0;
-//timeToFullSpeed = .6;
-//walkingSpeedCurve = animcurve_get_channel(bumpy_trot, 0);
-//fullspeedMulti = 6;
-//walkingFrictionMulti = 0.85;
-
-//walkingSlider = 0;
-//timeToFullSpeed = 0.3;
-//walkingSpeedCurve = animcurve_get_channel(WalkingSpeedCurve, 0);
-//fullspeedMulti = 18;
-//walkingFrictionMulti = 0.92;
+global.player_frictionValue = .37; // The basic rate of friction
+global.player_walkAccel = 0.6; // The basic rate of acceloration from walking
+global.maxWalkSpeed = 4; // The basic max walking speed
 #endregion
 
 #region Jump Variables
-jumpTimer = 0;
-minJumpWindup = 3;
-maxJumpWindup = 30;
-minVertJumpForce = 15;
-maxVertJumpForce = 25;
-minHoriJumpForce = 0;
-maxHoriJumpForce = 10;
+player_jumpTimer = 0; // Frame counter to determine how long the player is preparing their jump
+global.player_minJumpWindup = 3; // the min # of frames the player can prepare a jump
+global.player_maxJumpWindup = 30; // the max # of frames the player can prepare a jump
+global.player_minVertJumpForce = 15; // min vertical force applied by a jump
+global.player_maxVertJumpForce = 25; // max vertical force applied by a jump
+global.player_minHoriJumpForce = 0; // min horizontal force applied by a jump
+global.player_maxHoriJumpForce = 10; // max horizontal force applied by a jump
 #endregion
 
 #region Basic Attack Variables
-anticipationFrames = 15;
-swingFrames = 10;
-followthroughFrames = 15;
-basicAttackTimer = 0;
+global.player_attackAntiFrames = 15; // # of frames the attack anti is shown
+global.player_attackSwingFrames = 10;
+global.player_attackFollowFrames = 15;
+basicAttackTimer = 0; // Frame counter to determine how long the player has been in each attack state
 #endregion
 
-frictMulti_jumpAnti = .5;
-frictMulti_jumping = 0.2;
-frictMulti_attacking = 1;
+global.player_frictMulti_jumpAnti = .5;
+global.player_frictMulti_jumping = 0.2;
+global.player_frictMulti_attacking = 1;
 
-speedMulti_jumping = 1.2;
+global.player_speedMulti_jumping = 1.2;
 
-graviMulti_attacking = 0.8;
+global.player_graviMulti_attacking = 0.8;
 
 #region Animation Variables
 // Animation
-currentAnimType = AnimationType.FIRST_FRAME;
-frameCounter = 0;
-currentFPI = 1;
+player_currentAnimType = AnimationType.FIRST_FRAME;
+player_animFrameCounter = 0;
+player_currentFPI = 1;
 // Idle animations
-armedIdleAnim = SlowWalk;
-disarIdleAnim = spr_Idle;
-idleFPI = 1;
-idleAnimType = AnimationType.FIRST_FRAME;
+global.player_idleAnim = spr_player_walk;
+global.player_idleAnim_disarmed = spr_player_idle_disarmed;
+global.player_idleFPI = 1;
+global.player_idleAnimType = AnimationType.FIRST_FRAME;
 // Run animations
-armedRunAnim = SlowWalk;
-disarRunAnim = spr_RunDisarmed;
-runFPI = 12;
-runAnimType = AnimationType.LOOP;
+global.player_walkAnim = spr_player_walk;
+global.player_walkAnim_disarmed = spr_player_walk_disarmed;
+global.player_walkFPI = 12;
+global.player_walkAnimType = AnimationType.LOOP;
 // Attack animations
-attackAntiAnim = BigSwordAnticip;
-attackSwingAnim = BigSwordSwing;
-attackFollowAnim = BigSwordFollowthrough;
+global.player_attackAntiAnim = spr_player_attackAnti;
+global.player_attackSwingAnim = spr_player_attackSwing;
+global.player_attackFollowAnim = spr_player_attackFollow;
 // Jump anti anims
-armedJumpAnti = jumpAnticip;
-disarJumpAnti= ProtoCrouch;
-jumpAntiFPI = 1;
-jumpAntiAnimType = AnimationType.HOLD;
-armedJumpAnim = jump;
-disarJumpAnim = spr_DisarmedJumpUp;
-jumpFPI = 1;
-jumpAnimType = AnimationType.HOLD;
-armedFallAnim = jumpFall;
-disarFallAnim = jumpFall;
-fallFPI = 1;
-fallAnimType = AnimationType.HOLD;
+global.player_jumpAntiAnim = spr_player_jumpAnti;
+global.player_jumpAntiAnim_disarmed = spr_player_crouch_disarmed;
+global.player_jumpAntiFPI = 1;
+global.player_jumpAntiAnimType = AnimationType.HOLD;
+global.player_jumpAnim = spr_player_jump;
+global.player_jumpAnim_disarmed = spr_player_jump_disarmed;
+global.player_jumpFPI = 1;
+global.player_jumpAnimType = AnimationType.HOLD;
+global.player_fallAnim = spr_player_fall;
+global.player_fallAnim_disarmed = spr_player_idle_disarmed;
+global.player_fallFPI = 1;
+global.player_fallAnimType = AnimationType.HOLD;
 #endregion
 
 #region  State Machine
-function UpdateState()
+function UpdatePlayerState()
 {
-	switch currentState
+	switch player_currentState
 	{
 		case PlayerState.IDLE:
-			if keyboard_check_pressed(ord("X")) GoToJumpAnti();
-			else if OneWalkKeyHeld() GoToWalking();
+			if keyboard_check_pressed(ord("X")) GoToPlayerJumpAnti();
+			else if OneWalkKeyHeld() GoToPlayerWalk();
 			break;
 		case PlayerState.WALKING:
-			if keyboard_check_pressed(ord("X")) GoToJumpAnti();
-			else if !OneWalkKeyHeld() GoToIdle();
+			if keyboard_check_pressed(ord("X")) GoToPlayerJumpAnti();
+			else if !OneWalkKeyHeld() GoToPlayerIdle();
 			break;
 		case PlayerState.JUMP_ANTI:
 			break;
 		case PlayerState.JUMPING:
-			if vspeed <= 0 GoToFalling();
+			if vspeed <= 0 GoToPlayerFall();
 			break;
 		case PlayerState.FALLING:
 			if grounded
 			{
-				if OneWalkKeyHeld() GoToWalking();
-				else GoToIdle();
+				if OneWalkKeyHeld() GoToPlayerWalk();
+				else GoToPlayerIdle();
 			}
 			break;
 	}
 }
 
-function StateBasedMethods()
+function PlayerStateBasedMethods()
 {
-	switch currentState
+	switch player_currentState
 	{
 		case PlayerState.IDLE:
-			Attack();
+			PlayerAttack();
 			break;
 		case PlayerState.WALKING:
-			Walk();
-			Attack();
+			PlayerWalk();
+			PlayerAttack();
 			break;
 		case PlayerState.JUMP_ANTI:
-			JumpAnti();
+			PlayerJumpAnti();
 			break;
 		case PlayerState.JUMPING:
-			Jump();
-			Walk();
-			Attack();
+			PlayerWalk();
+			PlayerAttack();
 			break;
 		case PlayerState.FALLING:
-			Walk();
-			Attack();
+			PlayerWalk();
+			PlayerAttack();
 			break;
 		case PlayerState.BASIC_ATTACK:
-			Attack();
+			PlayerAttack();
 			break;
 	}
 }
 
-function GoToIdle()
+function GoToPlayerIdle()
 {
-	if showDebugMessages show_debug_message("Player going to idle state");
-	currentState = PlayerState.IDLE;
-	if armed SetAnimation(armedIdleAnim, idleFPI, idleAnimType);
-	else SetAnimation(disarIdleAnim, idleFPI, idleAnimType);
+	if global.showDebugMessages show_debug_message("Player going to idle state");
+	player_currentState = PlayerState.IDLE;
+	if player_armed SetAnimation(global.player_idleAnim, global.player_idleFPI, global.player_idleAnimType);
+	else SetAnimation(global.player_idleAnim_disarmed, global.player_idelFPI, global.player_idleAnimType);
 }
-function GoToJumpAnti()
+function GoToPlayerJumpAnti()
 {
-	if showDebugMessages show_debug_message("Player going to jump anticipation state");
-	jumpTimer = 0;
-	currentState = PlayerState.JUMP_ANTI;
-	if armed SetAnimation(armedJumpAnti, jumpAntiFPI, jumpAntiAnimType);
-	else SetAnimation(disarJumpAnti, jumpAntiFPI, jumpAntiAnimType);
+	if global.showDebugMessages show_debug_message("Player going to jump anticipation state");
+	player_jumpTimer = 0;
+	player_currentState = PlayerState.JUMP_ANTI;
+	if player_armed SetAnimation(global.player_jumpAntiAnim, global.player_jumpAntiFPI, global.player_jumpAntiAnimType);
+	else SetAnimation(global.player_jumpAntiAnim_disarmed, global.player_jumpAntiFPI, global.player_jumpAntiAnimType);
 }
-function GoToJump()
+function GoToPlayerJump()
 {
-	if showDebugMessages show_debug_message("Player going to jump state");
-	var l = jumpTimer - minJumpWindup;
-	l = l / (maxJumpWindup - minJumpWindup);
-	vspeed -= lerp(minVertJumpForce, maxVertJumpForce, l);
+	if global.showDebugMessages show_debug_message("Player going to jump state");
+	var l = player_jumpTimer - global.player_minJumpWindup;
+	l = l / (global.player_maxJumpWindup - global.player_minJumpWindup);
+	vspeed -= lerp(global.player_minVertJumpForce, global.player_maxVertJumpForce, l);
 	if OneWalkKeyHeld() && keyboard_check(vk_right)
 	{
 		facing = Direction.RIGHT;
@@ -185,31 +170,31 @@ function GoToJump()
 		facing = Direction.LEFT;
 		hspeed -= lerp(minHoriJumpForce, maxHoriJumpForce, l);
 	}
-	currentState = PlayerState.JUMPING;
+	player_currentState = PlayerState.JUMPING;
 	
-	if armed SetAnimation(armedJumpAnim, jumpFPI, jumpAnimType);
+	if player_armed SetAnimation(armedJumpAnim, jumpFPI, jumpAnimType);
 	else SetAnimation(disarJumpAnim, jumpFPI, jumpAnimType);
 }
-function GoToWalking()
+function GoToPlayerWalk()
 {
-	if showDebugMessages show_debug_message("Player going to walking state");
-	currentState = PlayerState.WALKING;
+	if global.showDebugMessages show_debug_message("Player going to walking state");
+	player_currentState = PlayerState.WALKING;
 	
-	if armed SetAnimation(armedRunAnim, runFPI, runAnimType);
+	if player_armed SetAnimation(armedRunAnim, runFPI, runAnimType);
 	else SetAnimation(disarRunAnim, runFPI,runAnimType);
 }
-function GoToFalling()
+function GoToPlayerFall()
 {
-	if showDebugMessages show_debug_message("Player going to falling state");
-	currentState = PlayerState.FALLING;
-	if armed SetAnimation(armedFallAnim, fallFPI, fallAnimType);
+	if global.showDebugMessages show_debug_message("Player going to falling state");
+	player_currentState = PlayerState.FALLING;
+	if player_armed SetAnimation(armedFallAnim, fallFPI, fallAnimType);
 	else SetAnimation(disarFallAnim, fallFPI, fallAnimType);
 }
 function GoToBasicAttack()
 {
-	if showDebugMessages show_debug_message("Player going to basic attack state");
+	if global.showDebugMessages show_debug_message("Player going to basic attack state");
 	basicAttackTimer = anticipationFrames;
-	currentState = PlayerState.BASIC_ATTACK;
+	player_currentState = PlayerState.BASIC_ATTACK;
 	currentAttackSubstate = AttackSubstate.ANTICIPATION;
 	SetAnimation(attackAntiAnim, 1, AnimationType.HOLD);
 	if basicAttackTimer <= 0
@@ -226,16 +211,16 @@ function GoToBasicAttack()
 	}
 	if basicAttackTimer <= 0
 	{
-		GoToIdle();
+		GoToPlayerIdle();
 	}
 }
 #endregion
 
 #region Actions
-function Walk()
+function PlayerWalk()
 {
 	var curAc = walkAccel;
-	switch currentState
+	switch player_currentState
 	{
 		case PlayerState.JUMPING:
 			curAc = curAc * speedMulti_jumping;
@@ -258,33 +243,29 @@ function Walk()
 	if hspeed > 0 facing = Direction.RIGHT;
 	else if hspeed < 0 facing = Direction.LEFT;
 	
-	if abs(hspeed) > maxWalkSpeed && currentState != PlayerState.JUMPING && currentState != PlayerState.FALLING
+	if abs(hspeed) > maxWalkSpeed && player_currentState != PlayerState.JUMPING && player_currentState != PlayerState.FALLING
 	{
 		hspeed = sign(hspeed) * maxWalkSpeed;
 	}
 }
 
-function JumpAnti()
+function PlayerJumpAnti()
 {
 	jumpTimer += 1;
 	if jumpTimer > maxJumpWindup || (jumpTimer > minJumpWindup && keyboard_check(ord("X")) == false)
 	{
-		GoToJump();
+		GoToPlayerJump();
 	}
 }
 
-function Jump()
-{
-}
-
-function Attack()
+function PlayerAttack()
 {
 	// If you are starting the attack
-	if currentState != PlayerState.BASIC_ATTACK && keyboard_check_pressed(ord("Z")) && armed
+	if player_currentState != PlayerState.BASIC_ATTACK && keyboard_check_pressed(ord("Z")) && player_armed
 	{
 		GoToBasicAttack();
 	}
-	else if currentState == PlayerState.BASIC_ATTACK
+	else if player_currentState == PlayerState.BASIC_ATTACK
 	{
 		// Increment the attack timer
 		basicAttackTimer -= 1;
@@ -303,7 +284,7 @@ function Attack()
 		}
 		if currentAttackSubstate == AttackSubstate.FOLLOWTHROUGH && basicAttackTimer <= 0
 		{
-			GoToIdle();
+			GoToPlayerIdle();
 		}
 		
 		if currentAttackSubstate == AttackSubstate.SWING SpawnHit(BigSwordSlash, spr_EnemySword);
@@ -324,20 +305,20 @@ function DespawnHit()
 
 function PickupSword()
 {
-	if !armed && keyboard_check(ord("Z")) && place_meeting(x,y,obj_Sword)
+	if !player_armed && keyboard_check(ord("Z")) && place_meeting(x,y,obj_Sword)
 	{
 		obj_TestSceneController.flag = true;
-		if showDebugMessages show_debug_message("Picked up sword");
-		armed = true;
+		if global.showDebugMessages show_debug_message("Picked up sword");
+		player_armed = true;
 		instance_deactivate_object(obj_Sword);
 	}
 }
 
 function PlayerGetHit()
 {
-	if armed
+	if player_armed
 	{
-		armed = false;
+		player_armed = false;
 		instance_activate_object(obj_Sword);
 		obj_Sword.Flung(obj_Moose.x);
 	}
@@ -375,7 +356,7 @@ function SetAnimation(animation, fpi, type)
 
 function SetFacingDirection()
 {
-	if currentState == PlayerState.BASIC_ATTACK || currentState == PlayerState.JUMPING || currentState == PlayerState.FALLING
+	if player_currentState == PlayerState.BASIC_ATTACK || player_currentState == PlayerState.JUMPING || player_currentState == PlayerState.FALLING
 		return;
 	if facing == Direction.RIGHT
 		image_xscale = 1;
@@ -384,7 +365,7 @@ function SetFacingDirection()
 
 function SwitchArmedAnims()
 {
-	if armed
+	if player_armed
 	{
 		if sprite_index == disarRunAnim sprite_index = armedRunAnim;
 		if sprite_index == disarIdleAnim sprite_index = armedIdleAnim;
@@ -400,7 +381,7 @@ function SwitchArmedAnims()
 function PickFrict()
 {
 	var fVal = frictionValue;
-	switch currentState
+	switch player_currentState
 	{
 		case PlayerState.JUMP_ANTI:
 			fVal *= frictMulti_jumpAnti;
@@ -420,7 +401,7 @@ function PickFrict()
 function PickGravi()
 {
 	var g = gravityAccel;
-	switch currentState
+	switch player_currentState
 	{
 		case PlayerState.BASIC_ATTACK:
 			g *= graviMulti_attacking;
