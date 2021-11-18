@@ -63,7 +63,7 @@
     "backdropXOffset": 0.0,
     "backdropYOffset": 0.0,
     "xorigin": 141,
-    "yorigin": 89,
+    "yorigin": 68,
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"SlowWalk","path":"sprites/SlowWalk/SlowWalk.yy",},

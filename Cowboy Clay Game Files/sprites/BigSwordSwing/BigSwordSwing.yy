@@ -55,7 +55,7 @@
     "backdropXOffset": 0.0,
     "backdropYOffset": 0.0,
     "xorigin": 121,
-    "yorigin": 100,
+    "yorigin": 84,
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"BigSwordSwing","path":"sprites/BigSwordSwing/BigSwordSwing.yy",},

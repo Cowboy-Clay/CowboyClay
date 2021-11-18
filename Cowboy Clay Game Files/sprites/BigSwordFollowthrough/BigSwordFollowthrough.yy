@@ -55,7 +55,7 @@
     "backdropXOffset": 0.0,
     "backdropYOffset": 0.0,
     "xorigin": 120,
-    "yorigin": 101,
+    "yorigin": 84,
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"BigSwordFollowthrough","path":"sprites/BigSwordFollowthrough/BigSwordFollowthrough.yy",},
