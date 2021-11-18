@@ -1,2 +1,2 @@
 enum Direction { LEFT, RIGHT };
-enum AnimationType { LOOP, HOLD};
+enum AnimationType { LOOP, HOLD, FIRST_FRAME};

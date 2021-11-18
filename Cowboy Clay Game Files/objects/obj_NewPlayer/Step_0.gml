@@ -14,6 +14,7 @@ if !paused
 	// Animation
 	SwitchArmedAnims();
 	PlayAnimation();
+	SetFacingDirection();
 	
 	obj_PlayerAttackEffect.x = x;
 	obj_PlayerAttackEffect.y = y;

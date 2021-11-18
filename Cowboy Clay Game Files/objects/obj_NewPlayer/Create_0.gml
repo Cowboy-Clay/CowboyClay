@@ -65,14 +65,14 @@ graviMulti_attacking = 0.8;
 
 #region Animation Variables
 // Animation
-currentAnimType = AnimationType.LOOP;
+currentAnimType = AnimationType.FIRST_FRAME;
 frameCounter = 0;
 currentFPI = 1;
 // Idle animations
-armedIdleAnim = spr_SwordIdle;
-disarIdleAnim = spr_Idle
+armedIdleAnim = SlowWalk;
+disarIdleAnim = spr_Idle;
 idleFPI = 1;
-idleAnimType = AnimationType.HOLD;
+idleAnimType = AnimationType.FIRST_FRAME;
 // Run animations
 armedRunAnim = SlowWalk;
 disarRunAnim = spr_RunDisarmed;
@@ -82,7 +82,6 @@ runAnimType = AnimationType.LOOP;
 attackAntiAnim = BigSwordAnticip;
 attackSwingAnim = BigSwordSwing;
 attackFollowAnim = BigSwordFollowthrough;
-attackAnimType = AnimationType.HOLD;
 // Jump anti anims
 armedJumpAnti = jumpAnticip;
 disarJumpAnti= ProtoCrouch;
@@ -348,6 +347,11 @@ function PlayerGetHit()
 #region Animation Controls
 function PlayAnimation()
 {
+	if currentAnimType == AnimationType.FIRST_FRAME
+	{
+		image_index = 0;
+		return;
+	}
 	frameCounter++;
 	if frameCounter >= currentFPI
 	{
@@ -367,6 +371,15 @@ function SetAnimation(animation, fpi, type)
 	currentFPI = fpi;
 	currentAnimType = type;
 	frameCounter = 0;
+}
+
+function SetFacingDirection()
+{
+	if currentState == PlayerState.BASIC_ATTACK || currentState == PlayerState.JUMPING || currentState == PlayerState.FALLING
+		return;
+	if facing == Direction.RIGHT
+		image_xscale = 1;
+	else image_xscale = -1;
 }
 
 function SwitchArmedAnims()
