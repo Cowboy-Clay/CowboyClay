@@ -252,7 +252,8 @@ function PlayerWalk()
 	
 	if abs(hspeed) > global.player_maxWalkSpeed && player_currentState != PlayerState.JUMPING && player_currentState != PlayerState.FALLING
 	{
-		hspeed = sign(hspeed) * global.player_maxWalkSpeed;
+		hspeed = sign(hspeed) * lerp(abs(hspeed), global.player_maxWalkSpeed, .2);
+		//hspeed = sign(hspeed) * global.player_maxWalkSpeed;
 	}
 }
 
