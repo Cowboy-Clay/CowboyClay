@@ -45,7 +45,8 @@ global.player_frictMulti_jumpAnti = .5;
 global.player_frictMulti_jumping = 0.2;
 global.player_frictMulti_attacking = 1;
 
-global.player_speedMulti_jumping = 1.2;
+global.player_speedMulti_jumping = 1;
+global.player_speedMulti_falling = 0.3;
 
 global.player_graviMulti_attacking = 0.8;
 
@@ -99,7 +100,7 @@ function UpdatePlayerState()
 		case PlayerState.JUMP_ANTI:
 			break;
 		case PlayerState.JUMPING:
-			if vspeed <= 0 GoToPlayerFall();
+			if vspeed >= 0 GoToPlayerFall();
 			break;
 		case PlayerState.FALLING:
 			if grounded
@@ -231,7 +232,7 @@ function PlayerWalk()
 			curAc = curAc * global.player_speedMulti_jumping;
 			break;
 		case PlayerState.FALLING:
-			curAc = curAc * global.player_speedMulti_jumping;
+			curAc = curAc * global.player_speedMulti_falling;
 			break;
 	}
 	// Left movement
