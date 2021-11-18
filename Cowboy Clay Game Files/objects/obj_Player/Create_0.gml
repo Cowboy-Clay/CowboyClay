@@ -9,7 +9,6 @@ global.showDebugMessages = true; // set to true if you want to print debug messa
 enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW };
 player_currentState = PlayerState.IDLE;
 player_facing = Direction.RIGHT; // The direction the player is facing
-player_grounded = false;
 player_armed = startArmed; // Is the player armed. startArmed is set in the variable menu
 #endregion
 
