@@ -137,14 +137,17 @@ function PlayerStateBasedMethods()
 			CheckDash();
 			PlayerAttack();
 			PlayerJumpAnti();
+			SetPlayerFacingBasedOnSprite();
 			break;
 		case PlayerState.JUMPING:
 			PlayerWalk();
 			PlayerAttack();
+			SetPlayerFacingBasedOnSprite();
 			break;
 		case PlayerState.FALLING:
 			PlayerWalk();
 			PlayerAttack();
+			SetPlayerFacingBasedOnSprite();
 			break;
 		case PlayerState.BASIC_ATTACK_ANTI:
 			PlayerAttack();
@@ -304,8 +307,8 @@ function PlayerWalk()
 		hspeed += curAc;
 	}
 	
-	if hspeed > 0 facing = Direction.RIGHT;
-	else if hspeed < 0 facing = Direction.LEFT;
+	if hspeed > 0 && keyboard_check(vk_right) facing = Direction.RIGHT;
+	else if hspeed < 0 && keyboard_check(vk_left) facing = Direction.LEFT;
 	
 	if abs(hspeed) > global.player_maxWalkSpeed && currentState != PlayerState.JUMPING && currentState != PlayerState.FALLING
 	{
@@ -433,6 +436,12 @@ function SetPlayerAnimation(animation, fpi, type)
 	animFrameCounter = 0;
 }
 
+
+function SetPlayerFacingBasedOnSprite()
+{
+	if image_xscale > 0 facing = Direction.RIGHT;
+	else facing = Direction.LEFT;
+}
 function SetPlayerFacingDirection()
 {
 	if currentState == PlayerState.BASIC_ATTACK_ANTI || currentState == PlayerState.BASIC_ATTACK_SWING
