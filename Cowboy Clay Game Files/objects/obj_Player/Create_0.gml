@@ -6,7 +6,7 @@ global.showDebugMessages = true; // set to true if you want to print debug messa
 #endregion
 
 #region State Variables
-enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW };
+enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH };
 currentState = PlayerState.IDLE;
 facing = Direction.RIGHT; // The direction the player is facing
 armed = startArmed; // Is the player armed. startArmed is set in the variable menu
@@ -22,6 +22,14 @@ global.player_gravityMax = 20; // The basic maximum of gravity
 global.player_frictionValue = .37; // The basic rate of friction
 global.player_walkAccel = 0.6; // The basic rate of acceloration from walking
 global.player_maxWalkSpeed = 4; // The basic max walking speed
+#endregion
+
+#region Dash Variables
+dashTimer = 0;
+lastDashTapDirection = Direction.LEFT;
+global.player_dashFrameAllowance = 20;
+global.player_dashImpulseForce = 10;
+global.player_dashDuration = 5;
 #endregion
 
 #region Jump Variables
@@ -117,13 +125,16 @@ function PlayerStateBasedMethods()
 	switch currentState
 	{
 		case PlayerState.IDLE:
+			CheckDash();
 			PlayerAttack();
 			break;
 		case PlayerState.WALKING:
+			CheckDash();
 			PlayerWalk();
 			PlayerAttack();
 			break;
 		case PlayerState.JUMP_ANTI:
+			CheckDash();
 			PlayerAttack();
 			PlayerJumpAnti();
 			break;
@@ -143,6 +154,9 @@ function PlayerStateBasedMethods()
 			break;
 		case PlayerState.BASIC_ATTACK_FOLLOW:
 			PlayerAttack();
+			break;
+		case PlayerState.DASH:
+			PlayerDash();
 			break;
 	}
 }
@@ -170,12 +184,10 @@ function GoToPlayerJump()
 	vspeed -= lerp(global.player_minVertJumpForce, global.player_maxVertJumpForce, l);
 	if OneWalkKeyHeld() && keyboard_check(vk_right)
 	{
-		facing = Direction.RIGHT;
 		hspeed += lerp(global.player_minHoriJumpForce, global.player_maxHoriJumpForce, l);
 	}
 	else if OneWalkKeyHeld() && keyboard_check(vk_left)
 	{
-		facing = Direction.LEFT;
 		hspeed -= lerp(global.player_minHoriJumpForce, global.player_maxHoriJumpForce, l);
 	}
 	currentState = PlayerState.JUMPING;
@@ -187,6 +199,9 @@ function GoToPlayerWalk()
 {
 	if global.showDebugMessages show_debug_message("Player going to walking state");
 	currentState = PlayerState.WALKING;
+	
+	if keyboard_check(vk_left) lastDashTapDirection = Direction.LEFT;
+	else if keyboard_check(vk_right) lastDashTapDirection = Direction.RIGHT;
 	
 	if armed SetPlayerAnimation(global.player_walkAnim, global.player_walkFPI, global.player_walkAnimType);
 	else SetPlayerAnimation(global.player_walkAnim_disarmed, global.player_walkFPI, global.player_walkAnimType);
@@ -221,12 +236,54 @@ function GoToPlayerBasicAttack()
 		GoToPlayerIdle();
 	}
 }
+
+function GoToDash()
+{
+	if global.showDebugMessages show_debug_message("Player going to dash state");
+	currentState = PlayerState.DASH;
+	
+	dashTimer = 0;
+	
+	if lastDashTapDirection == Direction.LEFT hspeed = - global.player_dashImpulseForce;
+	else hspeed = global.player_dashImpulseForce;
+}
+
+function CheckDash()
+{
+	if keyboard_check_pressed(vk_left)
+	{
+		if lastDashTapDirection == Direction.LEFT && dashTimer <= global.player_dashFrameAllowance && dashTimer != 0
+		{
+			GoToDash();
+		}
+		else
+		{
+			dashTimer = 0;
+			lastDashTapDirection = Direction.LEFT;
+		}
+	}
+	else if keyboard_check_pressed(vk_right)
+	{
+		if lastDashTapDirection == Direction.RIGHT && dashTimer <= global.player_dashFrameAllowance && dashTimer != 0
+		{
+			GoToDash();
+		}
+		else
+		{
+			dashTimer = 0;
+			lastDashTapDirection = Direction.RIGHT;
+		}
+	}
+	
+	dashTimer ++;
+}
 #endregion
 
 #region Actions
 function PlayerWalk()
 {
 	var curAc = global.player_walkAccel;
+	
 	switch currentState
 	{
 		case PlayerState.JUMPING:
@@ -255,6 +312,19 @@ function PlayerWalk()
 		hspeed = sign(hspeed) * lerp(abs(hspeed), global.player_maxWalkSpeed, .2);
 		//hspeed = sign(hspeed) * global.player_maxWalkSpeed;
 	}
+}
+
+function PlayerDash()
+{
+	dashTimer ++;
+	if dashTimer >= global.player_dashDuration
+	{
+		dashTimer = global.player_dashFrameAllowance + 100;
+		GoToPlayerIdle();
+		return;
+	}
+	if lastDashTapDirection == Direction.LEFT hspeed = -global.player_dashImpulseForce;
+	else hspeed = global.player_dashImpulseForce;
 }
 
 function PlayerJumpAnti()
