@@ -27,9 +27,11 @@ global.player_maxWalkSpeed = 4; // The basic max walking speed
 #region Dash Variables
 dashTimer = 0;
 lastDashTapDirection = Direction.LEFT;
+dashOnCooldown = false;
 global.player_dashFrameAllowance = 20;
 global.player_dashImpulseForce = 10;
 global.player_dashDuration = 5;
+global.player_dashCooldown = 90;
 #endregion
 
 #region Jump Variables
@@ -246,6 +248,7 @@ function GoToDash()
 	currentState = PlayerState.DASH;
 	
 	dashTimer = 0;
+	dashOnCooldown = true;
 	
 	if lastDashTapDirection == Direction.LEFT hspeed = - global.player_dashImpulseForce;
 	else hspeed = global.player_dashImpulseForce;
@@ -253,6 +256,19 @@ function GoToDash()
 
 function CheckDash()
 {
+	if dashOnCooldown
+	{
+		show_debug_message(dashTimer);
+		show_debug_message(global.player_dashCooldown);
+		dashTimer ++;
+		if dashTimer >= global.player_dashCooldown
+		{
+			dashTimer = 0;
+			dashOnCooldown = false;
+		}
+		return;
+	}
+	
 	if keyboard_check_pressed(vk_left)
 	{
 		if lastDashTapDirection == Direction.LEFT && dashTimer <= global.player_dashFrameAllowance && dashTimer != 0
@@ -322,7 +338,7 @@ function PlayerDash()
 	dashTimer ++;
 	if dashTimer >= global.player_dashDuration
 	{
-		dashTimer = global.player_dashFrameAllowance + 100;
+		dashTimer = 0;
 		GoToPlayerIdle();
 		return;
 	}
