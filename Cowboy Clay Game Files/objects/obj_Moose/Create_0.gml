@@ -10,59 +10,59 @@ facing = Direction.LEFT;
 
 // Wait variables
 waitTimer = 0;
-waitTimeMinimum = 5;
-waitTimeMaximum = 10;
+global.mooseWaitTimeMin = 300;
+global.mooseWaitTimeMax = 600;
 
 enum WanderState {LEFT, RIGHT, WAIT};
 currentWanderState = WanderState.WAIT;
 wanderTimer = 0;
-maxWanderTime = 1;
-minWanderTime = 0.25;
-maxWanderWait = .8;
-minWanderWait = 0;
-walkingAccel = .5;
-walkingMaxVel = 3;
+global.moose_wanderTimeMax = 1;
+global.moose_wanderTimeMin = 0.25;
+global.moose_wanderWaitMax = .8;
+global.moose_wanderWaitMin = 0;
+global.moose_walkAccel = .5;
+global.moose_walkMaxVel = 3;
 
 // Block sub variable
 blockTimer = 0;
-blockTime = 01;
+global.moose_blockTime = 01;
 
 // Taunt variables
 tauntTimer = 0;
-tauntTime = 2;
+global.moose_tauntTime = 2;
 // Slide variables
 slideWaitTimer = 0;
-slideWaitTime = 1;
-slideVelocity = 25;
-slideDeadening = 0.97;
+global.moose_slideWaitTime = 60;
+global.moose_slideVelocity = 25;
 slideFlag = false;
 // Space variables
-idealDistance = 400;
-minDistance = 300;
-maxDistance = 550;
-spaceAccell = 1;
-spaceMaxVel = 10;
-spaceDeadening = 0.75;
+global.moose_idealDistance = 400;
+global.moose_minDistance = 300;
+global.moose_maxDistance = 550;
+global.moose_spaceAccell = 1;
+global.moose_spaceMaxVel = 10;
+global.moose_spaceDeadening = 0.75;
 // Avoid variables
-minAvoidTime = 1;
+global.moose_minAvoidTime = 1;
 avoidTimer = 0;
-avoidTime = 10;
+global.moose_avoidTime = 10;
 // Hit variables
-hitVel = 20;
-hitDeadening = 0.9;
+global.moose_hitVel = 20;
+global.moose_hitDeadening = 0.9;
 // Retrieve variables
-retrAcc = 1;
-retrMaxVel = 10;
+global.moose_retrAcc = 1;
+global.moose_retrMaxVel = 10;
 // Charge variables
-chargeVel = 10;
+global.moose_chargeVel = 10;
 chargeWait = false;
 
-mooseSlideEffect = spr_FrontSlashEffect;
-mooseSlideHitbox = spr_EnemySword;
-mooseTauntEffect = spr_FrontSlashEffect;
-mooseTauntHitbox = spr_EnemySword;
-mooseChargeEffect = spr_FrontSlashEffect;
-mooseChargeHitbox = spr_EnemySword;
+///////LEFT HERE
+global.moose_slideEffect = spr_FrontSlashEffect;
+global.moose_slideHitbox = spr_moose_slide_hitbox;
+global.moose_tauntEffect = spr_FrontSlashEffect;
+global.moose_tauntHitbox = spr_moose_taunt_hitbox;
+global.moose_chargeEffect = spr_FrontSlashEffect;
+global.moose_chargeHitbox = spr_moose_chargeAnti_hitbox;
 
 function UpdateState()
 {
@@ -74,13 +74,13 @@ function UpdateState()
 		case MooseState.WAIT:
 			FacePlayer();
 			HideMooseAttack();
-			waitTimer -= delta_time/1000000;
+			waitTimer -= 1;
 			Wander();
 			if waitTimer <= 0 GoToTaunt();
 			break;
 		case MooseState.TAUNT:
-			ShowMooseAttack(mooseTauntEffect, mooseTauntHitbox);
-			tauntTimer -= delta_time/1000000;
+			ShowMooseAttack(global.moose_tauntEffect, global.moose_tauntHitbox);
+			tauntTimer -= 1;
 			if instance_exists(obj_Sword) GoToSlide();
 			if tauntTimer <= 0 GoToSlide();
 			break;
@@ -88,19 +88,18 @@ function UpdateState()
 			if slideWaitTimer > 0
 			{
 				HideMooseAttack();
-				slideWaitTimer -= delta_time/1000000;
+				slideWaitTimer -= 1;
 			}
 			else if slideFlag == false
 			{
 				HideMooseAttack();
 				slideFlag = true;
-				if obj_Player.x > x hspeed = slideVelocity;
-				else hspeed = - slideVelocity;
+				if obj_player.x > x hspeed = global.moose_slideVelocity;
+				else hspeed = - global.moose_slideVelocity;
 			}
 			else
 			{
-				ShowMooseAttack(mooseSlideEffect, mooseSlideHitbox);
-				hspeed *= slideDeadening;
+				ShowMooseAttack(global.moose_slideEffect, global.moose_slideHitbox);
 				if abs(hspeed) < 1 GoToSpace();
 				if place_meeting(x,y,obj_Wall)
 				{
@@ -117,8 +116,8 @@ function UpdateState()
 		case MooseState.AVOID:
 			FacePlayer();
 			HideMooseAttack();
-			avoidTimer -= delta_time/1000000;
-			if (avoidTimer <= 0 || obj_Player.currentState == PlayerState.BASIC_ATTACK_ANTI || obj_Player.currentState == PlayerState.BASIC_ATTACK_SWING || obj_Player.currentState == PlayerState.BASIC_ATTACK_FOLLOW || place_meeting(x,y,obj_Wall)) && avoidTimer < avoidTime - minAvoidTime
+			avoidTimer -= 1;
+			if (avoidTimer <= 0 || obj_player.currentState == PlayerState.BASIC_ATTACK_ANTI || obj_Player.currentState == PlayerState.BASIC_ATTACK_SWING || obj_Player.currentState == PlayerState.BASIC_ATTACK_FOLLOW || place_meeting(x,y,obj_Wall)) && avoidTimer < global.moose_avoidTime - global.moose_minAvoidTime
 				GoToRetrieve();
 			break;
 		case MooseState.RETRIEVE:
@@ -126,36 +125,36 @@ function UpdateState()
 			Retrieve();
 			break;
 		case MooseState.CHARGE:
-			ShowMooseAttack(mooseChargeEffect, mooseChargeHitbox);
+			ShowMooseAttack(global.moose_chargeEffect, global.moose_chargeHitbox);
 			if(!chargeWait)
 			{
 				if place_meeting(x+vspeed, y, obj_Wall)
 				{
 					vspeed = 0;
-					if obj_EnemySword.image_angle == 90 obj_EnemySword.x -= 10;
-					else obj_EnemySword.x += 10;
+					if obj_enemy_sword.image_angle == 90 obj_enemy_sword.x -= 10;
+					else obj_enemy_sword.x += 10;
 					chargeWait = true;
 				}
 			}
 			else
 			{
 				show_debug_message("Sword should be falling");
-				if obj_EnemySword.image_angle == 90 x-= 10;
+				if obj_enemy_sword.image_angle == 90 x-= 10;
 				else x += 10;
-				obj_EnemySword.y += 15;
-				if obj_EnemySword.y >= y
+				obj_enemy_sword.y += 15;
+				if obj_enemy_sword.y >= y
 				{
 					show_debug_message("FUCK");
-					obj_EnemySword.my_sword_state = sword_state.neutral;
+					obj_enemy_sword.my_sword_state = sword_state.neutral;
 					armed = true;
-					instance_deactivate_object(obj_EnemySword);
+					instance_deactivate_object(obj_enemy_sword);
 					GoToSpace();
 				}
 			}
 			break;
 		case MooseState.HIT:
 			HideMooseAttack();
-			hspeed *= hitDeadening;
+			hspeed *= global.moose_hitDeadening;
 			if abs(hspeed) < 1 && !armed
 			{
 				ZeroVelocity();
@@ -172,8 +171,8 @@ function UpdateState()
 
 function GoToWait()
 {
-	waitTimer = random_range(waitTimeMinimum, waitTimeMaximum);
-	wanderTimer = random_range(minWanderWait, maxWanderWait);
+	waitTimer = random_range(global.mooseWaitTimeMin, global.mooseWaitTimeMax);
+	wanderTimer = random_range(global.moose_wanderWaitMin, global.moose_wanderWaitMax);
 	currentWanderState = WanderState.WAIT;
 	currentState = MooseState.WAIT;
 }
@@ -212,12 +211,12 @@ function GoToRetrieve()
 		GoToSpace();
 		return;
 	}
-	if obj_EnemySword.my_sword_state != sword_state.stuck
+	if obj_enemy_sword.my_sword_state != sword_state.stuck
 	{
 		GoToAvoid();
 		return;
 	}
-	if (x < obj_Player.x && obj_Player.x < obj_EnemySword.x) || (x > obj_Player.x && obj_Player.x > obj_EnemySword.x) || (obj_EnemySword.stuckInWall && obj_EnemySword.my_sword_state == sword_state.stuck)
+	if (x < obj_player.x && obj_player.x < obj_enemy_sword.x) || (x > obj_player.x && obj_player.x > obj_enemy_sword.x) || (obj_enemy_sword.stuckInWall && obj_enemy_sword.my_sword_state == sword_state.stuck)
 	{
 		GoToCharge();
 		return;
@@ -228,15 +227,15 @@ function GoToRetrieve()
 function GoToCharge()
 {
 	chargeWait = false;
-	if obj_EnemySword.x < x hspeed = -chargeVel;
-	else hspeed = chargeVel;
+	if obj_enemy_sword.x < x hspeed = -global.moose_chargeVel;
+	else hspeed = global.moose_chargeVel;
 	currentState = MooseState.CHARGE;
 }
 
 function GoToHit()
 {
-	if obj_Player.x > x-136 hspeed = -hitVel;
-	if obj_Player.x < x-136 hspeed = hitVel;
+	if obj_player.x > x-136 hspeed = -global.moose_hitVel;
+	if obj_player.x < x-136 hspeed = global.moose_hitVel;
 	currentState = MooseState.HIT;
 }
 
@@ -249,8 +248,8 @@ function TakeHit()
 	}
 	
 	armed = false;
-	instance_activate_object(obj_EnemySword);
-	obj_EnemySword.Flung();
+	instance_activate_object(obj_enemy_sword);
+	obj_enemy_sword.Flung();
 	GoToHit();
 }
 
@@ -263,22 +262,22 @@ function SpaceWalk()
 		return;
 	}
 	
-	if distance_to_object(obj_Player) < idealDistance
+	if distance_to_object(obj_player) < global.moose_idealDistance
 	{
-		if obj_Player.x < x
+		if obj_player.x < x
 		{
-			hspeed += spaceAccell;
-			if hspeed > spaceMaxVel hspeed = spaceMaxVel;
+			hspeed += global.moose_spaceAccell;
+			if hspeed > global.moose_spaceMaxVel hspeed = global.moose_spaceMaxVel;
 		}
 		else
 		{
-			hspeed -= spaceAccell;
-			if hspeed < -spaceMaxVel hspeed = - spaceMaxVel;
+			hspeed -= global.moose_spaceAccell;
+			if hspeed < -global.moose_spaceMaxVel hspeed = - global.moose_spaceMaxVel;
 		}
 	}
 	else
 	{
-		hspeed *= spaceDeadening;
+		hspeed *= global.moose_spaceDeadening;
 		if hspeed <= 0.05
 		{
 			ZeroVelocity();
@@ -290,12 +289,12 @@ function SpaceWalk()
 function SetAnimation()
 {
 	// Pulling animation
-	if currentState == MooseState.PULLING sprite_index = PirateProtoPull;
+	if currentState == MooseState.PULLING sprite_index = spr_moose_pull;
 	// Waiting animation
 	if currentState == MooseState.WAIT
 	{
-		if blockTimer > blockTime sprite_index = mooseblock;
-		else if (currentWanderState == WanderState.WAIT) || (distance_to_object(obj_Player) < minDistance) sprite_index = spr_Moose;
+		if blockTimer > global.moose_blockTime sprite_index = spr_moose_block;
+		else if (currentWanderState == WanderState.WAIT) || (distance_to_object(obj_player) < minDistance) sprite_index = spr_Moose;
 		else sprite_index = moosewalk;
 	}
 	// Taunt animation
@@ -406,13 +405,13 @@ function Wander()
 			if wanderTimer <= 0	PickWander();
 			break;
 		case WanderState.LEFT:
-			hspeed -= walkingAccel;
-			if hspeed < -walkingMaxVel hspeed = -walkingMaxVel;
+			hspeed -= global.moose_walkAccel;
+			if hspeed < -global.moose_walkMaxVel hspeed = -global.moose_walkMaxVel;
 			if wanderTimer <= 0 WanderWait();
 			break;
 		case WanderState.RIGHT:
-			hspeed += walkingAccel;
-			if hspeed > walkingMaxVel hspeed = walkingMaxVel;
+			hspeed += global.moose_walkAccel;
+			if hspeed > global.moose_walkMaxVel hspeed = global.moose_walkMaxVel;
 			if wanderTimer <= 0 WanderWait();
 			break;
 	}
@@ -436,12 +435,12 @@ function PickWander()
 		if random(1) > 0.5 currentWanderState = WanderState.RIGHT;
 		else currentWanderState = WanderState.LEFT;
 	}
-	wanderTimer = random_range(minWanderTime, maxWanderTime);
+	wanderTimer = random_range(global.moose_wanderTimeMin, global.moose_wanderTimeMax);
 }
 function WanderWait()
 {
 	hspeed = 0;
-	wanderTimer = random_range(minWanderWait, maxWanderWait);
+	wanderTimer = random_range(global.moose_wanderWaitMin, global.moose_wanderWaitMax);
 	currentWanderState = WanderState.WAIT;
 }
 
