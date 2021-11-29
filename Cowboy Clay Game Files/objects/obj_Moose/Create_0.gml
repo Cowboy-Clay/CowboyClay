@@ -1,4 +1,4 @@
-enum MooseState { IDLE, WANDER };
+enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE };
 
 currentState = MooseState.IDLE;
 armed = true;
@@ -11,25 +11,49 @@ wanderCounter = 0;
 // Wander
 wanderDir = Direction.LEFT;
 
+// Animations
 currentFPI = 1;
 currentAnimType = AnimationType.FIRST_FRAME;
 animFrameCounter = 0;
 
-// Animations
-
 function UpdateMooseState()
 {
 	stateTimer --;
-	if stateTimer > 0 return;
 	switch currentState
 	{
 		case MooseState.IDLE:
-			MooseIdleToWander();
-			return;
+			if stateTimer <= 0
+			{
+				if wanderCounter >= global.moose_wandersPerIdle
+				{
+					wanderCounter = 0;
+					MooseIdleToSlideAnti();
+					return;
+				}
+				MooseIdleToWander();
+				return;
+			}
 			break;
 		case MooseState.WANDER:
-			MooseWanderToIdle();
-			return;
+			if stateTimer <= 0
+			{
+				MooseWanderToIdle();
+				return;
+			}
+			break;
+		case MooseState.SLIDE_ANTI:
+			if stateTimer <= 0
+			{
+				MooseSlideAntiToSlide();
+				return;
+			}
+			break;
+		case MooseState.SLIDE:
+			if abs(hspeed) <= 0.0001
+			{
+				MooseSlideToIdle();
+				return;
+			}
 			break;
 	}
 }
@@ -80,6 +104,31 @@ function MooseIdleToWander()
 }
 
 function MooseWanderToIdle()
+{
+	stateTimer = floor(random_range(global.moose_minIdleTime, global.moose_maxIdleTime));
+	
+	currentState = MooseState.IDLE;
+	PlayMooseIdleAnim();
+}
+
+function MooseIdleToSlideAnti()
+{
+	stateTimer = global.moose_slideAntiDuration;
+	
+	currentState = MooseState.SLIDE_ANTI;
+	SetMooseAnimation(global.moose_slideAntiAnim, global.moose_slideAntiAnim_FPI, global.moose_slideAntiAnim_type);
+}
+
+function MooseSlideAntiToSlide()
+{
+	if obj_player.x < x hspeed = -global.moose_slideImpulse;
+	else hspeed = global.moose_slideImpulse;
+	
+	currentState = MooseState.SLIDE;
+	SetMooseAnimation(global.moose_slideAnim, global.moose_slideAnim_FPI, global.moose_slideAnim_type);
+}
+
+function MooseSlideToIdle()
 {
 	stateTimer = floor(random_range(global.moose_minIdleTime, global.moose_maxIdleTime));
 	
@@ -138,6 +187,9 @@ function GetMooseFriction()
 		case MooseState.WANDER:
 			return global.moose_wanderFriction;
 			break;
+		case MooseState.SLIDE:
+			return global.moose_slideFriction;
+			break;
 	}
 	return global.moose_idleFriction;
 }
@@ -145,6 +197,7 @@ function GetMooseFriction()
 function LimitMooseSpeed()
 {
 	var m = global.moose_wanderMaxSpeed;
+	if currentState == MooseState.SLIDE m = global.moose_slideMaxSpeed;
 	if abs(hspeed) > m
 	{
 		var s = sign(hspeed)
