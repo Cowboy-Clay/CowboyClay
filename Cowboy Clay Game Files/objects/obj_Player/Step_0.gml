@@ -22,7 +22,5 @@ if !global.paused
 	obj_player_hitbox.image_xscale = image_xscale;
 	obj_player_hitbox.x = x;
 	obj_player_hitbox.y = y;
-	
-	if place_meeting(x,y,obj_enemy_hitbox) && obj_enemy_hitbox.hitting PlayerGetHit();
 }
 CheckEnvironCollisions(spr_player_collision);

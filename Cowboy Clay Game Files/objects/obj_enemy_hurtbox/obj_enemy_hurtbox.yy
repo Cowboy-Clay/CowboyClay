@@ -27,7 +27,7 @@
     "path": "folders/Objects/Enemy.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_enemy_hitbox",
+  "name": "obj_enemy_hurtbox",
   "tags": [],
   "resourceType": "GMObject",
 }

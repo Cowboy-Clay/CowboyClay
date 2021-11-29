@@ -65,33 +65,7 @@ global.player_graviMulti_attacking = 0.8;
 currentAnimType = AnimationType.FIRST_FRAME;
 animFrameCounter = 0;
 currentFPI = 1;
-// Idle animations
-global.player_idleAnim = spr_player_walk;
-global.player_idleAnim_disarmed = spr_player_idle_disarmed;
-global.player_idleFPI = 1;
-global.player_idleAnimType = AnimationType.FIRST_FRAME;
-// Run animations
-global.player_walkAnim = spr_player_walk;
-global.player_walkAnim_disarmed = spr_player_walk_disarmed;
-global.player_walkFPI = 12;
-global.player_walkAnimType = AnimationType.LOOP;
-// Attack animations
-global.player_attackAntiAnim = spr_player_attackAnti;
-global.player_attackSwingAnim = spr_player_attackSwing;
-global.player_attackFollowAnim = spr_player_attackFollow;
-// Jump anti anims
-global.player_jumpAntiAnim = spr_player_jumpAnti;
-global.player_jumpAntiAnim_disarmed = spr_player_crouch_disarmed;
-global.player_jumpAntiFPI = 1;
-global.player_jumpAntiAnimType = AnimationType.HOLD;
-global.player_jumpAnim = spr_player_jump;
-global.player_jumpAnim_disarmed = spr_player_jump_disarmed;
-global.player_jumpFPI = 1;
-global.player_jumpAnimType = AnimationType.HOLD;
-global.player_fallAnim = spr_player_fall;
-global.player_fallAnim_disarmed = spr_player_idle_disarmed;
-global.player_fallFPI = 1;
-global.player_fallAnimType = AnimationType.HOLD;
+
 #endregion
 
 #region  State Machine
@@ -384,21 +358,7 @@ function PlayerAttack()
 		{
 			GoToPlayerIdle();
 		}
-		
-		if currentState == PlayerState.BASIC_ATTACK_SWING SpawnPlayerHit(spr_player_attackEffect, spr_player_collision);
-		else DespawnPlayerHit();
 	}
-}
-
-function SpawnPlayerHit(attackEffect, hitbox)
-{
-	obj_player_attackEffect.ShowPlayerAttack(attackEffect, sprite_get_number(attackEffect)/global.player_attackSwingFrames);
-	obj_player_hitbox.SpawnPlayerHitbox(hitbox, sprite_get_number(hitbox)/global.player_attackSwingFrames);
-}
-function DespawnPlayerHit()
-{
-	obj_player_attackEffect.HidePlayerAttack();
-	obj_player_hitbox.DespawnPlayerHitbox();
 }
 
 function PlayerPickupSword()
