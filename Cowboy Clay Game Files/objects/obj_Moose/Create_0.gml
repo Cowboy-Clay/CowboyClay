@@ -62,7 +62,11 @@ function MooseStateBasedActions()
 {
 	switch currentState
 	{
+		case MooseState.IDLE:
+			MooseFacePlayer();
+			break;
 		case MooseState.WANDER:
+			MooseFacePlayer();
 			MooseWander();
 			break;
 	}
@@ -72,6 +76,12 @@ function MooseWander()
 {
 	if wanderDir == Direction.LEFT hspeed -= global.moose_wanderAccel;
 	else hspeed += global.moose_wanderAccel;
+}
+
+function MooseFacePlayer()
+{
+	if obj_player.x < x facing = Direction.LEFT;
+	else facing = Direction.RIGHT;
 }
 
 function MooseIdleToWander()
@@ -115,13 +125,15 @@ function MooseIdleToSlideAnti()
 {
 	stateTimer = global.moose_slideAntiDuration;
 	
+	MooseFacePlayer();
+	
 	currentState = MooseState.SLIDE_ANTI;
 	SetMooseAnimation(global.moose_slideAntiAnim, global.moose_slideAntiAnim_FPI, global.moose_slideAntiAnim_type);
 }
 
 function MooseSlideAntiToSlide()
 {
-	if obj_player.x < x hspeed = -global.moose_slideImpulse;
+	if facing == Direction.LEFT hspeed = -global.moose_slideImpulse;
 	else hspeed = global.moose_slideImpulse;
 	
 	currentState = MooseState.SLIDE;
@@ -175,6 +187,8 @@ function PlayMooseAnimation()
 			else if currentAnimType == AnimationType.HOLD image_index = sprite_get_number(sprite_index) - 1;
 		}
 	}
+	
+	
 }
 
 function GetMooseFriction()
@@ -203,5 +217,17 @@ function LimitMooseSpeed()
 		var s = sign(hspeed)
 		var v = lerp(abs(hspeed), m, 0.2);
 		hspeed = s * v;
+	}
+}
+
+function SetMooseDirection()
+{
+	if facing == Direction.LEFT
+	{
+		image_xscale = 1;
+	}
+	else
+	{
+		image_xscale = -1;
 	}
 }
