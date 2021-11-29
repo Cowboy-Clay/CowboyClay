@@ -1,5 +1,8 @@
 {
-  "spriteId": null,
+  "spriteId": {
+    "name": "spr_enemy_collision",
+    "path": "sprites/spr_enemy_collision/spr_enemy_collision.yy",
+  },
   "solid": false,
   "visible": true,
   "spriteMaskId": null,

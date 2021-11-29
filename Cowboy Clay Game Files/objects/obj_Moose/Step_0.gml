@@ -6,6 +6,7 @@ if !global.paused
 	MooseStateBasedActions();
 	
 	Friction(GetMooseFriction());
+	Gravity(1,10);
 	LimitMooseSpeed();
 	
 	PlayMooseAnimation();
