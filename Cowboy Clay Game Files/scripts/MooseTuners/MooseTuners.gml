@@ -25,7 +25,7 @@ global.moose_chargeAccel = 8;
 global.moose_invulTime = 60;
 
 // Animations
-global.moose_idleAnim = spr_Moose;
+global.moose_idleAnim = spr_moose_idle;
 global.moose_idleAnim_FPI = 1;
 global.moose_idleAnim_type = AnimationType.FIRST_FRAME;
 
