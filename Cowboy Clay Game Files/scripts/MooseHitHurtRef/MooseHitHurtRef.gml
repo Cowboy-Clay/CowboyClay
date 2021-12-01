@@ -5,6 +5,8 @@ global.mooseSprRef =
 	[global.moose_wanderAnim_disar, spr_empty, spr_empty],
 	[global.moose_slideAntiAnim, spr_moose_slideAnti_hitbox, spr_empty],
 	[global.moose_slideAnim, spr_moose_slide_hitbox, spr_empty],
+	[global.moose_chargeAntiAnim, spr_moose_chargeAnti_hitbox, spr_empty],
+	[global.moose_chargeAnim, spr_empty, spr_empty]
 ]
 
 function GetMooseHitBox()

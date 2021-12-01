@@ -19,6 +19,9 @@ global.moose_slideImpulse = 30;
 global.moose_slideMaxSpeed = 30;
 global.moose_slideFriction = .6;
 
+global.moose_chargeAntiTime = 37;
+global.moose_chargeAccel = 8;
+
 global.moose_invulTime = 60;
 
 // Animations
@@ -38,3 +41,15 @@ global.moose_slideAntiAnim_type = AnimationType.FIRST_FRAME;
 global.moose_slideAnim = spr_moose_slide;
 global.moose_slideAnim_FPI = 1;
 global.moose_slideAnim_type = AnimationType.HOLD;
+
+global.moose_chargeAntiAnim = spr_moose_chargeAnti;
+global.moose_chargeAntiAnim_FPI = 1;
+global.moose_chargeAntiAnim_type = AnimationType.FIRST_FRAME;
+
+global.moose_chargeAnim = spr_moose_charge;
+global.moose_chargeAnim_FPI = 1;
+global.moose_chargeAnim_type = AnimationType.FIRST_FRAME;
+
+global.moose_hitAnim = spr_moose_hit;
+global.moose_hitAnim_FPI = 1;
+global.moose_hitAnim_type = AnimationType.FIRST_FRAME;

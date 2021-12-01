@@ -5,6 +5,8 @@ if !global.paused
 	UpdateMooseState();
 	MooseStateBasedActions();
 	
+	MoosePickupSword();
+	
 	Friction(GetMooseFriction());
 	Gravity(1,10);
 	LimitMooseSpeed();

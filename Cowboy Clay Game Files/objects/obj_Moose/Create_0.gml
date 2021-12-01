@@ -1,4 +1,4 @@
-enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE };
+enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT };
 
 currentState = MooseState.IDLE;
 armed = true;
@@ -30,7 +30,20 @@ function UpdateMooseState()
 				if wanderCounter >= global.moose_wandersPerIdle
 				{
 					wanderCounter = 0;
-					MooseIdleToSlideAnti();
+					if armed
+					{
+						MooseIdleToSlideAnti();
+						return;
+					}
+					else
+					{
+						MooseIdleToChargeAnti();
+						return;
+					}
+				}
+				if wanderCounter >= 2 && !armed
+				{
+					MooseIdleToChargeAnti();
 					return;
 				}
 				MooseIdleToWander();
@@ -58,6 +71,34 @@ function UpdateMooseState()
 				return;
 			}
 			break;
+		case MooseState.CHARGE_ANTI:
+			if stateTimer <= 0
+			{
+				MooseChargeAntiToCharge();
+				return;
+			}
+			break;
+		case MooseState.CHARGE:
+			if place_meeting(x,y,obj_Wall)
+			{
+				MooseChargeToWait();
+				return;
+			}
+			break;
+		case MooseState.WAITING:
+			if armed
+			{
+				MooseWaitToIdle();
+				return;
+			}
+			break;
+		case MooseState.HIT:
+			if place_meeting(x,y,obj_Ground)
+			{
+				MooseWanderToIdle();
+				return;
+			}
+			break;
 	}
 }
 
@@ -72,7 +113,18 @@ function MooseStateBasedActions()
 			MooseFacePlayer();
 			MooseWander();
 			break;
+		case MooseState.CHARGE:
+			MooseCharge();
+			break;
 	}
+}
+
+function MooseCharge()
+{
+	if facing == Direction.LEFT
+		hspeed -= global.moose_chargeAccel;
+	else
+		hspeed += global.moose_chargeAccel;
 }
 
 function MooseWander()
@@ -85,6 +137,44 @@ function MooseFacePlayer()
 {
 	if obj_player.x < x facing = Direction.LEFT;
 	else facing = Direction.RIGHT;
+}
+
+function MoosePickupSword()
+{
+	if !armed && place_meeting(x,y,obj_enemy_sword) && obj_enemy_sword.EnemySwordCanBePickedUp()
+	{
+		if global.showDebugMessages show_debug_message("Picked up sword");
+		armed = true;
+		obj_enemy_sword.currentState = SwordState.INACTIVE;
+	}
+}
+
+function MooseChargeToWait()
+{
+	obj_enemy_sword.falling = true;
+	
+	SetMooseAnimation(global.moose_chargeAntiAnim, global.moose_chargeAntiAnim_FPI, global.moose_chargeAntiAnim_type);
+	
+	currentState = MooseState.WAITING;
+}
+
+function MooseIdleToChargeAnti()
+{
+	if obj_enemy_sword.x < x facing = Direction.LEFT;
+	else facing = Direction.RIGHT;
+	
+	stateTimer = global.moose_chargeAntiTime;
+	
+	SetMooseAnimation(global.moose_chargeAntiAnim, global.moose_chargeAntiAnim_FPI, global.moose_chargeAntiAnim_type);
+	
+	currentState = MooseState.CHARGE_ANTI;
+}
+
+function MooseChargeAntiToCharge()
+{
+	SetMooseAnimation(global.moose_chargeAnim, global.moose_chargeAnim_FPI, global.moose_chargeAnim_type);
+	
+	currentState = MooseState.CHARGE;
 }
 
 function MooseIdleToWander()
@@ -119,6 +209,16 @@ function MooseIdleToWander()
 function MooseWanderToIdle()
 {
 	stateTimer = floor(random_range(global.moose_minIdleTime, global.moose_maxIdleTime));
+	
+	currentState = MooseState.IDLE;
+	PlayMooseIdleAnim();
+}
+
+function MooseWaitToIdle()
+{
+	stateTimer = floor(random_range(global.moose_minIdleTime, global.moose_maxIdleTime));
+	
+	wanderCounter = global.moose_wandersPerIdle - 1;
 	
 	currentState = MooseState.IDLE;
 	PlayMooseIdleAnim();
@@ -258,13 +358,17 @@ function MooseGetHit()
 	if invuln return;
 	if armed
 	{
-		vspeed -= 15;
-		if obj_Moose.x > x hspeed =  20;
-		else hspeed = -20;
+		y-= 2;
+		vspeed -= 20;
+		if obj_player.x > x hspeed =  -20;
+		else hspeed = 20;
 		armed = false;
 		h = 1;
 		if obj_Moose.x < x h = -1;
 		obj_enemy_sword.EnemySwordFling(h,-1.67,17);
 		MakeMooseInvulnerable();
+		currentState = MooseState.HIT;
+		wanderCounter = 0;
+		SetMooseAnimation(global.moose_hitAnim, global.moose_hitAnim_FPI, global.moose_hitAnim_type);
 	}
 }

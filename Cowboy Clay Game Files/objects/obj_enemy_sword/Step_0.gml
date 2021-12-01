@@ -7,6 +7,8 @@ if currentState == SwordState.FLYING
 	else if sc == 3 EnemySwordStickInGround();
 }
 
+if falling Gravity(global.enemy_sword_grav, global.enemy_sword_grav_max);
+
 SetEnemySwordRotation();
 
 EnemySwordAnimate();

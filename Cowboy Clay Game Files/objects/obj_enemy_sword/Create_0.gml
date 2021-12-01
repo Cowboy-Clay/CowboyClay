@@ -1,5 +1,7 @@
 currentState = SwordState.INACTIVE;
 
+falling = false;
+
 animFrameCounter = 0;
 currentFPI = 1;
 currentAnimType = AnimationType.FIRST_FRAME;
@@ -138,7 +140,7 @@ function EnemySwordAnimate()
 	}
 }
 
-function SwordCanBePickedUp()
+function EnemySwordCanBePickedUp()
 {
 	return currentState == SwordState.STUCK_FLOOR || currentState == SwordState.STUCK_WALL_LEFT || currentState == SwordState.STUCK_WALL_RIGHT;
 }
