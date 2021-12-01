@@ -1,5 +1,5 @@
 // Idle
-global.moose_wandersPerIdle = 1;
+global.moose_wandersPerIdle = 4;
 global.moose_minIdleTime = 40;
 global.moose_maxIdleTime = 70;
 global.moose_idleFriction = .11;
