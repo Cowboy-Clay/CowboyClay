@@ -2,6 +2,11 @@
 
 if !global.paused
 {
+	if keyboard_check_pressed(ord("F"))
+	{
+		PlayerGetHit();
+	}
+	
 	// Physics
 	Friction(PickPlayerFrict());
 	Gravity(PickPlayerGravi(), global.player_gravityMax);
@@ -10,6 +15,7 @@ if !global.paused
 	PlayerPickupSword();
 	UpdatePlayerState();
 	PlayerStateBasedMethods();
+	PlayerInvulnerability();
 	
 	// Animation
 	SwitchPlayerArmedAnims();

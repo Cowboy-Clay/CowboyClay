@@ -51,6 +51,10 @@ global.player_attackFollowFrames = 15;
 attackTimer = 0; // Frame counter to determine how long the player has been in each attack state
 #endregion
 
+invulnerable = false;
+invulnerabilityTimer = 0;
+global.player_invulnerabilityTime = 60;
+
 global.player_frictMulti_jumpAnti = .5;
 global.player_frictMulti_jumping = 0.2;
 global.player_frictMulti_attacking = 1;
@@ -363,22 +367,25 @@ function PlayerAttack()
 
 function PlayerPickupSword()
 {
-	if !armed && keyboard_check(ord("Z")) && place_meeting(x,y,obj_player_sword)
+	if !armed && keyboard_check(ord("Z")) && place_meeting(x,y,obj_player_sword) && obj_player_sword.SwordCanBePickedUp()
 	{
-		obj_sceneControl_test.flag = true;
 		if global.showDebugMessages show_debug_message("Picked up sword");
 		armed = true;
-		instance_deactivate_object(obj_player_sword);
+		obj_player_sword.currentState = SwordState.INACTIVE;
 	}
 }
 
 function PlayerGetHit()
 {
+	if invulnerable return;
 	if armed
 	{
+		vspeed -= 15;
+		if obj_Moose.x > x hspeed = - 20;
+		else hspeed = 20;
 		armed = false;
-		instance_activate_object(obj_player_sword);
-		obj_player_sword.Flung(obj_Moose.x);
+		obj_player_sword.PlayerSwordFling(-1,-1.67,17);
+		MakePlayerInvulnerable();
 	}
 }
 #endregion
@@ -486,4 +493,22 @@ function PickPlayerGravi()
 			break;
 	}
 	return g;
+}
+
+function MakePlayerInvulnerable()
+{
+	invulnerable = true;
+	invulnerabilityTimer = global.player_invulnerabilityTime;
+}
+
+function PlayerInvulnerability()
+{
+	if invulnerable == false return;
+	invulnerabilityTimer --;
+	visible = ceil(invulnerabilityTimer/7)%2;
+	if invulnerabilityTimer <= 0 
+	{
+		visible = true;
+		invulnerable = false;
+	}
 }

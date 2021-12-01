@@ -1,77 +1,144 @@
-/// @description Insert description here
-// You can write your code in this editor
+currentState = SwordState.INACTIVE;
 
-offset = 49;
+animFrameCounter = 0;
+currentFPI = 1;
+currentAnimType = AnimationType.FIRST_FRAME;
 
-if stuckOnStart
-	my_sword_state = sword_state.stuck;
-else
-	my_sword_state = sword_state.neutral;
+global.sword_grav = .3;
+global.sword_grav_max = 5;
 
-grav = 0.95; 
-max_gravity = 160;
-flinging_h_accel = 35;
-flinging_v_accel = 25;
+global.sword_stickInWallBump = 50;
+global.sword_stickInFloorBump = 30;
 
-enum sword_state
+global.sword_defaultAnim = spr_player_sword;
+global.sword_defaultAnimFPI = 1;
+global.sword_defaultAnimType = AnimationType.FIRST_FRAME;
+global.sword_spinAnim = spr_player_sword_spin;
+global.sword_spinAnimFPI = 4;
+global.sword_spinAnimType = AnimationType.LOOP;
+
+function PlayerSwordFling(run, rise, m)
 {
-	neutral, flung, stuck
-};
-
-function Flung(enemy_x)
-{
-		x = obj_NewPlayer.x;
-		y = obj_NewPlayer.y;
-		hspeed = flinging_h_accel * sign(obj_NewPlayer.x - enemy_x);
-		vspeed = -flinging_v_accel;
-		my_sword_state = sword_state.flung;
+	if currentState != SwordState.INACTIVE return;
+	show_debug_message(run);
+	// Set state
+	currentState = SwordState.FLYING;
+	// Set starting position
+	x = obj_player.x;
+	y = obj_player.y;
+	// Normalize run and rise
+	a = run;
+	b = rise;
+	c = sqrt((run*run) + (rise*rise));
+	a = a/c;
+	b = b/c;
+	run = sign(a) * sqrt(1-(b*b));
+	rise = sign(b) * sqrt(1-(a*a));
+	show_debug_message(run);
+	// Apply impulse
+	hspeed = run * m;
+	vspeed = rise * m;
+	// Set animation
+	SetSwordAnimation(global.sword_spinAnim, global.sword_spinAnimFPI, global.sword_spinAnimType);
 }
 
-function Flinging(){
-	
-	Gravity(grav, max_gravity);
-	
-	// Collision with wall
-	if place_meeting(x + hspeed, y, obj_Wall)
+function PlayerSwordStickInWall(s)
+{
+	currentState = s;
+	if s == SwordState.STUCK_WALL_LEFT x -= global.sword_stickInWallBump;
+	else x += global.sword_stickInWallBump;
+	SetSwordAnimation(global.sword_defaultAnim, global.sword_defaultAnimFPI, global.sword_defaultAnimType);
+}
+
+function PlayerSwordStickInGround()
+{
+	currentState = SwordState.STUCK_FLOOR;
+	y += global.sword_stickInFloorBump;
+	SetSwordAnimation(global.sword_defaultAnim, global.sword_defaultAnimFPI, global.sword_defaultAnimType);
+}
+
+function SetPlayerSwordRotation()
+{
+	switch currentState
 	{
-		if hspeed > 0
-		{
-			image_angle = 90;
-		}
-		else
-		{
+		case SwordState.INACTIVE:
+			image_angle = 0;
+			break;
+		case SwordState.FLYING:
+			image_angle = 0;
+			break;
+		case SwordState.STUCK_FLOOR:
+			image_angle = 0;
+			break;
+		case SwordState.STUCK_WALL_LEFT:
 			image_angle = -90;
-		}
-		
-		while place_meeting(x + hspeed, y, obj_Wall)
-		{
-			x -= 0.1 * sign(hspeed);
-		}
-		while place_meeting(x, y + vspeed, obj_Ground)
-		{
-			y -= 0.1 * sign(vspeed);
-		}
-		
-		my_sword_state = sword_state.stuck;
+			break;
+		case SwordState.STUCK_WALL_RIGHT:
+			image_angle = 90;
+			break;
 	}
-	
-	//Collision with ground
-	if (place_meeting(x, y + vspeed, obj_Ground))
+}
+
+function CheckSwordCollisions()
+{
+	if !place_meeting(x+hspeed, y+vspeed, obj_Wall) && !place_meeting(x+hspeed,y+vspeed, obj_Ground) return 0;
+	if place_meeting(x+hspeed, y+vspeed, obj_Wall)
 	{
-		image_angle = 0;
-		
-		while place_meeting(x + hspeed, y, obj_Wall)
+		y = y + vspeed;
+		while !place_meeting(x,y,obj_Wall)
 		{
-			x -= 0.1 * sign(hspeed);
+			x += sign(hspeed);
 		}
-		while place_meeting(x, y + vspeed, obj_Ground)
-		{
-			y -= 0.1 * sign(vspeed);
-		}
-		
-		//hspeed = 0;
-		//vspeed = 0;
-			
-		my_sword_state = sword_state.stuck;
+		if hspeed < 1 m = 1;
+		else m = 2;
+		hspeed = 0;
+		vspeed = 0;
+		return m;
 	}
+	if place_meeting(x+hspeed, y+vspeed, obj_Ground)
+	{
+		x = x + hspeed;
+		while !place_meeting(x,y,obj_Ground)
+		{
+			y += sign(vspeed);
+		}
+		hspeed = 0;
+		vspeed = 0;
+		return 3;
+	}
+}
+
+function SetSwordAnimation(a, f, t)
+{
+	sprite_index = a;
+	currentFPI = f;
+	currentAnimType = t;
+	animFrameCounter = 0;
+}
+
+function SwordAnimate()
+{
+	visible = currentState != SwordState.INACTIVE;
+	
+	if currentAnimType == AnimationType.FIRST_FRAME
+	{
+		image_index = 0;
+		return;
+	}
+	animFrameCounter++;
+	if animFrameCounter >= currentFPI
+	{
+		animFrameCounter = 0;
+		image_index ++;
+		if image_index >= sprite_get_number(sprite_index)
+		{
+			if currentAnimType == AnimationType.LOOP image_index = 0;
+			else if currentAnimType == AnimationType.HOLD image_index = sprite_get_number(sprite_index) - 1;
+		}
+	}
+}
+
+function SwordCanBePickedUp()
+{
+	return currentState == SwordState.STUCK_FLOOR || currentState == SwordState.STUCK_WALL_LEFT || currentState == SwordState.STUCK_WALL_RIGHT;
 }
