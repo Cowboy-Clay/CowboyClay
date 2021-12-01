@@ -19,6 +19,8 @@ global.moose_slideImpulse = 30;
 global.moose_slideMaxSpeed = 30;
 global.moose_slideFriction = .6;
 
+global.moose_invulTime = 60;
+
 // Animations
 global.moose_idleAnim = spr_Moose;
 global.moose_idleAnim_FPI = 1;

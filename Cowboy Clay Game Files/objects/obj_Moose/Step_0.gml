@@ -12,6 +12,8 @@ if !global.paused
 	PlayMooseAnimation();
 	
 	SetMooseDirection();
+	
+	MooseInvuln();
 }
 
 CheckEnvironCollisions(spr_enemy_collision);

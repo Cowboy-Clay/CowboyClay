@@ -1,20 +1,12 @@
-/// @description Insert description here
-// You can write your code in this editor
-
-switch (my_sword_state)
+if currentState == SwordState.FLYING
 {
-	case sword_state.neutral:
-		if !swordTrue {
-			instance_deactivate_object(obj_EnemySword);
-		}
-		break;
-		
-	case sword_state.flung:
-		Flinging();
-		break;
-		
-	case sword_state.stuck:
-		hspeed = 0;
-		vspeed = 0;
-		break;
+	Gravity(global.enemy_sword_grav, global.enemy_sword_grav_max);
+	sc = CheckEnemySwordCollisions();
+	if sc == 1 EnemySwordStickInWall(SwordState.STUCK_WALL_LEFT);
+	else if sc == 2 EnemySwordStickInWall(SwordState.STUCK_WALL_RIGHT);
+	else if sc == 3 EnemySwordStickInGround();
 }
+
+SetEnemySwordRotation();
+
+EnemySwordAnimate();

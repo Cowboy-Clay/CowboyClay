@@ -384,7 +384,9 @@ function PlayerGetHit()
 		if obj_Moose.x > x hspeed = - 20;
 		else hspeed = 20;
 		armed = false;
-		obj_player_sword.PlayerSwordFling(-1,-1.67,17);
+		h = -1;
+		if obj_Moose.x < x h = 1;
+		obj_player_sword.PlayerSwordFling(h,-1.67,17);
 		MakePlayerInvulnerable();
 	}
 }

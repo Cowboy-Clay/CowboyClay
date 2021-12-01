@@ -5,6 +5,9 @@ armed = true;
 facing = Direction.LEFT;
 stateTimer = 0;
 
+invuln = false;
+invulnTimer = 0;
+
 // Idle
 wanderCounter = 0;
 
@@ -229,5 +232,39 @@ function SetMooseDirection()
 	else
 	{
 		image_xscale = -1;
+	}
+}
+
+function MooseInvuln()
+{
+	if invuln == false return;
+	invulnTimer --;
+	visible = ceil(invulnTimer/7)%2;
+	if invulnTimer <= 0
+	{
+		invuln = false;
+		visible = true;
+	}
+}
+
+function MakeMooseInvulnerable()
+{
+	invuln = true;
+	invulnTimer = global.moose_invulTime;
+}
+
+function MooseGetHit()
+{
+	if invuln return;
+	if armed
+	{
+		vspeed -= 15;
+		if obj_Moose.x > x hspeed =  20;
+		else hspeed = -20;
+		armed = false;
+		h = 1;
+		if obj_Moose.x < x h = -1;
+		obj_enemy_sword.EnemySwordFling(h,-1.67,17);
+		MakeMooseInvulnerable();
 	}
 }
