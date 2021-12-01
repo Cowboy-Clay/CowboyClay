@@ -24,6 +24,7 @@ function EnemySwordFling(run, rise, m)
 	if currentState != SwordState.INACTIVE return;
 	show_debug_message(run);
 	// Set state
+	falling = false;
 	currentState = SwordState.FLYING;
 	// Set starting position
 	x = obj_Moose.x;

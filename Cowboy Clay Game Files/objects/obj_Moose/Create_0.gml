@@ -363,8 +363,8 @@ function MooseGetHit()
 		if obj_player.x > x hspeed =  -20;
 		else hspeed = 20;
 		armed = false;
-		h = 1;
-		if obj_Moose.x < x h = -1;
+		h = -1;
+		if obj_player.x < x h = 1;
 		obj_enemy_sword.EnemySwordFling(h,-1.67,17);
 		MakeMooseInvulnerable();
 		currentState = MooseState.HIT;
