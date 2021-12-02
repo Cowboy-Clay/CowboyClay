@@ -32,7 +32,7 @@
     "spriteId": {"name":"spr_player_dash_anti","path":"sprites/spr_player_dash_anti/spr_player_dash_anti.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 30.0,
+    "playbackSpeed": 0.0,
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,

@@ -179,7 +179,7 @@
     "spriteId": {"name":"spr_player_death","path":"sprites/spr_player_death/spr_player_death.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 60.0,
+    "playbackSpeed": 0.0,
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,

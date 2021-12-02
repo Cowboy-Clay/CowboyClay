@@ -98,7 +98,7 @@
     "spriteId": {"name":"spr_player_throw","path":"sprites/spr_player_throw/spr_player_throw.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 60.0,
+    "playbackSpeed": 0.0,
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
