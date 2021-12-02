@@ -123,8 +123,8 @@
     "children": [],
   },
   "RoomOrderNodes": [
-    {"roomId":{"name":"PlayerTestRoom","path":"rooms/PlayerTestRoom/PlayerTestRoom.yy",},},
     {"roomId":{"name":"ProtoRoom","path":"rooms/ProtoRoom/ProtoRoom.yy",},},
+    {"roomId":{"name":"PlayerTestRoom","path":"rooms/PlayerTestRoom/PlayerTestRoom.yy",},},
     {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
   "Folders": [
