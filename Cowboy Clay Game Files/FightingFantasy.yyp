@@ -9,6 +9,7 @@
     {"id":{"name":"spr_moose_tauntAnti_hurtbox","path":"sprites/spr_moose_tauntAnti_hurtbox/spr_moose_tauntAnti_hurtbox.yy",},"order":27,},
     {"id":{"name":"ProtoRoom","path":"rooms/ProtoRoom/ProtoRoom.yy",},"order":1,},
     {"id":{"name":"spr_player_jump","path":"sprites/spr_player_jump/spr_player_jump.yy",},"order":10,},
+    {"id":{"name":"obj_enemy_blockbox","path":"objects/obj_enemy_blockbox/obj_enemy_blockbox.yy",},"order":6,},
     {"id":{"name":"obj_player_sword","path":"objects/obj_player_sword/obj_player_sword.yy",},"order":2,},
     {"id":{"name":"spr_player_attackFollow","path":"sprites/spr_player_attackFollow/spr_player_attackFollow.yy",},"order":2,},
     {"id":{"name":"spr_moose_charge","path":"sprites/spr_moose_charge/spr_moose_charge.yy",},"order":4,},

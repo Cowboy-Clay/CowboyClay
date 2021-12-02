@@ -24,6 +24,8 @@ global.moose_chargeAccel = 8;
 
 global.moose_invulTime = 60;
 
+global.moose_blockDistance = 200;
+
 // Animations
 global.moose_idleAnim = spr_moose_idle;
 global.moose_idleAnim_disar = spr_moose_idle_disarmed;
@@ -55,3 +57,7 @@ global.moose_chargeAnim_type = AnimationType.FIRST_FRAME;
 global.moose_hitAnim = spr_moose_hit;
 global.moose_hitAnim_FPI = 1;
 global.moose_hitAnim_type = AnimationType.FIRST_FRAME;
+
+global.moose_blockAnim = spr_moose_block;
+global.moose_blockAnim_FPI = 1;
+global.moose_blockAnim_type = AnimationType.FIRST_FRAME;

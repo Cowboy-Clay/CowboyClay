@@ -1,4 +1,4 @@
-enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT };
+enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT, BLOCK };
 
 currentState = MooseState.IDLE;
 armed = true;
@@ -99,6 +99,10 @@ function UpdateMooseState()
 				return;
 			}
 			break;
+		case MooseState.BLOCK:
+			if obj_player.PlayerNotAttacking()
+				MooseWanderToIdle();
+			break;
 	}
 }
 
@@ -108,14 +112,24 @@ function MooseStateBasedActions()
 	{
 		case MooseState.IDLE:
 			MooseFacePlayer();
+			MooseCheckBlock();
 			break;
 		case MooseState.WANDER:
 			MooseFacePlayer();
 			MooseWander();
+			MooseCheckBlock();
 			break;
 		case MooseState.CHARGE:
 			MooseCharge();
 			break;
+	}
+}
+
+function MooseCheckBlock()
+{
+	if obj_player.currentState == PlayerState.BASIC_ATTACK_ANTI && distance_to_object(obj_player) <= global.moose_blockDistance
+	{
+		MooseToBlock();
 	}
 }
 
@@ -147,6 +161,19 @@ function MoosePickupSword()
 		armed = true;
 		obj_enemy_sword.currentState = SwordState.INACTIVE;
 	}
+}
+
+function MooseToBlock()
+{
+	if !armed
+	{
+		MooseIdleToChargeAnti();
+		return;
+	}
+	
+	SetMooseAnimation(global.moose_blockAnim, global.moose_blockAnim_FPI, global.moose_blockAnim_type);
+	
+	currentState = MooseState.BLOCK;
 }
 
 function MooseChargeToWait()

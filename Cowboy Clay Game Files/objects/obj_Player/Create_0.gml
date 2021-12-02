@@ -663,3 +663,11 @@ function PlayerInvulnerability()
 		invulnerable = false;
 	}
 }
+
+function PlayerNotAttacking()
+{
+	if currentState == PlayerState.BASIC_ATTACK_ANTI return false;
+	else if currentState == PlayerState.BASIC_ATTACK_FOLLOW return false;
+	else if currentState == PlayerState.BASIC_ATTACK_SWING return false;
+	else return true;
+}

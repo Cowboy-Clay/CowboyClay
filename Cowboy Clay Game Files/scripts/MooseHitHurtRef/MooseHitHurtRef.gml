@@ -7,7 +7,8 @@ global.mooseSprRef =
 	[global.moose_slideAntiAnim, spr_moose_slideAnti_hitbox, spr_moose_slideAnti_hurtbox],
 	[global.moose_slideAnim, spr_moose_slide_hitbox, spr_moose_slide_hurtbox],
 	[global.moose_chargeAntiAnim, spr_moose_chargeAnti_hitbox, spr_moose_chargeAnti_hurtbox],
-	[global.moose_chargeAnim, spr_moose_charge_hitbox, spr_moose_charge_hurtbox]
+	[global.moose_chargeAnim, spr_moose_charge_hitbox, spr_moose_charge_hurtbox],
+	[global.moose_blockAnim, spr_empty, spr_moose_idle_hurtbox, spr_moose_block_blockbox]
 ]
 
 function GetMooseHitBox()
@@ -32,4 +33,18 @@ function GetMooseHurtBox()
 		}
 	}
 	return spr_enemy_collision;
+}
+
+function GetMooseBlockBox()
+{
+	var a = obj_Moose.sprite_index;
+	for (i = 0; i < array_length(global.mooseSprRef); i += 1)
+	{
+		if global.mooseSprRef[i][0] == a
+		{
+			if array_length(global.mooseSprRef[i]) < 4 return spr_empty;
+			return global.mooseSprRef[i][3];
+		}
+	}
+	return spr_empty;
 }
