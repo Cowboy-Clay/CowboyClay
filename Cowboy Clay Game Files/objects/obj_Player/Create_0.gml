@@ -543,6 +543,9 @@ function PlayerGetHit()
 	}
 	else
 	{
+		if obj_Moose.x > x hspeed = - 20;
+		else hspeed = 20;
+		vspeed = -20
 		GoToPlayerDead();
 		obj_Moose.currentState = MooseState.LOCK;
 	}

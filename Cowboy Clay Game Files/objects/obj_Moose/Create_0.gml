@@ -12,7 +12,6 @@ invulnTimer = 0;
 wanderCounter = 0;
 
 // Wander
-wanderDir = Direction.LEFT;
 
 // Animations
 currentFPI = 1;
@@ -411,6 +410,9 @@ function MooseGetHit()
 	}
 	else
 	{
+		if obj_player.x > x hspeed =  -20;
+		else hspeed = 20;
+		vspeed = -20;
 		MooseToDead();
 		obj_player.currentState = PlayerState.LOCK;
 	}
