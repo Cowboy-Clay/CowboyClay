@@ -544,6 +544,7 @@ function PlayerGetHit()
 	else
 	{
 		GoToPlayerDead();
+		obj_Moose.currentState = MooseState.LOCK;
 	}
 }
 #endregion

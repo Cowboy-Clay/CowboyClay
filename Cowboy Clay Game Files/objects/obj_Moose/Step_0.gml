@@ -2,10 +2,17 @@
 // You can write your code in this editor
 if !global.paused
 {
-	UpdateMooseState();
-	MooseStateBasedActions();
-	
-	MoosePickupSword();
+	if currentState != MooseState.LOCK && currentState != MooseState.DEAD
+	{
+		UpdateMooseState();
+		MooseStateBasedActions();
+		MoosePickupSword();
+	}
+	else if currentState == MooseState.LOCK
+	{
+		MooseWanderToIdle();
+	}
+	else if currentState == MooseState.DEAD obj_player.currentState = PlayerState.LOCK;
 	
 	Friction(GetMooseFriction());
 	Gravity(1,10);

@@ -1,4 +1,4 @@
-enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT, BLOCK };
+enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT, BLOCK, LOCK, DEAD };
 
 currentState = MooseState.IDLE;
 armed = true;
@@ -162,6 +162,16 @@ function MoosePickupSword()
 		obj_enemy_sword.currentState = SwordState.INACTIVE;
 	}
 }
+
+function MooseToDead()
+{
+	currentState = MooseState.DEAD;
+	instance_deactivate_object(obj_enemy_hitbox);
+	instance_deactivate_object(obj_enemy_hurtbox);
+	instance_deactivate_object(obj_enemy_blockbox);
+	SetMooseAnimation(global.moose_deathAnim, global.moose_deathAnimFPI, global.moose_deathAnimType);
+}
+
 
 function MooseToBlock()
 {
@@ -398,5 +408,10 @@ function MooseGetHit()
 		currentState = MooseState.HIT;
 		wanderCounter = 0;
 		SetMooseAnimation(global.moose_hitAnim, global.moose_hitAnim_FPI, global.moose_hitAnim_type);
+	}
+	else
+	{
+		MooseToDead();
+		obj_player.currentState = PlayerState.LOCK;
 	}
 }

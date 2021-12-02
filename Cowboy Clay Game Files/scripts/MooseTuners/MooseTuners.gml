@@ -61,3 +61,7 @@ global.moose_hitAnim_type = AnimationType.FIRST_FRAME;
 global.moose_blockAnim = spr_moose_block;
 global.moose_blockAnim_FPI = 1;
 global.moose_blockAnim_type = AnimationType.FIRST_FRAME;
+
+global.moose_deathAnim = spr_moose_death;
+global.moose_deathAnimFPI = 20;
+global.moose_deathAnimType = AnimationType.HOLD;

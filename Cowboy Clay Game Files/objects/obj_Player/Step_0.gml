@@ -18,6 +18,7 @@ if !global.paused
 	{
 		GoToPlayerIdle();
 	}
+	else if currentState == PlayerState.DEAD obj_Moose.currentState = MooseState.LOCK;
 	
 	// Animation
 	SwitchPlayerArmedAnims();
