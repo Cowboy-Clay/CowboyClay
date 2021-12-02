@@ -79,7 +79,7 @@
     "backdropXOffset": 0.0,
     "backdropYOffset": 0.0,
     "xorigin": 111,
-    "yorigin": 184,
+    "yorigin": 144,
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_moose_death","path":"sprites/spr_moose_death/spr_moose_death.yy",},
