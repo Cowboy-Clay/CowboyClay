@@ -3,7 +3,7 @@ global.playerSprRef =
 	[global.player_idleAnim, spr_empty, spr_player_collision],
 	[global.player_idleAnim_disarmed, spr_empty, spr_player_collision],
 	[global.player_attackAntiAnim, spr_empty, spr_player_collision],
-	[global.player_attackSwingAnim, spr_player_attackEffect, spr_player_collision],
+	[global.player_attackSwingAnim, spr_player_attackSwing_hitbox, spr_player_collision],
 	[global.player_attackFollowAnim, spr_empty, spr_player_collision],
 	[global.player_jumpAnim, spr_empty, spr_player_collision],
 	[global.player_fallAnim, spr_empty, spr_player_collision],
