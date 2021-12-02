@@ -32,7 +32,7 @@
     "spriteId": {"name":"spr_enemy_collision","path":"sprites/spr_enemy_collision/spr_enemy_collision.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 30.0,
+    "playbackSpeed": 0.0,
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,

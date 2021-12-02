@@ -35,7 +35,7 @@ global.moose_idleAnim_type = AnimationType.FIRST_FRAME;
 
 global.moose_wanderAnim = spr_moose_walk;
 global.moose_wanderAnim_disar = spr_moose_walk_disarmed;
-global.moose_wanderAnim_FPI = 120;
+global.moose_wanderAnim_FPI = 20;
 global.moose_wanderAnim_type = AnimationType.LOOP;
 
 global.moose_slideAntiAnim = spr_moose_slideAnti;

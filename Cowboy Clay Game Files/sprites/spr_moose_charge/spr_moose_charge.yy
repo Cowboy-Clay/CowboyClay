@@ -32,7 +32,7 @@
     "spriteId": {"name":"spr_moose_charge","path":"sprites/spr_moose_charge/spr_moose_charge.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 60.0,
+    "playbackSpeed": 0.0,
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,

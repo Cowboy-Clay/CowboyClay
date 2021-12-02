@@ -38,7 +38,7 @@
     "spriteId": {"name":"spr_moose_walk_disarmed","path":"sprites/spr_moose_walk_disarmed/spr_moose_walk_disarmed.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 5.0,
+    "playbackSpeed": 0.0,
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,

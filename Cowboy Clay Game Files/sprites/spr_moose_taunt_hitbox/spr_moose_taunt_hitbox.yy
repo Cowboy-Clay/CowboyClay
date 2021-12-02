@@ -38,7 +38,7 @@
     "spriteId": {"name":"spr_moose_taunt_hitbox","path":"sprites/spr_moose_taunt_hitbox/spr_moose_taunt_hitbox.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 10.0,
+    "playbackSpeed": 0.0,
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,

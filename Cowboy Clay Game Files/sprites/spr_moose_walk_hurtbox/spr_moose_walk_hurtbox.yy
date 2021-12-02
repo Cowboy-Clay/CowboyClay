@@ -38,7 +38,7 @@
     "spriteId": {"name":"spr_moose_walk_hurtbox","path":"sprites/spr_moose_walk_hurtbox/spr_moose_walk_hurtbox.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 5.0,
+    "playbackSpeed": 0.0,
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
