@@ -31,13 +31,13 @@ dashOnCooldown = false;
 global.player_dashAnticipation = 45;
 global.player_dashFrameAllowance = 15;
 global.player_dashImpulseForce = 45;
-global.player_dashExtendForce = 75;
-global.player_dashEndForce = 10;
+global.player_dashExtendForce = 22;
+global.player_dashEndForce = 15;
 global.player_instantDash = true;
 global.player_dashDuration = 10;
 global.player_dashCooldown = 20;
 global.player_invulnWhileDashing = true;
-global.player_dashFollow = 20;
+global.player_dashFollow = 38;
 #endregion
 
 #region Jump Variables
