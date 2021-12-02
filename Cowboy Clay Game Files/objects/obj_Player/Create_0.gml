@@ -266,7 +266,7 @@ function GoToDash()
 	
 	var a = global.player_dashAnim;
 	if !armed a = global.player_dashAnim_disarmed;
-	if armed SetPlayerAnimation(a, global.player_dashAnimFPI, global.player_dashAnimType);
+	SetPlayerAnimation(a, global.player_dashAnimFPI, global.player_dashAnimType);
 	
 	dashTimer = 0;
 	dashOnCooldown = true;
