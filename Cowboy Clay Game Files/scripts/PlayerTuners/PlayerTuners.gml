@@ -30,3 +30,13 @@ global.player_dashAnim = spr_player_dash;
 global.player_dashAnim_disarmed = spr_player_dash_disarmed;
 global.player_dashAnimFPI = 1;
 global.player_dashAnimType = AnimationType.FIRST_FRAME;
+
+global.player_dashAntiAnim = spr_player_dash_anti;
+global.player_dashAntiAnim_disarmed = spr_player_dash_anti_disarmed;
+global.player_dashAntiAnimFPI = 1;
+global.player_dashAntiAnimType = AnimationType.FIRST_FRAME;
+
+global.player_dashFollowAnim = spr_player_dash_follow;
+global.player_dashFollowAnim_disarmed = spr_player_dash_follow_disarmed;
+global.player_dashFollowAnimFPI = 1;
+global.player_dashFollowAnimType = AnimationType.FIRST_FRAME;

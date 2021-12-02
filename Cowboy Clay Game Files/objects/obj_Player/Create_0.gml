@@ -261,6 +261,10 @@ function GoToDashAnti()
 	if global.showDebugMessages show_debug_message("Player going to dash anti state");
 	currentState = PlayerState.DASH_ANTI;
 	
+	var a = global.player_dashAntiAnim;
+	if !armed a = global.player_dashAntiAnim_disarmed;
+	SetPlayerAnimation(a, global.player_dashAntiAnimFPI, global.player_dashAntiAnimType);
+	
 	dashTimer = 0;
 }
 
@@ -317,6 +321,10 @@ function GoToPlayerDashFollow()
 	if global.showDebugMessages show_debug_message("Player going to dash follow through");
 	dashTimer = 0;
 	currentState = PlayerState.DASH_FOLLOW;
+	
+	var a = global.player_dashFollowAnim;
+	if !armed a = global.player_dashFollowAnim_disarmed;
+	SetPlayerAnimation(a, global.player_dashFollowAnimFPI, global.player_dashFollowAnimType);
 }
 
 function CheckDash()
