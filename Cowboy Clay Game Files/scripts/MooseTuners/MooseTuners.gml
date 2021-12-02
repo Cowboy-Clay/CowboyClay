@@ -24,7 +24,7 @@ global.moose_chargeAccel = 8;
 
 global.moose_invulTime = 60;
 
-global.moose_blockDistance = 200;
+global.moose_blockDistance = 300;
 
 // Animations
 global.moose_idleAnim = spr_moose_idle;
