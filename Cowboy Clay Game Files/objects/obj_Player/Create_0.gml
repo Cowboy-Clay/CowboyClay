@@ -250,12 +250,14 @@ function GoToPlayerBasicAttack()
 	{
 		currentState = PlayerState.BASIC_ATTACK_SWING;
 		SetPlayerAnimation(global.player_attackSwingAnim, 1, AnimationType.HOLD);
+			obj_player_attackEffect.ShowPlayerAttack(spr_player_attackEffect,1);
 		attackTimer = global.player_attackSwingFrames;
 	}
 	if attackTimer <= 0
 	{
 		currentState = PlayerState.BASIC_ATTACK_FOLLOW;
 		SetPlayerAnimation(global.player_attackFollowAnim, 1, AnimationType.HOLD);
+			obj_player_attackEffect.HidePlayerAttack();
 		attackTimer = global.player_attackFollowFrames;
 	}
 	if attackTimer <= 0
@@ -502,12 +504,14 @@ function PlayerAttack()
 		{
 			currentState = PlayerState.BASIC_ATTACK_SWING;
 			SetPlayerAnimation(global.player_attackSwingAnim, 1, AnimationType.HOLD);
+			obj_player_attackEffect.ShowPlayerAttack(spr_player_attackEffect,1);
 			attackTimer = global.player_attackSwingFrames;
 		}
 		if currentState == PlayerState.BASIC_ATTACK_SWING && attackTimer <= 0
 		{
 			currentState = PlayerState.BASIC_ATTACK_FOLLOW;
 			SetPlayerAnimation(global.player_attackFollowAnim, 1, AnimationType.HOLD);
+			obj_player_attackEffect.HidePlayerAttack();
 			attackTimer = global.player_attackFollowFrames;
 		}
 		if currentState == PlayerState.BASIC_ATTACK_FOLLOW && attackTimer <= 0
