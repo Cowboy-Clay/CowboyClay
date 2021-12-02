@@ -13,7 +13,7 @@ global.mooseSprRef =
 function GetMooseHitBox()
 {
 	var a = obj_Moose.sprite_index;
-	for (i = 0; i < 5; i+=1)
+	for (i = 0; i < array_length(global.mooseSprRef); i+=1)
 	{
 		if global.mooseSprRef[i][0] == a return global.mooseSprRef[i][1];
 	}
@@ -23,7 +23,7 @@ function GetMooseHitBox()
 function GetMooseHurtBox()
 {
 	var a = obj_Moose.sprite_index;
-	for (i = 0; i < 5; i += 1)
+	for (i = 0; i < array_length(global.mooseSprRef); i += 1)
 	{
 		if global.mooseSprRef[i][0] == a
 		{
