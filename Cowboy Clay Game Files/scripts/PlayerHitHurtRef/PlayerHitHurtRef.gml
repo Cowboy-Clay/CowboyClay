@@ -15,7 +15,7 @@ global.playerSprRef =
 function GetPlayerHitBox()
 {
 	var a = obj_player.sprite_index;
-	for (i = 0; i < 10; i+=1)
+	for (i = 0; i < array_length(global.playerSprRef); i+=1)
 	{
 		if global.playerSprRef[i][0] == a return global.playerSprRef[i][1];
 	}
@@ -25,7 +25,7 @@ function GetPlayerHitBox()
 function GetPlayerHurtBox()
 {
 	var a = obj_player.sprite_index;
-	for (i = 0; i < 10; i += 1)
+	for (i = 0; i < array_length(global.playerSprRef); i += 1)
 	{
 		if global.playerSprRef[i][0] == a return global.playerSprRef[i][2];
 	}
