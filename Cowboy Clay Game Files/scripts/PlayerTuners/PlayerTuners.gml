@@ -40,3 +40,7 @@ global.player_dashFollowAnim = spr_player_dash_follow;
 global.player_dashFollowAnim_disarmed = spr_player_dash_follow_disarmed;
 global.player_dashFollowAnimFPI = 1;
 global.player_dashFollowAnimType = AnimationType.FIRST_FRAME;
+
+global.player_deathAnim = spr_player_death;
+global.player_deathAnimFPI = 6;
+global.player_deadAnimType = AnimationType.HOLD;

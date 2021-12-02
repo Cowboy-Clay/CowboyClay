@@ -1,21 +1,23 @@
 // @description All code run each frame
 
 if !global.paused
-{
-	if keyboard_check_pressed(ord("F"))
-	{
-		PlayerGetHit();
-	}
-	
+{	
 	// Physics
 	Friction(PickPlayerFrict());
 	Gravity(PickPlayerGravi(), global.player_gravityMax);
 	
-	// State system
-	PlayerPickupSword();
-	UpdatePlayerState();
-	PlayerStateBasedMethods();
-	PlayerInvulnerability();
+	if currentState != PlayerState.LOCK && currentState != PlayerState.DEAD
+	{
+		// State system
+		PlayerPickupSword();
+		UpdatePlayerState();
+		PlayerStateBasedMethods();
+		PlayerInvulnerability();
+	}
+	else if currentState == PlayerState.LOCK
+	{
+		GoToPlayerIdle();
+	}
 	
 	// Animation
 	SwitchPlayerArmedAnims();

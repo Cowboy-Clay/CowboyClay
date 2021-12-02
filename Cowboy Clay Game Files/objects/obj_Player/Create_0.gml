@@ -6,8 +6,8 @@ global.showDebugMessages = true; // set to true if you want to print debug messa
 #endregion
 
 #region State Variables
-enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW };
-currentState = PlayerState.IDLE;
+enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW, LOCK, DEAD };
+currentState = PlayerState.LOCK;
 facing = Direction.RIGHT; // The direction the player is facing
 armed = startArmed; // Is the player armed. startArmed is set in the variable menu
 grounded = false;
@@ -178,6 +178,14 @@ function PlayerStateBasedMethods()
 			PlayerDash();
 			break;
 	}
+}
+
+function GoToPlayerDead()
+{
+	currentState = PlayerState.DEAD;
+	instance_deactivate_object(obj_player_hitbox);
+	instance_deactivate_object(obj_player_hurtbox);
+	SetPlayerAnimation(global.player_deathAnim, global.player_deathAnimFPI, global.player_deadAnimType);
 }
 
 function GoToPlayerIdle()
@@ -532,6 +540,10 @@ function PlayerGetHit()
 		if obj_Moose.x < x h = 1;
 		obj_player_sword.PlayerSwordFling(h,-1.67,17);
 		MakePlayerInvulnerable();
+	}
+	else
+	{
+		GoToPlayerDead();
 	}
 }
 #endregion
