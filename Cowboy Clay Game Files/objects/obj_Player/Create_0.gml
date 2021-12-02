@@ -273,6 +273,31 @@ function GoToDash()
 	
 	if global.player_instantDash
 	{
+		if facing == Direction.LEFT
+		{
+			for (i = x-1; i > x -global.player_dashImpulseForce; i--)
+			{
+				if place_meeting(i,y,obj_Wall)
+				{
+					x = i + 1;
+					GoToPlayerIdle();
+					return;
+				}
+			}
+		}
+		else
+		{
+			for (i = x+1; i < x + global.player_dashImpulseForce; i++)
+			{
+				if place_meeting(i,y, obj_Wall)
+				{
+					x = i - 1;
+					GoToPlayerIdle();
+					return;
+				}
+			}
+		}
+		
 		if facing == Direction.LEFT x -= global.player_dashImpulseForce;
 		else x += global.player_dashImpulseForce;
 		return;
@@ -375,6 +400,31 @@ function PlayerDash()
 	}
 	if global.player_instantDash
 	{
+		if facing == Direction.LEFT
+		{
+			for (i = x-1; i > x -global.player_dashExtendForce; i--)
+			{
+				if place_meeting(i,y,obj_Wall)
+				{
+					x = i + 1;
+					GoToPlayerIdle();
+					return;
+				}
+			}
+		}
+		else
+		{
+			for (i = x+1; i < x + global.player_dashExtendForce; i++)
+			{
+				if place_meeting(i,y, obj_Wall)
+				{
+					x = i - 1;
+					GoToPlayerIdle();
+					return;
+				}
+			}
+		}
+		
 		if facing == Direction.LEFT x -= global.player_dashExtendForce;
 		else x += global.player_dashExtendForce;
 		return;
