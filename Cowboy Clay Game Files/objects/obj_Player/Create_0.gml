@@ -394,6 +394,11 @@ function PlayerDash()
 		dashTimer = 0;
 		if facing == Direction.LEFT hspeed = - global.player_dashEndForce;
 		else hspeed = global.player_dashEndForce;
+		while place_meeting(x,y,obj_Moose)
+		{
+			if facing == Direction.LEFT x --;
+			else x++;
+		}
 		invulnerable = false;
 		GoToPlayerIdle();
 		return;
