@@ -26,8 +26,10 @@ global.moose_invulTime = 60;
 
 // Animations
 global.moose_idleAnim = spr_moose_idle;
+global.moose_idleAnim_disar = spr_moose_idle_disarmed;
 global.moose_idleAnim_FPI = 1;
 global.moose_idleAnim_type = AnimationType.FIRST_FRAME;
+
 
 global.moose_wanderAnim = spr_moose_walk;
 global.moose_wanderAnim_disar = spr_moose_walk_disarmed;

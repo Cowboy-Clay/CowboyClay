@@ -254,6 +254,7 @@ function MooseSlideToIdle()
 function PlayMooseIdleAnim()
 {
 	var a = global.moose_idleAnim;
+	if !armed a = global.moose_idleAnim_disar;
 	SetMooseAnimation(a, global.moose_idleAnim_FPI, global.moose_idleAnim_type);
 }
 
