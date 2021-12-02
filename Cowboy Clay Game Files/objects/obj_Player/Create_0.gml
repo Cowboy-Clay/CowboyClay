@@ -30,11 +30,13 @@ lastDashTapDirection = Direction.LEFT;
 dashOnCooldown = false;
 global.player_dashAnticipation = 15;
 global.player_dashFrameAllowance = 15;
-global.player_dashImpulseForce = 60;
-global.player_dashExtendForce = 60;
+global.player_dashImpulseForce = 45;
+global.player_dashExtendForce = 75;
+global.player_dashEndForce = 10;
 global.player_instantDash = true;
-global.player_dashDuration = 4;
+global.player_dashDuration = 10;
 global.player_dashCooldown = 20;
+global.player_invulnWhileDashing = true;
 #endregion
 
 #region Jump Variables
@@ -361,6 +363,9 @@ function PlayerDash()
 	if dashTimer >= global.player_dashDuration
 	{
 		dashTimer = 0;
+		if facing == Direction.LEFT hspeed = - global.player_dashEndForce;
+		else hspeed = global.player_dashEndForce;
+		invulnerable = false;
 		GoToPlayerIdle();
 		return;
 	}
@@ -565,6 +570,11 @@ function MakePlayerInvulnerable()
 
 function PlayerInvulnerability()
 {
+	if currentState == PlayerState.DASH && global.player_invulnWhileDashing
+	{
+		invulnerable = true;
+		return;
+	}
 	if invulnerable == false return;
 	invulnerabilityTimer --;
 	visible = ceil(invulnerabilityTimer/7)%2;
