@@ -6,7 +6,7 @@ global.showDebugMessages = true; // set to true if you want to print debug messa
 #endregion
 
 #region State Variables
-enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH };
+enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW };
 currentState = PlayerState.IDLE;
 facing = Direction.RIGHT; // The direction the player is facing
 armed = startArmed; // Is the player armed. startArmed is set in the variable menu
@@ -28,7 +28,7 @@ global.player_maxWalkSpeed = 4; // The basic max walking speed
 dashTimer = 0;
 lastDashTapDirection = Direction.LEFT;
 dashOnCooldown = false;
-global.player_dashAnticipation = 15;
+global.player_dashAnticipation = 45;
 global.player_dashFrameAllowance = 15;
 global.player_dashImpulseForce = 45;
 global.player_dashExtendForce = 75;
@@ -37,6 +37,7 @@ global.player_instantDash = true;
 global.player_dashDuration = 10;
 global.player_dashCooldown = 20;
 global.player_invulnWhileDashing = true;
+global.player_dashFollow = 20;
 #endregion
 
 #region Jump Variables
@@ -120,6 +121,10 @@ function UpdatePlayerState()
 		case PlayerState.DASH_ANTI:
 			dashTimer ++;
 			if dashTimer >= global.player_dashAnticipation GoToDash();
+			break;
+		case PlayerState.DASH_FOLLOW:
+			dashTimer ++;
+			if dashTimer >= global.player_dashFollow GoToPlayerIdle();
 			break;
 	}
 }
@@ -307,6 +312,13 @@ function GoToDash()
 	else hspeed = global.player_dashImpulseForce;
 }
 
+function GoToPlayerDashFollow()
+{
+	if global.showDebugMessages show_debug_message("Player going to dash follow through");
+	dashTimer = 0;
+	currentState = PlayerState.DASH_FOLLOW;
+}
+
 function CheckDash()
 {
 	if dashOnCooldown
@@ -400,7 +412,7 @@ function PlayerDash()
 			else x++;
 		}
 		invulnerable = false;
-		GoToPlayerIdle();
+		GoToPlayerDashFollow();
 		return;
 	}
 	if global.player_instantDash
@@ -412,7 +424,7 @@ function PlayerDash()
 				if place_meeting(i,y,obj_Wall)
 				{
 					x = i + 1;
-					GoToPlayerIdle();
+					GoToPlayerDashFollow();
 					return;
 				}
 			}
