@@ -6,7 +6,7 @@ global.showDebugMessages = true; // set to true if you want to print debug messa
 #endregion
 
 #region State Variables
-enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH };
+enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH };
 currentState = PlayerState.IDLE;
 facing = Direction.RIGHT; // The direction the player is facing
 armed = startArmed; // Is the player armed. startArmed is set in the variable menu
@@ -28,9 +28,12 @@ global.player_maxWalkSpeed = 4; // The basic max walking speed
 dashTimer = 0;
 lastDashTapDirection = Direction.LEFT;
 dashOnCooldown = false;
+global.player_dashAnticipation = 15;
 global.player_dashFrameAllowance = 15;
-global.player_dashImpulseForce = 30;
-global.player_dashDuration = 2;
+global.player_dashImpulseForce = 60;
+global.player_dashExtendForce = 60;
+global.player_instantDash = true;
+global.player_dashDuration = 4;
 global.player_dashCooldown = 20;
 #endregion
 
@@ -78,14 +81,29 @@ function UpdatePlayerState()
 	switch currentState
 	{
 		case PlayerState.IDLE:
+			if keyboard_check(vk_down) && keyboard_check_pressed(ord("X")) && !dashOnCooldown
+			{
+				GoToDashAnti();
+				return;
+			}
 			if keyboard_check_pressed(ord("X")) GoToPlayerJumpAnti();
 			else if OneWalkKeyHeld() GoToPlayerWalk();
 			break;
 		case PlayerState.WALKING:
+			if keyboard_check(vk_down) && keyboard_check_pressed(ord("X")) && !dashOnCooldown
+			{
+				GoToDashAnti();
+				return;
+			}
 			if keyboard_check_pressed(ord("X")) GoToPlayerJumpAnti();
 			else if !OneWalkKeyHeld() GoToPlayerIdle();
 			break;
 		case PlayerState.JUMP_ANTI:
+			if keyboard_check(vk_down) && keyboard_check_pressed(ord("X")) && !dashOnCooldown
+			{
+				GoToDashAnti();
+				return;
+			}
 			break;
 		case PlayerState.JUMPING:
 			if vspeed >= 0 GoToPlayerFall();
@@ -97,6 +115,10 @@ function UpdatePlayerState()
 				else GoToPlayerIdle();
 			}
 			break;
+		case PlayerState.DASH_ANTI:
+			dashTimer ++;
+			if dashTimer >= global.player_dashAnticipation GoToDash();
+			break;
 	}
 }
 
@@ -105,38 +127,45 @@ function PlayerStateBasedMethods()
 	switch currentState
 	{
 		case PlayerState.IDLE:
-			CheckDash();
+			PlayerDashCooldown();
 			PlayerAttack();
 			break;
 		case PlayerState.WALKING:
-			CheckDash();
+			PlayerDashCooldown();
 			PlayerWalk();
 			PlayerAttack();
 			break;
 		case PlayerState.JUMP_ANTI:
-			CheckDash();
+			PlayerDashCooldown();
 			PlayerAttack();
 			PlayerJumpAnti();
 			SetPlayerFacingBasedOnSprite();
 			break;
 		case PlayerState.JUMPING:
+			PlayerDashCooldown();
 			PlayerWalk();
 			PlayerAttack();
 			SetPlayerFacingBasedOnSprite();
 			break;
 		case PlayerState.FALLING:
+			PlayerDashCooldown();
 			PlayerWalk();
 			PlayerAttack();
 			SetPlayerFacingBasedOnSprite();
 			break;
 		case PlayerState.BASIC_ATTACK_ANTI:
+			PlayerDashCooldown();
 			PlayerAttack();
 			break;
 		case PlayerState.BASIC_ATTACK_SWING:
+			PlayerDashCooldown();
 			PlayerAttack();
 			break;
 		case PlayerState.BASIC_ATTACK_FOLLOW:
+			PlayerDashCooldown();
 			PlayerAttack();
+			break;
+		case PlayerState.DASH_ANTI:
 			break;
 		case PlayerState.DASH:
 			PlayerDash();
@@ -220,6 +249,14 @@ function GoToPlayerBasicAttack()
 	}
 }
 
+function GoToDashAnti()
+{
+	if global.showDebugMessages show_debug_message("Player going to dash anti state");
+	currentState = PlayerState.DASH_ANTI;
+	
+	dashTimer = 0;
+}
+
 function GoToDash()
 {
 	if global.showDebugMessages show_debug_message("Player going to dash state");
@@ -228,7 +265,14 @@ function GoToDash()
 	dashTimer = 0;
 	dashOnCooldown = true;
 	
-	if lastDashTapDirection == Direction.LEFT hspeed = - global.player_dashImpulseForce;
+	if global.player_instantDash
+	{
+		if facing == Direction.LEFT x -= global.player_dashImpulseForce;
+		else x += global.player_dashImpulseForce;
+		return;
+	}
+	
+	if facing == Direction.LEFT hspeed = - global.player_dashImpulseForce;
 	else hspeed = global.player_dashImpulseForce;
 }
 
@@ -320,8 +364,24 @@ function PlayerDash()
 		GoToPlayerIdle();
 		return;
 	}
-	if lastDashTapDirection == Direction.LEFT hspeed = -global.player_dashImpulseForce;
-	else hspeed = global.player_dashImpulseForce;
+	if global.player_instantDash
+	{
+		if facing == Direction.LEFT x -= global.player_dashExtendForce;
+		else x += global.player_dashExtendForce;
+		return;
+	}
+	if facing == Direction.LEFT hspeed = -global.player_dashExtendForce;
+	else hspeed = global.player_dashExtendForce;
+}
+
+function PlayerDashCooldown()
+{
+	if !dashOnCooldown return;
+	dashTimer ++;
+	if dashTimer >= global.player_dashCooldown
+	{
+		dashOnCooldown = false;
+	}
 }
 
 function PlayerJumpAnti()
