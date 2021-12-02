@@ -264,6 +264,10 @@ function GoToDash()
 	if global.showDebugMessages show_debug_message("Player going to dash state");
 	currentState = PlayerState.DASH;
 	
+	var a = global.player_dashAnim;
+	if !armed a = global.player_dashAnim_disarmed;
+	if armed SetPlayerAnimation(a, global.player_dashAnimFPI, global.player_dashAnimType);
+	
 	dashTimer = 0;
 	dashOnCooldown = true;
 	

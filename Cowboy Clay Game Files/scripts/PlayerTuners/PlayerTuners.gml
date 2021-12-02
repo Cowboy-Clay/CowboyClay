@@ -25,3 +25,8 @@ global.player_fallAnim = spr_player_fall;
 global.player_fallAnim_disarmed = spr_player_idle_disarmed;
 global.player_fallFPI = 1;
 global.player_fallAnimType = AnimationType.HOLD;
+// Dash anims
+global.player_dashAnim = spr_player_dash;
+global.player_dashAnim_disarmed = spr_player_dash_disarmed;
+global.player_dashAnimFPI = 1;
+global.player_dashAnimType = AnimationType.FIRST_FRAME;
