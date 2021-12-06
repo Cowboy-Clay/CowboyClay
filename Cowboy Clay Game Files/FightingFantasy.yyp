@@ -83,6 +83,7 @@
     {"id":{"name":"obj_enemy_hurtbox","path":"objects/obj_enemy_hurtbox/obj_enemy_hurtbox.yy",},"order":5,},
     {"id":{"name":"obj_enemy_sword","path":"objects/obj_enemy_sword/obj_enemy_sword.yy",},"order":2,},
     {"id":{"name":"spr_player_dash_anti_disarmed","path":"sprites/spr_player_dash_anti_disarmed/spr_player_dash_anti_disarmed.yy",},"order":24,},
+    {"id":{"name":"CCSlide1","path":"sprites/CCSlide1/CCSlide1.yy",},"order":15,},
     {"id":{"name":"bumpy_trot","path":"animcurves/bumpy_trot/bumpy_trot.yy",},"order":2,},
     {"id":{"name":"spr_player_idle_disarmed","path":"sprites/spr_player_idle_disarmed/spr_player_idle_disarmed.yy",},"order":9,},
     {"id":{"name":"spr_moose_slideAnti_hurtbox","path":"sprites/spr_moose_slideAnti_hurtbox/spr_moose_slideAnti_hurtbox.yy",},"order":24,},

@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_title",
-    "path": "sprites/spr_title/spr_title.yy",
+    "name": "CCSlide1",
+    "path": "sprites/CCSlide1/CCSlide1.yy",
   },
   "solid": false,
   "visible": true,
