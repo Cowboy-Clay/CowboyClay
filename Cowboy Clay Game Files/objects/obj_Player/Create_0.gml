@@ -28,14 +28,14 @@ global.player_maxWalkSpeed = 4; // The basic max walking speed
 dashTimer = 0;
 lastDashTapDirection = Direction.LEFT;
 dashOnCooldown = false;
-global.player_dashAnticipation = 45;
+global.player_dashAnticipation = 33;
 global.player_dashFrameAllowance = 15;
 global.player_dashImpulseForce = 45;
 global.player_dashExtendForce = 22;
 global.player_dashEndForce = 15;
 global.player_instantDash = true;
 global.player_dashDuration = 10;
-global.player_dashCooldown = 20;
+global.player_dashCooldown = 18;
 global.player_invulnWhileDashing = true;
 global.player_dashFollow = 38;
 #endregion
