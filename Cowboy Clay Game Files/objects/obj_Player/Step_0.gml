@@ -20,9 +20,9 @@ if !global.paused
 	}
 	else if currentState == PlayerState.DEAD obj_Moose.currentState = MooseState.LOCK;
 	
-	if keyboard_check_pressed(ord("R")) && (currentState == PlayerState.DEAD || obj_Moose.currentState == MooseState.DEAD)
+	if keyboard_check_pressed(ord("R"))
 	{
-		room_restart();
+		room_goto_previous();
 	}
 	
 	// Animation
