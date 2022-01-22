@@ -6,7 +6,7 @@ global.showDebugMessages = true; // set to true if you want to print debug messa
 #endregion
 
 #region State Variables
-enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW, LOCK, DEAD };
+enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW, LOCK, DEAD, KICK_ANTI, KICK_SWING, KICK_FOLLOW };
 currentState = PlayerState.LOCK;
 facing = Direction.RIGHT; // The direction the player is facing
 armed = startArmed; // Is the player armed. startArmed is set in the variable menu
@@ -55,6 +55,11 @@ global.player_attackAntiFrames = 15; // # of frames the attack anti is shown
 global.player_attackSwingFrames = 10;
 global.player_attackFollowFrames = 15;
 attackTimer = 0; // Frame counter to determine how long the player has been in each attack state
+#endregion
+#region Kick Attack Variables
+global.player_kickAntiFrames = 2;
+global.player_kickSwingFrames = 10;
+global.player_kickFollowFrames = 2;
 #endregion
 
 invulnerable = false;
@@ -172,6 +177,18 @@ function PlayerStateBasedMethods()
 			PlayerDashCooldown();
 			PlayerAttack();
 			break;
+		case PlayerState.KICK_ANTI:
+			PlayerDashCooldown();
+			PlayerAttack();
+			break;
+		case PlayerState.KICK_SWING:
+			PlayerDashCooldown();
+			PlayerAttack();
+			break;
+		case PlayerState.KICK_FOLLOW:
+			PlayerDashCooldown();
+			PlayerAttack();
+			break;
 		case PlayerState.DASH_ANTI:
 			break;
 		case PlayerState.DASH:
@@ -259,6 +276,32 @@ function GoToPlayerBasicAttack()
 		SetPlayerAnimation(global.player_attackFollowAnim, 1, AnimationType.HOLD);
 			obj_player_attackEffect.HidePlayerAttack();
 		attackTimer = global.player_attackFollowFrames;
+	}
+	if attackTimer <= 0
+	{
+		GoToPlayerIdle();
+	}
+}
+function GoToPlayerKick()
+{
+	if global.showDebugMessages show_debug_message("Player going to kick state");
+	attackTimer = global.player_kickAntiFrames;
+	currentState = PlayerState.KICK_ANTI;
+	SetPlayerAnimation(global.player_kickAntiAnim, 1, AnimationType.HOLD);
+	if attackTimer <= 0
+	{
+		currentState = PlayerState.KICK_SWING;
+		SetPlayerAnimation(global.player_kickAntiAnim, 1, AnimationType.HOLD);
+		//obj_player_attackEffect.ShowPlayerAttack(spr_player_kickEffect,1);
+		attackTimer = global.player_kickSwingFrames;
+	}
+	
+	if attackTimer <= 0
+	{
+		currentState = PlayerState.KICK_FOLLOW;
+		SetPlayerAnimation(global.player_kickFollowAnim, 1, AnimationType.HOLD);
+		obj_player_attackEffect.HidePlayerAttack();
+		attackTimer = global.player_kickFollowFrames;
 	}
 	if attackTimer <= 0
 	{
@@ -495,6 +538,11 @@ function PlayerAttack()
 	{
 		GoToPlayerBasicAttack();
 	}
+	else if currentState != PlayerState.KICK_ANTI && currentState != PlayerState.KICK_SWING
+	&& currentState != PlayerState.KICK_FOLLOW && keyboard_check_pressed(ord("Z")) && !armed
+	{
+		GoToPlayerKick();
+	}
 	else if currentState == PlayerState.BASIC_ATTACK_ANTI || currentState == PlayerState.BASIC_ATTACK_SWING || currentState == PlayerState.BASIC_ATTACK_FOLLOW
 	{
 		// Increment the attack timer
@@ -519,6 +567,35 @@ function PlayerAttack()
 			GoToPlayerIdle();
 		}
 	}
+	else if currentState == PlayerState.KICK_ANTI || currentState == PlayerState.KICK_SWING || currentState == PlayerState.KICK_FOLLOW
+	{
+		// Increment the attack timer
+		attackTimer -= 1;
+		// Move through the different substates
+		if currentState == PlayerState.KICK_ANTI && attackTimer <= 0
+		{
+			currentState = PlayerState.KICK_SWING;
+			SetPlayerAnimation(global.player_kickSwingAnim, 1, AnimationType.HOLD);
+			//obj_player_attackEffect.ShowPlayerAttack(
+			attackTimer = global.player_kickSwingFrames;
+		}
+		if currentState == PlayerState.KICK_SWING && attackTimer <= 0
+		{
+			currentState = PlayerState.KICK_FOLLOW;
+			SetPlayerAnimation(global.player_kickFollowAnim, 1, AnimationType.HOLD);
+			//obj_player_attackEffect.HidePlayerAttack();
+			attackTimer = global.player_kickFollowFrames;
+		}
+		if currentState == PlayerState.KICK_FOLLOW && attackTimer <= 0
+		{
+			GoToPlayerIdle();
+		}
+	}
+}
+
+function PlayerKick()
+{
+	
 }
 
 function PlayerPickupSword()

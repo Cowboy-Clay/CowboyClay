@@ -12,6 +12,10 @@ global.player_walkAnimType = AnimationType.LOOP;
 global.player_attackAntiAnim = spr_player_attackAnti;
 global.player_attackSwingAnim = spr_player_attackSwing;
 global.player_attackFollowAnim = spr_player_attackFollow;
+// Kick animations
+global.player_kickAntiAnim = spr_player_idle;
+global.player_kickSwingAnim = spr_player_idle;
+global.player_kickFollowAnim = spr_player_idle;
 // Jump anti anims
 global.player_jumpAntiAnim = spr_player_jumpAnti;
 global.player_jumpAntiAnim_disarmed = spr_player_crouch_disarmed;
