@@ -565,6 +565,8 @@ function PlayPlayerAnimation()
 		return;
 	}
 	animFrameCounter++;
+	show_debug_message(animFrameCounter);
+	show_debug_message(image_index);
 	if animFrameCounter >= currentFPI
 	{
 		animFrameCounter = 0;

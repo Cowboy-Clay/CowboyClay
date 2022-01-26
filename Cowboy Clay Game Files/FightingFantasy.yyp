@@ -32,6 +32,7 @@
     {"id":{"name":"obj_enemy_hitbox","path":"objects/obj_enemy_hitbox/obj_enemy_hitbox.yy",},"order":1,},
     {"id":{"name":"spr_player_death","path":"sprites/spr_player_death/spr_player_death.yy",},"order":6,},
     {"id":{"name":"spr_player_jump_disarmed","path":"sprites/spr_player_jump_disarmed/spr_player_jump_disarmed.yy",},"order":11,},
+    {"id":{"name":"BG1CollisionMap","path":"sprites/BG1CollisionMap/BG1CollisionMap.yy",},"order":7,},
     {"id":{"name":"spr_moose_idle_disarmed_hurtbox","path":"sprites/spr_moose_idle_disarmed_hurtbox/spr_moose_idle_disarmed_hurtbox.yy",},"order":34,},
     {"id":{"name":"spr_moose_walk_hurtbox","path":"sprites/spr_moose_walk_hurtbox/spr_moose_walk_hurtbox.yy",},"order":22,},
     {"id":{"name":"PlayerTestRoom","path":"rooms/PlayerTestRoom/PlayerTestRoom.yy",},"order":2,},
@@ -161,7 +162,7 @@
     {"CopyToMask":153157610357391598,"filePath":"datafiles","resourceVersion":"1.0","name":"Idle.aseprite","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2.3.6.595",
+    "IDEVersion": "2.3.5.589",
   },
   "resourceVersion": "1.4",
   "name": "FightingFantasy",
