@@ -10,12 +10,12 @@
   "bbox_left": 0,
   "bbox_right": 79,
   "bbox_top": 0,
-  "bbox_bottom": 79,
+  "bbox_bottom": 39,
   "HTile": false,
   "VTile": false,
   "For3D": false,
   "width": 80,
-  "height": 80,
+  "height": 40,
   "textureGroupId": {
     "name": "Default",
     "path": "texturegroups/Default",
@@ -24,12 +24,12 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"edb64b0a-8946-458c-9775-4fd0fbc86826","path":"sprites/spr_envi_woodblock2/spr_envi_woodblock2.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"edb64b0a-8946-458c-9775-4fd0fbc86826","path":"sprites/spr_envi_woodblock2/spr_envi_woodblock2.yy",},"LayerId":{"name":"cf735c0d-14de-4224-8a20-1f3c56e4ff2b","path":"sprites/spr_envi_woodblock2/spr_envi_woodblock2.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_envi_woodblock2","path":"sprites/spr_envi_woodblock2/spr_envi_woodblock2.yy",},"resourceVersion":"1.0","name":"edb64b0a-8946-458c-9775-4fd0fbc86826","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"2ec1594c-fbff-4f2b-bed5-2b56f68ccb28","path":"sprites/spr_envi_woodBlock3/spr_envi_woodBlock3.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"2ec1594c-fbff-4f2b-bed5-2b56f68ccb28","path":"sprites/spr_envi_woodBlock3/spr_envi_woodBlock3.yy",},"LayerId":{"name":"0ed00428-15ec-4b96-a219-c66e81bfc314","path":"sprites/spr_envi_woodBlock3/spr_envi_woodBlock3.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_envi_woodBlock3","path":"sprites/spr_envi_woodBlock3/spr_envi_woodBlock3.yy",},"resourceVersion":"1.0","name":"2ec1594c-fbff-4f2b-bed5-2b56f68ccb28","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
-    "spriteId": {"name":"spr_envi_woodblock2","path":"sprites/spr_envi_woodblock2/spr_envi_woodblock2.yy",},
+    "spriteId": {"name":"spr_envi_woodBlock3","path":"sprites/spr_envi_woodBlock3/spr_envi_woodBlock3.yy",},
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 30.0,
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"2992d44d-cf22-47de-8669-05da407d31d5","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"edb64b0a-8946-458c-9775-4fd0fbc86826","path":"sprites/spr_envi_woodblock2/spr_envi_woodblock2.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"d5156579-bf91-4113-b230-b40759a3c778","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"2ec1594c-fbff-4f2b-bed5-2b56f68ccb28","path":"sprites/spr_envi_woodBlock3/spr_envi_woodBlock3.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
@@ -58,14 +58,14 @@
     "yorigin": 0,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"spr_envi_woodblock2","path":"sprites/spr_envi_woodblock2/spr_envi_woodblock2.yy",},
+    "parent": {"name":"spr_envi_woodBlock3","path":"sprites/spr_envi_woodBlock3/spr_envi_woodBlock3.yy",},
     "resourceVersion": "1.3",
-    "name": "spr_envi_woodblock2",
+    "name": "spr_envi_woodBlock3",
     "tags": [],
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"cf735c0d-14de-4224-8a20-1f3c56e4ff2b","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"0ed00428-15ec-4b96-a219-c66e81bfc314","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": null,
   "parent": {
@@ -73,7 +73,7 @@
     "path": "folders/Sprites/Environment.yy",
   },
   "resourceVersion": "1.0",
-  "name": "spr_envi_woodblock2",
+  "name": "spr_envi_woodBlock3",
   "tags": [],
   "resourceType": "GMSprite",
 }

@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_player_idle_disarmed",
-    "path": "sprites/spr_player_idle_disarmed/spr_player_idle_disarmed.yy",
+    "name": "spr_player_walk",
+    "path": "sprites/spr_player_walk/spr_player_walk.yy",
   },
   "solid": false,
   "visible": true,
