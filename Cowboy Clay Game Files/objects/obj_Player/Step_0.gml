@@ -31,3 +31,22 @@ if !global.paused
 	SetPlayerFacingDirection();
 }
 CheckEnvironCollisions(spr_player_collision);
+
+if currentState == PlayerState.WALKING
+{
+	if armed
+	{
+		if audio_is_playing(sfx_player_run_armed) == false audio_play_sound(sfx_player_run_armed, 50,true);
+		if audio_is_playing(sfx_player_run) audio_stop_sound(sfx_player_run);
+	}
+	else 
+	{
+		if audio_is_playing(sfx_player_run) == false audio_play_sound(sfx_player_run,50,true);
+		if audio_is_playing(sfx_player_run_armed) audio_stop_sound(sfx_player_run_armed);
+	}
+}
+else
+{
+	if audio_is_playing(sfx_player_run) audio_stop_sound(sfx_player_run);
+	if audio_is_playing(sfx_player_run_armed) audio_stop_sound(sfx_player_run_armed);
+}
