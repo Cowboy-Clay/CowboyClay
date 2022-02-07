@@ -6,11 +6,13 @@ global.showDebugMessages = true; // set to true if you want to print debug messa
 #endregion
 
 #region State Variables
-enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW, LOCK, DEAD, KICK_ANTI, KICK_SWING, KICK_FOLLOW };
+enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW, LOCK, DEAD, KICK_ANTI, KICK_SWING, KICK_FOLLOW, SHEATHING, UNSHEATHING, PLUNGING };
 currentState = PlayerState.LOCK;
 facing = Direction.RIGHT; // The direction the player is facing
 armed = startArmed; // Is the player armed. startArmed is set in the variable menu
+sheathed = false;
 grounded = false;
+hiblock = 0;
 #endregion
 
 #region Physics Variables
@@ -62,6 +64,12 @@ global.player_kickSwingFrames = 10;
 global.player_kickFollowFrames = 2;
 #endregion
 
+global.player_sheathFrames = 40;
+global.player_unsheathFrames = 20;
+sheathTimer = 0;
+
+global.player_plungeFrames = 7;
+
 invulnerable = false;
 invulnerabilityTimer = 0;
 global.player_invulnerabilityTime = 60;
@@ -89,6 +97,21 @@ function UpdatePlayerState()
 	switch currentState
 	{
 		case PlayerState.IDLE:
+			if hiblock == 0 && keyboard_check(vk_down) && keyboard_check_pressed(ord("Z"))
+			{
+				PlayerPlungeSword();
+				return;
+			}
+			if hiblock == 1 && keyboard_check(vk_up) && keyboard_check_pressed(ord("Z"))
+			{
+				PlayerSheathSword();
+				return;
+			}
+			if sheathed && !armed && keyboard_check(vk_down) && keyboard_check_pressed(ord("Z"))
+			{
+				PlayerUnsheathSword();
+				return;
+			}
 			if keyboard_check(vk_down) && keyboard_check_pressed(ord("X")) && !dashOnCooldown
 			{
 				GoToDashAnti();
@@ -139,6 +162,7 @@ function PlayerStateBasedMethods()
 	switch currentState
 	{
 		case PlayerState.IDLE:
+			PlayerUpdateBlock();
 			PlayerDashCooldown();
 			PlayerAttack();
 			break;
@@ -193,6 +217,15 @@ function PlayerStateBasedMethods()
 			break;
 		case PlayerState.DASH:
 			PlayerDash();
+			break;
+		case PlayerState.SHEATHING:
+			PlayerSheathSword();
+			break;
+		case PlayerState.UNSHEATHING:
+			PlayerUnsheathSword();
+			break;
+		case PlayerState.PLUNGING:
+			PlayerPlungeSword();
 			break;
 	}
 }
@@ -425,6 +458,85 @@ function CheckDash()
 #endregion
 
 #region Actions
+function PlayerPlungeSword()
+{
+	if !armed return;
+	if currentState != PlayerState.PLUNGING
+	{
+		currentState = PlayerState.PLUNGING;
+		sheathTimer = global.player_plungeFrames;
+		return;
+	}
+	sheathTimer --;
+	if sheathTimer <= 0
+	{
+		armed = false;
+		sheathed = false;
+		obj_player_sword.PlayerSwordFling(0,-1,.5);
+		obj_player_sword.plungeFlag = true
+		GoToPlayerIdle();
+	}
+}
+
+function PlayerUnsheathSword()
+{
+	if !sheathed || armed return;
+	if currentState != PlayerState.UNSHEATHING
+	{
+		currentState = PlayerState.UNSHEATHING;
+		sheathTimer = global.player_unsheathFrames;
+		return;
+	}
+	sheathTimer --;
+	if sheathTimer <= 0
+	{
+		armed = true;
+		sheathed = false;
+		hiblock = 1;
+		GoToPlayerIdle();
+	}
+}
+
+function PlayerSheathSword()
+{
+	if !armed || sheathed return;
+	if currentState != PlayerState.SHEATHING
+	{
+		currentState = PlayerState.SHEATHING;
+		sheathTimer = global.player_sheathFrames;
+		return;
+	}
+	sheathTimer --;
+	if sheathTimer <= 0
+	{
+		armed = false;
+		sheathed = true;
+		GoToPlayerIdle();
+	}
+}
+
+function PlayerUpdateBlock()
+{
+	if global.showDebugMessages
+	{
+		if hiblock == 0 show_debug_message("Current block is lo");
+		else show_debug_message("Current block is hi");
+	}
+	
+	if keyboard_check_pressed(vk_up) && hiblock == 0
+	{
+		hiblock = 1;
+		if global.showDebugMessages show_debug_message("Changing to hi block");
+		return;
+	}
+	else if keyboard_check_pressed(vk_down) && hiblock == 1
+	{
+		hiblock = 0;
+		if global.showDebugMessages show_debug_message("Changing to lo block");
+		return;
+	}
+}
+
 function PlayerWalk()
 {
 	var curAc = global.player_walkAccel;

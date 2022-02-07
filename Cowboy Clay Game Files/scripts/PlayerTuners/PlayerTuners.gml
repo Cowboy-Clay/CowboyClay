@@ -48,3 +48,7 @@ global.player_dashFollowAnimType = AnimationType.FIRST_FRAME;
 global.player_deathAnim = spr_player_death;
 global.player_deathAnimFPI = 6;
 global.player_deadAnimType = AnimationType.HOLD;
+
+global.player_highGuardAnim = global.player_idleAnim;
+global.player_highGuardAnimFPI = global.player_idleFPI;
+global.player_highGuardAnimType = global.player_idleAnimType;
