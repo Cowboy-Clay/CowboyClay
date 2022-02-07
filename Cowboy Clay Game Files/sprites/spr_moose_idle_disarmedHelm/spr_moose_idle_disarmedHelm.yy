@@ -24,12 +24,12 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"adfe4537-0857-4fc3-952e-ac2c22168eb5","path":"sprites/spr_moose_idle_disarmedHelmet/spr_moose_idle_disarmedHelmet.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"adfe4537-0857-4fc3-952e-ac2c22168eb5","path":"sprites/spr_moose_idle_disarmedHelmet/spr_moose_idle_disarmedHelmet.yy",},"LayerId":{"name":"c4e11a48-87be-43dc-9a13-320157574063","path":"sprites/spr_moose_idle_disarmedHelmet/spr_moose_idle_disarmedHelmet.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_moose_idle_disarmedHelmet","path":"sprites/spr_moose_idle_disarmedHelmet/spr_moose_idle_disarmedHelmet.yy",},"resourceVersion":"1.0","name":"adfe4537-0857-4fc3-952e-ac2c22168eb5","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"adfe4537-0857-4fc3-952e-ac2c22168eb5","path":"sprites/spr_moose_idle_disarmedHelm/spr_moose_idle_disarmedHelm.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"adfe4537-0857-4fc3-952e-ac2c22168eb5","path":"sprites/spr_moose_idle_disarmedHelm/spr_moose_idle_disarmedHelm.yy",},"LayerId":{"name":"c4e11a48-87be-43dc-9a13-320157574063","path":"sprites/spr_moose_idle_disarmedHelm/spr_moose_idle_disarmedHelm.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_moose_idle_disarmedHelm","path":"sprites/spr_moose_idle_disarmedHelm/spr_moose_idle_disarmedHelm.yy",},"resourceVersion":"1.0","name":"adfe4537-0857-4fc3-952e-ac2c22168eb5","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
-    "spriteId": {"name":"spr_moose_idle_disarmedHelmet","path":"sprites/spr_moose_idle_disarmedHelmet/spr_moose_idle_disarmedHelmet.yy",},
+    "spriteId": {"name":"spr_moose_idle_disarmedHelm","path":"sprites/spr_moose_idle_disarmedHelm/spr_moose_idle_disarmedHelm.yy",},
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 30.0,
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"3f6eeae2-c0bb-4992-ac88-ce2b79a70eb7","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"adfe4537-0857-4fc3-952e-ac2c22168eb5","path":"sprites/spr_moose_idle_disarmedHelmet/spr_moose_idle_disarmedHelmet.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"3f6eeae2-c0bb-4992-ac88-ce2b79a70eb7","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"adfe4537-0857-4fc3-952e-ac2c22168eb5","path":"sprites/spr_moose_idle_disarmedHelm/spr_moose_idle_disarmedHelm.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
@@ -58,9 +58,9 @@
     "yorigin": 203,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"spr_moose_idle_disarmedHelmet","path":"sprites/spr_moose_idle_disarmedHelmet/spr_moose_idle_disarmedHelmet.yy",},
+    "parent": {"name":"spr_moose_idle_disarmedHelm","path":"sprites/spr_moose_idle_disarmedHelm/spr_moose_idle_disarmedHelm.yy",},
     "resourceVersion": "1.3",
-    "name": "spr_moose_idle_disarmedHelmet",
+    "name": "spr_moose_idle_disarmedHelm",
     "tags": [],
     "resourceType": "GMSequence",
   },
@@ -73,7 +73,7 @@
     "path": "folders/Sprites/Enemy.yy",
   },
   "resourceVersion": "1.0",
-  "name": "spr_moose_idle_disarmedHelmet",
+  "name": "spr_moose_idle_disarmedHelm",
   "tags": [],
   "resourceType": "GMSprite",
 }

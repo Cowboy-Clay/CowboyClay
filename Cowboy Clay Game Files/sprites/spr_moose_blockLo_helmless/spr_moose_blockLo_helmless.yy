@@ -24,12 +24,12 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"de5a942f-a411-43f9-a6ec-b4692e11c859","path":"sprites/spr_moose_blockLo_noHelm/spr_moose_blockLo_noHelm.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"de5a942f-a411-43f9-a6ec-b4692e11c859","path":"sprites/spr_moose_blockLo_noHelm/spr_moose_blockLo_noHelm.yy",},"LayerId":{"name":"bab4d194-14ed-46aa-b6fb-10ff242e7357","path":"sprites/spr_moose_blockLo_noHelm/spr_moose_blockLo_noHelm.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_moose_blockLo_noHelm","path":"sprites/spr_moose_blockLo_noHelm/spr_moose_blockLo_noHelm.yy",},"resourceVersion":"1.0","name":"de5a942f-a411-43f9-a6ec-b4692e11c859","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"de5a942f-a411-43f9-a6ec-b4692e11c859","path":"sprites/spr_moose_blockLo_helmless/spr_moose_blockLo_helmless.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"de5a942f-a411-43f9-a6ec-b4692e11c859","path":"sprites/spr_moose_blockLo_helmless/spr_moose_blockLo_helmless.yy",},"LayerId":{"name":"bab4d194-14ed-46aa-b6fb-10ff242e7357","path":"sprites/spr_moose_blockLo_helmless/spr_moose_blockLo_helmless.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_moose_blockLo_helmless","path":"sprites/spr_moose_blockLo_helmless/spr_moose_blockLo_helmless.yy",},"resourceVersion":"1.0","name":"de5a942f-a411-43f9-a6ec-b4692e11c859","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
-    "spriteId": {"name":"spr_moose_blockLo_noHelm","path":"sprites/spr_moose_blockLo_noHelm/spr_moose_blockLo_noHelm.yy",},
+    "spriteId": {"name":"spr_moose_blockLo_helmless","path":"sprites/spr_moose_blockLo_helmless/spr_moose_blockLo_helmless.yy",},
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 30.0,
@@ -41,10 +41,10 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"110dfc3b-928c-4e2d-97c7-044e84d5c855","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"de5a942f-a411-43f9-a6ec-b4692e11c859","path":"sprites/spr_moose_blockLo_noHelm/spr_moose_blockLo_noHelm.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"110dfc3b-928c-4e2d-97c7-044e84d5c855","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"de5a942f-a411-43f9-a6ec-b4692e11c859","path":"sprites/spr_moose_blockLo_helmless/spr_moose_blockLo_helmless.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
-    "visibleRange": {"x":0.0,"y":0.0,},
+    "visibleRange": null,
     "lockOrigin": false,
     "showBackdrop": true,
     "showBackdropImage": false,
@@ -58,9 +58,9 @@
     "yorigin": 203,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"spr_moose_blockLo_noHelm","path":"sprites/spr_moose_blockLo_noHelm/spr_moose_blockLo_noHelm.yy",},
+    "parent": {"name":"spr_moose_blockLo_helmless","path":"sprites/spr_moose_blockLo_helmless/spr_moose_blockLo_helmless.yy",},
     "resourceVersion": "1.3",
-    "name": "spr_moose_blockLo_noHelm",
+    "name": "spr_moose_blockLo_helmless",
     "tags": [],
     "resourceType": "GMSequence",
   },
@@ -73,7 +73,7 @@
     "path": "folders/Sprites/Enemy.yy",
   },
   "resourceVersion": "1.0",
-  "name": "spr_moose_blockLo_noHelm",
+  "name": "spr_moose_blockLo_helmless",
   "tags": [],
   "resourceType": "GMSprite",
 }
