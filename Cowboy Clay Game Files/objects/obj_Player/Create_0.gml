@@ -519,8 +519,8 @@ function PlayerUpdateBlock()
 {
 	if global.showDebugMessages
 	{
-		if hiblock == 0 show_debug_message("Current block is lo");
-		else show_debug_message("Current block is hi");
+		//if hiblock == 0 show_debug_message("Current block is lo");
+		//else show_debug_message("Current block is hi");
 	}
 	
 	if keyboard_check_pressed(vk_up) && hiblock == 0
