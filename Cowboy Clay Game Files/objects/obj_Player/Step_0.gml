@@ -50,3 +50,19 @@ else
 	if audio_is_playing(sfx_player_run) audio_stop_sound(sfx_player_run);
 	if audio_is_playing(sfx_player_run_armed) audio_stop_sound(sfx_player_run_armed);
 }
+
+if currentState == PlayerState.BASIC_ATTACK_ANTI
+{
+	if !audio_is_playing(sfx_sword_anti) audio_play_sound(sfx_sword_anti,50,false);
+	if audio_is_playing(sfx_sword_swing) audio_stop_sound(sfx_sword_swing);
+}
+else if currentState == PlayerState.BASIC_ATTACK_SWING
+{
+	if !audio_is_playing(sfx_sword_swing) audio_play_sound(sfx_sword_swing,50,false);
+	if audio_is_playing(sfx_sword_anti) audio_stop_sound(sfx_sword_anti);
+}
+else
+{
+	if audio_is_playing(sfx_sword_swing) audio_stop_sound(sfx_sword_swing);
+	if audio_is_playing(sfx_sword_anti) audio_stop_sound(sfx_sword_anti);
+}

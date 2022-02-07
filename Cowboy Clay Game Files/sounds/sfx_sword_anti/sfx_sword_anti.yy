@@ -11,14 +11,14 @@
     "name": "sfx",
     "path": "audiogroups/sfx",
   },
-  "soundFile": "sfx_switch_up.ogg",
-  "duration": 0.936281,
+  "soundFile": "sfx_sword_anti.wav",
+  "duration": 0.460272,
   "parent": {
     "name": "SFX",
     "path": "folders/Sounds/SFX.yy",
   },
   "resourceVersion": "1.0",
-  "name": "sfx_switch_up",
+  "name": "sfx_sword_anti",
   "tags": [],
   "resourceType": "GMSound",
 }

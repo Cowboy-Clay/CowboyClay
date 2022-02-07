@@ -11,14 +11,14 @@
     "name": "sfx",
     "path": "audiogroups/sfx",
   },
-  "soundFile": "sfx_switch_up.ogg",
-  "duration": 0.936281,
+  "soundFile": "sfx_sword_swing.ogg",
+  "duration": 0.373447,
   "parent": {
     "name": "SFX",
     "path": "folders/Sounds/SFX.yy",
   },
   "resourceVersion": "1.0",
-  "name": "sfx_switch_up",
+  "name": "sfx_sword_swing",
   "tags": [],
   "resourceType": "GMSound",
 }
