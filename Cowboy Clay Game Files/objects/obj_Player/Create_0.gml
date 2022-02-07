@@ -463,6 +463,7 @@ function PlayerPlungeSword()
 	if !armed return;
 	if currentState != PlayerState.PLUNGING
 	{
+		audio_play_sound(sfx_sword_plunge,25,false);
 		currentState = PlayerState.PLUNGING;
 		sheathTimer = global.player_plungeFrames;
 		return;
@@ -714,6 +715,7 @@ function PlayerPickupSword()
 {
 	if !armed && keyboard_check(ord("Z")) && place_meeting(x,y,obj_player_sword) && obj_player_sword.SwordCanBePickedUp()
 	{
+		audio_play_sound(sfx_sword_retrieve,25,false);
 		if global.showDebugMessages show_debug_message("Picked up sword");
 		armed = true;
 		obj_player_sword.currentState = SwordState.INACTIVE;

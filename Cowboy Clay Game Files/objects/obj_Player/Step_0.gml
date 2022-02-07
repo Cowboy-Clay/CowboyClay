@@ -9,9 +9,9 @@ if !global.paused
 	if currentState != PlayerState.LOCK && currentState != PlayerState.DEAD
 	{
 		// State system
-		PlayerPickupSword();
 		UpdatePlayerState();
 		PlayerStateBasedMethods();
+		PlayerPickupSword();
 		PlayerInvulnerability();
 	}
 	else if currentState == PlayerState.LOCK
