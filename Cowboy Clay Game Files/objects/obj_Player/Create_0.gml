@@ -107,7 +107,7 @@ function UpdatePlayerState()
 				PlayerSheathSword();
 				return;
 			}
-			if sheathed && !armed && keyboard_check(vk_down) && keyboard_check_pressed(ord("Z"))
+			if sheathed && !armed && keyboard_check(vk_down) && keyboard_check(ord("Z"))
 			{
 				PlayerUnsheathSword();
 				return;
@@ -484,6 +484,7 @@ function PlayerUnsheathSword()
 	if !sheathed || armed return;
 	if currentState != PlayerState.UNSHEATHING
 	{
+		show_debug_message("Beginning unsheath");
 		currentState = PlayerState.UNSHEATHING;
 		sheathTimer = global.player_unsheathFrames;
 		return;
@@ -652,7 +653,7 @@ function PlayerAttack()
 		GoToPlayerBasicAttack();
 	}
 	else if currentState != PlayerState.KICK_ANTI && currentState != PlayerState.KICK_SWING
-	&& currentState != PlayerState.KICK_FOLLOW && keyboard_check_pressed(ord("Z")) && !armed
+	&& currentState != PlayerState.KICK_FOLLOW && keyboard_check_pressed(ord("Z")) && !armed && !keyboard_check(vk_down)
 	{
 		GoToPlayerKick();
 	}
