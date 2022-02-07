@@ -103,6 +103,7 @@
     {"id":{"name":"spr_envi_tree","path":"sprites/spr_envi_tree/spr_envi_tree.yy",},"order":4,},
     {"id":{"name":"Gravity","path":"scripts/Gravity/Gravity.yy",},"order":1,},
     {"id":{"name":"MooseHitHurtRef","path":"scripts/MooseHitHurtRef/MooseHitHurtRef.yy",},"order":6,},
+    {"id":{"name":"obj_plate","path":"objects/obj_plate/obj_plate.yy",},"order":22,},
     {"id":{"name":"spr_oldboi","path":"sprites/spr_oldboi/spr_oldboi.yy",},"order":0,},
     {"id":{"name":"spr_moose_taunt_hurtbox","path":"sprites/spr_moose_taunt_hurtbox/spr_moose_taunt_hurtbox.yy",},"order":26,},
     {"id":{"name":"spr_player_fall","path":"sprites/spr_player_fall/spr_player_fall.yy",},"order":7,},
