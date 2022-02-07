@@ -1,8 +1,5 @@
 {
-  "spriteId": {
-    "name": "spr_moose_idle_full",
-    "path": "sprites/spr_moose_idle_full/spr_moose_idle_full.yy",
-  },
+  "spriteId": null,
   "solid": false,
   "visible": true,
   "spriteMaskId": {
