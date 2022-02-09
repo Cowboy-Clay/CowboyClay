@@ -184,6 +184,8 @@
     {"instances":[
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_Ground","path":"objects/obj_Ground/obj_Ground.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":18.765625,"scaleY":1.96875,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":88.0,"y":864.0,"resourceVersion":"1.0","name":"inst_2560997E","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_Wall","path":"objects/obj_Wall/obj_Wall.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4278190080,"rotation":0.0,"scaleX":3.109375,"scaleY":12.625,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":-70.0,"y":147.0,"resourceVersion":"1.0","name":"inst_552D817","tags":[],"resourceType":"GMRInstance",},
+        {"properties":[],"isDnd":false,"objectId":{"name":"obj_Ground","path":"objects/obj_Ground/obj_Ground.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":18.765625,"scaleY":1.96875,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":1289.0,"y":864.0,"resourceVersion":"1.0","name":"inst_52597BF5","tags":[],"resourceType":"GMRInstance",},
+        {"properties":[],"isDnd":false,"objectId":{"name":"obj_Ground","path":"objects/obj_Ground/obj_Ground.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":19.03125,"scaleY":4.234375,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":1272.0,"y":287.0,"resourceVersion":"1.0","name":"inst_26B1E914","tags":[],"resourceType":"GMRInstance",},
       ],"visible":true,"depth":200,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":32,"gridY":32,"layers":[],"hierarchyFrozen":false,"effectEnabled":true,"effectType":null,"properties":[],"resourceVersion":"1.0","name":"Collision","tags":[],"resourceType":"GMRInstanceLayer",},
     {"assets":[
         {"spriteId":{"name":"BG1CollisionMap","path":"sprites/BG1CollisionMap/BG1CollisionMap.yy",},"headPosition":0.0,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"animationSpeed":1.0,"colour":4294967295,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":-224.0,"y":96.0,"resourceVersion":"1.0","name":"graphic_F93D790","tags":[],"resourceType":"GMRSpriteGraphic",},
@@ -198,6 +200,8 @@
     {"name":"inst_4664FC35","path":"rooms/ShopScene/ShopScene.yy",},
     {"name":"inst_2560997E","path":"rooms/ShopScene/ShopScene.yy",},
     {"name":"inst_552D817","path":"rooms/ShopScene/ShopScene.yy",},
+    {"name":"inst_52597BF5","path":"rooms/ShopScene/ShopScene.yy",},
+    {"name":"inst_26B1E914","path":"rooms/ShopScene/ShopScene.yy",},
   ],
   "inheritCreationOrder": false,
   "sequenceId": null,

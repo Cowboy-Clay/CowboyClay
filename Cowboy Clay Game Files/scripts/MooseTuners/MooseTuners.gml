@@ -34,7 +34,7 @@ global.moose_idleAnim_type = AnimationType.FIRST_FRAME;
 
 
 global.moose_wanderAnim = spr_moose_walk;
-global.moose_wanderAnim_disar = spr_moose_walk_disarmed;
+global.moose_wanderAnim_disar = spr_moose_walk_empty;
 global.moose_wanderAnim_FPI = 20;
 global.moose_wanderAnim_type = AnimationType.LOOP;
 
@@ -50,7 +50,7 @@ global.moose_chargeAntiAnim = spr_moose_chargeAnti;
 global.moose_chargeAntiAnim_FPI = 1;
 global.moose_chargeAntiAnim_type = AnimationType.FIRST_FRAME;
 
-global.moose_chargeAnim = spr_moose_charge;
+//global.moose_chargeAnim = spr_moose_charge;
 global.moose_chargeAnim_FPI = 1;
 global.moose_chargeAnim_type = AnimationType.FIRST_FRAME;
 
@@ -58,7 +58,7 @@ global.moose_hitAnim = spr_moose_hit;
 global.moose_hitAnim_FPI = 1;
 global.moose_hitAnim_type = AnimationType.FIRST_FRAME;
 
-global.moose_blockAnim = spr_moose_block;
+//global.moose_blockAnim = spr_moose_block;
 global.moose_blockAnim_FPI = 1;
 global.moose_blockAnim_type = AnimationType.FIRST_FRAME;
 
