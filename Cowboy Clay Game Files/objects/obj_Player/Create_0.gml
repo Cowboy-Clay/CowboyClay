@@ -6,11 +6,13 @@ global.showDebugMessages = true; // set to true if you want to print debug messa
 #endregion
 
 #region State Variables
-enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW, LOCK, DEAD };
+enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW, LOCK, DEAD, KICK_ANTI, KICK_SWING, KICK_FOLLOW, SHEATHING, UNSHEATHING, PLUNGING };
 currentState = PlayerState.LOCK;
 facing = Direction.RIGHT; // The direction the player is facing
 armed = startArmed; // Is the player armed. startArmed is set in the variable menu
+sheathed = false;
 grounded = false;
+hiblock = 0;
 #endregion
 
 #region Physics Variables
@@ -28,14 +30,14 @@ global.player_maxWalkSpeed = 4; // The basic max walking speed
 dashTimer = 0;
 lastDashTapDirection = Direction.LEFT;
 dashOnCooldown = false;
-global.player_dashAnticipation = 45;
+global.player_dashAnticipation = 33;
 global.player_dashFrameAllowance = 15;
 global.player_dashImpulseForce = 45;
 global.player_dashExtendForce = 22;
 global.player_dashEndForce = 15;
 global.player_instantDash = true;
 global.player_dashDuration = 10;
-global.player_dashCooldown = 20;
+global.player_dashCooldown = 18;
 global.player_invulnWhileDashing = true;
 global.player_dashFollow = 38;
 #endregion
@@ -56,6 +58,17 @@ global.player_attackSwingFrames = 10;
 global.player_attackFollowFrames = 15;
 attackTimer = 0; // Frame counter to determine how long the player has been in each attack state
 #endregion
+#region Kick Attack Variables
+global.player_kickAntiFrames = 2;
+global.player_kickSwingFrames = 10;
+global.player_kickFollowFrames = 2;
+#endregion
+
+global.player_sheathFrames = 40;
+global.player_unsheathFrames = 20;
+sheathTimer = 0;
+
+global.player_plungeFrames = 7;
 
 invulnerable = false;
 invulnerabilityTimer = 0;
@@ -84,6 +97,21 @@ function UpdatePlayerState()
 	switch currentState
 	{
 		case PlayerState.IDLE:
+			if hiblock == 0 && keyboard_check(vk_down) && keyboard_check_pressed(ord("Z"))
+			{
+				PlayerPlungeSword();
+				return;
+			}
+			if hiblock == 1 && keyboard_check(vk_up) && keyboard_check_pressed(ord("Z"))
+			{
+				PlayerSheathSword();
+				return;
+			}
+			if sheathed && !armed && keyboard_check(vk_down) && keyboard_check(ord("Z"))
+			{
+				PlayerUnsheathSword();
+				return;
+			}
 			if keyboard_check(vk_down) && keyboard_check_pressed(ord("X")) && !dashOnCooldown
 			{
 				GoToDashAnti();
@@ -134,6 +162,7 @@ function PlayerStateBasedMethods()
 	switch currentState
 	{
 		case PlayerState.IDLE:
+			PlayerUpdateBlock();
 			PlayerDashCooldown();
 			PlayerAttack();
 			break;
@@ -172,10 +201,31 @@ function PlayerStateBasedMethods()
 			PlayerDashCooldown();
 			PlayerAttack();
 			break;
+		case PlayerState.KICK_ANTI:
+			PlayerDashCooldown();
+			PlayerAttack();
+			break;
+		case PlayerState.KICK_SWING:
+			PlayerDashCooldown();
+			PlayerAttack();
+			break;
+		case PlayerState.KICK_FOLLOW:
+			PlayerDashCooldown();
+			PlayerAttack();
+			break;
 		case PlayerState.DASH_ANTI:
 			break;
 		case PlayerState.DASH:
 			PlayerDash();
+			break;
+		case PlayerState.SHEATHING:
+			PlayerSheathSword();
+			break;
+		case PlayerState.UNSHEATHING:
+			PlayerUnsheathSword();
+			break;
+		case PlayerState.PLUNGING:
+			PlayerPlungeSword();
 			break;
 	}
 }
@@ -259,6 +309,32 @@ function GoToPlayerBasicAttack()
 		SetPlayerAnimation(global.player_attackFollowAnim, 1, AnimationType.HOLD);
 			obj_player_attackEffect.HidePlayerAttack();
 		attackTimer = global.player_attackFollowFrames;
+	}
+	if attackTimer <= 0
+	{
+		GoToPlayerIdle();
+	}
+}
+function GoToPlayerKick()
+{
+	if global.showDebugMessages show_debug_message("Player going to kick state");
+	attackTimer = global.player_kickAntiFrames;
+	currentState = PlayerState.KICK_ANTI;
+	SetPlayerAnimation(global.player_kickAntiAnim, 1, AnimationType.HOLD);
+	if attackTimer <= 0
+	{
+		currentState = PlayerState.KICK_SWING;
+		SetPlayerAnimation(global.player_kickAntiAnim, 1, AnimationType.HOLD);
+		//obj_player_attackEffect.ShowPlayerAttack(spr_player_kickEffect,1);
+		attackTimer = global.player_kickSwingFrames;
+	}
+	
+	if attackTimer <= 0
+	{
+		currentState = PlayerState.KICK_FOLLOW;
+		SetPlayerAnimation(global.player_kickFollowAnim, 1, AnimationType.HOLD);
+		obj_player_attackEffect.HidePlayerAttack();
+		attackTimer = global.player_kickFollowFrames;
 	}
 	if attackTimer <= 0
 	{
@@ -382,6 +458,87 @@ function CheckDash()
 #endregion
 
 #region Actions
+function PlayerPlungeSword()
+{
+	if !armed return;
+	if currentState != PlayerState.PLUNGING
+	{
+		audio_play_sound(sfx_sword_plunge,25,false);
+		currentState = PlayerState.PLUNGING;
+		sheathTimer = global.player_plungeFrames;
+		return;
+	}
+	sheathTimer --;
+	if sheathTimer <= 0
+	{
+		armed = false;
+		sheathed = false;
+		obj_player_sword.PlayerSwordFling(0,-1,.5);
+		obj_player_sword.plungeFlag = true
+		GoToPlayerIdle();
+	}
+}
+
+function PlayerUnsheathSword()
+{
+	if !sheathed || armed return;
+	if currentState != PlayerState.UNSHEATHING
+	{
+		show_debug_message("Beginning unsheath");
+		currentState = PlayerState.UNSHEATHING;
+		sheathTimer = global.player_unsheathFrames;
+		return;
+	}
+	sheathTimer --;
+	if sheathTimer <= 0
+	{
+		armed = true;
+		sheathed = false;
+		hiblock = 1;
+		GoToPlayerIdle();
+	}
+}
+
+function PlayerSheathSword()
+{
+	if !armed || sheathed return;
+	if currentState != PlayerState.SHEATHING
+	{
+		currentState = PlayerState.SHEATHING;
+		sheathTimer = global.player_sheathFrames;
+		return;
+	}
+	sheathTimer --;
+	if sheathTimer <= 0
+	{
+		armed = false;
+		sheathed = true;
+		GoToPlayerIdle();
+	}
+}
+
+function PlayerUpdateBlock()
+{
+	if global.showDebugMessages
+	{
+		//if hiblock == 0 show_debug_message("Current block is lo");
+		//else show_debug_message("Current block is hi");
+	}
+	
+	if keyboard_check_pressed(vk_up) && hiblock == 0
+	{
+		hiblock = 1;
+		if global.showDebugMessages show_debug_message("Changing to hi block");
+		return;
+	}
+	else if keyboard_check_pressed(vk_down) && hiblock == 1
+	{
+		hiblock = 0;
+		if global.showDebugMessages show_debug_message("Changing to lo block");
+		return;
+	}
+}
+
 function PlayerWalk()
 {
 	var curAc = global.player_walkAccel;
@@ -495,6 +652,11 @@ function PlayerAttack()
 	{
 		GoToPlayerBasicAttack();
 	}
+	else if currentState != PlayerState.KICK_ANTI && currentState != PlayerState.KICK_SWING
+	&& currentState != PlayerState.KICK_FOLLOW && keyboard_check_pressed(ord("Z")) && !armed && !keyboard_check(vk_down)
+	{
+		GoToPlayerKick();
+	}
 	else if currentState == PlayerState.BASIC_ATTACK_ANTI || currentState == PlayerState.BASIC_ATTACK_SWING || currentState == PlayerState.BASIC_ATTACK_FOLLOW
 	{
 		// Increment the attack timer
@@ -519,12 +681,42 @@ function PlayerAttack()
 			GoToPlayerIdle();
 		}
 	}
+	else if currentState == PlayerState.KICK_ANTI || currentState == PlayerState.KICK_SWING || currentState == PlayerState.KICK_FOLLOW
+	{
+		// Increment the attack timer
+		attackTimer -= 1;
+		// Move through the different substates
+		if currentState == PlayerState.KICK_ANTI && attackTimer <= 0
+		{
+			currentState = PlayerState.KICK_SWING;
+			SetPlayerAnimation(global.player_kickSwingAnim, 1, AnimationType.HOLD);
+			//obj_player_attackEffect.ShowPlayerAttack(
+			attackTimer = global.player_kickSwingFrames;
+		}
+		if currentState == PlayerState.KICK_SWING && attackTimer <= 0
+		{
+			currentState = PlayerState.KICK_FOLLOW;
+			SetPlayerAnimation(global.player_kickFollowAnim, 1, AnimationType.HOLD);
+			//obj_player_attackEffect.HidePlayerAttack();
+			attackTimer = global.player_kickFollowFrames;
+		}
+		if currentState == PlayerState.KICK_FOLLOW && attackTimer <= 0
+		{
+			GoToPlayerIdle();
+		}
+	}
+}
+
+function PlayerKick()
+{
+	
 }
 
 function PlayerPickupSword()
 {
 	if !armed && keyboard_check(ord("Z")) && place_meeting(x,y,obj_player_sword) && obj_player_sword.SwordCanBePickedUp()
 	{
+		audio_play_sound(sfx_sword_retrieve,25,false);
 		if global.showDebugMessages show_debug_message("Picked up sword");
 		armed = true;
 		obj_player_sword.currentState = SwordState.INACTIVE;

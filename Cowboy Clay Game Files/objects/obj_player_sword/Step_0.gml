@@ -10,3 +10,5 @@ if currentState == SwordState.FLYING
 SetPlayerSwordRotation();
 
 SwordAnimate();
+
+if plungeFlag && place_meeting(x,y,obj_player) == false plungeFlag = false;

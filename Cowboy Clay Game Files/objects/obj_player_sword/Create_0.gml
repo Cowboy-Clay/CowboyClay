@@ -4,6 +4,8 @@ animFrameCounter = 0;
 currentFPI = 1;
 currentAnimType = AnimationType.FIRST_FRAME;
 
+plungeFlag = false;
+
 global.sword_grav = .3;
 global.sword_grav_max = 5;
 
@@ -140,5 +142,7 @@ function SwordAnimate()
 
 function SwordCanBePickedUp()
 {
+	if plungeFlag return false;
+	
 	return currentState == SwordState.STUCK_FLOOR || currentState == SwordState.STUCK_WALL_LEFT || currentState == SwordState.STUCK_WALL_RIGHT;
 }

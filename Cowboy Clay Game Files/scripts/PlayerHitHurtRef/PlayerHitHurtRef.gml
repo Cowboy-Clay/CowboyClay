@@ -9,7 +9,10 @@ global.playerSprRef =
 	[global.player_fallAnim, spr_empty, spr_player_collision],
 	[global.player_jumpAntiAnim, spr_empty, spr_player_collision],
 	[global.player_walkAnim, spr_empty, spr_player_collision],
-	[global.player_walkAnim_disarmed, spr_empty, spr_player_collision]
+	[global.player_walkAnim_disarmed, spr_empty, spr_player_collision],
+	[global.player_kickAntiAnim, spr_empty, spr_player_collision],
+	[global.player_kickSwingAnim, spr_empty, spr_player_collision],
+	[global.player_kickFollowAnim, spr_empty, spr_player_collision]
 ]
 
 function GetPlayerHitBox()

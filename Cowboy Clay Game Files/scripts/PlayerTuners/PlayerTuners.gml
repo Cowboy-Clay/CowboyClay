@@ -12,6 +12,10 @@ global.player_walkAnimType = AnimationType.LOOP;
 global.player_attackAntiAnim = spr_player_attackAnti;
 global.player_attackSwingAnim = spr_player_attackSwing;
 global.player_attackFollowAnim = spr_player_attackFollow;
+// Kick animations
+global.player_kickAntiAnim = spr_player_idle;
+global.player_kickSwingAnim = spr_player_idle;
+global.player_kickFollowAnim = spr_player_idle;
 // Jump anti anims
 global.player_jumpAntiAnim = spr_player_jumpAnti;
 global.player_jumpAntiAnim_disarmed = spr_player_crouch_disarmed;
@@ -44,3 +48,7 @@ global.player_dashFollowAnimType = AnimationType.FIRST_FRAME;
 global.player_deathAnim = spr_player_death;
 global.player_deathAnimFPI = 6;
 global.player_deadAnimType = AnimationType.HOLD;
+
+global.player_highGuardAnim = global.player_idleAnim;
+global.player_highGuardAnimFPI = global.player_idleFPI;
+global.player_highGuardAnimType = global.player_idleAnimType;
