@@ -77,8 +77,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Enemy",
-    "path": "folders/Sprites/Enemy.yy",
+    "name": "Moose",
+    "path": "folders/Sprites/Enemy/Moose.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_moose_walk_noHelm",
