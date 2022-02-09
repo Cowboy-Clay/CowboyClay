@@ -41,6 +41,7 @@
     {"id":{"name":"spr_player_death","path":"sprites/spr_player_death/spr_player_death.yy",},"order":6,},
     {"id":{"name":"spr_player_jump_disarmed","path":"sprites/spr_player_jump_disarmed/spr_player_jump_disarmed.yy",},"order":11,},
     {"id":{"name":"BG1CollisionMap","path":"sprites/BG1CollisionMap/BG1CollisionMap.yy",},"order":7,},
+    {"id":{"name":"spr_metra_kick","path":"sprites/spr_metra_kick/spr_metra_kick.yy",},"order":1,},
     {"id":{"name":"spr_moose_idle_disarmed_hurtbox","path":"sprites/spr_moose_idle_disarmed_hurtbox/spr_moose_idle_disarmed_hurtbox.yy",},"order":17,},
     {"id":{"name":"spr_moose_walk_empty","path":"sprites/spr_moose_walk_empty/spr_moose_walk_empty.yy",},"order":44,},
     {"id":{"name":"spr_moose_walk_noHelm","path":"sprites/spr_moose_walk_noHelm/spr_moose_walk_noHelm.yy",},"order":47,},
