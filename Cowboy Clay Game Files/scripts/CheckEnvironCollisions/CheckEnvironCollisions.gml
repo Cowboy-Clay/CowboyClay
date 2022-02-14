@@ -1,5 +1,5 @@
 function CheckEnvironCollisions(colSpr){
-	collision_mask = [obj_Ground, obj_Wall, obj_plate];
+	collision_mask = [obj_Ground, obj_Wall, obj_plate, obj_door];
 
 	// Wall collision
 	for (i = 0; i < array_length(collision_mask); i++)

@@ -26,7 +26,11 @@
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_player_attackEffect","path":"objects/obj_player_attackEffect/obj_player_attackEffect.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":864.0,"y":768.0,"resourceVersion":"1.0","name":"inst_490B19F7","tags":[],"resourceType":"GMRInstance",},
       ],"visible":true,"depth":100,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":32,"gridY":32,"layers":[],"hierarchyFrozen":false,"effectEnabled":true,"effectType":null,"properties":[],"resourceVersion":"1.0","name":"Player","tags":[],"resourceType":"GMRInstanceLayer",},
     {"instances":[
-        {"properties":[],"isDnd":false,"objectId":{"name":"obj_plate","path":"objects/obj_plate/obj_plate.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":710.0,"y":904.0,"resourceVersion":"1.0","name":"inst_79760964","tags":[],"resourceType":"GMRInstance",},
+        {"properties":[
+            {"propertyId":{"name":"door_x","path":"objects/obj_plate/obj_plate.yy",},"objectId":{"name":"obj_plate","path":"objects/obj_plate/obj_plate.yy",},"value":"1248","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
+            {"propertyId":{"name":"door_y","path":"objects/obj_plate/obj_plate.yy",},"objectId":{"name":"obj_plate","path":"objects/obj_plate/obj_plate.yy",},"value":"590","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
+          ],"isDnd":false,"objectId":{"name":"obj_plate","path":"objects/obj_plate/obj_plate.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":710.0,"y":904.0,"resourceVersion":"1.0","name":"inst_79760964","tags":[],"resourceType":"GMRInstance",},
+        {"properties":[],"isDnd":false,"objectId":{"name":"obj_door","path":"objects/obj_door/obj_door.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":0.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":1248.0,"y":590.0,"resourceVersion":"1.0","name":"shop_door","tags":[],"resourceType":"GMRInstance",},
       ],"visible":true,"depth":200,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":32,"gridY":32,"layers":[],"hierarchyFrozen":false,"effectEnabled":true,"effectType":null,"properties":[],"resourceVersion":"1.0","name":"Mechanisms","tags":[],"resourceType":"GMRInstanceLayer",},
     {"assets":[
         {"spriteId":{"name":"spr_envi_woodplank","path":"sprites/spr_envi_woodplank/spr_envi_woodplank.yy",},"headPosition":0.0,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"animationSpeed":1.0,"colour":4294967295,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":810.0,"y":864.0,"resourceVersion":"1.0","name":"graphic_24E30213","tags":[],"resourceType":"GMRSpriteGraphic",},
@@ -117,6 +121,7 @@
     {"name":"inst_490B19F7","path":"rooms/ShopScene/ShopScene.yy",},
     {"name":"inst_79760964","path":"rooms/ShopScene/ShopScene.yy",},
     {"name":"inst_7493E90B","path":"rooms/ShopScene/ShopScene.yy",},
+    {"name":"shop_door","path":"rooms/ShopScene/ShopScene.yy",},
   ],
   "inheritCreationOrder": false,
   "sequenceId": null,
