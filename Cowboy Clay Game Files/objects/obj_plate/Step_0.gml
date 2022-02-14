@@ -2,7 +2,7 @@ last_on = on;
 
 for (i = 0; i < array_length(valid_objects); i ++)
 {
-	if place_meeting(x,y,valid_objects[i])
+	if place_meeting(x,y-1,valid_objects[i])
 	{
 		on = true;
 		break;
