@@ -4,7 +4,7 @@ if !global.paused
 {	
 	// Physics
 	Friction(PickPlayerFrict());
-	Gravity(PickPlayerGravi(), global.player_gravityMax);
+	Gravity(PickPlayerGravi(), global.player_gravityMax, spr_player_collision);
 	
 	if currentState != PlayerState.LOCK && currentState != PlayerState.DEAD
 	{
