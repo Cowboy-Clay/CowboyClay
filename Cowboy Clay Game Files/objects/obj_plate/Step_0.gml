@@ -23,5 +23,13 @@ else if !last_on && on
 	audio_play_sound(down_sound,10,false);
 }
 
-if on sprite_index = on_sprite;
-else sprite_index = off_sprite;
+if on
+{
+	sprite_index = on_sprite;
+	door_instance.open_door();
+}
+else
+{
+	sprite_index = off_sprite;
+	door_instance.close_door();
+}
