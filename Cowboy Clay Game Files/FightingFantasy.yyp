@@ -38,6 +38,7 @@
     {"id":{"name":"spr_player_sword_enviCollision","path":"sprites/spr_player_sword_enviCollision/spr_player_sword_enviCollision.yy",},"order":20,},
     {"id":{"name":"spr_player_attackSwing_hitbox","path":"sprites/spr_player_attackSwing_hitbox/spr_player_attackSwing_hitbox.yy",},"order":20,},
     {"id":{"name":"spr_envi_woodplank","path":"sprites/spr_envi_woodplank/spr_envi_woodplank.yy",},"order":11,},
+    {"id":{"name":"bg1_map2","path":"sprites/bg1_map2/bg1_map2.yy",},"order":15,},
     {"id":{"name":"spr_moose_blockLo_empty","path":"sprites/spr_moose_blockLo_empty/spr_moose_blockLo_empty.yy",},"order":5,},
     {"id":{"name":"obj_music_controller","path":"objects/obj_music_controller/obj_music_controller.yy",},"order":23,},
     {"id":{"name":"spr_player_sword","path":"sprites/spr_player_sword/spr_player_sword.yy",},"order":14,},
