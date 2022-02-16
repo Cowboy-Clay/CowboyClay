@@ -52,7 +52,7 @@
     {"id":{"name":"BG1CollisionMap","path":"sprites/BG1CollisionMap/BG1CollisionMap.yy",},"order":7,},
     {"id":{"name":"spr_metra_kick","path":"sprites/spr_metra_kick/spr_metra_kick.yy",},"order":1,},
     {"id":{"name":"spr_moose_idle_disarmed_hurtbox","path":"sprites/spr_moose_idle_disarmed_hurtbox/spr_moose_idle_disarmed_hurtbox.yy",},"order":17,},
-    {"id":{"name":"spr_tileset_wood","path":"sprites/spr_tileset_wood/spr_tileset_wood.yy",},"order":16,},
+    {"id":{"name":"spr_tileset_wood","path":"sprites/spr_tileset_wood/spr_tileset_wood.yy",},"order":15,},
     {"id":{"name":"spr_moose_walk_empty","path":"sprites/spr_moose_walk_empty/spr_moose_walk_empty.yy",},"order":44,},
     {"id":{"name":"spr_moose_walk_noHelm","path":"sprites/spr_moose_walk_noHelm/spr_moose_walk_noHelm.yy",},"order":47,},
     {"id":{"name":"spr_moose_walk_hurtbox","path":"sprites/spr_moose_walk_hurtbox/spr_moose_walk_hurtbox.yy",},"order":46,},
