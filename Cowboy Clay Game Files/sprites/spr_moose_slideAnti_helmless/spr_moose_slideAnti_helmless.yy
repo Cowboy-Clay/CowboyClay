@@ -7,7 +7,7 @@
   "edgeFiltering": false,
   "collisionTolerance": 0,
   "swfPrecision": 2.525,
-  "bbox_left": 200,
+  "bbox_left": 212,
   "bbox_right": 559,
   "bbox_top": 6,
   "bbox_bottom": 317,
@@ -24,9 +24,9 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"89e94fa9-7afc-4ed5-90ae-d2b860d316b2","path":"sprites/spr_moose_slideAnti_helmless/spr_moose_slideAnti_helmless.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"89e94fa9-7afc-4ed5-90ae-d2b860d316b2","path":"sprites/spr_moose_slideAnti_helmless/spr_moose_slideAnti_helmless.yy",},"LayerId":{"name":"00d7747f-cf47-40d3-a9fa-b6fabac23118","path":"sprites/spr_moose_slideAnti_helmless/spr_moose_slideAnti_helmless.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_moose_slideAnti_helmless","path":"sprites/spr_moose_slideAnti_helmless/spr_moose_slideAnti_helmless.yy",},"resourceVersion":"1.0","name":"89e94fa9-7afc-4ed5-90ae-d2b860d316b2","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"95ef11ad-6bcf-4db5-88ad-3a2353e5fc28","path":"sprites/spr_moose_slideAnti_helmless/spr_moose_slideAnti_helmless.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"95ef11ad-6bcf-4db5-88ad-3a2353e5fc28","path":"sprites/spr_moose_slideAnti_helmless/spr_moose_slideAnti_helmless.yy",},"LayerId":{"name":"552eaa1e-4a1d-41e0-88d9-7496bf9c7cb0","path":"sprites/spr_moose_slideAnti_helmless/spr_moose_slideAnti_helmless.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_moose_slideAnti_helmless","path":"sprites/spr_moose_slideAnti_helmless/spr_moose_slideAnti_helmless.yy",},"resourceVersion":"1.0","name":"95ef11ad-6bcf-4db5-88ad-3a2353e5fc28","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"spr_moose_slideAnti_helmless","path":"sprites/spr_moose_slideAnti_helmless/spr_moose_slideAnti_helmless.yy",},
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"d627e053-db42-405e-92f4-506cc5fecf07","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"89e94fa9-7afc-4ed5-90ae-d2b860d316b2","path":"sprites/spr_moose_slideAnti_helmless/spr_moose_slideAnti_helmless.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"79bdbd5f-e31b-4449-98d2-4c2c3ec60d79","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"95ef11ad-6bcf-4db5-88ad-3a2353e5fc28","path":"sprites/spr_moose_slideAnti_helmless/spr_moose_slideAnti_helmless.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
@@ -65,7 +65,7 @@
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"00d7747f-cf47-40d3-a9fa-b6fabac23118","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"552eaa1e-4a1d-41e0-88d9-7496bf9c7cb0","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": null,
   "parent": {
