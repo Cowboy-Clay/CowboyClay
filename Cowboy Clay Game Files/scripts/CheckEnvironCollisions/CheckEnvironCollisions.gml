@@ -1,22 +1,20 @@
 function CheckEnvironCollisions(colSpr){
+	collision_mask = [obj_Ground, obj_Wall, obj_plate, obj_door];
+
 	// Wall collision
-	if place_meeting(x+hspeed, y, obj_Wall)
+	for (i = 0; i < array_length(collision_mask); i++)
 	{
-		while place_meeting(x, y, obj_Wall) == false
+		if collision_point(x+hspeed+(sprite_get_width(colSpr)/2*sign(hspeed)),y,collision_mask[i],true,true)
 		{
-			x += sign(hspeed);
-		}
-		if hspeed > 0
-		{
-			if collision_point(x+(sprite_get_width(colSpr)/2),y,obj_Wall,false,true)
-				hspeed = 0;
-		}
-		else if hspeed < 0
-		{
-			if collision_point(x-(sprite_get_width(colSpr)/2),y,obj_Wall,false,true)
-				hspeed = 0;
+			d = sign(hspeed);
+			hspeed = 0;
+			while collision_point(x+(sprite_get_width(colSpr)/2*d),y,collision_mask[i],true,true) == false
+			{
+				x+=d;
+			}
 		}
 	}
+
 	
 	if place_meeting(x+hspeed, y, obj_Moose)
 	{
@@ -37,12 +35,15 @@ function CheckEnvironCollisions(colSpr){
 	}
 	
 	// Ground collision
-	if place_meeting(x, y+vspeed, obj_Ground)
+	for(i = 0; i < array_length(collision_mask); i++)
 	{
-		while place_meeting(x, y, obj_Ground) == false
+		if collision_point(x- (sprite_get_width(colSpr)/2-2),y+(sprite_get_height(colSpr)/2)+vspeed,collision_mask[i],true,true) || collision_point(x+ (sprite_get_width(colSpr)/2-2),y+(sprite_get_height(colSpr)/2)+vspeed,collision_mask[i],true,true)
 		{
-			y += sign(vspeed);
+			vspeed = 0;
+			while !collision_point(x- (sprite_get_width(colSpr)/2-2),y+(sprite_get_height(colSpr)/2),collision_mask[i],true,true) && !collision_point(x+ (sprite_get_width(colSpr)/2-2),y+(sprite_get_height(colSpr)/2),collision_mask[i],true,true)
+			{
+				y++;
+			}
 		}
-		vspeed = 0;
 	}
 }

@@ -15,7 +15,7 @@ if !global.paused
 	else if currentState == MooseState.DEAD obj_player.currentState = PlayerState.LOCK;
 	
 	Friction(GetMooseFriction());
-	Gravity(1,10);
+	Gravity(1,10,spr_enemy_collision);
 	LimitMooseSpeed();
 	
 	PlayMooseAnimation();

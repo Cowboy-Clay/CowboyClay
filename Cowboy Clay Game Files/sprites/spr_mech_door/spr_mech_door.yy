@@ -1,6 +1,6 @@
 {
   "bboxMode": 0,
-  "collisionKind": 1,
+  "collisionKind": 4,
   "type": 0,
   "origin": 0,
   "preMultiplyAlpha": false,
@@ -44,7 +44,7 @@
     "spriteId": {"name":"spr_mech_door","path":"sprites/spr_mech_door/spr_mech_door.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 2.0,
+    "playbackSpeed": 0.0,
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,

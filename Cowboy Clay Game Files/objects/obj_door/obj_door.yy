@@ -1,14 +1,11 @@
 {
   "spriteId": {
-    "name": "spr_mech_pressurePlate2",
-    "path": "sprites/spr_mech_pressurePlate2/spr_mech_pressurePlate2.yy",
+    "name": "spr_mech_door",
+    "path": "sprites/spr_mech_door/spr_mech_door.yy",
   },
   "solid": false,
   "visible": true,
-  "spriteMaskId": {
-    "name": "spr_mech_pressurePlate1",
-    "path": "sprites/spr_mech_pressurePlate1/spr_mech_pressurePlate1.yy",
-  },
+  "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": null,
   "physicsObject": false,
@@ -27,17 +24,14 @@
     {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
-  "properties": [
-    {"varType":0,"value":"0","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"door_x","tags":[],"resourceType":"GMObjectProperty",},
-    {"varType":0,"value":"0","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"door_y","tags":[],"resourceType":"GMObjectProperty",},
-  ],
+  "properties": [],
   "overriddenProperties": [],
   "parent": {
     "name": "Mechanism",
     "path": "folders/Objects/Mechanism.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_plate",
+  "name": "obj_door",
   "tags": [],
   "resourceType": "GMObject",
 }
