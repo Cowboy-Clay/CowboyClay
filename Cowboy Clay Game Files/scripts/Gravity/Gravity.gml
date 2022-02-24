@@ -1,5 +1,5 @@
 function Gravity(accel, max, colSpr){
-	collision_mask = [obj_Ground, obj_Wall, obj_plate, obj_door];
+	collision_mask = [obj_Ground, obj_Wall, obj_plate, obj_door,obj_box];
 	// If you are touching the ground
 	for(i = 0; i < array_length(collision_mask); i++)
 	{

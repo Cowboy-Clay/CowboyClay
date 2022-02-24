@@ -34,13 +34,19 @@ function CheckEnvironCollisions(colSpr){
 		}
 	}
 	
+	
+	collision_mask = [obj_Ground, obj_Wall, obj_plate, obj_door,obj_box];
 	// Ground collision
 	for(i = 0; i < array_length(collision_mask); i++)
 	{
-		if collision_point(x- (sprite_get_width(colSpr)/2-2),y+(sprite_get_height(colSpr)/2)+vspeed,collision_mask[i],true,true) || collision_point(x+ (sprite_get_width(colSpr)/2-2),y+(sprite_get_height(colSpr)/2)+vspeed,collision_mask[i],true,true)
+		if collision_point(x- (sprite_get_width(colSpr)/2-2),y+(sprite_get_height(colSpr)/2)+vspeed,collision_mask[i],true,true) ||
+		   collision_point(x,y+(sprite_get_height(colSpr)/2)+vspeed,collision_mask[i],true,true) ||
+		   collision_point(x+ (sprite_get_width(colSpr)/2-2),y+(sprite_get_height(colSpr)/2)+vspeed,collision_mask[i],true,true)
 		{
 			vspeed = 0;
-			while !collision_point(x- (sprite_get_width(colSpr)/2-2),y+(sprite_get_height(colSpr)/2),collision_mask[i],true,true) && !collision_point(x+ (sprite_get_width(colSpr)/2-2),y+(sprite_get_height(colSpr)/2),collision_mask[i],true,true)
+			while !collision_point(x- (sprite_get_width(colSpr)/2-2),y+(sprite_get_height(colSpr)/2),collision_mask[i],true,true) &&
+			      !collision_point(x,y+(sprite_get_height(colSpr)/2),collision_mask[i],true,true) &&
+				  !collision_point(x+ (sprite_get_width(colSpr)/2-2),y+(sprite_get_height(colSpr)/2),collision_mask[i],true,true)
 			{
 				y++;
 			}

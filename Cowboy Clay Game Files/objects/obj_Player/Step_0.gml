@@ -66,3 +66,5 @@ else
 	if audio_is_playing(sfx_sword_swing) audio_stop_sound(sfx_sword_swing);
 	if audio_is_playing(sfx_sword_anti) audio_stop_sound(sfx_sword_anti);
 }
+
+CollideWithBox();
