@@ -8,14 +8,14 @@
   "collisionTolerance": 0,
   "swfPrecision": 2.525,
   "bbox_left": 0,
-  "bbox_right": 199,
+  "bbox_right": 615,
   "bbox_top": 0,
   "bbox_bottom": 239,
   "HTile": false,
   "VTile": false,
   "For3D": false,
-  "width": 200,
-  "height": 300,
+  "width": 616,
+  "height": 240,
   "textureGroupId": {
     "name": "Default",
     "path": "texturegroups/Default",
@@ -24,12 +24,12 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"cb64ae2b-7cf5-4567-9b18-08c6630c6845","path":"sprites/spr_tileset_wood/spr_tileset_wood.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"cb64ae2b-7cf5-4567-9b18-08c6630c6845","path":"sprites/spr_tileset_wood/spr_tileset_wood.yy",},"LayerId":{"name":"03dd2dda-eb94-48a8-ab44-14aa5c9e4f58","path":"sprites/spr_tileset_wood/spr_tileset_wood.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_tileset_wood","path":"sprites/spr_tileset_wood/spr_tileset_wood.yy",},"resourceVersion":"1.0","name":"cb64ae2b-7cf5-4567-9b18-08c6630c6845","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"c76e24d1-2710-49ae-81a6-096f5dd42a57","path":"sprites/spr_envi_impassable/spr_envi_impassable.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"c76e24d1-2710-49ae-81a6-096f5dd42a57","path":"sprites/spr_envi_impassable/spr_envi_impassable.yy",},"LayerId":{"name":"eb73229c-872a-441e-848b-5aabb0f37382","path":"sprites/spr_envi_impassable/spr_envi_impassable.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_envi_impassable","path":"sprites/spr_envi_impassable/spr_envi_impassable.yy",},"resourceVersion":"1.0","name":"c76e24d1-2710-49ae-81a6-096f5dd42a57","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
-    "spriteId": {"name":"spr_tileset_wood","path":"sprites/spr_tileset_wood/spr_tileset_wood.yy",},
+    "spriteId": {"name":"spr_envi_impassable","path":"sprites/spr_envi_impassable/spr_envi_impassable.yy",},
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 30.0,
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"ff7633de-dc49-4110-959c-ab2b35b14a2a","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"cb64ae2b-7cf5-4567-9b18-08c6630c6845","path":"sprites/spr_tileset_wood/spr_tileset_wood.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"ff428d27-a6b3-4927-a728-e82affc50ed9","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"c76e24d1-2710-49ae-81a6-096f5dd42a57","path":"sprites/spr_envi_impassable/spr_envi_impassable.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
@@ -58,14 +58,14 @@
     "yorigin": 0,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"spr_tileset_wood","path":"sprites/spr_tileset_wood/spr_tileset_wood.yy",},
+    "parent": {"name":"spr_envi_impassable","path":"sprites/spr_envi_impassable/spr_envi_impassable.yy",},
     "resourceVersion": "1.3",
-    "name": "spr_tileset_wood",
+    "name": "spr_envi_impassable",
     "tags": [],
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"03dd2dda-eb94-48a8-ab44-14aa5c9e4f58","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"eb73229c-872a-441e-848b-5aabb0f37382","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": null,
   "parent": {
@@ -73,7 +73,7 @@
     "path": "folders/Sprites/Environment.yy",
   },
   "resourceVersion": "1.0",
-  "name": "spr_tileset_wood",
+  "name": "spr_envi_impassable",
   "tags": [],
   "resourceType": "GMSprite",
 }
