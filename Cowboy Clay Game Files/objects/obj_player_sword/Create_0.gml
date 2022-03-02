@@ -1,5 +1,7 @@
 currentState = SwordState.INACTIVE;
 
+collision_mask = [obj_tile_coll, obj_plate, obj_elevator, obj_box, obj_doors];
+
 animFrameCounter = 0;
 currentFPI = 1;
 currentAnimType = AnimationType.FIRST_FRAME;
