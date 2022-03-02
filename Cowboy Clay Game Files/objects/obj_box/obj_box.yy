@@ -1,11 +1,14 @@
 {
   "spriteId": {
-    "name": "spr_box",
-    "path": "sprites/spr_box/spr_box.yy",
+    "name": "spr_mech_pushBlock",
+    "path": "sprites/spr_mech_pushBlock/spr_mech_pushBlock.yy",
   },
   "solid": false,
   "visible": true,
-  "spriteMaskId": null,
+  "spriteMaskId": {
+    "name": "spr_mech_pushBlockCollision",
+    "path": "sprites/spr_mech_pushBlockCollision/spr_mech_pushBlockCollision.yy",
+  },
   "persistent": false,
   "parentObjectId": null,
   "physicsObject": false,

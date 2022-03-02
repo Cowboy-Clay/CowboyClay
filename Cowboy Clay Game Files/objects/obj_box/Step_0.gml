@@ -1,4 +1,4 @@
 Friction(1);
-Gravity(1,20,sprite_index);
+Gravity(1,20,sprite_index,collision_mask);
 
-CheckEnvironCollisions(sprite_index);
+CheckEnvironCollisions(sprite_index,collision_mask);

@@ -889,13 +889,13 @@ function PlayerNotAttacking()
 
 function CollideWithBox()
 {
-	if collision_point(x+hspeed+sprite_get_width(spr_player_collision)/2*sign(hspeed),y+vspeed+sprite_get_height(spr_player_collision)/2-1,obj_box,true,true) ||
-	   collision_point(x+hspeed+sprite_get_width(spr_player_collision)/2*sign(hspeed),y+vspeed-sprite_get_height(spr_player_collision)/2+1,obj_box,true,true)
+	if collision_point(x+hspeed+sprite_get_width(spr_player_collision)/2*sign(hspeed)+2*sign(hspeed),y+vspeed+sprite_get_height(spr_player_collision)/2-1,obj_box,true,true) ||
+	   collision_point(x+hspeed+sprite_get_width(spr_player_collision)/2*sign(hspeed)+2*sign(hspeed),y+vspeed-sprite_get_height(spr_player_collision)/2+1,obj_box,true,true)
 	{
 		player_target_x = x+hspeed;
 		player_min_x = x;
-		while(!collision_point(x+hspeed+sprite_get_width(spr_player_collision)/2*sign(hspeed),y+vspeed+sprite_get_height(spr_player_collision)/2-1,obj_box,true,true) &&
-	          !collision_point(x+hspeed+sprite_get_width(spr_player_collision)/2*sign(hspeed),y+vspeed-sprite_get_height(spr_player_collision)/2+1,obj_box,true,true))
+		while(!collision_point(x+hspeed+sprite_get_width(spr_player_collision)/2*sign(hspeed)+2*sign(hspeed),y+vspeed+sprite_get_height(spr_player_collision)/2-1,obj_box,true,true) &&
+	          !collision_point(x+hspeed+sprite_get_width(spr_player_collision)/2*sign(hspeed)+2*sign(hspeed),y+vspeed-sprite_get_height(spr_player_collision)/2+1,obj_box,true,true))
 		{
 			player_min_x += sign(hspeed);
 		}
