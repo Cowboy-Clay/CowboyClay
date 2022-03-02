@@ -1,7 +1,7 @@
 enum elevator_state { falling, rising, holding };
 state = elevator_state.falling;
 
-collision_mask = [obj_Ground, obj_Wall, obj_plate, obj_door,obj_box];
+collision_mask = [obj_Ground, obj_Wall, obj_plate, obj_door,obj_box, obj_tile_coll];
 
 cooldown = 30;
 cooldown_timer = 0;
