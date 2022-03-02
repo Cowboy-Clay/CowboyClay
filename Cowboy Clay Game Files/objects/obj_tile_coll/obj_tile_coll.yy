@@ -24,8 +24,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "FightingFantasy",
-    "path": "FightingFantasy.yyp",
+    "name": "Collision",
+    "path": "folders/Objects/Collision.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_tile_coll",

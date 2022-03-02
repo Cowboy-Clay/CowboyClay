@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_envi_door","path":"sprites/spr_envi_door/spr_envi_door.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_envi_door",
     "tags": [],
     "resourceType": "GMSequence",
