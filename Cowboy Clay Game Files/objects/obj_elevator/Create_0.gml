@@ -21,7 +21,7 @@ mounted = false;
 
 function check_mounted()
 {
-	mounted = place_meeting(x,y-3,obj_player) &&
+	mounted = place_meeting(x,y-5,obj_player) &&
 		obj_player.y < y &&
 		abs(obj_player.x - x) <= sprite_get_width(spr_mech_elevator_coll)/2;
 }
