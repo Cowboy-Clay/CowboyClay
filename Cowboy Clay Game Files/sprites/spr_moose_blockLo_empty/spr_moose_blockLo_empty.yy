@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_moose_blockLo_empty","path":"sprites/spr_moose_blockLo_empty/spr_moose_blockLo_empty.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_moose_blockLo_empty",
     "tags": [],
     "resourceType": "GMSequence",

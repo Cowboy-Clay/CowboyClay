@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_moose_hit","path":"sprites/spr_moose_hit/spr_moose_hit.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_moose_hit",
     "tags": [],
     "resourceType": "GMSequence",

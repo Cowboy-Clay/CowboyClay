@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_oldboi","path":"sprites/spr_oldboi/spr_oldboi.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_oldboi",
     "tags": [],
     "resourceType": "GMSequence",

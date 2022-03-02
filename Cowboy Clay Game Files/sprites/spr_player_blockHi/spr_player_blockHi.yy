@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_player_blockHi","path":"sprites/spr_player_blockHi/spr_player_blockHi.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_player_blockHi",
     "tags": [],
     "resourceType": "GMSequence",

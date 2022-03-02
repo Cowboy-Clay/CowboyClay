@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_player_dash","path":"sprites/spr_player_dash/spr_player_dash.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_player_dash",
     "tags": [],
     "resourceType": "GMSequence",

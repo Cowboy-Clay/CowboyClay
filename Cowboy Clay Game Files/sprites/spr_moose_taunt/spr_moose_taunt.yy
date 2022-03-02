@@ -67,7 +67,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_moose_taunt","path":"sprites/spr_moose_taunt/spr_moose_taunt.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_moose_taunt",
     "tags": [],
     "resourceType": "GMSequence",

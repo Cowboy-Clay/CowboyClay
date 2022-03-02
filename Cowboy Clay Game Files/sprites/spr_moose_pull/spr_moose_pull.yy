@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_moose_pull","path":"sprites/spr_moose_pull/spr_moose_pull.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_moose_pull",
     "tags": [],
     "resourceType": "GMSequence",

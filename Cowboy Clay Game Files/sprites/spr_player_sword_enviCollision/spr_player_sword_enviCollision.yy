@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_player_sword_enviCollision","path":"sprites/spr_player_sword_enviCollision/spr_player_sword_enviCollision.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_player_sword_enviCollision",
     "tags": [],
     "resourceType": "GMSequence",

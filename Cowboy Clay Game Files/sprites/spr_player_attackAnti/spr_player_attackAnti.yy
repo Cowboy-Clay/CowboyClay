@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_player_attackAnti","path":"sprites/spr_player_attackAnti/spr_player_attackAnti.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_player_attackAnti",
     "tags": [],
     "resourceType": "GMSequence",

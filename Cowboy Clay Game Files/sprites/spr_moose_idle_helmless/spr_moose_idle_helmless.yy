@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_moose_idle_helmless","path":"sprites/spr_moose_idle_helmless/spr_moose_idle_helmless.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_moose_idle_helmless",
     "tags": [],
     "resourceType": "GMSequence",

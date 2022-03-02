@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_player_dash_anti","path":"sprites/spr_player_dash_anti/spr_player_dash_anti.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_player_dash_anti",
     "tags": [],
     "resourceType": "GMSequence",

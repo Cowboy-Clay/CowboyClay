@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_player_blockLoTemp","path":"sprites/spr_player_blockLoTemp/spr_player_blockLoTemp.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_player_blockLoTemp",
     "tags": [],
     "resourceType": "GMSequence",

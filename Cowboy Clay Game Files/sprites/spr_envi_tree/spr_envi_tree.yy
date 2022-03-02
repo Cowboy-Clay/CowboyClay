@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_envi_tree","path":"sprites/spr_envi_tree/spr_envi_tree.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_envi_tree",
     "tags": [],
     "resourceType": "GMSequence",

@@ -4,7 +4,7 @@ if !global.paused
 {	
 	// Physics
 	Friction(PickPlayerFrict());
-	Gravity(PickPlayerGravi(), global.player_gravityMax, spr_player_collision);
+	Gravity(PickPlayerGravi(), global.player_gravityMax, spr_player_collision, collision_mask);
 	
 	if currentState != PlayerState.LOCK && currentState != PlayerState.DEAD
 	{
@@ -30,7 +30,7 @@ if !global.paused
 	PlayPlayerAnimation();
 	SetPlayerFacingDirection();
 }
-CheckEnvironCollisions(spr_player_collision);
+CheckEnvironCollisions(spr_player_collision, collision_mask);
 
 if currentState == PlayerState.WALKING
 {

@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_player_crouch_disarmed","path":"sprites/spr_player_crouch_disarmed/spr_player_crouch_disarmed.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_player_crouch_disarmed",
     "tags": [],
     "resourceType": "GMSequence",

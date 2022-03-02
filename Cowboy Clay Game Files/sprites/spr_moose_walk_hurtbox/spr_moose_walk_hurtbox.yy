@@ -67,7 +67,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_moose_walk_hurtbox","path":"sprites/spr_moose_walk_hurtbox/spr_moose_walk_hurtbox.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_moose_walk_hurtbox",
     "tags": [],
     "resourceType": "GMSequence",

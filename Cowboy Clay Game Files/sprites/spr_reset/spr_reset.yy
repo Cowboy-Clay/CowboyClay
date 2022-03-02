@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_reset","path":"sprites/spr_reset/spr_reset.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_reset",
     "tags": [],
     "resourceType": "GMSequence",

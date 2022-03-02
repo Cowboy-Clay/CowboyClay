@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_player_attackFollow","path":"sprites/spr_player_attackFollow/spr_player_attackFollow.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_player_attackFollow",
     "tags": [],
     "resourceType": "GMSequence",

@@ -1,5 +1,6 @@
 /// @description Code to be executed when player is created
-
+collision_mask = [obj_Ground, obj_Wall, obj_plate, obj_door,obj_box, obj_elevator];
+	
 #region Master Variables
 global.paused = false; // true if the game should be paused
 global.showDebugMessages = true; // set to true if you want to print debug messages

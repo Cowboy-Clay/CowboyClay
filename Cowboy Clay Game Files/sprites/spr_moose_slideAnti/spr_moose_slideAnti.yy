@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_moose_slideAnti","path":"sprites/spr_moose_slideAnti/spr_moose_slideAnti.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_moose_slideAnti",
     "tags": [],
     "resourceType": "GMSequence",

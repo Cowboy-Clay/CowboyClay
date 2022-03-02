@@ -67,7 +67,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_moose_taunt_hitbox","path":"sprites/spr_moose_taunt_hitbox/spr_moose_taunt_hitbox.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_moose_taunt_hitbox",
     "tags": [],
     "resourceType": "GMSequence",

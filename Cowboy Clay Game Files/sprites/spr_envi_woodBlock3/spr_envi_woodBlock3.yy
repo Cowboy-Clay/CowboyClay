@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_envi_woodBlock3","path":"sprites/spr_envi_woodBlock3/spr_envi_woodBlock3.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_envi_woodBlock3",
     "tags": [],
     "resourceType": "GMSequence",

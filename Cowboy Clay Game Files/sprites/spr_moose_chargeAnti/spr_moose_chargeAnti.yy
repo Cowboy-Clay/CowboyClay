@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_moose_chargeAnti","path":"sprites/spr_moose_chargeAnti/spr_moose_chargeAnti.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_moose_chargeAnti",
     "tags": [],
     "resourceType": "GMSequence",

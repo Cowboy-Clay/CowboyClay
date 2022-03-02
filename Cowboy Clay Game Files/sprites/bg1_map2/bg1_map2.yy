@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"bg1_map2","path":"sprites/bg1_map2/bg1_map2.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "bg1_map2",
     "tags": [],
     "resourceType": "GMSequence",

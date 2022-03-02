@@ -67,7 +67,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_moose_walk_disarmedHelm","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_moose_walk_disarmedHelm",
     "tags": [],
     "resourceType": "GMSequence",

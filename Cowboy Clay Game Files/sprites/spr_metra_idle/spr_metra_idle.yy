@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_metra_idle","path":"sprites/spr_metra_idle/spr_metra_idle.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_metra_idle",
     "tags": [],
     "resourceType": "GMSequence",

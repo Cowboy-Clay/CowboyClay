@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_moose_slide_disarmedHelm","path":"sprites/spr_moose_slide_disarmedHelm/spr_moose_slide_disarmedHelm.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_moose_slide_disarmedHelm",
     "tags": [],
     "resourceType": "GMSequence",

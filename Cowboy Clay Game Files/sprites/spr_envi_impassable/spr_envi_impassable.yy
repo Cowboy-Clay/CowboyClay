@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_envi_impassable","path":"sprites/spr_envi_impassable/spr_envi_impassable.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_envi_impassable",
     "tags": [],
     "resourceType": "GMSequence",

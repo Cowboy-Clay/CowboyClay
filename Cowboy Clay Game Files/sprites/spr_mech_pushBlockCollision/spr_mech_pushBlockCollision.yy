@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_mech_pushBlockCollision","path":"sprites/spr_mech_pushBlockCollision/spr_mech_pushBlockCollision.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_mech_pushBlockCollision",
     "tags": [],
     "resourceType": "GMSequence",

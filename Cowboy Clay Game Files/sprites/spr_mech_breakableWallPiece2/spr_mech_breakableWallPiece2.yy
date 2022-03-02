@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_mech_breakableWallPiece2","path":"sprites/spr_mech_breakableWallPiece2/spr_mech_breakableWallPiece2.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_mech_breakableWallPiece2",
     "tags": [],
     "resourceType": "GMSequence",

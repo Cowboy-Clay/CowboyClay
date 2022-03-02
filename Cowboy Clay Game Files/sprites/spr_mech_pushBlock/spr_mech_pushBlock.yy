@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_mech_pushBlock","path":"sprites/spr_mech_pushBlock/spr_mech_pushBlock.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_mech_pushBlock",
     "tags": [],
     "resourceType": "GMSequence",

@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_moose_idle_disarmed_hitbox","path":"sprites/spr_moose_idle_disarmed_hitbox/spr_moose_idle_disarmed_hitbox.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_moose_idle_disarmed_hitbox",
     "tags": [],
     "resourceType": "GMSequence",

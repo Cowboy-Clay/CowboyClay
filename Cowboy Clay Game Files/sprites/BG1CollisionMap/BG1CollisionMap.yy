@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"BG1CollisionMap","path":"sprites/BG1CollisionMap/BG1CollisionMap.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "BG1CollisionMap",
     "tags": [],
     "resourceType": "GMSequence",

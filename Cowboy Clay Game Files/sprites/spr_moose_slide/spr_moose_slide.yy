@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_moose_slide","path":"sprites/spr_moose_slide/spr_moose_slide.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_moose_slide",
     "tags": [],
     "resourceType": "GMSequence",

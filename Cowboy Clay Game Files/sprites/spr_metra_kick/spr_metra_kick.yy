@@ -63,7 +63,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_metra_kick","path":"sprites/spr_metra_kick/spr_metra_kick.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_metra_kick",
     "tags": [],
     "resourceType": "GMSequence",

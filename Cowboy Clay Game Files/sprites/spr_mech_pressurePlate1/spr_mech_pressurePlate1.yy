@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_mech_pressurePlate1","path":"sprites/spr_mech_pressurePlate1/spr_mech_pressurePlate1.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_mech_pressurePlate1",
     "tags": [],
     "resourceType": "GMSequence",

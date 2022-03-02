@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_moose_slide_hurtbox","path":"sprites/spr_moose_slide_hurtbox/spr_moose_slide_hurtbox.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_moose_slide_hurtbox",
     "tags": [],
     "resourceType": "GMSequence",

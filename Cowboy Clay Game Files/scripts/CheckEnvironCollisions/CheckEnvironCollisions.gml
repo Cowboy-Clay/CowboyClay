@@ -1,14 +1,15 @@
-function CheckEnvironCollisions(colSpr){
-	collision_mask = [obj_Ground, obj_Wall, obj_plate, obj_door];
+function CheckEnvironCollisions(colSpr, collMask){
 
 	// Wall collision
-	for (i = 0; i < array_length(collision_mask); i++)
+	for (i = 0; i < array_length(collMask); i++)
 	{
-		if collision_point(x+hspeed+(sprite_get_width(colSpr)/2*sign(hspeed)),y,collision_mask[i],true,true)
+		if collision_point(x+hspeed+(sprite_get_width(colSpr)/2*sign(hspeed)),y-(sprite_get_height(colSpr)/2)+1,collMask[i],true,true) ||
+			collision_point(x+hspeed+(sprite_get_width(colSpr)/2*sign(hspeed)),y+(sprite_get_height(colSpr)/2)-1,collMask[i],true,true)
 		{
 			d = sign(hspeed);
 			hspeed = 0;
-			while collision_point(x+(sprite_get_width(colSpr)/2*d),y,collision_mask[i],true,true) == false
+			while collision_point(x+(sprite_get_width(colSpr)/2*d),y-(sprite_get_height(colSpr)/2)+1,collMask[i],true,true) == false &&
+				collision_point(x+(sprite_get_width(colSpr)/2*d),y+(sprite_get_height(colSpr)/2)-1,collMask[i],true,true) == false
 			{
 				x+=d;
 			}
@@ -35,18 +36,17 @@ function CheckEnvironCollisions(colSpr){
 	}
 	
 	
-	collision_mask = [obj_Ground, obj_Wall, obj_plate, obj_door,obj_box];
 	// Ground collision
-	for(i = 0; i < array_length(collision_mask); i++)
+	for(i = 0; i < array_length(collMask); i++)
 	{
-		if collision_point(x- (sprite_get_width(colSpr)/2-2),y+(sprite_get_height(colSpr)/2)+vspeed,collision_mask[i],true,true) ||
-		   collision_point(x,y+(sprite_get_height(colSpr)/2)+vspeed,collision_mask[i],true,true) ||
-		   collision_point(x+ (sprite_get_width(colSpr)/2-2),y+(sprite_get_height(colSpr)/2)+vspeed,collision_mask[i],true,true)
+		if collision_point(x- (sprite_get_width(colSpr)/2-2),y+(sprite_get_height(colSpr)/2)+vspeed,collMask[i],true,true) ||
+		   collision_point(x,y+(sprite_get_height(colSpr)/2)+vspeed,collMask[i],true,true) ||
+		   collision_point(x+ (sprite_get_width(colSpr)/2-2),y+(sprite_get_height(colSpr)/2)+vspeed,collMask[i],true,true)
 		{
 			vspeed = 0;
-			while !collision_point(x- (sprite_get_width(colSpr)/2-2),y+(sprite_get_height(colSpr)/2),collision_mask[i],true,true) &&
-			      !collision_point(x,y+(sprite_get_height(colSpr)/2),collision_mask[i],true,true) &&
-				  !collision_point(x+ (sprite_get_width(colSpr)/2-2),y+(sprite_get_height(colSpr)/2),collision_mask[i],true,true)
+			while !collision_point(x- (sprite_get_width(colSpr)/2-2),y+(sprite_get_height(colSpr)/2),collMask[i],true,true) &&
+			      !collision_point(x,y+(sprite_get_height(colSpr)/2),collMask[i],true,true) &&
+				  !collision_point(x+ (sprite_get_width(colSpr)/2-2),y+(sprite_get_height(colSpr)/2),collMask[i],true,true)
 			{
 				y++;
 			}

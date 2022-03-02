@@ -67,7 +67,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_moose_walk","path":"sprites/spr_moose_walk/spr_moose_walk.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_moose_walk",
     "tags": [],
     "resourceType": "GMSequence",

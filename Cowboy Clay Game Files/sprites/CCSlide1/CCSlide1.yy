@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"CCSlide1","path":"sprites/CCSlide1/CCSlide1.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "CCSlide1",
     "tags": [],
     "resourceType": "GMSequence",

@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_tileset_wood","path":"sprites/spr_tileset_wood/spr_tileset_wood.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_tileset_wood",
     "tags": [],
     "resourceType": "GMSequence",

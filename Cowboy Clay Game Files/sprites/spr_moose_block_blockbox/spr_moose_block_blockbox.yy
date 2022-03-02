@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_moose_block_blockbox","path":"sprites/spr_moose_block_blockbox/spr_moose_block_blockbox.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_moose_block_blockbox",
     "tags": [],
     "resourceType": "GMSequence",
