@@ -18,6 +18,7 @@
     {"id":{"name":"ProtoRoom","path":"rooms/ProtoRoom/ProtoRoom.yy",},"order":0,},
     {"id":{"name":"spr_player_jump","path":"sprites/spr_player_jump/spr_player_jump.yy",},"order":10,},
     {"id":{"name":"obj_enemy_blockbox","path":"objects/obj_enemy_blockbox/obj_enemy_blockbox.yy",},"order":6,},
+    {"id":{"name":"obj_cam_position","path":"objects/obj_cam_position/obj_cam_position.yy",},"order":1,},
     {"id":{"name":"sfx_sword_anti","path":"sounds/sfx_sword_anti/sfx_sword_anti.yy",},"order":6,},
     {"id":{"name":"obj_door","path":"objects/obj_door/obj_door.yy",},"order":0,},
     {"id":{"name":"obj_player_sword","path":"objects/obj_player_sword/obj_player_sword.yy",},"order":2,},
@@ -115,6 +116,7 @@
     {"id":{"name":"spr_player_throw","path":"sprites/spr_player_throw/spr_player_throw.yy",},"order":17,},
     {"id":{"name":"spr_moose_slideAnti_empty","path":"sprites/spr_moose_slideAnti_empty/spr_moose_slideAnti_empty.yy",},"order":32,},
     {"id":{"name":"spr_envi_woodPlank3","path":"sprites/spr_envi_woodPlank3/spr_envi_woodPlank3.yy",},"order":14,},
+    {"id":{"name":"obj_cam_anchor","path":"objects/obj_cam_anchor/obj_cam_anchor.yy",},"order":0,},
     {"id":{"name":"spr_moose_chargeAnti_hitbox","path":"sprites/spr_moose_chargeAnti_hitbox/spr_moose_chargeAnti_hitbox.yy",},"order":10,},
     {"id":{"name":"spr_envi_woodBlock3","path":"sprites/spr_envi_woodBlock3/spr_envi_woodBlock3.yy",},"order":13,},
     {"id":{"name":"obj_menu_title","path":"objects/obj_menu_title/obj_menu_title.yy",},"order":19,},
@@ -231,6 +233,7 @@
     {"folderPath":"folders/Sounds/SFX.yy","order":2,"resourceVersion":"1.0","name":"SFX","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Objects/Mechanism.yy","order":25,"resourceVersion":"1.0","name":"Mechanism","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Objects/Collision.yy","order":26,"resourceVersion":"1.0","name":"Collision","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Objects/Camera.yy","order":27,"resourceVersion":"1.0","name":"Camera","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
