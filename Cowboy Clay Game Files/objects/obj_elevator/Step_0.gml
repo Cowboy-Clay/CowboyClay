@@ -19,3 +19,8 @@ switch(state)
 		hold();
 		break;
 }
+
+while place_meeting(x,y+1,obj_player) && mounted
+{
+	obj_player.y --;
+}
