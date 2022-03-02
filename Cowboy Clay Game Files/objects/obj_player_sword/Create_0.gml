@@ -1,6 +1,6 @@
 currentState = SwordState.INACTIVE;
 
-collision_mask = [obj_tile_coll, obj_plate, obj_elevator, obj_box, obj_doors];
+collision_mask = [obj_tile_coll, obj_plate, obj_elevator, obj_box, obj_door];
 
 animFrameCounter = 0;
 currentFPI = 1;
@@ -85,11 +85,11 @@ function SetPlayerSwordRotation()
 
 function CheckSwordCollisions()
 {
-	if !place_meeting(x+hspeed, y+vspeed, obj_Wall) && !place_meeting(x+hspeed,y+vspeed, obj_Ground) return 0;
-	if place_meeting(x+hspeed, y+vspeed, obj_Wall)
+	if !place_meeting(x+hspeed, y+vspeed, obj_tile_coll) && !place_meeting(x+hspeed,y+vspeed, obj_Ground) return 0;
+	if place_meeting(x+hspeed, y+vspeed, obj_tile_coll)
 	{
 		y = y + vspeed;
-		while !place_meeting(x,y,obj_Wall)
+		while !place_meeting(x,y,obj_tile_coll)
 		{
 			x += sign(hspeed);
 		}
@@ -99,10 +99,10 @@ function CheckSwordCollisions()
 		vspeed = 0;
 		return m;
 	}
-	if place_meeting(x+hspeed, y+vspeed, obj_Ground)
+	if place_meeting(x+hspeed, y+vspeed, obj_tile_coll)
 	{
 		x = x + hspeed;
-		while !place_meeting(x,y,obj_Ground)
+		while !place_meeting(x,y,obj_tile_coll)
 		{
 			y += sign(vspeed);
 		}
@@ -144,7 +144,11 @@ function SwordAnimate()
 
 function SwordCanBePickedUp()
 {
-	if plungeFlag return false;
+	if plungeFlag
+	{
+		plungeFlag = false;
+		return false;
+	}
 	
 	return currentState == SwordState.STUCK_FLOOR || currentState == SwordState.STUCK_WALL_LEFT || currentState == SwordState.STUCK_WALL_RIGHT;
 }
