@@ -13,7 +13,6 @@ for (i = 0; i < width; i ++)
 	{
 		if tilemap_get_at_pixel(tiles, starting_x + i*increment, starting_y + j*increment)
 		{
-			show_debug_message("Tile");
 			instance_create_depth(starting_x + i*increment, starting_y + j*increment, 0, obj_tile_coll);
 		}
 	}

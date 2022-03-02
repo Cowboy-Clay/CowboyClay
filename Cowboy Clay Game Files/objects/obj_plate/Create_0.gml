@@ -10,14 +10,16 @@ valid_objects = [obj_player, obj_player_sword, obj_box];
 
 door_instance = noone;
 
-for (i = 0; i < obj_door.instance_count; i++)
+for (i = 0; i < instance_number(obj_door); i++)
 {
 	if door_instance == noone
 	{
-		door_instance = obj_door.instance_id[i];
+		door_instance = instance_find(obj_door,i);
 	}
-	else if distance_to_object(door_instance) > distance_to_object(obj_door.instance_id[i])
+	else if point_distance(door_x, door_y, door_instance.x,door_instance.y) > point_distance(door_x, door_y,instance_find(obj_door,i).x,instance_find(obj_door,i).y) 
 	{
-		door_instance = obj_door.instance_id[i];
+		door_instance = instance_find(obj_door,i);
 	}
 }
+
+show_debug_message(door_instance.id);
