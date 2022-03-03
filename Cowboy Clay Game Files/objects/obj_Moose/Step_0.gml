@@ -15,14 +15,21 @@ if !global.paused
 	else if currentState == MooseState.DEAD obj_player.currentState = PlayerState.LOCK;
 	
 	Friction(GetMooseFriction());
-	Gravity(1,10,spr_enemy_collision);
+	Gravity(1,10,spr_enemy_collision, collision_mask);
 	LimitMooseSpeed();
 	
-	PlayMooseAnimation();
+	if currentState == MooseState.PULLING
+	{
+		image_index = spr_moose_pull;
+	}
+	else
+	{
+		PlayMooseAnimation();
+	}
 	
 	SetMooseDirection();
 	
 	MooseInvuln();
 }
 
-CheckEnvironCollisions(spr_enemy_collision);
+CheckEnvironCollisions(spr_enemy_collision, collision_mask);

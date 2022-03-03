@@ -8,6 +8,7 @@
     {"id":{"name":"sfx_sword_swing","path":"sounds/sfx_sword_swing/sfx_sword_swing.yy",},"order":7,},
     {"id":{"name":"spr_reset","path":"sprites/spr_reset/spr_reset.yy",},"order":9,},
     {"id":{"name":"spr_moose_idle_empty","path":"sprites/spr_moose_idle_empty/spr_moose_idle_empty.yy",},"order":19,},
+    {"id":{"name":"obj_instance_starter","path":"objects/obj_instance_starter/obj_instance_starter.yy",},"order":15,},
     {"id":{"name":"spr_enemy_sword","path":"sprites/spr_enemy_sword/spr_enemy_sword.yy",},"order":1,},
     {"id":{"name":"spr_moose_slide_hitbox","path":"sprites/spr_moose_slide_hitbox/spr_moose_slide_hitbox.yy",},"order":27,},
     {"id":{"name":"spr_moose_slide_noHelm","path":"sprites/spr_moose_slide_noHelm/spr_moose_slide_noHelm.yy",},"order":29,},
