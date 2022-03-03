@@ -154,3 +154,10 @@ function SwordCanBePickedUp()
 	
 	return currentState == SwordState.STUCK_FLOOR || currentState == SwordState.STUCK_WALL_LEFT || currentState == SwordState.STUCK_WALL_RIGHT;
 }
+
+function teleport_to(xPos,yPos)
+{
+	PlayerSwordStickInGround();
+	x=xPos;
+	y=yPos;
+}
