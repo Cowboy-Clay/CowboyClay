@@ -6,7 +6,7 @@ if place_meeting(x,y,obj_player) && !triggered
 	obj_player_sword.currentState = SwordState.INACTIVE;
 	moose_layer = layer_create(0, "Moose");
 	
-	instance_create_layer(6784,1389,moose_layer,obj_Moose);
+	instance_create_layer(7106,1389,moose_layer,obj_Moose);
 	instance_create_layer(0,0,moose_layer, obj_enemy_attackEffect);
 	instance_create_layer(0,0,moose_layer, obj_enemy_blockbox);
 	instance_create_layer(0,0,moose_layer, obj_enemy_hitbox);
