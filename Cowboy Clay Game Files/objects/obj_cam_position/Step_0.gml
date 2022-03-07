@@ -6,8 +6,8 @@ if instance_exists(obj_cam_anchor)
 	if place_meeting(ideal_x,ideal_y,obj_cam_anchor)
 	{
 		a = instance_nearest(ideal_x,ideal_y,obj_cam_anchor);
-		ideal_x = a.x + camera_get_view_width(cam)/2;
-		ideal_y = a.y + camera_get_view_height(cam)/2;
+		ideal_x = a.x;
+		ideal_y = a.y;
 	}
 }
 
