@@ -121,6 +121,7 @@
     {"id":{"name":"spr_player_throw","path":"sprites/spr_player_throw/spr_player_throw.yy",},"order":17,},
     {"id":{"name":"spr_moose_slideAnti_empty","path":"sprites/spr_moose_slideAnti_empty/spr_moose_slideAnti_empty.yy",},"order":32,},
     {"id":{"name":"spr_envi_woodPlank3","path":"sprites/spr_envi_woodPlank3/spr_envi_woodPlank3.yy",},"order":14,},
+    {"id":{"name":"AltLevel","path":"rooms/AltLevel/AltLevel.yy",},"order":5,},
     {"id":{"name":"obj_cam_anchor","path":"objects/obj_cam_anchor/obj_cam_anchor.yy",},"order":0,},
     {"id":{"name":"spr_moose_chargeAnti_hitbox","path":"sprites/spr_moose_chargeAnti_hitbox/spr_moose_chargeAnti_hitbox.yy",},"order":10,},
     {"id":{"name":"spr_envi_woodBlock3","path":"sprites/spr_envi_woodBlock3/spr_envi_woodBlock3.yy",},"order":13,},
@@ -203,6 +204,7 @@
   },
   "RoomOrderNodes": [
     {"roomId":{"name":"ShopScene","path":"rooms/ShopScene/ShopScene.yy",},},
+    {"roomId":{"name":"AltLevel","path":"rooms/AltLevel/AltLevel.yy",},},
     {"roomId":{"name":"ElevatorTest","path":"rooms/ElevatorTest/ElevatorTest.yy",},},
     {"roomId":{"name":"ProtoRoom","path":"rooms/ProtoRoom/ProtoRoom.yy",},},
     {"roomId":{"name":"PlayerTestRoom","path":"rooms/PlayerTestRoom/PlayerTestRoom.yy",},},
