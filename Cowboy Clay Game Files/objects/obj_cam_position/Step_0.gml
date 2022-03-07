@@ -1,20 +1,17 @@
-nearest_anchor = instance_nearest(obj_player.x, obj_player.y, obj_cam_anchor);
+ideal_x = obj_player.x;
+ideal_y = obj_player.y;
 
-if nearest_anchor == noone
+if instance_exists(obj_cam_anchor)
 {
-	x = obj_player.x + x_offset;
-	y = obj_player.y + y_offset;
-}
-else if abs(obj_player.x - nearest_anchor.x) < nearest_anchor.x_distance &&
-	abs(obj_player.y - nearest_anchor.y) < nearest_anchor.y_distance
-{
-		x = nearest_anchor.x;
-		y = nearest_anchor.y;
-}
-else
-{
-	x = obj_player.x + x_offset;
-	y = obj_player.y + y_offset;
+	if place_meeting(ideal_x,ideal_y,obj_cam_anchor)
+	{
+		a = instance_nearest(ideal_x,ideal_y,obj_cam_anchor);
+		ideal_x = a.x + camera_get_view_width(cam)/2;
+		ideal_y = a.y + camera_get_view_height(cam)/2;
+	}
 }
 
-camera_set_view_pos(view_camera[0],x,y);
+x = lerp(x,ideal_x,0.1);
+y = lerp(y,ideal_y,0.1);
+
+camera_set_view_pos(cam,x-camera_get_view_width(cam)/2,y-camera_get_view_height(cam)/2);
