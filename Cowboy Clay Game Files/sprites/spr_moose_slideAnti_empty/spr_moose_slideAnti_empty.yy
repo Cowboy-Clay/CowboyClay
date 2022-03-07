@@ -32,7 +32,7 @@
     "spriteId": {"name":"spr_moose_slideAnti_empty","path":"sprites/spr_moose_slideAnti_empty/spr_moose_slideAnti_empty.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 30.0,
+    "playbackSpeed": 0.0,
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,

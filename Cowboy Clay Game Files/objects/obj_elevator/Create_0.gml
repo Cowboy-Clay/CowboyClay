@@ -1,4 +1,4 @@
-enum elevator_state { falling, rising, holding };
+enum elevator_state { falling, rising, holding, broken };
 state = elevator_state.falling;
 
 collision_mask = [obj_Ground, obj_Wall, obj_plate, obj_door,obj_box, obj_tile_coll];

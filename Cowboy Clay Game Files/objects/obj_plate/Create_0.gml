@@ -6,7 +6,7 @@ down_sound = sfx_switch_down;
 
 on = false;
 
-valid_objects = [obj_player, obj_player_sword, obj_box];
+valid_objects = [obj_player, obj_player_sword, obj_box, obj_Moose];
 
 door_instance = noone;
 

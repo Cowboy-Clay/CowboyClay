@@ -52,4 +52,22 @@ function CheckEnvironCollisions(colSpr, collMask){
 			}
 		}
 	}
+	
+	// Ceiling collision
+	// Don't have to check if we aren't moving up
+	if vspeed >= 0 return;
+	// If we will be touching a valid point at the end of movement
+	if place_meeting_mask(x+hspeed,y+vspeed,collMask)
+	{
+		total_distance = point_distance(x,y,x+hspeed,y+vspeed);
+		trans_scale = 0.5 / total_distance;
+		// While we aren't colliding keep moving a little bit till we are
+		while (!place_meeting_mask(x,y,collMask))
+		{
+			x += hspeed + trans_scale;
+			y += vspeed + trans_scale;
+		}
+		// Once there stop moving vertically
+		vspeed = 0;
+	}
 }

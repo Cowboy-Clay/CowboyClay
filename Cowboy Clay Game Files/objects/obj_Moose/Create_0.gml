@@ -1,4 +1,6 @@
-enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT, BLOCK, LOCK, DEAD };
+enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT, BLOCK, LOCK, DEAD, PULLING };
+
+collision_mask = [obj_tile_coll, obj_door, obj_plate, obj_elevator];
 
 currentState = MooseState.IDLE;
 armed = true;
@@ -18,8 +20,12 @@ currentFPI = 1;
 currentAnimType = AnimationType.FIRST_FRAME;
 animFrameCounter = 0;
 
+if start_pulling currentState = MooseState.PULLING;
+
 function UpdateMooseState()
 {
+	if currentState == MooseState.PULLING return;
+	
 	stateTimer --;
 	switch currentState
 	{

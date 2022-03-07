@@ -18,6 +18,7 @@ global.enemy_sword_defaultAnimType = AnimationType.FIRST_FRAME;
 global.enemy_sword_spinAnim = spr_enemy_sword;
 global.enemy_sword_spinAnimFPI = 4;
 global.enemy_sword_spinAnimType = AnimationType.LOOP;
+collision_mask = [obj_tile_coll, obj_plate, obj_elevator, obj_box, obj_door];
 
 function EnemySwordFling(run, rise, m)
 {
