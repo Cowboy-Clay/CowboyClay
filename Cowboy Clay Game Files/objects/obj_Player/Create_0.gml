@@ -92,6 +92,13 @@ currentFPI = 1;
 
 #endregion
 
+layer_create(-300, "PlayerTools");
+instance_create_layer(x,y,"PlayerTools", obj_player_attackEffect);
+instance_create_layer(x,y,"PlayerTools", obj_player_hitbox);
+instance_create_layer(x,y,"PlayerTools", obj_player_hurtbox);
+instance_create_layer(x,y,"PlayerTools", obj_player_sword);
+instance_create_layer(x,y,"PlayerTools", obj_cam_position);
+
 #region  State Machine
 function UpdatePlayerState()
 {
