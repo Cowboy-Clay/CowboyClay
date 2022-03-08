@@ -23,8 +23,8 @@ global.player_gravityMax = 20; // The basic maximum of gravity
 
 #region Walk Variables
 global.player_frictionValue = .45; // The basic rate of friction
-global.player_walkAccel = 0.6; // The basic rate of acceloration from walking
-global.player_maxWalkSpeed = 4; // The basic max walking speed
+global.player_walkAccel = 0.7; // The basic rate of acceloration from walking
+global.player_maxWalkSpeed = 5; // The basic max walking speed
 #endregion
 
 #region Dash Variables
@@ -54,7 +54,7 @@ global.player_maxHoriJumpForce = 10; // max horizontal force applied by a jump
 #endregion
 
 #region Basic Attack Variables
-global.player_attackAntiFrames = 15; // # of frames the attack anti is shown
+global.player_attackAntiFrames = 12; // # of frames the attack anti is shown
 global.player_attackSwingFrames = 10;
 global.player_attackFollowFrames = 15;
 attackTimer = 0; // Frame counter to determine how long the player has been in each attack state
@@ -105,11 +105,11 @@ function UpdatePlayerState()
 	switch currentState
 	{
 		case PlayerState.IDLE:
-			if hiblock == 0 && keyboard_check(vk_down) && keyboard_check_pressed(ord("Z"))
+			/*if hiblock == 0 && keyboard_check(vk_down) && keyboard_check_pressed(ord("Z"))
 			{
 				PlayerPlungeSword();
 				return;
-			}
+			}*/
 			if hiblock == 1 && keyboard_check(vk_up) && keyboard_check_pressed(ord("Z"))
 			{
 				PlayerSheathSword();
