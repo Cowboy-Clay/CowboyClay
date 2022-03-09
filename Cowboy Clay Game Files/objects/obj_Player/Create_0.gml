@@ -22,23 +22,23 @@ global.player_gravityMax = 20; // The basic maximum of gravity
 #endregion
 
 #region Walk Variables
-global.player_frictionValue = .45; // The basic rate of friction
-global.player_walkAccel = 0.7; // The basic rate of acceloration from walking
-global.player_maxWalkSpeed = 5; // The basic max walking speed
+global.player_frictionValue = .33; // The basic rate of friction
+global.player_walkAccel = .5; // The basic rate of acceloration from walking
+global.player_maxWalkSpeed = 6; // The basic max walking speed
 #endregion
 
 #region Dash Variables
 dashTimer = 0;
 lastDashTapDirection = Direction.LEFT;
 dashOnCooldown = false;
-global.player_dashAnticipation = 33;
+global.player_dashAnticipation = 22;
 global.player_dashFrameAllowance = 15;
-global.player_dashImpulseForce = 45;
+global.player_dashImpulseForce = 60;
 global.player_dashExtendForce = 22;
 global.player_dashEndForce = 15;
 global.player_instantDash = true;
-global.player_dashDuration = 10;
-global.player_dashCooldown = 18;
+global.player_dashDuration = 8;
+global.player_dashCooldown = 9;
 global.player_invulnWhileDashing = true;
 global.player_dashFollow = 38;
 #endregion
