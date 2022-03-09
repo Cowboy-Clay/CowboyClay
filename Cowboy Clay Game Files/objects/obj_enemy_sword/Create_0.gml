@@ -85,29 +85,31 @@ function SetEnemySwordRotation()
 
 function CheckEnemySwordCollisions()
 {
-	if !place_meeting(x+hspeed, y+vspeed, obj_Wall) && !place_meeting(x+hspeed,y+vspeed, obj_Ground) return 0;
-	if place_meeting(x+hspeed, y+vspeed, obj_Wall)
+	// If the sword won't collide with anything this frame return
+	if place_meeting_mask(x+hspeed, y+vspeed, collision_mask) == false return;
+	// Otherwise move it and stop it motion
+	x = x+hspeed;
+	hspeed = 0;
+	y = y+vspeed;
+	vspeed = 0;
+	// Find the nearest object we could have collided with
+	c = instance_nearest_mask(x,y,collision_mask);
+	if c == noone
 	{
-		y = y + vspeed;
-		while !place_meeting(x,y,obj_Wall)
-		{
-			x += sign(hspeed);
-		}
-		if hspeed < 1 m = 1;
-		else m = 2;
-		hspeed = 0;
-		vspeed = 0;
-		return m;
+		show_error("Sword thought it collided with something but no objects were found.", false);
+		return;
 	}
-	if place_meeting(x+hspeed, y+vspeed, obj_Ground)
+	// Calculate the difference in the x and y directions
+	dx = abs(x-c.x);
+	dy = abs(y-c.y);
+	// We will assume that if the dx is larger that means we've hit a wall and if dy is larger we've hit a floor
+	if dx > dy
 	{
-		x = x + hspeed;
-		while !place_meeting(x,y,obj_Ground)
-		{
-			y += sign(vspeed);
-		}
-		hspeed = 0;
-		vspeed = 0;
+		if x > c.x return 1;
+		else return 2;
+	}
+	else
+	{
 		return 3;
 	}
 }
