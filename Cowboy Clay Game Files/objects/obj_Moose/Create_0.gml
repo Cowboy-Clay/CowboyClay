@@ -186,7 +186,7 @@ function MooseToBlock()
 		return;
 	}
 	
-	SetMooseAnimation(global.moose_blockAnim, global.moose_blockAnim_FPI, global.moose_blockAnim_type);
+	SetMooseAnimation(global.moose_blockLoAnim, global.moose_blockLoAnim_FPI, global.moose_blockLoAnim_type);
 	
 	currentState = MooseState.BLOCK;
 }

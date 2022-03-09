@@ -8,7 +8,7 @@ global.mooseSprRef =
 	[global.moose_slideAnim, spr_moose_slide_hitbox, spr_moose_slide_hurtbox],
 	[global.moose_chargeAntiAnim, spr_moose_chargeAnti_hitbox, spr_moose_chargeAnti_hurtbox],
 //	[global.moose_chargeAnim, spr_moose_charge_hitbox, spr_moose_charge_hurtbox],
-//	[global.moose_blockAnim, spr_empty, spr_moose_idle_hurtbox, spr_moose_block_blockbox]
+//	[global.moose_blockLoAnim, spr_empty, spr_moose_idle_hurtbox, spr_moose_block_blockbox]
 ]
 
 function GetMooseHitBox()
