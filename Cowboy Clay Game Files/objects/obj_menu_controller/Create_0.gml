@@ -1,15 +1,24 @@
-menu_timer = 120;
-load_flag = false;
+options = [asset_get_index("ShopScene"), asset_get_index("LevelDesignTest")];
 
-function begin_load()
+menu_state = 0;
+
+timer = 420;
+
+current_option = 0;
+
+function next()
 {
-	obj_menu_title.visible = false;
-	obj_menu_press_to_start.visible = false;
-	obj_menu_controls.visible = true;
-	load_flag = true;
+	current_option ++;
+	if current_option >= array_length(options) current_option = 0;
 }
 
-function load_game_room()
+function previous()
 {
-	room_goto_next();
+	current_option --;
+	if current_option < 0 current_option = array_length(options) - 1;
+}
+
+function load()
+{
+	room_goto(options[current_option]);
 }
