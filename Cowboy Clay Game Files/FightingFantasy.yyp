@@ -90,6 +90,7 @@
     {"id":{"name":"spr_mech_elevator_coll","path":"sprites/spr_mech_elevator_coll/spr_mech_elevator_coll.yy",},"order":11,},
     {"id":{"name":"spr_player_attackSwing","path":"sprites/spr_player_attackSwing/spr_player_attackSwing.yy",},"order":3,},
     {"id":{"name":"spr_moose_blockLo_helmless","path":"sprites/spr_moose_blockLo_helmless/spr_moose_blockLo_helmless.yy",},"order":6,},
+    {"id":{"name":"ShopScene","path":"rooms/ShopScene/ShopScene.yy",},"order":2,},
     {"id":{"name":"spr_player_crouch_disarmed","path":"sprites/spr_player_crouch_disarmed/spr_player_crouch_disarmed.yy",},"order":5,},
     {"id":{"name":"obj_Ground","path":"objects/obj_Ground/obj_Ground.yy",},"order":0,},
     {"id":{"name":"spr_ground","path":"sprites/spr_ground/spr_ground.yy",},"order":5,},
@@ -203,6 +204,7 @@
   },
   "RoomOrderNodes": [
     {"roomId":{"name":"LevelDesignTest","path":"rooms/LevelDesignTest/LevelDesignTest.yy",},},
+    {"roomId":{"name":"ShopScene","path":"rooms/ShopScene/ShopScene.yy",},},
     {"roomId":{"name":"ElevatorTest","path":"rooms/ElevatorTest/ElevatorTest.yy",},},
     {"roomId":{"name":"ProtoRoom","path":"rooms/ProtoRoom/ProtoRoom.yy",},},
     {"roomId":{"name":"PlayerTestRoom","path":"rooms/PlayerTestRoom/PlayerTestRoom.yy",},},
