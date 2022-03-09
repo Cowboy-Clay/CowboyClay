@@ -10,6 +10,8 @@ stateTimer = 0;
 invuln = false;
 invulnTimer = 0;
 
+grounded = false;
+
 // Idle
 wanderCounter = 0;
 
@@ -98,7 +100,7 @@ function UpdateMooseState()
 			}
 			break;
 		case MooseState.HIT:
-			if place_meeting(x,y,obj_Ground)
+			if grounded
 			{
 				MooseWanderToIdle();
 				return;
