@@ -51,6 +51,7 @@
     {"id":{"name":"spr_moose_blockLo_empty","path":"sprites/spr_moose_blockLo_empty/spr_moose_blockLo_empty.yy",},"order":5,},
     {"id":{"name":"obj_music_controller","path":"objects/obj_music_controller/obj_music_controller.yy",},"order":23,},
     {"id":{"name":"spr_player_sword","path":"sprites/spr_player_sword/spr_player_sword.yy",},"order":14,},
+    {"id":{"name":"fnt_basic","path":"fonts/fnt_basic/fnt_basic.yy",},"order":0,},
     {"id":{"name":"spr_sword_mover_coll","path":"sprites/spr_sword_mover_coll/spr_sword_mover_coll.yy",},"order":12,},
     {"id":{"name":"spr_moose_slideAnti_hitbox","path":"sprites/spr_moose_slideAnti_hitbox/spr_moose_slideAnti_hitbox.yy",},"order":34,},
     {"id":{"name":"spr_controls","path":"sprites/spr_controls/spr_controls.yy",},"order":8,},
@@ -203,8 +204,8 @@
     "children": [],
   },
   "RoomOrderNodes": [
-    {"roomId":{"name":"Menu","path":"rooms/Menu/Menu.yy",},},
     {"roomId":{"name":"LevelDesignTest","path":"rooms/LevelDesignTest/LevelDesignTest.yy",},},
+    {"roomId":{"name":"Menu","path":"rooms/Menu/Menu.yy",},},
     {"roomId":{"name":"ShopScene","path":"rooms/ShopScene/ShopScene.yy",},},
     {"roomId":{"name":"PlayerTestRoom","path":"rooms/PlayerTestRoom/PlayerTestRoom.yy",},},
     {"roomId":{"name":"ElevatorTest","path":"rooms/ElevatorTest/ElevatorTest.yy",},},

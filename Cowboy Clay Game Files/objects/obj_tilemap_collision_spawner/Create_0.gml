@@ -7,6 +7,8 @@ increment = tilemap_get_tile_width(tiles);
 width = tilemap_get_width(tiles);
 height = tilemap_get_height(tiles);
 
+
+
 for (i = 0; i < width; i ++)
 {
 	for (j = 0; j < height; j++)

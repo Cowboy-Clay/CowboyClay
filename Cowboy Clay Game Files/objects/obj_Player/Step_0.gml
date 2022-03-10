@@ -22,7 +22,7 @@ if !global.paused
 	
 	if keyboard_check_pressed(ord("R"))
 	{
-		room_goto_previous();
+		room_goto(asset_get_index("Menu"));
 	}
 	
 	// Animation

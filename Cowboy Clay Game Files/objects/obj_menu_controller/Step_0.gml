@@ -16,5 +16,5 @@ else if menu_state == 1
 else if menu_state == 2
 {
 	timer--;
-	if timer <= 0 load();
+	if timer <= 0 || keyboard_check_pressed(vk_enter) load();
 }
