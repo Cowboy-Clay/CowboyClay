@@ -5,6 +5,7 @@ function instance_nearest_mask(xPos, yPos, mask){
 	dr = noone;
 	for(i = 0; i < array_length(mask); i++)
 	{
+		if !instance_exists(mask[i]) continue;
 		t = instance_nearest(xPos, yPos, mask[i]);
 		dt = point_distance(xPos, yPos, t.x, t.y);
 		if r == noone
