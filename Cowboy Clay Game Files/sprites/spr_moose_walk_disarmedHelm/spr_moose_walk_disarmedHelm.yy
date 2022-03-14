@@ -9,7 +9,7 @@
   "swfPrecision": 2.525,
   "bbox_left": 140,
   "bbox_right": 479,
-  "bbox_top": 86,
+  "bbox_top": 88,
   "bbox_bottom": 325,
   "HTile": false,
   "VTile": false,
@@ -24,15 +24,15 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"8ed6e9d2-e6c2-4a0a-8217-9be98eb62462","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"8ed6e9d2-e6c2-4a0a-8217-9be98eb62462","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"LayerId":{"name":"394a17b3-24de-4e60-af43-6c493be40a72","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_moose_walk_disarmedHelm","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"resourceVersion":"1.0","name":"8ed6e9d2-e6c2-4a0a-8217-9be98eb62462","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"e2a09bcb-bf39-4e85-a864-b2d522803fdd","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"e2a09bcb-bf39-4e85-a864-b2d522803fdd","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"LayerId":{"name":"394a17b3-24de-4e60-af43-6c493be40a72","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_moose_walk_disarmedHelm","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"resourceVersion":"1.0","name":"e2a09bcb-bf39-4e85-a864-b2d522803fdd","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"7f105d2d-d8f3-46fb-a522-32e54bea8d7a","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"7f105d2d-d8f3-46fb-a522-32e54bea8d7a","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"LayerId":{"name":"394a17b3-24de-4e60-af43-6c493be40a72","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_moose_walk_disarmedHelm","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"resourceVersion":"1.0","name":"7f105d2d-d8f3-46fb-a522-32e54bea8d7a","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"9cdb6581-41e7-47ff-81ca-6ac1d948d50e","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"9cdb6581-41e7-47ff-81ca-6ac1d948d50e","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"LayerId":{"name":"7a595ccf-4d08-4668-a561-09583170ecc2","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_moose_walk_disarmedHelm","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"resourceVersion":"1.0","name":"9cdb6581-41e7-47ff-81ca-6ac1d948d50e","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"d318bfb5-21be-4ab1-a6d1-accee6c4b388","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"d318bfb5-21be-4ab1-a6d1-accee6c4b388","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"LayerId":{"name":"7a595ccf-4d08-4668-a561-09583170ecc2","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_moose_walk_disarmedHelm","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"resourceVersion":"1.0","name":"d318bfb5-21be-4ab1-a6d1-accee6c4b388","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"bd11fc91-5a64-420f-9439-4112edef1775","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"bd11fc91-5a64-420f-9439-4112edef1775","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"LayerId":{"name":"7a595ccf-4d08-4668-a561-09583170ecc2","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_moose_walk_disarmedHelm","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"resourceVersion":"1.0","name":"bd11fc91-5a64-420f-9439-4112edef1775","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"spr_moose_walk_disarmedHelm","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},
@@ -47,9 +47,9 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"33c2a3a9-8fa3-47fc-81fa-819f37183d2e","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"8ed6e9d2-e6c2-4a0a-8217-9be98eb62462","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
-            {"id":"f2d7ab91-6186-4c9e-a619-7c9d1e1b6f41","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"e2a09bcb-bf39-4e85-a864-b2d522803fdd","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
-            {"id":"5eafd9d2-ec78-44a0-a688-34ef8ff94cf6","Key":2.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"7f105d2d-d8f3-46fb-a522-32e54bea8d7a","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"8eb58d09-2835-4919-8147-4435f3272e2f","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"9cdb6581-41e7-47ff-81ca-6ac1d948d50e","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"5b4aed59-bcf3-4bb7-9a1b-969c99aedaf4","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"d318bfb5-21be-4ab1-a6d1-accee6c4b388","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"8494f686-df83-472d-bdcc-c094cfe87ffa","Key":2.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"bd11fc91-5a64-420f-9439-4112edef1775","path":"sprites/spr_moose_walk_disarmedHelm/spr_moose_walk_disarmedHelm.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
@@ -73,7 +73,7 @@
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"394a17b3-24de-4e60-af43-6c493be40a72","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"7a595ccf-4d08-4668-a561-09583170ecc2","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": null,
   "parent": {
