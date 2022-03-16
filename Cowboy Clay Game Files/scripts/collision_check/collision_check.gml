@@ -6,8 +6,7 @@ function collision_check(sprite, mask, x_bouncy, y_bouncy){
 	show_debug_message("vspeed = " + string(vspeed));
 	
 	if hspeed == 0 {}
-	else if (place_meeting_mask(xx+hspeed, yy, mask)) &&
-		((collision_check_edge(xx+hspeed,yy,sprite,Direction.LEFT,mask)&&hspeed<0) ||
+	else if ((collision_check_edge(xx+hspeed,yy,sprite,Direction.LEFT,mask)&&hspeed<0) ||
 		(collision_check_edge(xx+hspeed,yy,sprite,Direction.RIGHT,mask)&&hspeed>0)) {
 		xx = round(xx);
 		if hspeed > 0 {
@@ -24,8 +23,7 @@ function collision_check(sprite, mask, x_bouncy, y_bouncy){
 	}
 	
 	if vspeed == 0 {}
-	else if (place_meeting_mask(xx, yy+vspeed, mask)) &&
-		((collision_check_edge(xx, yy+vspeed,sprite,Direction.UP,mask)&&vspeed<0) ||
+	else if ((collision_check_edge(xx, yy+vspeed,sprite,Direction.UP,mask)&&vspeed<0) ||
 		(collision_check_edge(xx,yy+vspeed,sprite,Direction.DOWN,mask)&&vspeed>0)) {
 		yy = round(yy);
 		if vspeed > 0 {

@@ -1,6 +1,6 @@
 check_mounted();
 
-if mounted && obj_player.facing == Direction.LEFT && obj_player.currentState == PlayerState.BASIC_ATTACK_SWING && cooldown_timer <= 0
+if mounted && ((obj_player.facing == Direction.LEFT && image_xscale == 1)||(obj_player.facing == Direction.RIGHT && image_xscale == -1)) && obj_player.currentState == PlayerState.BASIC_ATTACK_SWING && cooldown_timer <= 0
 {
 	get_hit();
 }

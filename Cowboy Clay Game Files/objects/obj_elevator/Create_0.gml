@@ -21,15 +21,13 @@ holding_timer = 0;
 
 mounted = false;
 
-frames_per_image_up = 6;
-frames_per_image_down = 3;
+frames_per_image_up = 4;
+frames_per_image_down = 2;
 animation_counter = 0;
 
 function check_mounted()
 {
-	mounted = place_meeting(x,y-5,obj_player) &&
-		obj_player.y < y &&
-		abs(obj_player.x - x) <= sprite_get_width(spr_mech_elevator_coll)/2;
+	mounted = collision_check_edge(x,y-1,spr_mech_elevator_coll,Direction.UP,[obj_player]);
 }
 
 function get_hit()
@@ -93,5 +91,6 @@ function fall()
 
 function sit()
 {
+	cooldown_timer = -1;
 	vspeed = 0;
 }
