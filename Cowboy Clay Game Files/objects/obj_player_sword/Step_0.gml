@@ -14,6 +14,23 @@ if currentState == SwordState.FLYING
 	else if collision_check_edge(x+hspeed, y+vspeed, sprite_index, Direction.DOWN, collision_mask)
 		PlayerSwordStickInGround();
 }
+else
+{
+	vspeed = 0;
+	hspeed = 0;
+}
+
+switch currentState{
+	case SwordState.STUCK_WALL_LEFT:
+		show_debug_message("Sword stuck left");
+		break;
+	case SwordState.STUCK_WALL_RIGHT:
+		show_debug_message("Sword stuck right");
+		break;
+	case SwordState.STUCK_FLOOR:
+		show_debug_message("Sword stuck down");
+		break;
+}
 
 SetPlayerSwordRotation();
 

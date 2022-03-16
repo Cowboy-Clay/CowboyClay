@@ -32,4 +32,4 @@ if !global.paused
 	MooseInvuln();
 }
 
-CheckEnvironCollisions(spr_enemy_collision, collision_mask);
+collision_check(spr_enemy_collision,collision_mask, false, false);
