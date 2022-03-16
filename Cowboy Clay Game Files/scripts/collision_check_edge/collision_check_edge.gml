@@ -1,6 +1,13 @@
+/*
+/ This function checks whether a given edge of an object
+/ is colliding with object in the mask based on a given
+/ position and collision sprite.
+*/
 function collision_check_edge(xpos, ypos, sprite, edge, mask){
+	// This switch determines which edge we check
 	switch(edge) {
 		case Direction.LEFT:
+			// We use the left edge and the top and bottom positions
 			var l = edge_get_location(xpos, ypos, sprite, Direction.LEFT);
 			var u = edge_get_location(xpos, ypos, sprite, Direction.UP);
 			var d = edge_get_location(xpos, ypos, sprite, Direction.DOWN);
