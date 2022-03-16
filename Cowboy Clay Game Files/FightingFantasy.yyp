@@ -227,12 +227,12 @@
   },
   "RoomOrderNodes": [
     {"roomId":{"name":"LevelDesignTest","path":"rooms/LevelDesignTest/LevelDesignTest.yy",},},
+    {"roomId":{"name":"room_collision_test","path":"rooms/room_collision_test/room_collision_test.yy",},},
     {"roomId":{"name":"PlayerTestRoom","path":"rooms/PlayerTestRoom/PlayerTestRoom.yy",},},
     {"roomId":{"name":"Menu","path":"rooms/Menu/Menu.yy",},},
     {"roomId":{"name":"ShopScene","path":"rooms/ShopScene/ShopScene.yy",},},
     {"roomId":{"name":"ElevatorTest","path":"rooms/ElevatorTest/ElevatorTest.yy",},},
     {"roomId":{"name":"ProtoRoom","path":"rooms/ProtoRoom/ProtoRoom.yy",},},
-    {"roomId":{"name":"room_collision_test","path":"rooms/room_collision_test/room_collision_test.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":0,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},
