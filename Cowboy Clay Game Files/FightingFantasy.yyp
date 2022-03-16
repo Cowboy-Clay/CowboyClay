@@ -153,7 +153,6 @@
     {"id":{"name":"spr_mech_elevator","path":"sprites/spr_mech_elevator/spr_mech_elevator.yy",},"order":4,},
     {"id":{"name":"obj_player_attackEffect","path":"objects/obj_player_attackEffect/obj_player_attackEffect.yy",},"order":1,},
     {"id":{"name":"spr_moose_charge_hurtbox","path":"sprites/spr_moose_charge_hurtbox/spr_moose_charge_hurtbox.yy",},"order":8,},
-    {"id":{"name":"CheckEnvironCollisions","path":"scripts/CheckEnvironCollisions/CheckEnvironCollisions.yy",},"order":2,},
     {"id":{"name":"spr_player_dash_follow","path":"sprites/spr_player_dash_follow/spr_player_dash_follow.yy",},"order":25,},
     {"id":{"name":"obj_player_hurtbox","path":"objects/obj_player_hurtbox/obj_player_hurtbox.yy",},"order":4,},
     {"id":{"name":"spr_envi_impassable","path":"sprites/spr_envi_impassable/spr_envi_impassable.yy",},"order":16,},
