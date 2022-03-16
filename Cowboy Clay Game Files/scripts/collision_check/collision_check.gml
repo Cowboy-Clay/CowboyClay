@@ -41,6 +41,28 @@ function collision_check(sprite, mask, x_bouncy, y_bouncy){
 		vspeed = y_bouncy == true? -1*vspeed : 0;
 	}
 	
+	var l = edge_get_location(x,y,sprite,Direction.LEFT)+1;
+	var u = edge_get_location(x,y,sprite,Direction.UP)+1;
+	var r = edge_get_location(x,y,sprite,Direction.RIGHT)-1;
+	var d = edge_get_location(x,y,sprite,Direction.DOWN)-1;
+	
+	if collision_point_mask(r,d,mask,true,true) {
+		x--;
+		y--;
+	}
+	if collision_point_mask(l,d,mask,true,true){
+		x++;
+		y--;
+	}
+	if collision_point_mask(l,u,mask,true,true){
+		x++;
+		y++;
+	}
+	if collision_point_mask(r,u,mask,true,true){
+		x--;
+		y++;
+	}
+	
 	grounded = collision_check_edge(x+hspeed, y+vspeed, sprite, Direction.DOWN, mask);
 	
 	show_debug_message(grounded ? "Grounded" : "Ungrounded");
