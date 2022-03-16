@@ -1,3 +1,4 @@
+// Returns a given edge based on a given sprite at a given position
 function edge_get_location(xpos,ypos,sprite,edge){
 	switch(edge){
 		case Direction.LEFT:
