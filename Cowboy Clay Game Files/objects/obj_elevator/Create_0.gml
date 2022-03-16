@@ -1,5 +1,7 @@
-enum elevator_state { falling, rising, holding, broken };
+enum elevator_state { falling, rising, holding, broken, sitting };
 state = elevator_state.falling;
+
+grounded = false;
 
 collision_mask = [obj_Ground, obj_Wall, obj_plate, obj_door,obj_box, obj_tile_coll];
 
@@ -18,6 +20,10 @@ holding_time = 60;
 holding_timer = 0;
 
 mounted = false;
+
+frames_per_image_up = 6;
+frames_per_image_down = 3;
+animation_counter = 0;
 
 function check_mounted()
 {
@@ -52,6 +58,7 @@ function rise()
 		vspeed = 0;	
 		go_to_holding();
 	}
+	collision_check(spr_mech_elevator_coll, collision_mask,false, false);
 	if mounted obj_player.vspeed = vspeed;
 }
 
@@ -72,12 +79,19 @@ function hold()
 
 function go_to_falling()
 {
-	state = elevator_state.falling();
+	state = elevator_state.falling;
 }
 
 function fall()
 {
 	Gravity(1,10,spr_mech_elevator_coll,collision_mask);
-	CheckEnvironCollisions(spr_mech_elevator_coll, collision_mask);
+	collision_check(spr_mech_elevator_coll, collision_mask, false, false);
+	if collision_check_edge(x,y,spr_mech_elevator_coll, Direction.DOWN, collision_mask)
+		state = elevator_state.sitting;
 	if mounted obj_player.vspeed = vspeed;
+}
+
+function sit()
+{
+	vspeed = 0;
 }
