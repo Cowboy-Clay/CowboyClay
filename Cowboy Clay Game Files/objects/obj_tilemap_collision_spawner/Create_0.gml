@@ -1,8 +1,8 @@
 layerID = layer_get_id(tilemap_name);
 tiles = layer_tilemap_get_id(layerID);
 
-starting_x = tilemap_get_x(tiles);
-starting_y = tilemap_get_y(tiles);
+starting_x = tilemap_get_x(tiles) + tilemap_x_offset;
+starting_y = tilemap_get_y(tiles) + tilemap_y_offset;
 increment = tilemap_get_tile_width(tiles);
 width = tilemap_get_width(tiles);
 height = tilemap_get_height(tiles);
