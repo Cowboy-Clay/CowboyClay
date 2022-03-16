@@ -33,6 +33,8 @@ if !global.paused
 
 collision_check(spr_player_collision, collision_mask);
 
+
+
 if currentState == PlayerState.WALKING
 {
 	if armed
