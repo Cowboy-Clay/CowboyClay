@@ -1,5 +1,5 @@
 // Idle animations
-global.player_idleAnim = spr_player_idle;
+global.player_idleAnim = spr_player_idle_loBlock;
 global.player_idleAnim_disarmed = spr_player_idle_disarmed;
 global.player_idleFPI = 1;
 global.player_idleAnimType = AnimationType.FIRST_FRAME;
