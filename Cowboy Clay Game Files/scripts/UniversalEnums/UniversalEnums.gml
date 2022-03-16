@@ -1,3 +1,3 @@
-enum Direction { LEFT, RIGHT };
+enum Direction { LEFT, RIGHT, UP, DOWN };
 enum AnimationType { LOOP, HOLD, FIRST_FRAME};
 enum SwordState { INACTIVE, FLYING, STUCK_FLOOR, STUCK_WALL_LEFT, STUCK_WALL_RIGHT };

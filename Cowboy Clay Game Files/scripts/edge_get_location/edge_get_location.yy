@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Physics",
-    "path": "folders/Scripts/Physics.yy",
+    "name": "Helpers",
+    "path": "folders/Scripts/Helpers.yy",
   },
   "resourceVersion": "1.0",
-  "name": "place_meeting_mask",
+  "name": "edge_get_location",
   "tags": [],
   "resourceType": "GMScript",
 }

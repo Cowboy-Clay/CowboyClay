@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Physics.yy",
   },
   "resourceVersion": "1.0",
-  "name": "place_meeting_mask",
+  "name": "collision_point_mask",
   "tags": [],
   "resourceType": "GMScript",
 }

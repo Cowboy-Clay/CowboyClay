@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_player_blockHi",
-    "path": "sprites/spr_player_blockHi/spr_player_blockHi.yy",
+    "name": "spr_player_collision",
+    "path": "sprites/spr_player_collision/spr_player_collision.yy",
   },
   "solid": false,
   "visible": true,
