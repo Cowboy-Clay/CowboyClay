@@ -158,6 +158,7 @@
     {"id":{"name":"spr_envi_impassable","path":"sprites/spr_envi_impassable/spr_envi_impassable.yy",},"order":16,},
     {"id":{"name":"sfx_switch_down","path":"sounds/sfx_switch_down/sfx_switch_down.yy",},"order":0,},
     {"id":{"name":"obj_menu_controller","path":"objects/obj_menu_controller/obj_menu_controller.yy",},"order":1,},
+    {"id":{"name":"spr_player_walk_loBlock","path":"sprites/spr_player_walk_loBlock/spr_player_walk_loBlock.yy",},"order":33,},
     {"id":{"name":"tset_wood","path":"tilesets/tset_wood/tset_wood.yy",},"order":0,},
     {"id":{"name":"spr_player_sword_collision","path":"sprites/spr_player_sword_collision/spr_player_sword_collision.yy",},"order":15,},
     {"id":{"name":"spr_moose_taunt","path":"sprites/spr_moose_taunt/spr_moose_taunt.yy",},"order":36,},
