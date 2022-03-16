@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_player_collision",
-    "path": "sprites/spr_player_collision/spr_player_collision.yy",
+    "name": "spr_player_idle_disarmed",
+    "path": "sprites/spr_player_idle_disarmed/spr_player_idle_disarmed.yy",
   },
   "solid": false,
   "visible": true,

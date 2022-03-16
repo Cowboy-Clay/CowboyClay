@@ -30,7 +30,7 @@ if !global.paused
 	PlayPlayerAnimation();
 	SetPlayerFacingDirection();
 }
-sprite_index = spr_player_collision;
+
 collision_check(spr_player_collision, collision_mask);
 
 if currentState == PlayerState.WALKING

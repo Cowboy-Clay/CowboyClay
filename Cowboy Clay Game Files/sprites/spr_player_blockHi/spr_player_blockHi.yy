@@ -32,7 +32,7 @@
     "spriteId": {"name":"spr_player_blockHi","path":"sprites/spr_player_blockHi/spr_player_blockHi.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 30.0,
+    "playbackSpeed": 9.0,
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
