@@ -1,4 +1,4 @@
-function collision_check(sprite, mask){
+function collision_check(sprite, mask, x_bouncy, y_bouncy){
 	var xx = x;
 	var yy = y;
 	
@@ -20,7 +20,7 @@ function collision_check(sprite, mask){
 			}
 		}
 		x = xx;
-		hspeed = 0;
+		hspeed = x_bouncy == true ? -1*hspeed : 0;
 	}
 	
 	if vspeed == 0 {}
@@ -40,7 +40,7 @@ function collision_check(sprite, mask){
 			}
 		}
 		y = yy;
-		vspeed = 0;
+		vspeed = y_bouncy == true? -1*vspeed : 0;
 	}
 	
 	grounded = collision_check_edge(x+hspeed, y+vspeed, sprite, Direction.DOWN, mask);

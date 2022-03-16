@@ -31,7 +31,7 @@ if !global.paused
 	SetPlayerFacingDirection();
 }
 
-collision_check(spr_player_collision, collision_mask);
+collision_check(spr_player_collision, collision_mask, false, false);
 
 
 

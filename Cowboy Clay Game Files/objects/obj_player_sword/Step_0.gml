@@ -6,7 +6,7 @@ if currentState == SwordState.FLYING
 	//else if sc == 2 PlayerSwordStickInWall(SwordState.STUCK_WALL_RIGHT);
 	//else if sc == 3 PlayerSwordStickInGround();
 	
-	collision_check(sprite_index,collision_mask);
+	collision_check(sprite_index,collision_mask, false, false);
 	if collision_check_edge(x+hspeed, y+vspeed, sprite_index, Direction.LEFT, collision_mask)
 		PlayerSwordStickInWall(SwordState.STUCK_WALL_LEFT);
 	else if collision_check_edge(x+hspeed, y+vspeed, sprite_index, Direction.RIGHT, collision_mask)
