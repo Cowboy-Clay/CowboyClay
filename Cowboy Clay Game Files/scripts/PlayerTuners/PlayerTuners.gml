@@ -1,10 +1,10 @@
 // Idle animations
-global.player_idleAnim = spr_player_idle;
+global.player_idleAnim = spr_player_walk_loBlock3;
 global.player_idleAnim_disarmed = spr_player_idle_disarmed;
 global.player_idleFPI = 1;
 global.player_idleAnimType = AnimationType.FIRST_FRAME;
 // Run animations
-global.player_walkAnim = spr_player_walk;
+global.player_walkAnim = spr_player_walk_loBlock3;
 global.player_walkAnim_disarmed = spr_player_walk_disarmed;
 global.player_walkFPI = 12;
 global.player_walkAnimType = AnimationType.LOOP;
