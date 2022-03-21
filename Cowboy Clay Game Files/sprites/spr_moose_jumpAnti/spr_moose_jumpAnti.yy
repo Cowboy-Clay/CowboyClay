@@ -7,9 +7,9 @@
   "edgeFiltering": false,
   "collisionTolerance": 0,
   "swfPrecision": 2.525,
-  "bbox_left": 354,
-  "bbox_right": 595,
-  "bbox_top": 84,
+  "bbox_left": 126,
+  "bbox_right": 495,
+  "bbox_top": 126,
   "bbox_bottom": 317,
   "HTile": false,
   "VTile": false,
@@ -24,12 +24,12 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"6b41ae96-7b4e-462b-b193-cf2d7c74132d","path":"sprites/spr_moose_chargeAnti_noHelm/spr_moose_chargeAnti_noHelm.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"6b41ae96-7b4e-462b-b193-cf2d7c74132d","path":"sprites/spr_moose_chargeAnti_noHelm/spr_moose_chargeAnti_noHelm.yy",},"LayerId":{"name":"f8e04726-3fa6-4165-bfa7-61eac753af4c","path":"sprites/spr_moose_chargeAnti_noHelm/spr_moose_chargeAnti_noHelm.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_moose_chargeAnti_noHelm","path":"sprites/spr_moose_chargeAnti_noHelm/spr_moose_chargeAnti_noHelm.yy",},"resourceVersion":"1.0","name":"6b41ae96-7b4e-462b-b193-cf2d7c74132d","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"9e294997-7da8-46c2-81c5-7b1a9fe61784","path":"sprites/spr_moose_jumpAnti/spr_moose_jumpAnti.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"9e294997-7da8-46c2-81c5-7b1a9fe61784","path":"sprites/spr_moose_jumpAnti/spr_moose_jumpAnti.yy",},"LayerId":{"name":"f2b245d6-9540-40fd-9ee7-2566c3769b8f","path":"sprites/spr_moose_jumpAnti/spr_moose_jumpAnti.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_moose_jumpAnti","path":"sprites/spr_moose_jumpAnti/spr_moose_jumpAnti.yy",},"resourceVersion":"1.0","name":"9e294997-7da8-46c2-81c5-7b1a9fe61784","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
-    "spriteId": {"name":"spr_moose_chargeAnti_noHelm","path":"sprites/spr_moose_chargeAnti_noHelm/spr_moose_chargeAnti_noHelm.yy",},
+    "spriteId": {"name":"spr_moose_jumpAnti","path":"sprites/spr_moose_jumpAnti/spr_moose_jumpAnti.yy",},
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 0.0,
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"dc606cb9-cbc3-4e9d-9d9c-4ff12f455c16","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"6b41ae96-7b4e-462b-b193-cf2d7c74132d","path":"sprites/spr_moose_chargeAnti_noHelm/spr_moose_chargeAnti_noHelm.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"f2767e4f-84aa-4981-95c3-f7d11df1d2b4","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"9e294997-7da8-46c2-81c5-7b1a9fe61784","path":"sprites/spr_moose_jumpAnti/spr_moose_jumpAnti.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
@@ -58,14 +58,14 @@
     "yorigin": 203,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"spr_moose_chargeAnti_noHelm","path":"sprites/spr_moose_chargeAnti_noHelm/spr_moose_chargeAnti_noHelm.yy",},
+    "parent": {"name":"spr_moose_jumpAnti","path":"sprites/spr_moose_jumpAnti/spr_moose_jumpAnti.yy",},
     "resourceVersion": "1.4",
-    "name": "spr_moose_chargeAnti_noHelm",
+    "name": "spr_moose_jumpAnti",
     "tags": [],
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"f8e04726-3fa6-4165-bfa7-61eac753af4c","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"f2b245d6-9540-40fd-9ee7-2566c3769b8f","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": null,
   "parent": {
@@ -73,7 +73,7 @@
     "path": "folders/Sprites/Enemy/Moose.yy",
   },
   "resourceVersion": "1.0",
-  "name": "spr_moose_chargeAnti_noHelm",
+  "name": "spr_moose_jumpAnti",
   "tags": [],
   "resourceType": "GMSprite",
 }

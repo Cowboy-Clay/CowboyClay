@@ -13,7 +13,7 @@ function collision_check_edge(xpos, ypos, sprite, edge, mask){
 			var d = edge_get_location(xpos, ypos, sprite, Direction.DOWN);
 			u += 2;
 			d -= 2;
-			for (var i = u; i <= d; i += 20) {
+			for (var i = u; i <= d; i += 39) {
 				if collision_point_mask(l, i, mask, true, true){
 					show_debug_message("Colliding on left side.");
 					return true;
@@ -30,7 +30,7 @@ function collision_check_edge(xpos, ypos, sprite, edge, mask){
 			var d = edge_get_location(xpos, ypos, sprite, Direction.DOWN);
 			u += 2;
 			d -= 2;
-			for (var i = u; i <= d; i += 20) {
+			for (var i = u; i <= d; i += 39) {
 				if collision_point_mask(r, i, mask, true, true){
 					show_debug_message("Colliding on right side.");
 					return true;
@@ -47,7 +47,7 @@ function collision_check_edge(xpos, ypos, sprite, edge, mask){
 			var r = edge_get_location(xpos, ypos, sprite, Direction.RIGHT);
 			l += 2;
 			r -= 2;
-			for (var i = l; i <= r; i += 20) {
+			for (var i = l; i <= r; i += 39) {
 				if collision_point_mask(i, u, mask, true, true){
 					show_debug_message("Colliding on up side.");
 					return true;
@@ -64,7 +64,7 @@ function collision_check_edge(xpos, ypos, sprite, edge, mask){
 			var r = edge_get_location(xpos, ypos, sprite, Direction.RIGHT);
 			l += 2;
 			r -= 2;
-			for (var i = l; i <= r; i += 20) {
+			for (var i = l; i <= r; i += 39) {
 				if collision_point_mask(i, d, mask, true, true){
 					show_debug_message("Colliding on down side.");
 					return true;
