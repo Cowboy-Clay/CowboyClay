@@ -19,7 +19,7 @@ function collision_check_player(sprite, mask, x_bouncy, y_bouncy){
 		/* Uses an if statement because we need to check
 		/  collision in a specific direction
 		*/
-		
+		var box_flag = false;
 		if collision_check_edge(xx+hspeed,yy,sprite,Direction.LEFT,[obj_box]) || 
 		collision_check_edge(xx+hspeed,yy,sprite,Direction.RIGHT,[obj_box]){
 			var b = instance_nearest(xx+hspeed,yy,obj_box);
@@ -27,6 +27,7 @@ function collision_check_player(sprite, mask, x_bouncy, y_bouncy){
 			with (b){
 				hspeed = h;
 				collision_check(spr_mech_pushBlockCollision,collision_mask,false,false);
+				box_flag = hspeed != 0;
 			}
 		}
 		
@@ -39,8 +40,10 @@ function collision_check_player(sprite, mask, x_bouncy, y_bouncy){
 				xx--;
 			}
 		}
+		
 		x = xx;
-		hspeed = x_bouncy == true ? -1*hspeed : 0;
+		if !box_flag
+			hspeed = x_bouncy == true ? -1*hspeed : 0;
 		
 	}
 	
