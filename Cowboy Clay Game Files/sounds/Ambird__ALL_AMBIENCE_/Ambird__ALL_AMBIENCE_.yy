@@ -1,7 +1,7 @@
 {
   "conversionMode": 0,
   "compression": 0,
-  "volume": 0.06,
+  "volume": 0.38,
   "preload": false,
   "bitRate": 128,
   "sampleRate": 44100,
@@ -11,14 +11,14 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "sfx_clay_walk_disarmed.ogg",
-  "duration": 0.375011,
+  "soundFile": "Ambird__ALL_AMBIENCE_.ogg",
+  "duration": 192.0,
   "parent": {
-    "name": "Clay",
-    "path": "folders/Sounds/SFX/Clay.yy",
+    "name": "Music",
+    "path": "folders/Sounds/Music.yy",
   },
   "resourceVersion": "1.0",
-  "name": "sfx_clay_walk_disarmed",
+  "name": "Ambird__ALL_AMBIENCE_",
   "tags": [],
   "resourceType": "GMSound",
 }
