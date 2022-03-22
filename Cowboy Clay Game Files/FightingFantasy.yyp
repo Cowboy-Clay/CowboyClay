@@ -155,6 +155,7 @@
     {"id":{"name":"spr_mech_elevator","path":"sprites/spr_mech_elevator/spr_mech_elevator.yy",},"order":4,},
     {"id":{"name":"obj_player_attackEffect","path":"objects/obj_player_attackEffect/obj_player_attackEffect.yy",},"order":1,},
     {"id":{"name":"spr_player_walk_loBlock__2_","path":"sprites/spr_player_walk_loBlock__2_/spr_player_walk_loBlock__2_.yy",},"order":34,},
+    {"id":{"name":"collision_line_mask","path":"scripts/collision_line_mask/collision_line_mask.yy",},"order":7,},
     {"id":{"name":"spr_moose_charge_hurtbox","path":"sprites/spr_moose_charge_hurtbox/spr_moose_charge_hurtbox.yy",},"order":8,},
     {"id":{"name":"spr_player_dash_follow","path":"sprites/spr_player_dash_follow/spr_player_dash_follow.yy",},"order":25,},
     {"id":{"name":"obj_player_hurtbox","path":"objects/obj_player_hurtbox/obj_player_hurtbox.yy",},"order":4,},
