@@ -32,10 +32,11 @@ function collision_check_vert_only(sprite, mask, x_bouncy, y_bouncy){
 	/ We check each corner to ensure there is no corner clipping.
 	/ This was an issue.
 	*/
-	var l = edge_get_location(x,y,sprite,Direction.LEFT)+1;
-	var u = edge_get_location(x,y,sprite,Direction.UP)+1;
-	var r = edge_get_location(x,y,sprite,Direction.RIGHT)-1;
-	var d = edge_get_location(x,y,sprite,Direction.DOWN)-1;
+	var edges = edge_get_location(x,y,sprite);
+	var l = edges[3]+1;
+	var u = edges[0]+1;
+	var r = edges[1]-1;
+	var d = edges[2]-1;
 	
 	if collision_point_mask(r,d,mask,true,true) {
 		x--;

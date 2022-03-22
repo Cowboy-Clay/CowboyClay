@@ -6,6 +6,9 @@ cam = view_camera[0];
 x = obj_player.x;
 y = obj_player.y;
 
+cam_width = camera_get_view_width(cam);
+cam_height = camera_get_view_height(cam);
+
 if instance_exists(obj_cam_anchor)
 {
 	if place_meeting(x,y,obj_cam_anchor)

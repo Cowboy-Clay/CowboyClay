@@ -5,6 +5,10 @@ timer = 0;
 
 total_frames = sprite_get_number(sprite_index);
 
+if test_door {
+	open = true;
+}
+
 function open_door()
 {
 	if open return;

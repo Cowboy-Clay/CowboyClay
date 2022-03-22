@@ -93,4 +93,6 @@ function sit()
 {
 	cooldown_timer = -1;
 	vspeed = 0;
+	if !collision_check_edge(x,y,spr_mech_elevator_coll, Direction.DOWN, collision_mask)
+		go_to_falling();
 }
