@@ -31,6 +31,4 @@ if !global.paused
 	SetPlayerFacingDirection();
 }
 
-collision_check(spr_player_collision, collision_mask, false, false);
-
-CollideWithBox();
+collision_check_player(spr_player_collision, collision_mask, false, false);

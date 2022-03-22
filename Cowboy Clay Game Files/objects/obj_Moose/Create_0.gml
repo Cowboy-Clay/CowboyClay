@@ -1,3 +1,9 @@
+instance_create_layer(0,0,layer, obj_enemy_attackEffect);
+instance_create_layer(0,0,layer, obj_enemy_blockbox);
+instance_create_layer(0,0,layer, obj_enemy_hitbox);
+instance_create_layer(0,0,layer, obj_enemy_hurtbox);
+instance_create_layer(0,0,layer,obj_enemy_sword);
+
 enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT, BLOCK, LOCK, DEAD, PULLING };
 
 collision_mask = [obj_tile_coll, obj_door, obj_plate, obj_elevator];

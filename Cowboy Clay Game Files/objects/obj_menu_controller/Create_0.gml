@@ -1,4 +1,4 @@
-options = [asset_get_index("ShopScene"), asset_get_index("LevelDesignTest")];
+options = [asset_get_index("ShopScene")];
 
 menu_state = 0;
 
