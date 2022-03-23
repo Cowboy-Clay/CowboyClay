@@ -28,7 +28,7 @@ global.moose_blockDistance = 300;
 
 // Animations
 global.moose_idleAnim = spr_moose_idle;
-global.moose_idleAnim_disar = spr_moose_idle_disarmed;
+global.moose_idleAnim_disar = spr_moose_struck_disarmed;
 global.moose_idleAnim_FPI = 1;
 global.moose_idleAnim_type = AnimationType.FIRST_FRAME;
 
@@ -54,7 +54,7 @@ global.moose_chargeAnim = spr_moose_chargeAnti;
 global.moose_chargeAnim_FPI = 1;
 global.moose_chargeAnim_type = AnimationType.FIRST_FRAME;
 
-global.moose_hitAnim = spr_moose_hit;
+global.moose_hitAnim = spr_moose_struck_disarmed;
 global.moose_hitAnim_FPI = 1;
 global.moose_hitAnim_type = AnimationType.FIRST_FRAME;
 
