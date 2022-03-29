@@ -18,13 +18,16 @@ if !global.paused
 	Gravity(1,10,spr_enemy_collision, collision_mask);
 	LimitMooseSpeed();
 	
+	update_animation();
+	PlayMooseAnimation();
 	if currentState == MooseState.PULLING
 	{
 		image_index = spr_moose_pull;
 	}
 	else
 	{
-		PlayMooseAnimation();
+		
+		
 	}
 	
 	SetMooseDirection();

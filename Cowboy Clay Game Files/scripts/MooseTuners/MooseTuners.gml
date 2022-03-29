@@ -27,41 +27,126 @@ global.moose_invulTime = 60;
 global.moose_blockDistance = 300;
 
 // Animations
-global.moose_idleAnim = spr_moose_idle;
-global.moose_idleAnim_disar = spr_moose_struck_disarmed;
-global.moose_idleAnim_FPI = 1;
-global.moose_idleAnim_type = AnimationType.FIRST_FRAME;
+
+// Idle
+global.moose_animation_idle = spr_moose_idle;
+global.moose_animation_idle_helmless = spr_moose_idle_helmless;
+global.moose_animation_idle_disarmed = spr_moose_idle_empty;
+	global.moose_animation_idle_FPI = 1;
+	global.moose_animation_idle_type = AnimationType.FIRST_FRAME;
+
+//Wander
+global.moose_animation_wander = spr_moose_walk;
+global.moose_animation_wander_helmless = spr_moose_walk_noHelm;
+global.moose_animation_wander_disarmed = spr_moose_walk_empty;
+	global.moose_animation_wander_FPI = 20;
+	global.moose_animation_wander_type = AnimationType.LOOP;
 
 
-global.moose_wanderAnim = spr_moose_walk;
-global.moose_wanderAnim_disar = spr_moose_walk_empty;
-global.moose_wanderAnim_FPI = 20;
-global.moose_wanderAnim_type = AnimationType.LOOP;
+//SlideAnti
+global.moose_animation_slideAnti = spr_moose_slideAnti;
+global.moose_animation_slideAnti_helmless = spr_moose_slideAnti_helmless;
+global.moose_animation_slideAnti_disarmed = spr_moose_slideAnti_empty;
+	global.moose_animation_slideAnti_FPI = 1;
+	global.moose_animation_slideAnti_type = AnimationType.FIRST_FRAME;
 
-global.moose_slideAntiAnim = spr_moose_slideAnti;
-global.moose_slideAntiAnim_FPI = 1;
-global.moose_slideAntiAnim_type = AnimationType.FIRST_FRAME;
 
-global.moose_slideAnim = spr_moose_slide;
-global.moose_slideAnim_FPI = 1;
-global.moose_slideAnim_type = AnimationType.HOLD;
+//Slide
+global.moose_animation_slide = spr_moose_slide;
+global.moose_animation_slide_helmless = spr_moose_slide_noHelm;
+global.moose_animation_slide_disarmed = spr_moose_slide_empty;
+	global.moose_animation_slide_FPI = 1;
+	global.moose_animation_slide_type = AnimationType.HOLD;
 
-global.moose_chargeAntiAnim = spr_moose_chargeAnti;
-global.moose_chargeAntiAnim_FPI = 1;
-global.moose_chargeAntiAnim_type = AnimationType.FIRST_FRAME;
 
-global.moose_chargeAnim = spr_moose_chargeAnti;
-global.moose_chargeAnim_FPI = 1;
-global.moose_chargeAnim_type = AnimationType.FIRST_FRAME;
+//ChargeAnti
+global.moose_animation_chargeAnti = spr_moose_chargeAnti;
+global.moose_animation_chargeAnti_helmless = spr_moose_chargeAnti_noHelm;
+global.moose_animation_chargeAnti_disarmed = spr_moose_chargeAnti_empty;
+	global.moose_animation_chargeAnti_FPI = 1;
+	global.moose_animation_chargeAnti_type = AnimationType.FIRST_FRAME;
 
-global.moose_hitAnim = spr_moose_struck_disarmed;
-global.moose_hitAnim_FPI = 1;
-global.moose_hitAnim_type = AnimationType.FIRST_FRAME;
 
-global.moose_blockLoAnim = spr_moose_blockLo;
-global.moose_blockLoAnim_FPI = 1;
-global.moose_blockLoAnim_type = AnimationType.FIRST_FRAME;
+//Charge
+global.moose_animation_charge = spr_moose_charge;
+global.moose_animation_charge_helmless = spr_moose_charge_noHelm;
+global.moose_animation_charge_disarmed = spr_moose_charge_empty;
+	global.moose_animation_charge_FPI = 1;
+	global.moose_animation_charge_type = AnimationType.FIRST_FRAME;
 
-global.moose_deathAnim = spr_moose_dead;
-global.moose_deathAnimFPI = 20;
-global.moose_deathAnimType = AnimationType.HOLD;
+
+//Hit
+global.moose_animation_hit = spr_moose_struck;
+global.moose_animation_hit_empty = spr_moose_struck_disarmed;
+	global.moose_animation_hit_FPI = 1;
+	global.moose_animation_hit_type = AnimationType.FIRST_FRAME;
+
+
+//Death
+global.moose_animation_death = spr_moose_dead;
+	global.moose_animation_death_FPI = 20;
+	global.moose_animation_death_Type = AnimationType.HOLD;
+	
+	
+//Idle - BlockLo
+global.moose_animation_idle_blockLo = spr_moose_blockLo;
+global.moose_animation_idle_blockLo_helmless = spr_moose_blockLo_helmless;
+	global.moose_animation_idle_blockLo_FPI = 1;
+	global.moose_animation_idle_blockLo_type = AnimationType.FIRST_FRAME;
+
+//Walk - BlockLo
+global.moose_animation_walk_blockLo = spr_moose_walkBlock;
+global.moose_animation_walk_blockLo_helmless = spr_moose_walkBlock_noHelm;
+	global.moose_animation_walk_blockLo_FPI = 20;
+	global.moose_animation_walk_blockLo_type = AnimationType.LOOP;
+
+//Idle - BlockHi
+global.moose_animation_idle_blockHi_helmless = spr_moose_hiBlock;
+	global.moose_animation_idle_blockHi_helmless_FPI = 1;
+	global.moose_animation_idle_blockHi_helmless_type = AnimationType.FIRST_FRAME;
+
+//Walk - BlockHi
+global.moose_animation_walk_blockHi_helmless = spr_moose_walk_hiBlock;
+	global.moose_animation_walk_blockHi_helmless_FPI = 20;
+	global.moose_animation_walk_blockHi_helmless_type = AnimationType.LOOP;
+
+//StabAnti
+global.moose_animation_stabAnti = spr_moose_stabAnti;
+global.moose_animation_stabAnti_helmless = spr_moose_stabAnti_noHelm;
+global.moose_animation_stabAnti_disarmed = spr_moose_stabAnti_empty;
+	global.moose_animation_stabAnti_FPI = 20;
+	global.moose_animation_stabAnti_type = AnimationType.HOLD;
+
+//Stab
+global.moose_animation_stab = spr_moose_stab;
+global.moose_animation_stab_helmless = spr_moose_stab_noHelm;
+global.moose_animation_stab_disarmed = spr_moose_stab_empty;
+	global.moose_animation_stab_FPI = 20;
+	global.moose_animation_stab_type = AnimationType.HOLD;
+
+//JumpAnti
+global.moose_animation_jumpAnti = spr_moose_jumpAnti;
+//global.moose_animation_jumpAnti_helmless = spr_moose_jumpAnti_noHelm;
+//global.moose_animation_jumpAnti_disarmed = spr_moose_jumpAnti_empty;
+	global.moose_animation_jumpAnti_FPI = 1;
+	global.moose_animation_jumpAnti_type = AnimationType.FIRST_FRAME;
+	
+//Jumping
+global.moose_animation_jumping = spr_moose_jumping;
+global.moose_animation_jumping_helmless = spr_moose_jumping_nohelm;
+global.moose_animation_jumping_disarmed = spr_moose_jumping_empty;
+	global.moose_animation_jumping_FPI = 1;
+	global.moose_animation_jumping_type = AnimationType.FIRST_FRAME;
+
+//Plunging
+global.moose_animation_plunging = spr_moose_plunging;
+global.moose_animation_plunging_helmless = spr_moose_plunging_noHelm;
+//global.moose_animation_plunging_disarmed = spr_moose_plunging_empty;
+	global.moose_animation_plunging_FPI = 1;
+	global.moose_animation_plunging_type = AnimationType.FIRST_FRAME;
+
+//Spinning
+global.moose_animation_spinning = spr_moose_spin;
+global.moose_animation_spinning_helmless = spr_moose_spin_noHelm;
+	global.moose_animation_spinning_FPI = 20;
+	global.moose_animation_spinning_type = AnimationType.LOOP;

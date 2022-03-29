@@ -10,6 +10,7 @@ collision_mask = [obj_tile_coll, obj_door, obj_plate, obj_elevator];
 
 currentState = MooseState.IDLE;
 armed = true;
+armor = 1;
 facing = Direction.LEFT;
 stateTimer = 0;
 
@@ -20,6 +21,7 @@ grounded = false;
 
 // Idle
 wanderCounter = 0;
+wandersPerIdle = random(global.moose_wandersPerIdle);
 
 // Wander
 
@@ -40,9 +42,10 @@ function UpdateMooseState()
 		case MooseState.IDLE:
 			if stateTimer <= 0
 			{
-				if wanderCounter >= global.moose_wandersPerIdle
+				if wanderCounter >= wandersPerIdle
 				{
 					wanderCounter = 0;
+					wandersPerIdle = random(global.moose_wandersPerIdle);
 					if armed
 					{
 						MooseIdleToSlideAnti();
@@ -182,7 +185,6 @@ function MooseToDead()
 	instance_deactivate_object(obj_enemy_hitbox);
 	instance_deactivate_object(obj_enemy_hurtbox);
 	instance_deactivate_object(obj_enemy_blockbox);
-	SetMooseAnimation(global.moose_deathAnim, global.moose_deathAnimFPI, global.moose_deathAnimType);
 }
 
 
@@ -194,16 +196,12 @@ function MooseToBlock()
 		return;
 	}
 	
-	SetMooseAnimation(global.moose_blockLoAnim, global.moose_blockLoAnim_FPI, global.moose_blockLoAnim_type);
-	
 	currentState = MooseState.BLOCK;
 }
 
 function MooseChargeToWait()
 {
 	obj_enemy_sword.falling = true;
-	
-	SetMooseAnimation(global.moose_chargeAntiAnim, global.moose_chargeAntiAnim_FPI, global.moose_chargeAntiAnim_type);
 	
 	currentState = MooseState.WAITING;
 }
@@ -215,15 +213,11 @@ function MooseIdleToChargeAnti()
 	
 	stateTimer = global.moose_chargeAntiTime;
 	
-	SetMooseAnimation(global.moose_chargeAntiAnim, global.moose_chargeAntiAnim_FPI, global.moose_chargeAntiAnim_type);
-	
 	currentState = MooseState.CHARGE_ANTI;
 }
 
 function MooseChargeAntiToCharge()
 {
-	SetMooseAnimation(global.moose_chargeAnim, global.moose_chargeAnim_FPI, global.moose_chargeAnim_type);
-	
 	currentState = MooseState.CHARGE;
 }
 
@@ -253,15 +247,14 @@ function MooseIdleToWander()
 	stateTimer = floor(random_range(global.moose_minWanderTime, global.moose_maxWanderTime));
 	
 	currentState = MooseState.WANDER;
-	PlayMooseWanderAnim();
 }
 
 function MooseWanderToIdle()
 {
 	stateTimer = floor(random_range(global.moose_minIdleTime, global.moose_maxIdleTime));
+	if armor == 0 stateTimer = 0;
 	
 	currentState = MooseState.IDLE;
-	PlayMooseIdleAnim();
 }
 
 function MooseWaitToIdle()
@@ -271,7 +264,6 @@ function MooseWaitToIdle()
 	wanderCounter = global.moose_wandersPerIdle - 1;
 	
 	currentState = MooseState.IDLE;
-	PlayMooseIdleAnim();
 }
 
 function MooseIdleToSlideAnti()
@@ -281,7 +273,6 @@ function MooseIdleToSlideAnti()
 	MooseFacePlayer();
 	
 	currentState = MooseState.SLIDE_ANTI;
-	SetMooseAnimation(global.moose_slideAntiAnim, global.moose_slideAntiAnim_FPI, global.moose_slideAntiAnim_type);
 }
 
 function MooseSlideAntiToSlide()
@@ -290,7 +281,6 @@ function MooseSlideAntiToSlide()
 	else hspeed = global.moose_slideImpulse;
 	
 	currentState = MooseState.SLIDE;
-	SetMooseAnimation(global.moose_slideAnim, global.moose_slideAnim_FPI, global.moose_slideAnim_type);
 }
 
 function MooseSlideToIdle()
@@ -298,31 +288,46 @@ function MooseSlideToIdle()
 	stateTimer = floor(random_range(global.moose_minIdleTime, global.moose_maxIdleTime));
 	
 	currentState = MooseState.IDLE;
-	PlayMooseIdleAnim();
 }
 
-function PlayMooseIdleAnim()
-{
-	var a = global.moose_idleAnim;
-	if !armed a = global.moose_idleAnim_disar;
-	SetMooseAnimation(a, global.moose_idleAnim_FPI, global.moose_idleAnim_type);
-}
-
-function PlayMooseWanderAnim()
-{
-	var a = global.moose_wanderAnim;
-	if armed == false a = global.moose_wanderAnim_disar;
-	SetMooseAnimation(a, global.moose_wanderAnim_FPI, global.moose_wanderAnim_type);
-}
 
 function SetMooseAnimation(animation, fpi, type)
 {
+	if sprite_index == animation && currentFPI == fpi && currentAnimType == type return;
 	sprite_index = animation;
 	currentFPI = fpi;
 	currentAnimType = type;
 	animFrameCounter = 0;
 }
 
+function update_animation() {
+	switch(currentState) {
+		case MooseState.IDLE:
+			var a = armor > 0 ? global.moose_animation_idle : (armed==true ? global.moose_animation_idle_helmless : global.moose_animation_idle_disarmed);
+			SetMooseAnimation(a, global.moose_animation_idle_FPI, global.moose_animation_idle_type);
+			break;
+		case MooseState.WANDER:
+			break;
+		case MooseState.SLIDE_ANTI:
+			break;
+		case MooseState.SLIDE:
+			break;
+		case MooseState.CHARGE_ANTI:
+			break;
+		case MooseState.CHARGE:
+			break;
+		case MooseState.WAITING:
+			break;
+		case MooseState.HIT:
+			break;
+		case MooseState.LOCK:
+			break;
+		case MooseState.DEAD:
+			break;
+		case MooseState.PULLING:
+			break;
+	}
+}
 function PlayMooseAnimation()
 {
 	if currentAnimType == AnimationType.FIRST_FRAME
@@ -341,8 +346,6 @@ function PlayMooseAnimation()
 			else if currentAnimType == AnimationType.HOLD image_index = sprite_get_number(sprite_index) - 1;
 		}
 	}
-	
-	
 }
 
 function GetMooseFriction()
@@ -420,7 +423,6 @@ function MooseGetHit()
 		MakeMooseInvulnerable();
 		currentState = MooseState.HIT;
 		wanderCounter = 0;
-		SetMooseAnimation(global.moose_hitAnim, global.moose_hitAnim_FPI, global.moose_hitAnim_type);
 	}
 	else
 	{
