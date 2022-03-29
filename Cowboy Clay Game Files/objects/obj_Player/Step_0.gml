@@ -22,7 +22,8 @@ if !global.paused
 	
 	if keyboard_check_pressed(ord("R"))
 	{
-		room_goto(asset_get_index("Menu"));
+		audio_stop_all();
+		room_goto(asset_get_index("LevelDesignTest"));
 	}
 	
 	// Animation

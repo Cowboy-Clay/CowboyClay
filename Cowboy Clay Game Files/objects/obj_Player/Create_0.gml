@@ -122,8 +122,8 @@ function UpdatePlayerState()
 			}
 			if keyboard_check(vk_down) && keyboard_check_pressed(ord("X")) && !dashOnCooldown
 			{
-				GoToDashAnti();
-				return;
+				//GoToDashAnti();
+				//return;
 			}
 			if keyboard_check_pressed(ord("X")) GoToPlayerJumpAnti();
 			else if OneWalkKeyHeld() GoToPlayerWalk();
@@ -131,8 +131,8 @@ function UpdatePlayerState()
 		case PlayerState.WALKING:
 			if keyboard_check(vk_down) && keyboard_check_pressed(ord("X")) && !dashOnCooldown
 			{
-				GoToDashAnti();
-				return;
+				//GoToDashAnti();
+				//return;
 			}
 			if keyboard_check_pressed(ord("X")) GoToPlayerJumpAnti();
 			else if !OneWalkKeyHeld() GoToPlayerIdle();
@@ -140,8 +140,8 @@ function UpdatePlayerState()
 		case PlayerState.JUMP_ANTI:
 			if keyboard_check(vk_down) && keyboard_check_pressed(ord("X")) && !dashOnCooldown
 			{
-				GoToDashAnti();
-				return;
+				//GoToDashAnti();
+				//return;
 			}
 			break;
 		case PlayerState.JUMPING:

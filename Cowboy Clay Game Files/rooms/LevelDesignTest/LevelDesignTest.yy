@@ -3,7 +3,7 @@
   "volume": 1.0,
   "parentRoom": null,
   "views": [
-    {"inherit":false,"visible":true,"xview":0,"yview":0,"wview":1600,"hview":900,"xport":0,"yport":0,"wport":1368,"hport":768,"hborder":32,"vborder":32,"hspeed":-1,"vspeed":-1,"objectId":{"name":"obj_cam_position","path":"objects/obj_cam_position/obj_cam_position.yy",},},
+    {"inherit":false,"visible":true,"xview":0,"yview":0,"wview":1680,"hview":1080,"xport":0,"yport":0,"wport":1680,"hport":1080,"hborder":32,"vborder":32,"hspeed":-1,"vspeed":-1,"objectId":{"name":"obj_cam_position","path":"objects/obj_cam_position/obj_cam_position.yy",},},
     {"inherit":false,"visible":false,"xview":0,"yview":0,"wview":1366,"hview":768,"xport":0,"yport":0,"wport":1366,"hport":768,"hborder":32,"vborder":32,"hspeed":-1,"vspeed":-1,"objectId":{"name":"obj_cam_position","path":"objects/obj_cam_position/obj_cam_position.yy",},},
     {"inherit":false,"visible":false,"xview":0,"yview":0,"wview":1366,"hview":768,"xport":0,"yport":0,"wport":1366,"hport":768,"hborder":32,"vborder":32,"hspeed":-1,"vspeed":-1,"objectId":null,},
     {"inherit":false,"visible":false,"xview":0,"yview":0,"wview":1366,"hview":768,"xport":0,"yport":0,"wport":1366,"hport":768,"hborder":32,"vborder":32,"hspeed":-1,"vspeed":-1,"objectId":null,},
@@ -50,7 +50,7 @@
             {"propertyId":{"name":"startArmed","path":"objects/obj_player/obj_player.yy",},"objectId":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"value":"True","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
           ],"isDnd":false,"objectId":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":894.0,"y":3372.0,"resourceVersion":"1.0","name":"inst_3C14A0F","tags":[],"resourceType":"GMRInstance",},
         {"properties":[
-            {"propertyId":{"name":"start_pulling","path":"objects/obj_Moose/obj_Moose.yy",},"objectId":{"name":"obj_Moose","path":"objects/obj_Moose/obj_Moose.yy",},"value":"True","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
+            {"propertyId":{"name":"start_pulling","path":"objects/obj_Moose/obj_Moose.yy",},"objectId":{"name":"obj_Moose","path":"objects/obj_Moose/obj_Moose.yy",},"value":"False","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
           ],"isDnd":false,"objectId":{"name":"obj_Moose","path":"objects/obj_Moose/obj_Moose.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":768.0,"y":1056.0,"resourceVersion":"1.0","name":"inst_16A1184","tags":[],"resourceType":"GMRInstance",},
         {"properties":[
             {"propertyId":{"name":"track","path":"objects/obj_music_controller/obj_music_controller.yy",},"objectId":{"name":"obj_music_controller","path":"objects/obj_music_controller/obj_music_controller.yy",},"value":"Ambird__ALL_AMBIENCE_","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
