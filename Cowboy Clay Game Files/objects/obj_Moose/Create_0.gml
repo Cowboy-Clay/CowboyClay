@@ -10,6 +10,7 @@ collision_mask = [obj_tile_coll, obj_door, obj_plate, obj_elevator];
 
 currentState = MooseState.IDLE;
 armed = true;
+armor = 1;
 facing = Direction.LEFT;
 stateTimer = 0;
 
@@ -261,6 +262,7 @@ function MooseIdleToWander()
 function MooseWanderToIdle()
 {
 	stateTimer = floor(random_range(global.moose_minIdleTime, global.moose_maxIdleTime));
+	if armor == 0 stateTimer = 0;
 	
 	currentState = MooseState.IDLE;
 	PlayMooseIdleAnim();
