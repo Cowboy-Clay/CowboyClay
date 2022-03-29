@@ -2,16 +2,38 @@
 global.moose_wandersPerIdle = 4;
 global.moose_minIdleTime = 40;
 global.moose_maxIdleTime = 70;
-global.moose_idleFriction = .11;
+global.moose_idleFriction = .5;
 
 // Wander
-global.moose_minWanderTime = 60;
-global.moose_maxWanderTime = 90;
+global.moose_minWanderTime = 30;
+global.moose_maxWanderTime = 80;
 global.moose_minDistance = 400;
 global.moose_maxDistance = 600;
-global.moose_wanderAccel = .4;
+global.moose_wanderAccel = .8;
 global.moose_wanderMaxSpeed = 1.4;
-global.moose_wanderFriction = .1;
+global.moose_wanderFriction = .7;
+
+global.moose_attack_distance_threshold = 500;
+
+// Stab
+global.moose_lunge_anti_frames = 5;
+global.moose_lunge_speed = 15;
+global.moose_lunge_distance_max = 900;
+global.moose_lunge_target_distance_to_player = 150;
+global.moose_stab_anti_frames = 0;
+global.moose_stab_frames = 15;
+
+// Jump
+global.moose_jump_anti_frames = 10;
+global.moose_jump_y_height = 500;
+global.moose_jump_x_speed = 20;
+global.moose_jump_y_speed = 10;
+global.moose_dive_anti_frames = 45;
+global.moose_dive_speed = 20;
+global.moose_stuck_frames = 60;
+global.moose_spin_x_speed = 10;
+global.moose_spin_y_speed = -10;
+global.moose_spin_y_offset = -25;
 
 // Slide
 global.moose_slideAntiDuration = 40;
@@ -126,8 +148,8 @@ global.moose_animation_stab_disarmed = spr_moose_stab_empty;
 
 //JumpAnti
 global.moose_animation_jumpAnti = spr_moose_jumpAnti;
-//global.moose_animation_jumpAnti_helmless = spr_moose_jumpAnti_noHelm;
-//global.moose_animation_jumpAnti_disarmed = spr_moose_jumpAnti_empty;
+global.moose_animation_jumpAnti_helmless = spr_moose_jumpAnti;
+global.moose_animation_jumpAnti_disarmed = spr_moose_jumpAnti;
 	global.moose_animation_jumpAnti_FPI = 1;
 	global.moose_animation_jumpAnti_type = AnimationType.FIRST_FRAME;
 	
@@ -141,12 +163,13 @@ global.moose_animation_jumping_disarmed = spr_moose_jumping_empty;
 //Plunging
 global.moose_animation_plunging = spr_moose_plunging;
 global.moose_animation_plunging_helmless = spr_moose_plunging_noHelm;
-//global.moose_animation_plunging_disarmed = spr_moose_plunging_empty;
+global.moose_animation_plunging_disarmed = spr_moose_plunging_noHelm;
 	global.moose_animation_plunging_FPI = 1;
 	global.moose_animation_plunging_type = AnimationType.FIRST_FRAME;
 
 //Spinning
 global.moose_animation_spinning = spr_moose_spin;
 global.moose_animation_spinning_helmless = spr_moose_spin_noHelm;
+global.moose_animation_spinning_disarmed = spr_moose_spin_noHelm;
 	global.moose_animation_spinning_FPI = 20;
 	global.moose_animation_spinning_type = AnimationType.LOOP;

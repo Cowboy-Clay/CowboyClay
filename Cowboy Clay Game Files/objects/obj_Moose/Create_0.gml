@@ -4,15 +4,15 @@ instance_create_layer(0,0,layer, obj_enemy_hitbox);
 instance_create_layer(0,0,layer, obj_enemy_hurtbox);
 instance_create_layer(0,0,layer,obj_enemy_sword);
 
-enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT, BLOCK, LOCK, DEAD, PULLING };
+enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT, BLOCK, LOCK, DEAD, PULLING, LUNGE_ANTI, LUNGE, STAB_ANTI, STAB, JUMP_ANTI, JUMP, DIVE_ANTI, DIVE, STUCK, SPIN };
 
 collision_mask = [obj_tile_coll, obj_door, obj_plate, obj_elevator];
 
-currentState = MooseState.IDLE;
+current_state = MooseState.IDLE;
 armed = true;
 armor = 1;
 facing = Direction.LEFT;
-stateTimer = 0;
+state_timer = 0;
 
 invuln = false;
 invulnTimer = 0;
@@ -25,41 +25,34 @@ wandersPerIdle = random(global.moose_wandersPerIdle);
 
 // Wander
 
+// Lunge
+lunge_starting_pos = [x,y];
+// Jump
+jump_target = [0,0];
+jump_direction = Direction.LEFT;
+
 // Animations
 currentFPI = 1;
 currentAnimType = AnimationType.FIRST_FRAME;
 animFrameCounter = 0;
 
-if start_pulling currentState = MooseState.PULLING;
+if start_pulling current_state = MooseState.PULLING;
 
 function UpdateMooseState()
 {
-	if currentState == MooseState.PULLING return;
+	if current_state == MooseState.PULLING return;
 	
-	stateTimer --;
-	switch currentState
+	state_timer --;
+	switch current_state
 	{
 		case MooseState.IDLE:
-			if stateTimer <= 0
+			if state_timer <= 0
 			{
 				if wanderCounter >= wandersPerIdle
 				{
 					wanderCounter = 0;
 					wandersPerIdle = random(global.moose_wandersPerIdle);
-					if armed
-					{
-						MooseIdleToSlideAnti();
-						return;
-					}
-					else
-					{
-						MooseIdleToChargeAnti();
-						return;
-					}
-				}
-				if wanderCounter >= 2 && !armed
-				{
-					MooseIdleToChargeAnti();
+					choose_attack();
 					return;
 				}
 				MooseIdleToWander();
@@ -67,14 +60,14 @@ function UpdateMooseState()
 			}
 			break;
 		case MooseState.WANDER:
-			if stateTimer <= 0
+			if state_timer <= 0
 			{
 				MooseWanderToIdle();
 				return;
 			}
 			break;
 		case MooseState.SLIDE_ANTI:
-			if stateTimer <= 0
+			if state_timer <= 0
 			{
 				MooseSlideAntiToSlide();
 				return;
@@ -88,7 +81,7 @@ function UpdateMooseState()
 			}
 			break;
 		case MooseState.CHARGE_ANTI:
-			if stateTimer <= 0
+			if state_timer <= 0
 			{
 				MooseChargeAntiToCharge();
 				return;
@@ -124,7 +117,7 @@ function UpdateMooseState()
 
 function MooseStateBasedActions()
 {
-	switch currentState
+	switch current_state
 	{
 		case MooseState.IDLE:
 			MooseFacePlayer();
@@ -138,16 +131,210 @@ function MooseStateBasedActions()
 		case MooseState.CHARGE:
 			MooseCharge();
 			break;
+		case MooseState.LUNGE_ANTI:
+			lunge_anti();
+			break;
+		case MooseState.LUNGE:
+			lunge();
+			break;
+		case MooseState.STAB_ANTI:
+			stab_anti();
+			break;
+		case MooseState.STAB:
+			stab();
+			break;
+		case MooseState.JUMP_ANTI:
+			jump_anti();
+			break;
+		case MooseState.JUMP:
+			jump();
+			break;
+		case MooseState.DIVE_ANTI:
+			dive_anti();
+			break;
+		case MooseState.DIVE:
+			dive();
+			break;
+		case MooseState.STUCK:
+			stuck();
+			break;
+		case MooseState.SPIN:
+			spin();
+			break;
+	}
+}
+
+function choose_attack() {
+	// toward the player
+	if (wanderDir == Direction.LEFT && obj_player.x < x) || (wanderDir == Direction.RIGHT && obj_player.x > x) {
+		// Far
+		if distance_to_object(obj_player) >= global.moose_attack_distance_threshold {
+			// Charge attack
+			MooseIdleToChargeAnti();
+		}
+		// Near
+		else {
+			// Stab
+			to_lunge_anti();
+		}
+	}
+	// away from player
+	else {
+		// Far
+		if distance_to_object(obj_player) >= global.moose_attack_distance_threshold {
+			// Jump
+			to_jump_anti();
+		}
+		// Near
+		else {
+			// Slide
+			MooseIdleToSlideAnti();
+		}
 	}
 }
 
 function MooseCheckBlock()
 {
-	if obj_player.currentState == PlayerState.BASIC_ATTACK_ANTI && distance_to_object(obj_player) <= global.moose_blockDistance
+	if obj_player.current_state == PlayerState.BASIC_ATTACK_ANTI && distance_to_object(obj_player) <= global.moose_blockDistance
 	{
 		MooseToBlock();
 	}
 }
+
+function get_gravity() {
+	switch current_state {
+		case MooseState.JUMP:
+			return 0;
+			break;
+		case MooseState.DIVE:
+			return 0;
+			break;
+	}
+	return 1;
+}
+
+#region lunge and stab
+function to_lunge_anti() {
+	current_state = MooseState.LUNGE_ANTI;
+	state_timer = global.moose_lunge_anti_frames;
+	lunge_starting_pos = [x,y];
+	facing = obj_player.x < x ? Direction.LEFT : Direction.RIGHT;
+}
+function lunge_anti() {
+	state_timer --;
+	if state_timer <= 0{
+		to_lunge();
+	}
+}
+function to_lunge() {
+	current_state = MooseState.LUNGE;
+}
+function lunge() {
+	if (facing == Direction.LEFT && collision_check_edge(x,y,spr_enemy_collision,Direction.LEFT, collision_mask)) ||
+	  (facing == Direction.RIGHT && collision_check_edge(x,y,spr_enemy_collision,Direction.RIGHT,collision_mask)) ||
+	  distance_to_object(obj_player) <= global.moose_lunge_target_distance_to_player ||
+	  distance_to_point(lunge_starting_pos[0], lunge_starting_pos[1]) > global.moose_lunge_distance_max {
+		  to_stab_anti();
+		  return;
+	  }
+	hspeed = facing == Direction.LEFT ? -1 * global.moose_lunge_speed : global.moose_lunge_speed;
+}
+function to_stab_anti() {
+	current_state = MooseState.STAB_ANTI;
+	state_timer = global.moose_stab_anti_frames;
+}
+function stab_anti() {
+	state_timer --;
+	if state_timer <= 0 to_stab();
+}
+function to_stab() {
+	current_state = MooseState.STAB;
+	state_timer = global.moose_stab_frames;
+}
+function stab() {
+	state_timer --;
+	if state_timer <= 0 MooseWanderToIdle();
+}
+#endregion
+
+#region jump and dive and spin
+function to_jump_anti() {
+	current_state = MooseState.JUMP_ANTI;
+	state_timer = global.moose_jump_anti_frames;
+	facing = obj_player.x < x ? Direction.LEFT : Direction.RIGHT;
+}
+function jump_anti() {
+	state_timer --;
+	if state_timer <= 0 to_jump();
+}
+function to_jump() {
+	current_state = MooseState.JUMP;
+	jump_target = [obj_player.x, y-global.moose_jump_y_height];
+	jump_direction = jump_target[0] < x ? Direction.LEFT : Direction.RIGHT;
+}
+function jump() {
+	hspeed = jump_direction == Direction.LEFT ? -1 * global.moose_jump_x_speed : global.moose_jump_x_speed;
+	vspeed = -1 * global.moose_jump_y_speed;
+	
+	// Overshot on y
+	if y <= jump_target[1] {
+		vspeed = 0;
+		y = jump_target[1]
+	}
+	// Overshot on x
+	if (jump_direction == Direction.LEFT && x <= jump_target[0]) ||
+	  (jump_direction == Direction.RIGHT && x >= jump_target[0]) {
+		hspeed = 0;
+		x = jump_target[0];
+	}
+	
+	// State ends when we are at the right position
+	// Or if we've collided in both directions
+	if (x == jump_target[0] && y == jump_target[1]) ||
+	((jump_direction == Direction.LEFT && collision_check_edge(x,y,spr_enemy_collision,Direction.LEFT,collision_mask)) || (jump_direction == Direction.RIGHT &&collision_check_edge(x,y,spr_enemy_collision,Direction.RIGHT,collision_mask)) &&
+	collision_check_edge(x,y,spr_enemy_collision,Direction.UP,collision_mask)) {
+		to_dive_anti();
+	}
+}
+function to_dive_anti() {
+	current_state = MooseState.DIVE_ANTI;
+	state_timer = global.moose_dive_anti_frames;
+}
+function dive_anti() {
+	state_timer --;
+	if state_timer <= 0 to_dive();
+}
+function to_dive() {
+	current_state = MooseState.DIVE;
+}
+function dive() {
+	vspeed = global.moose_dive_speed;
+	if collision_check_edge(x,y,spr_enemy_collision,Direction.DOWN,collision_mask) to_stuck();
+}
+function to_stuck() {
+	if armor < 1 {
+		to_spin();
+		return;
+	}
+	current_state = MooseState.STUCK;
+	state_timer = global.moose_stuck_frames;
+}
+function stuck() {
+	state_timer --;
+	if state_timer <= 0 to_spin();
+}
+function to_spin() {
+	current_state = MooseState.SPIN;
+	hspeed = obj_player.x < x ? global.moose_spin_x_speed : -1*global.moose_spin_x_speed;
+	vspeed = global.moose_spin_y_speed;
+	y += global.moose_spin_y_offset;
+}
+function spin() {
+	if collision_check_edge(x,y,spr_enemy_collision,Direction.DOWN,collision_mask) {
+		MooseWanderToIdle();
+	}
+}
+#endregion
 
 function MooseCharge()
 {
@@ -173,15 +360,14 @@ function MoosePickupSword()
 {
 	if !armed && place_meeting(x,y,obj_enemy_sword) && obj_enemy_sword.EnemySwordCanBePickedUp()
 	{
-		if global.showDebugMessages show_debug_message("Picked up sword");
 		armed = true;
-		obj_enemy_sword.currentState = SwordState.INACTIVE;
+		obj_enemy_sword.current_state = SwordState.INACTIVE;
 	}
 }
 
 function MooseToDead()
 {
-	currentState = MooseState.DEAD;
+	current_state = MooseState.DEAD;
 	instance_deactivate_object(obj_enemy_hitbox);
 	instance_deactivate_object(obj_enemy_hurtbox);
 	instance_deactivate_object(obj_enemy_blockbox);
@@ -196,29 +382,34 @@ function MooseToBlock()
 		return;
 	}
 	
-	currentState = MooseState.BLOCK;
+	current_state = MooseState.BLOCK;
 }
 
 function MooseChargeToWait()
 {
 	obj_enemy_sword.falling = true;
 	
-	currentState = MooseState.WAITING;
+	current_state = MooseState.WAITING;
 }
 
 function MooseIdleToChargeAnti()
 {
-	if obj_enemy_sword.x < x facing = Direction.LEFT;
-	else facing = Direction.RIGHT;
+	if !armed {
+		if obj_enemy_sword.x < x facing = Direction.LEFT;
+		else facing = Direction.RIGHT;
+	} else {
+		if obj_player.x < x facing = Direction.LEFT;
+		else facing = Direction.RIGHT;
+	}
 	
-	stateTimer = global.moose_chargeAntiTime;
+	state_timer = global.moose_chargeAntiTime;
 	
-	currentState = MooseState.CHARGE_ANTI;
+	current_state = MooseState.CHARGE_ANTI;
 }
 
 function MooseChargeAntiToCharge()
 {
-	currentState = MooseState.CHARGE;
+	current_state = MooseState.CHARGE;
 }
 
 function MooseIdleToWander()
@@ -244,35 +435,35 @@ function MooseIdleToWander()
 	}
 	
 	// Decide wander duration
-	stateTimer = floor(random_range(global.moose_minWanderTime, global.moose_maxWanderTime));
+	state_timer = floor(random_range(global.moose_minWanderTime, global.moose_maxWanderTime));
 	
-	currentState = MooseState.WANDER;
+	current_state = MooseState.WANDER;
 }
 
 function MooseWanderToIdle()
 {
-	stateTimer = floor(random_range(global.moose_minIdleTime, global.moose_maxIdleTime));
-	if armor == 0 stateTimer = 0;
+	state_timer = floor(random_range(global.moose_minIdleTime, global.moose_maxIdleTime));
+	if armor == 0 state_timer = 0;
 	
-	currentState = MooseState.IDLE;
+	current_state = MooseState.IDLE;
 }
 
 function MooseWaitToIdle()
 {
-	stateTimer = floor(random_range(global.moose_minIdleTime, global.moose_maxIdleTime));
+	state_timer = floor(random_range(global.moose_minIdleTime, global.moose_maxIdleTime));
 	
 	wanderCounter = global.moose_wandersPerIdle - 1;
 	
-	currentState = MooseState.IDLE;
+	current_state = MooseState.IDLE;
 }
 
 function MooseIdleToSlideAnti()
 {
-	stateTimer = global.moose_slideAntiDuration;
+	state_timer = global.moose_slideAntiDuration;
 	
 	MooseFacePlayer();
 	
-	currentState = MooseState.SLIDE_ANTI;
+	current_state = MooseState.SLIDE_ANTI;
 }
 
 function MooseSlideAntiToSlide()
@@ -280,14 +471,14 @@ function MooseSlideAntiToSlide()
 	if facing == Direction.LEFT hspeed = -global.moose_slideImpulse;
 	else hspeed = global.moose_slideImpulse;
 	
-	currentState = MooseState.SLIDE;
+	current_state = MooseState.SLIDE;
 }
 
 function MooseSlideToIdle()
 {
-	stateTimer = floor(random_range(global.moose_minIdleTime, global.moose_maxIdleTime));
+	state_timer = floor(random_range(global.moose_minIdleTime, global.moose_maxIdleTime));
 	
-	currentState = MooseState.IDLE;
+	current_state = MooseState.IDLE;
 }
 
 
@@ -301,7 +492,7 @@ function SetMooseAnimation(animation, fpi, type)
 }
 
 function update_animation() {
-	switch(currentState) {
+	switch(current_state) {
 		case MooseState.IDLE:
 			var a = armor > 0 ? global.moose_animation_idle : (armed==true ? global.moose_animation_idle_helmless : global.moose_animation_idle_disarmed);
 			SetMooseAnimation(a, global.moose_animation_idle_FPI, global.moose_animation_idle_type);
@@ -309,12 +500,20 @@ function update_animation() {
 		case MooseState.WANDER:
 			break;
 		case MooseState.SLIDE_ANTI:
+			var a = armor > 0 ? global.moose_animation_slideAnti : (armed==true ? global.moose_animation_slideAnti_helmless : global.moose_animation_slideAnti_disarmed);
+			SetMooseAnimation(a, global.moose_animation_slideAnti_FPI, global.moose_animation_slideAnti_type);
 			break;
 		case MooseState.SLIDE:
+			var a = armor > 0 ? global.moose_animation_slide : (armed==true ? global.moose_animation_slide_helmless : global.moose_animation_slide_disarmed);
+			SetMooseAnimation(a, global.moose_animation_slide_FPI, global.moose_animation_slide_type);
 			break;
 		case MooseState.CHARGE_ANTI:
+			var a = armor > 0 ? global.moose_animation_chargeAnti : (armed==true ? global.moose_animation_chargeAnti_helmless : global.moose_animation_chargeAnti_disarmed);
+			SetMooseAnimation(a, global.moose_animation_chargeAnti_FPI, global.moose_animation_chargeAnti_type);
 			break;
 		case MooseState.CHARGE:
+			var a = armor > 0 ? global.moose_animation_charge : (armed==true ? global.moose_animation_charge_helmless : global.moose_animation_charge_disarmed);
+			SetMooseAnimation(a, global.moose_animation_charge_FPI, global.moose_animation_charge_type);
 			break;
 		case MooseState.WAITING:
 			break;
@@ -325,6 +524,46 @@ function update_animation() {
 		case MooseState.DEAD:
 			break;
 		case MooseState.PULLING:
+			break;
+		case MooseState.LUNGE_ANTI:
+			var a = armor > 0 ? global.moose_animation_stabAnti : (armed==true ? global.moose_animation_stabAnti_helmless : global.moose_animation_stabAnti_disarmed);
+			SetMooseAnimation(a, 1, AnimationType.FIRST_FRAME);
+			break;
+		case MooseState.LUNGE:
+			var a = armor > 0 ? global.moose_animation_stabAnti : (armed==true ? global.moose_animation_stabAnti_helmless : global.moose_animation_stabAnti_disarmed);
+			SetMooseAnimation(a, 1, AnimationType.FIRST_FRAME);
+			break;
+		case MooseState.STAB_ANTI:
+			var a = armor > 0 ? global.moose_animation_stabAnti : (armed==true ? global.moose_animation_stabAnti_helmless : global.moose_animation_stabAnti_disarmed);
+			SetMooseAnimation(a, global.moose_animation_stabAnti_FPI, global.moose_animation_stabAnti_type);
+			break;
+		case MooseState.STAB:
+			var a = armor > 0 ? global.moose_animation_stab : (armed==true ? global.moose_animation_stab_helmless : global.moose_animation_stab_disarmed);
+			SetMooseAnimation(a, global.moose_animation_stab_FPI, global.moose_animation_stab_type);
+			break;
+		case MooseState.JUMP_ANTI:
+			var a = armor > 0 ? global.moose_animation_jumpAnti : (armed==true ? global.moose_animation_jumpAnti_helmless : global.moose_animation_jumpAnti_disarmed);
+			SetMooseAnimation(a, global.moose_animation_jumpAnti_FPI, global.moose_animation_jumpAnti_type);
+			break;
+		case MooseState.JUMP:
+			var a = armor > 0 ? global.moose_animation_jumping : (armed==true ? global.moose_animation_jumping_helmless : global.moose_animation_jumping_disarmed);
+			SetMooseAnimation(a, global.moose_animation_jumping_FPI, global.moose_animation_jumping_type);
+			break;
+		case MooseState.DIVE_ANTI:
+			var a = armor > 0 ? global.moose_animation_plunging : (armed==true ? global.moose_animation_plunging_helmless : global.moose_animation_plunging_disarmed);
+			SetMooseAnimation(a, global.moose_animation_plunging_FPI, global.moose_animation_plunging_type);
+			break;
+		case MooseState.DIVE:
+			var a = armor > 0 ? global.moose_animation_plunging : (armed==true ? global.moose_animation_plunging_helmless : global.moose_animation_plunging_disarmed);
+			SetMooseAnimation(a, global.moose_animation_plunging_FPI, global.moose_animation_plunging_type);
+			break;
+		case MooseState.STUCK:
+			var a = armor > 0 ? global.moose_animation_plunging : (armed==true ? global.moose_animation_plunging_helmless : global.moose_animation_plunging_disarmed);
+			SetMooseAnimation(a, global.moose_animation_plunging_FPI, global.moose_animation_plunging_type);
+			break;
+		case MooseState.SPIN:
+			var a = armor > 0 ? global.moose_animation_spinning : (armed==true ? global.moose_animation_spinning_helmless : global.moose_animation_spinning_disarmed);
+			SetMooseAnimation(a, global.moose_animation_spinning_FPI, global.moose_animation_spinning_type);
 			break;
 	}
 }
@@ -350,7 +589,7 @@ function PlayMooseAnimation()
 
 function GetMooseFriction()
 {
-	switch currentState
+	switch current_state
 	{
 		case MooseState.IDLE:
 			return global.moose_idleFriction;
@@ -361,6 +600,9 @@ function GetMooseFriction()
 		case MooseState.SLIDE:
 			return global.moose_slideFriction;
 			break;
+		case MooseState.JUMP:
+			return 0;
+			break;
 	}
 	return global.moose_idleFriction;
 }
@@ -368,7 +610,7 @@ function GetMooseFriction()
 function LimitMooseSpeed()
 {
 	var m = global.moose_wanderMaxSpeed;
-	if currentState == MooseState.SLIDE m = global.moose_slideMaxSpeed;
+	if current_state == MooseState.SLIDE m = global.moose_slideMaxSpeed;
 	if abs(hspeed) > m
 	{
 		var s = sign(hspeed)
@@ -421,7 +663,7 @@ function MooseGetHit()
 		if obj_player.x < x h = 1;
 		obj_enemy_sword.EnemySwordFling(h,-1.67,17);
 		MakeMooseInvulnerable();
-		currentState = MooseState.HIT;
+		current_state = MooseState.HIT;
 		wanderCounter = 0;
 	}
 	else
@@ -430,6 +672,80 @@ function MooseGetHit()
 		else hspeed = 20;
 		vspeed = -20;
 		MooseToDead();
-		obj_player.currentState = PlayerState.LOCK;
+		obj_player.current_state = PlayerState.LOCK;
 	}
+}
+
+function message_state() {
+	var s = "Current state is ";
+	switch current_state {
+		case MooseState.IDLE:
+			s += "Idle";
+			break;
+		case MooseState.WANDER:
+			s += "Wander";
+			break;
+		case MooseState.SLIDE_ANTI:
+			s+= "Slide Anti";
+			break;
+		case MooseState.SLIDE:
+			s+= "Slide";
+			break;
+		case MooseState.CHARGE_ANTI:
+			s+= "Charge Anti";
+			break;
+		case MooseState.CHARGE:
+			s+= "Charge";
+			break;
+		case MooseState.WAITING:
+			s+= "Waiting";
+			break;
+		case MooseState.HIT:
+			s+= "Hit";
+			break;
+		case MooseState.BLOCK:
+			s+= "Block";
+			break;
+		case MooseState.LOCK:
+			s+= "Lock";
+			break;
+		case MooseState.DEAD:
+			s+= "Dead";
+			break;
+		case MooseState.PULLING:
+			s+= "Pulling";
+			break;
+		case MooseState.LUNGE_ANTI:
+			s+= "Lunge Anti";
+			break;
+		case MooseState.LUNGE:
+			s+= "Lunge";
+			break;
+		case MooseState.STAB_ANTI:
+			s+= "Stab Anti";
+			break;
+		case MooseState.STAB:
+			s+= "Stab";
+			break;
+		case MooseState.JUMP_ANTI:
+			s+= "Jump Anti";
+			break;
+		case MooseState.JUMP:
+			s+= "Jump";
+			break;
+		case MooseState.DIVE_ANTI:
+			s+= "Dive Anti";
+			break;
+		case MooseState.DIVE:
+			s+= "Dive";
+			break;
+		case MooseState.STUCK:
+			s+= "Stuck";
+			break;
+		case MooseState.SPIN:
+			s+= "Spin";
+			break;
+	}
+	
+	show_debug_message(s);
 }
