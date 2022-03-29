@@ -20,6 +20,7 @@ grounded = false;
 
 // Idle
 wanderCounter = 0;
+wandersPerIdle = random(global.moose_wandersPerIdle);
 
 // Wander
 
@@ -40,9 +41,10 @@ function UpdateMooseState()
 		case MooseState.IDLE:
 			if stateTimer <= 0
 			{
-				if wanderCounter >= global.moose_wandersPerIdle
+				if wanderCounter >= wandersPerIdle
 				{
 					wanderCounter = 0;
+					wandersPerIdle = random(global.moose_wandersPerIdle);
 					if armed
 					{
 						MooseIdleToSlideAnti();
