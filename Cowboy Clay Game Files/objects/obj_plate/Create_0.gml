@@ -21,5 +21,3 @@ for (i = 0; i < instance_number(obj_door); i++)
 		door_instance = instance_find(obj_door,i);
 	}
 }
-
-show_debug_message(door_instance.id);

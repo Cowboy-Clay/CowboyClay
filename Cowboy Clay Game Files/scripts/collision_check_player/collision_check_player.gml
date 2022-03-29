@@ -96,7 +96,5 @@ function collision_check_player(sprite, mask, x_bouncy, y_bouncy){
 	
 	// We decide whether we are grounded or not at the end
 	grounded = collision_check_edge(x+hspeed, y+vspeed, sprite, Direction.DOWN, mask);
-	
-	//show_debug_message(grounded ? "Grounded" : "Ungrounded");
 
 }

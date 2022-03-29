@@ -1,4 +1,4 @@
-if currentState == SwordState.FLYING
+if current_state == SwordState.FLYING
 {
 	Gravity(global.enemy_sword_grav, global.enemy_sword_grav_max, sprite_index, collision_mask);
 	

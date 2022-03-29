@@ -1,4 +1,4 @@
-currentState = SwordState.INACTIVE;
+current_state = SwordState.INACTIVE;
 
 collision_mask = [obj_tile_coll, obj_plate, obj_elevator, obj_box, obj_door];
 
@@ -23,10 +23,9 @@ global.sword_spinAnimType = AnimationType.LOOP;
 
 function PlayerSwordFling(run, rise, m)
 {
-	if currentState != SwordState.INACTIVE return;
-	show_debug_message(run);
+	if current_state != SwordState.INACTIVE return;
 	// Set state
-	currentState = SwordState.FLYING;
+	current_state = SwordState.FLYING;
 	// Set starting position
 	x = obj_player.x;
 	y = obj_player.y;
@@ -38,7 +37,6 @@ function PlayerSwordFling(run, rise, m)
 	b = b/c;
 	run = sign(a) * sqrt(1-(b*b));
 	rise = sign(b) * sqrt(1-(a*a));
-	show_debug_message(run);
 	// Apply impulse
 	hspeed = run * m;
 	vspeed = rise * m;
@@ -48,7 +46,7 @@ function PlayerSwordFling(run, rise, m)
 
 function PlayerSwordStickInWall(s)
 {
-	currentState = s;
+	current_state = s;
 	if s == SwordState.STUCK_WALL_LEFT x -= global.sword_stickInWallBump;
 	else x += global.sword_stickInWallBump;
 	SetSwordAnimation(global.sword_defaultAnim, global.sword_defaultAnimFPI, global.sword_defaultAnimType);
@@ -56,14 +54,14 @@ function PlayerSwordStickInWall(s)
 
 function PlayerSwordStickInGround()
 {
-	currentState = SwordState.STUCK_FLOOR;
+	current_state = SwordState.STUCK_FLOOR;
 	y += global.sword_stickInFloorBump;
 	SetSwordAnimation(global.sword_defaultAnim, global.sword_defaultAnimFPI, global.sword_defaultAnimType);
 }
 
 function SetPlayerSwordRotation()
 {
-	switch currentState
+	switch current_state
 	{
 		case SwordState.INACTIVE:
 			image_angle = 0;
@@ -93,7 +91,7 @@ function SetSwordAnimation(a, f, t)
 
 function SwordAnimate()
 {
-	visible = currentState != SwordState.INACTIVE;
+	visible = current_state != SwordState.INACTIVE;
 	
 	if currentAnimType == AnimationType.FIRST_FRAME
 	{
@@ -121,7 +119,7 @@ function SwordCanBePickedUp()
 		return false;
 	}
 	
-	return currentState == SwordState.STUCK_FLOOR || currentState == SwordState.STUCK_WALL_LEFT || currentState == SwordState.STUCK_WALL_RIGHT;
+	return current_state == SwordState.STUCK_FLOOR || current_state == SwordState.STUCK_WALL_LEFT || current_state == SwordState.STUCK_WALL_RIGHT;
 }
 
 function teleport_to(xPos,yPos)
