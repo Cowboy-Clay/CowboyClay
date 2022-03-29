@@ -2,7 +2,7 @@ last_on = on;
 
 for (i = 0; i < array_length(valid_objects); i ++)
 {
-	if place_meeting(x,y-1,valid_objects[i]) && !(valid_objects[i] == obj_player_sword && obj_player_sword.currentState == SwordState.INACTIVE)
+	if place_meeting(x,y-1,valid_objects[i]) && !(valid_objects[i] == obj_player_sword && obj_player_sword.current_state == SwordState.INACTIVE)
 	{
 		on = true;
 		break;

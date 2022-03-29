@@ -1,4 +1,4 @@
-if currentState == SwordState.FLYING
+if current_state == SwordState.FLYING
 {
 	Gravity(global.sword_grav, global.sword_grav_max,sprite_index,collision_mask);
 	//sc = CheckSwordCollisions();
@@ -20,15 +20,12 @@ else
 	hspeed = 0;
 }
 
-switch currentState{
+switch current_state{
 	case SwordState.STUCK_WALL_LEFT:
-		show_debug_message("Sword stuck left");
 		break;
 	case SwordState.STUCK_WALL_RIGHT:
-		show_debug_message("Sword stuck right");
 		break;
 	case SwordState.STUCK_FLOOR:
-		show_debug_message("Sword stuck down");
 		break;
 }
 

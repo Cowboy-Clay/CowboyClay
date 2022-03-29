@@ -6,7 +6,7 @@ if !global.paused
 	Friction(PickPlayerFrict());
 	Gravity(PickPlayerGravi(), global.player_gravityMax, spr_player_collision, collision_mask);
 	
-	if currentState != PlayerState.LOCK && currentState != PlayerState.DEAD
+	if current_state != PlayerState.LOCK && current_state != PlayerState.DEAD
 	{
 		// State system
 		UpdatePlayerState();
@@ -14,11 +14,11 @@ if !global.paused
 		PlayerPickupSword();
 		PlayerInvulnerability();
 	}
-	else if currentState == PlayerState.LOCK
+	else if current_state == PlayerState.LOCK
 	{
 		GoToPlayerIdle();
 	}
-	else if currentState == PlayerState.DEAD obj_Moose.currentState = MooseState.LOCK;
+	else if current_state == PlayerState.DEAD obj_Moose.current_state = MooseState.LOCK;
 	
 	if keyboard_check_pressed(ord("R"))
 	{

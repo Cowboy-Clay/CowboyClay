@@ -1,4 +1,4 @@
-currentState = SwordState.INACTIVE;
+current_state = SwordState.INACTIVE;
 
 falling = false;
 
@@ -22,11 +22,10 @@ collision_mask = [obj_tile_coll, obj_plate, obj_elevator, obj_box, obj_door];
 
 function EnemySwordFling(run, rise, m)
 {
-	if currentState != SwordState.INACTIVE return;
-	show_debug_message(run);
+	if current_state != SwordState.INACTIVE return;
 	// Set state
 	falling = false;
-	currentState = SwordState.FLYING;
+	current_state = SwordState.FLYING;
 	// Set starting position
 	x = obj_Moose.x;
 	y = obj_Moose.y;
@@ -38,7 +37,6 @@ function EnemySwordFling(run, rise, m)
 	b = b/c;
 	run = sign(a) * sqrt(1-(b*b));
 	rise = sign(b) * sqrt(1-(a*a));
-	show_debug_message(run);
 	// Apply impulse
 	hspeed = run * m;
 	vspeed = rise * m;
@@ -48,7 +46,7 @@ function EnemySwordFling(run, rise, m)
 
 function EnemySwordStickInWall(s)
 {
-	currentState = s;
+	current_state = s;
 	if s == SwordState.STUCK_WALL_LEFT x -= global.enemy_sword_stickInWallBump;
 	else x += global.enemy_sword_stickInWallBump;
 	SetEnemySwordAnimation(global.enemy_sword_defaultAnim, global.enemy_sword_defaultAnimFPI, global.enemy_sword_defaultAnimType);
@@ -56,14 +54,14 @@ function EnemySwordStickInWall(s)
 
 function EnemySwordStickInGround()
 {
-	currentState = SwordState.STUCK_FLOOR;
+	current_state = SwordState.STUCK_FLOOR;
 	y += global.enemy_sword_stickInFloorBump;
 	SetEnemySwordAnimation(global.enemy_sword_defaultAnim, global.enemy_sword_defaultAnimFPI, global.enemy_sword_defaultAnimType);
 }
 
 function SetEnemySwordRotation()
 {
-	switch currentState
+	switch current_state
 	{
 		case SwordState.INACTIVE:
 			image_angle = 0;
@@ -124,7 +122,7 @@ function SetEnemySwordAnimation(a, f, t)
 
 function EnemySwordAnimate()
 {
-	visible = currentState != SwordState.INACTIVE;
+	visible = current_state != SwordState.INACTIVE;
 	
 	if currentAnimType == AnimationType.FIRST_FRAME
 	{
@@ -146,5 +144,5 @@ function EnemySwordAnimate()
 
 function EnemySwordCanBePickedUp()
 {
-	return currentState == SwordState.STUCK_FLOOR || currentState == SwordState.STUCK_WALL_LEFT || currentState == SwordState.STUCK_WALL_RIGHT;
+	return current_state == SwordState.STUCK_FLOOR || current_state == SwordState.STUCK_WALL_LEFT || current_state == SwordState.STUCK_WALL_RIGHT;
 }

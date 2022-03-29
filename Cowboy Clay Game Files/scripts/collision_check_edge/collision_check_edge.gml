@@ -17,7 +17,7 @@ function collision_check_edge(xpos, ypos, sprite, edge, mask){
 			u += 2;
 			d -= 2;
 			if collision_line_mask(l,u,l,d,mask,true,true){
-				show_debug_message("Colliding on left side.");
+				// show_debug_message("Colliding on left side.");
 				return true;
 			}
 			break;
@@ -25,7 +25,7 @@ function collision_check_edge(xpos, ypos, sprite, edge, mask){
 			u += 2;
 			d -= 2;
 			if collision_line_mask(r,u,r,d,mask,true,true){
-				show_debug_message("Colliding on right side.");
+				// show_debug_message("Colliding on right side.");
 				return true;
 			}
 			break;
@@ -33,7 +33,7 @@ function collision_check_edge(xpos, ypos, sprite, edge, mask){
 			l += 2;
 			r -= 2;
 			if collision_line_mask(l,u,r,u,mask,true,true){
-				show_debug_message("Colliding on up side.");
+				// show_debug_message("Colliding on up side.");
 				return true;
 			}
 			break;
@@ -41,7 +41,7 @@ function collision_check_edge(xpos, ypos, sprite, edge, mask){
 			l += 2;
 			r -= 2;
 			if collision_line_mask(l,d,r,d,mask,true,true){
-				show_debug_message("Colliding on down side.");
+				// show_debug_message("Colliding on down side.");
 				return true;
 			}
 			break;
