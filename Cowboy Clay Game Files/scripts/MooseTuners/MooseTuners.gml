@@ -173,3 +173,8 @@ global.moose_animation_spinning_helmless = spr_moose_spin_noHelm;
 global.moose_animation_spinning_disarmed = spr_moose_spin_noHelm;
 	global.moose_animation_spinning_FPI = 20;
 	global.moose_animation_spinning_type = AnimationType.LOOP;
+	
+//Pulling
+global.moose_animation_pulling = spr_moose_pull;
+	global.moose_animation_pulling_FPI = 1;
+	global.moose_animation_pulling_type = AnimationType.FIRST_FRAME;

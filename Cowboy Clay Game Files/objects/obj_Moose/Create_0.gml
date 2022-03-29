@@ -498,6 +498,8 @@ function update_animation() {
 			SetMooseAnimation(a, global.moose_animation_idle_FPI, global.moose_animation_idle_type);
 			break;
 		case MooseState.WANDER:
+			var a = armor > 0 ? global.moose_animation_wander : (armed==true ? global.moose_animation_wander_helmless : global.moose_animation_wander_disarmed);
+			SetMooseAnimation(a, global.moose_animation_wander_FPI, global.moose_animation_wander_type);
 			break;
 		case MooseState.SLIDE_ANTI:
 			var a = armor > 0 ? global.moose_animation_slideAnti : (armed==true ? global.moose_animation_slideAnti_helmless : global.moose_animation_slideAnti_disarmed);
@@ -516,15 +518,27 @@ function update_animation() {
 			SetMooseAnimation(a, global.moose_animation_charge_FPI, global.moose_animation_charge_type);
 			break;
 		case MooseState.WAITING:
+			var a = armor > 0 ? global.moose_animation_idle : (armed==true ? global.moose_animation_idle_helmless : global.moose_animation_idle_disarmed);
+			SetMooseAnimation(a, global.moose_animation_idle_FPI, global.moose_animation_idle_type);
 			break;
 		case MooseState.HIT:
+			var a = armor > 0 ? global.moose_animation_hit : (armed==true ? global.moose_animation_hit_helmless : global.moose_animation_hit_disarmed);
+			SetMooseAnimation(a, global.moose_animation_hit_FPI, global.moose_animation_hit_type);
 			break;
+			
 		case MooseState.LOCK:
 			break;
+			
 		case MooseState.DEAD:
+			var a = armor > 0 ? global.moose_animation_dead : (armed==true ? global.moose_animation_dead_helmless : global.moose_animation_dead_disarmed);
+			SetMooseAnimation(a, global.moose_animation_dead_FPI, global.moose_animation_dead_type);
 			break;
+			
 		case MooseState.PULLING:
+			var a = armor > 0 ? global.moose_animation_pulling : (armed==true ? global.moose_animation_pulling : global.moose_animation_pulling);
+			SetMooseAnimation(a, global.moose_animation_pulling_FPI, global.moose_animation_pulling_type);
 			break;
+			
 		case MooseState.LUNGE_ANTI:
 			var a = armor > 0 ? global.moose_animation_stabAnti : (armed==true ? global.moose_animation_stabAnti_helmless : global.moose_animation_stabAnti_disarmed);
 			SetMooseAnimation(a, 1, AnimationType.FIRST_FRAME);
