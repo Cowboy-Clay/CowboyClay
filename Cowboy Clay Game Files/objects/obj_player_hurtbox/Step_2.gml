@@ -28,4 +28,5 @@ if place_meeting(x,y,obj_enemy_hitbox) && obj_enemy_hitbox.sprite_index != noone
 	}
 	
 	// Take an actual hit
+	obj_player.PlayerGetHit();
 }
