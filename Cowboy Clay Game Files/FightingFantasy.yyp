@@ -56,6 +56,7 @@
     {"id":{"name":"obj_elevator","path":"objects/obj_elevator/obj_elevator.yy",},"order":3,},
     {"id":{"name":"spr_moose_slideAnti","path":"sprites/spr_moose_slideAnti/spr_moose_slideAnti.yy",},"order":30,},
     {"id":{"name":"spr_player_sword_enviCollision","path":"sprites/spr_player_sword_enviCollision/spr_player_sword_enviCollision.yy",},"order":18,},
+    {"id":{"name":"get_hi_block","path":"scripts/get_hi_block/get_hi_block.yy",},"order":0,},
     {"id":{"name":"spr_moose_walk_hiBlock","path":"sprites/spr_moose_walk_hiBlock/spr_moose_walk_hiBlock.yy",},"order":75,},
     {"id":{"name":"spr_player_attackSwing_hitbox","path":"sprites/spr_player_attackSwing_hitbox/spr_player_attackSwing_hitbox.yy",},"order":19,},
     {"id":{"name":"spr_envi_woodplank","path":"sprites/spr_envi_woodplank/spr_envi_woodplank.yy",},"order":11,},
@@ -126,6 +127,7 @@
     {"id":{"name":"spr_moose_charge_hitbox166","path":"sprites/spr_moose_charge_hitbox166/spr_moose_charge_hitbox166.yy",},"order":90,},
     {"id":{"name":"spr_moose_idle_hurtbox","path":"sprites/spr_moose_idle_hurtbox/spr_moose_idle_hurtbox.yy",},"order":80,},
     {"id":{"name":"spr_player_blockHiStun","path":"sprites/spr_player_blockHiStun/spr_player_blockHiStun.yy",},"order":40,},
+    {"id":{"name":"get_lo_block","path":"scripts/get_lo_block/get_lo_block.yy",},"order":1,},
     {"id":{"name":"spr_ground","path":"sprites/spr_ground/spr_ground.yy",},"order":5,},
     {"id":{"name":"spr_moose_chargeAnti","path":"sprites/spr_moose_chargeAnti/spr_moose_chargeAnti.yy",},"order":55,},
     {"id":{"name":"spr_moose_spinning_empty","path":"sprites/spr_moose_spinning_empty/spr_moose_spinning_empty.yy",},"order":96,},
@@ -311,6 +313,7 @@
     {"folderPath":"folders/Scripts/Physics.yy","order":11,"resourceVersion":"1.0","name":"Physics","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Scripts/Helpers.yy","order":12,"resourceVersion":"1.0","name":"Helpers","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Sounds/SFX/Clay.yy","order":8,"resourceVersion":"1.0","name":"Clay","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/Blocking.yy","order":15,"resourceVersion":"1.0","name":"Blocking","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
