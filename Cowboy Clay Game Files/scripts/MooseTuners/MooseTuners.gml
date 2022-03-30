@@ -178,3 +178,10 @@ global.moose_animation_spinning_disarmed = spr_moose_spin_noHelm;
 global.moose_animation_pulling = spr_moose_pull;
 	global.moose_animation_pulling_FPI = 1;
 	global.moose_animation_pulling_type = AnimationType.FIRST_FRAME;
+	
+//Staggered
+global.moose_animation_staggered = spr_moose_staggered;
+global.moose_animation_staggered_helmless = spr_moose_staggered_helmless;
+global.moose_animation_staggered_disarmed = spr_moose_staggered_empty;
+	global.moose_animation_staggered_FPI = 20;
+	global.moose_animation_staggered_type = AnimationType.LOOP;
