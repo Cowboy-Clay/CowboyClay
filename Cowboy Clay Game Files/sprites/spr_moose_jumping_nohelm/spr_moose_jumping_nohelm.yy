@@ -7,10 +7,10 @@
   "edgeFiltering": false,
   "collisionTolerance": 0,
   "swfPrecision": 2.525,
-  "bbox_left": 210,
-  "bbox_right": 453,
+  "bbox_left": 214,
+  "bbox_right": 449,
   "bbox_top": 34,
-  "bbox_bottom": 325,
+  "bbox_bottom": 323,
   "HTile": false,
   "VTile": false,
   "For3D": false,
@@ -24,9 +24,9 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"38c94334-6d5b-435e-82bf-12f940beb03b","path":"sprites/spr_moose_jumping_nohelm/spr_moose_jumping_nohelm.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"38c94334-6d5b-435e-82bf-12f940beb03b","path":"sprites/spr_moose_jumping_nohelm/spr_moose_jumping_nohelm.yy",},"LayerId":{"name":"59e8a5d8-bf61-4df8-a02d-ef043587412d","path":"sprites/spr_moose_jumping_nohelm/spr_moose_jumping_nohelm.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_moose_jumping_nohelm","path":"sprites/spr_moose_jumping_nohelm/spr_moose_jumping_nohelm.yy",},"resourceVersion":"1.0","name":"38c94334-6d5b-435e-82bf-12f940beb03b","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"e4cc07df-de44-4591-9b37-b750bb65f006","path":"sprites/spr_moose_jumping_nohelm/spr_moose_jumping_nohelm.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"e4cc07df-de44-4591-9b37-b750bb65f006","path":"sprites/spr_moose_jumping_nohelm/spr_moose_jumping_nohelm.yy",},"LayerId":{"name":"17950c4b-60d1-408c-ae23-cbbec0624633","path":"sprites/spr_moose_jumping_nohelm/spr_moose_jumping_nohelm.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_moose_jumping_nohelm","path":"sprites/spr_moose_jumping_nohelm/spr_moose_jumping_nohelm.yy",},"resourceVersion":"1.0","name":"e4cc07df-de44-4591-9b37-b750bb65f006","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"spr_moose_jumping_nohelm","path":"sprites/spr_moose_jumping_nohelm/spr_moose_jumping_nohelm.yy",},
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"cf9b030d-44bb-4566-8053-77444b79c614","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"38c94334-6d5b-435e-82bf-12f940beb03b","path":"sprites/spr_moose_jumping_nohelm/spr_moose_jumping_nohelm.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"ff44f5fc-4079-469b-ae73-315755b554a4","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"e4cc07df-de44-4591-9b37-b750bb65f006","path":"sprites/spr_moose_jumping_nohelm/spr_moose_jumping_nohelm.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
@@ -65,7 +65,7 @@
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"59e8a5d8-bf61-4df8-a02d-ef043587412d","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"17950c4b-60d1-408c-ae23-cbbec0624633","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": null,
   "parent": {

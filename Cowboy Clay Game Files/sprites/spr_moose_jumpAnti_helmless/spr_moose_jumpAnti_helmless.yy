@@ -24,12 +24,12 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"bebcf3d2-9d42-4ee3-9d1e-dde1f5f1eae6","path":"sprites/spr_moose_jumpAnti/spr_moose_jumpAnti.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"bebcf3d2-9d42-4ee3-9d1e-dde1f5f1eae6","path":"sprites/spr_moose_jumpAnti/spr_moose_jumpAnti.yy",},"LayerId":{"name":"bfb59835-8646-4336-ac34-d2aee02b286a","path":"sprites/spr_moose_jumpAnti/spr_moose_jumpAnti.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_moose_jumpAnti","path":"sprites/spr_moose_jumpAnti/spr_moose_jumpAnti.yy",},"resourceVersion":"1.0","name":"bebcf3d2-9d42-4ee3-9d1e-dde1f5f1eae6","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"45350f98-08fb-4599-8023-ada51e81c2f3","path":"sprites/spr_moose_jumpAnti_helmless/spr_moose_jumpAnti_helmless.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"45350f98-08fb-4599-8023-ada51e81c2f3","path":"sprites/spr_moose_jumpAnti_helmless/spr_moose_jumpAnti_helmless.yy",},"LayerId":{"name":"7de455d4-7aa0-437d-9de4-52626b86ba0f","path":"sprites/spr_moose_jumpAnti_helmless/spr_moose_jumpAnti_helmless.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_moose_jumpAnti_helmless","path":"sprites/spr_moose_jumpAnti_helmless/spr_moose_jumpAnti_helmless.yy",},"resourceVersion":"1.0","name":"45350f98-08fb-4599-8023-ada51e81c2f3","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
-    "spriteId": {"name":"spr_moose_jumpAnti","path":"sprites/spr_moose_jumpAnti/spr_moose_jumpAnti.yy",},
+    "spriteId": {"name":"spr_moose_jumpAnti_helmless","path":"sprites/spr_moose_jumpAnti_helmless/spr_moose_jumpAnti_helmless.yy",},
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 0.0,
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"02ce851f-528e-4ba5-9dbc-133efb8992a6","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"bebcf3d2-9d42-4ee3-9d1e-dde1f5f1eae6","path":"sprites/spr_moose_jumpAnti/spr_moose_jumpAnti.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"68748bec-6ce6-4f33-bf07-88467722cdcf","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"45350f98-08fb-4599-8023-ada51e81c2f3","path":"sprites/spr_moose_jumpAnti_helmless/spr_moose_jumpAnti_helmless.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
@@ -58,14 +58,14 @@
     "yorigin": 203,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"spr_moose_jumpAnti","path":"sprites/spr_moose_jumpAnti/spr_moose_jumpAnti.yy",},
+    "parent": {"name":"spr_moose_jumpAnti_helmless","path":"sprites/spr_moose_jumpAnti_helmless/spr_moose_jumpAnti_helmless.yy",},
     "resourceVersion": "1.4",
-    "name": "spr_moose_jumpAnti",
+    "name": "spr_moose_jumpAnti_helmless",
     "tags": [],
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"bfb59835-8646-4336-ac34-d2aee02b286a","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"7de455d4-7aa0-437d-9de4-52626b86ba0f","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": null,
   "parent": {
@@ -73,7 +73,7 @@
     "path": "folders/Sprites/Enemy/Moose.yy",
   },
   "resourceVersion": "1.0",
-  "name": "spr_moose_jumpAnti",
+  "name": "spr_moose_jumpAnti_helmless",
   "tags": [],
   "resourceType": "GMSprite",
 }
