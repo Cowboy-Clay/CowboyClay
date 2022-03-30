@@ -25,13 +25,10 @@ function get_lo_block(){
 	return false;
 }
 
-// Sprites where the player is hi blocking
+// Sprites where the player is lo blocking
 global.player_object = obj_player;
 global.player_lo_block_sprites = [];
 
-// Sprites where Moose is hi blocking
+// Sprites where Moose is lo blocking
 global.moose_object = obj_Moose;
-global.moose_lo_block_sprites = [
-								spr_moose_hiBlock,
-								spr_moose_walk_hiBlock
-								];
+global.moose_lo_block_sprites = [];

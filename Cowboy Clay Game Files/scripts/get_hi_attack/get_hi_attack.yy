@@ -6,7 +6,7 @@
     "path": "folders/Scripts/CombatCollision.yy",
   },
   "resourceVersion": "1.0",
-  "name": "get_lo_block",
+  "name": "get_hi_attack",
   "tags": [],
   "resourceType": "GMScript",
 }

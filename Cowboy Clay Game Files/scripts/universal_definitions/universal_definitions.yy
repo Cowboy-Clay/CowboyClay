@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "CombatCollision",
-    "path": "folders/Scripts/CombatCollision.yy",
+    "name": "Scripts",
+    "path": "folders/Scripts.yy",
   },
   "resourceVersion": "1.0",
-  "name": "get_lo_block",
+  "name": "universal_definitions",
   "tags": [],
   "resourceType": "GMScript",
 }

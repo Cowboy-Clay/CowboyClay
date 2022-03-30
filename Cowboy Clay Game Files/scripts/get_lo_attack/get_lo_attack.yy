@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Scripts",
-    "path": "folders/Scripts.yy",
+    "name": "CombatCollision",
+    "path": "folders/Scripts/CombatCollision.yy",
   },
   "resourceVersion": "1.0",
-  "name": "UniversalEnums",
+  "name": "get_lo_attack",
   "tags": [],
   "resourceType": "GMScript",
 }
