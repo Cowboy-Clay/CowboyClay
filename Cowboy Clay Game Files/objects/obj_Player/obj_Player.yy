@@ -1,8 +1,5 @@
 {
-  "spriteId": {
-    "name": "spr_player_idle_disarmed",
-    "path": "sprites/spr_player_idle_disarmed/spr_player_idle_disarmed.yy",
-  },
+  "spriteId": null,
   "solid": false,
   "visible": true,
   "spriteMaskId": {

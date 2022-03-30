@@ -18,7 +18,7 @@ global.player_kickSwingAnim = spr_player_idle;
 global.player_kickFollowAnim = spr_player_idle;
 // Jump anti anims
 global.player_jumpAntiAnim = spr_player_jumpAnti;
-global.player_jumpAntiAnim_disarmed = spr_player_crouch_disarmed;
+global.player_jumpAntiAnim_disarmed = spr_player_jumpAnti_disarmed;
 global.player_jumpAntiFPI = 1;
 global.player_jumpAntiAnimType = AnimationType.HOLD;
 global.player_jumpAnim = spr_player_jump;
@@ -26,7 +26,7 @@ global.player_jumpAnim_disarmed = spr_player_jump_disarmed;
 global.player_jumpFPI = 1;
 global.player_jumpAnimType = AnimationType.HOLD;
 global.player_fallAnim = spr_player_fall;
-global.player_fallAnim_disarmed = spr_player_idle_disarmed;
+global.player_fallAnim_disarmed = spr_player_jumpDown_disarmed;
 global.player_fallFPI = 1;
 global.player_fallAnimType = AnimationType.HOLD;
 // Dash anims
