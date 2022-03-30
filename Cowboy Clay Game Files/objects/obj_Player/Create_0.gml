@@ -73,7 +73,7 @@ global.player_plungeFrames = 7;
 
 invulnerable = false;
 invulnerabilityTimer = 0;
-global.player_invulnerabilityTime = 60;
+global.player_invulnerabilityTime = 180;
 
 global.player_frictMulti_jumpAnti = .5;
 global.player_frictMulti_jumping = 0.2;

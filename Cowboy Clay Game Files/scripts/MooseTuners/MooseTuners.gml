@@ -44,7 +44,7 @@ global.moose_slideFriction = .6;
 global.moose_chargeAntiTime = 37;
 global.moose_chargeAccel = 8;
 
-global.moose_invulTime = 60;
+global.moose_invulTime = 180;
 
 global.moose_blockDistance = 300;
 
