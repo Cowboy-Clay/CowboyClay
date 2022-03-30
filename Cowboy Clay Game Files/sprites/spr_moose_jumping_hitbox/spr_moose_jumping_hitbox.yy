@@ -7,10 +7,10 @@
   "edgeFiltering": false,
   "collisionTolerance": 0,
   "swfPrecision": 2.525,
-  "bbox_left": 232,
-  "bbox_right": 437,
-  "bbox_top": 34,
-  "bbox_bottom": 323,
+  "bbox_left": 236,
+  "bbox_right": 331,
+  "bbox_top": 14,
+  "bbox_bottom": 65,
   "HTile": false,
   "VTile": false,
   "For3D": false,
@@ -24,12 +24,12 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"f1f21494-c907-4df7-976b-99951710ec5d","path":"sprites/spr_moose_jumping_empty/spr_moose_jumping_empty.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"f1f21494-c907-4df7-976b-99951710ec5d","path":"sprites/spr_moose_jumping_empty/spr_moose_jumping_empty.yy",},"LayerId":{"name":"7e8a082e-eaf4-43ab-8f89-1d1ad0e3b467","path":"sprites/spr_moose_jumping_empty/spr_moose_jumping_empty.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_moose_jumping_empty","path":"sprites/spr_moose_jumping_empty/spr_moose_jumping_empty.yy",},"resourceVersion":"1.0","name":"f1f21494-c907-4df7-976b-99951710ec5d","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"97fbd17d-e56f-4986-a767-93fd9cb4cdd4","path":"sprites/spr_moose_jumping_hitbox/spr_moose_jumping_hitbox.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"97fbd17d-e56f-4986-a767-93fd9cb4cdd4","path":"sprites/spr_moose_jumping_hitbox/spr_moose_jumping_hitbox.yy",},"LayerId":{"name":"694945dc-0d35-4057-9128-9c41febe0f6b","path":"sprites/spr_moose_jumping_hitbox/spr_moose_jumping_hitbox.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_moose_jumping_hitbox","path":"sprites/spr_moose_jumping_hitbox/spr_moose_jumping_hitbox.yy",},"resourceVersion":"1.0","name":"97fbd17d-e56f-4986-a767-93fd9cb4cdd4","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
-    "spriteId": {"name":"spr_moose_jumping_empty","path":"sprites/spr_moose_jumping_empty/spr_moose_jumping_empty.yy",},
+    "spriteId": {"name":"spr_moose_jumping_hitbox","path":"sprites/spr_moose_jumping_hitbox/spr_moose_jumping_hitbox.yy",},
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 0.0,
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"730e7d4d-84b4-48c6-a8ee-be9bc695b1b2","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"f1f21494-c907-4df7-976b-99951710ec5d","path":"sprites/spr_moose_jumping_empty/spr_moose_jumping_empty.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"ddadc58e-390c-40d3-8ac2-c1b907c33de9","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"97fbd17d-e56f-4986-a767-93fd9cb4cdd4","path":"sprites/spr_moose_jumping_hitbox/spr_moose_jumping_hitbox.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
@@ -58,14 +58,14 @@
     "yorigin": 203,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"spr_moose_jumping_empty","path":"sprites/spr_moose_jumping_empty/spr_moose_jumping_empty.yy",},
+    "parent": {"name":"spr_moose_jumping_hitbox","path":"sprites/spr_moose_jumping_hitbox/spr_moose_jumping_hitbox.yy",},
     "resourceVersion": "1.4",
-    "name": "spr_moose_jumping_empty",
+    "name": "spr_moose_jumping_hitbox",
     "tags": [],
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"7e8a082e-eaf4-43ab-8f89-1d1ad0e3b467","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"694945dc-0d35-4057-9128-9c41febe0f6b","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": null,
   "parent": {
@@ -73,7 +73,7 @@
     "path": "folders/Sprites/Enemy/Moose.yy",
   },
   "resourceVersion": "1.0",
-  "name": "spr_moose_jumping_empty",
+  "name": "spr_moose_jumping_hitbox",
   "tags": [],
   "resourceType": "GMSprite",
 }
