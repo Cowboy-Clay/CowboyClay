@@ -28,4 +28,4 @@ if !global.paused
 
 collision_check(spr_enemy_collision,collision_mask, false, false);
 
-message_state();
+//message_state();

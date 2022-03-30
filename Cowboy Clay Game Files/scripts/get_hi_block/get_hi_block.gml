@@ -28,7 +28,6 @@ function get_hi_block(){
 }
 
 // Sprites where the player is hi blocking
-global.player_object = obj_player;
 global.player_hi_block_sprites = [
 								 spr_player_blockHi,
 								 spr_player_walk_hiBlock,
@@ -36,7 +35,6 @@ global.player_hi_block_sprites = [
 								 ];
 
 // Sprites where Moose is hi blocking
-global.moose_object = obj_Moose;
 global.moose_hi_block_sprites = [
 								spr_moose_hiBlock,
 								spr_moose_walk_hiBlock

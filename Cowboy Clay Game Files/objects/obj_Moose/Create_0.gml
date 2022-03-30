@@ -495,10 +495,16 @@ function update_animation() {
 	switch(current_state) {
 		case MooseState.IDLE:
 			var a = armor > 0 ? global.moose_animation_idle : (armed==true ? global.moose_animation_idle_helmless : global.moose_animation_idle_disarmed);
+			if !(wanderCounter >= wandersPerIdle) && armor > 0 {
+				a = global.moose_animation_idle_blockLo;
+			}
 			SetMooseAnimation(a, global.moose_animation_idle_FPI, global.moose_animation_idle_type);
 			break;
 		case MooseState.WANDER:
 			var a = armor > 0 ? global.moose_animation_wander : (armed==true ? global.moose_animation_wander_helmless : global.moose_animation_wander_disarmed);
+			if !(wanderCounter >= wandersPerIdle) && armor > 0 {
+				a = global.moose_animation_walk_blockLo;
+			}
 			SetMooseAnimation(a, global.moose_animation_wander_FPI, global.moose_animation_wander_type);
 			break;
 		case MooseState.SLIDE_ANTI:
