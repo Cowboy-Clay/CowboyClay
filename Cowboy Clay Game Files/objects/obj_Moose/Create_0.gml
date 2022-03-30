@@ -666,22 +666,25 @@ function MakeMooseInvulnerable()
 function MooseGetHit()
 {
 	if invuln return;
-	if armed
-	{
+	if armor > 0 {
 		y-= 2;
 		vspeed -= 20;
-		if obj_player.x > x hspeed =  -20;
-		else hspeed = 20;
+		if obj_player.x > x hspeed = obj_player.x > x ? -20 : 20;
+		armor --;
+		MakeMooseInvulnerable();
+		current_state = MooseState.HIT;
+		wanderCounter = 0;
+	} else if armed {
+		y-= 2;
+		vspeed -= 20;
+		if obj_player.x > x hspeed = obj_player.x > x ? -20 : 20;
 		armed = false;
-		h = -1;
-		if obj_player.x < x h = 1;
+		h = obj_player.x < x ? 1 : -1;
 		obj_enemy_sword.EnemySwordFling(h,-1.67,17);
 		MakeMooseInvulnerable();
 		current_state = MooseState.HIT;
 		wanderCounter = 0;
-	}
-	else
-	{
+	} else {
 		if obj_player.x > x hspeed =  -20;
 		else hspeed = 20;
 		vspeed = -20;
