@@ -8,7 +8,7 @@ image_index = obj_player_hitbox.image_index;
 // If hurtbox is overlapping enemy hitbox and the enemy hitbox is not empty
 if place_meeting(x,y,obj_enemy_hitbox) && obj_enemy_hitbox.sprite_index != noone {
 	// If you are invuln nothing happens
-	if variable_instance_exists(obj_player.id, "invuln") && variable_instance_get(obj_player.id, "invuln") == true {
+	if variable_instance_exists(obj_player.id, "invulnerability") && variable_instance_get(obj_player.id, "invulnerability") == true {
 		return;
 	}
 	
