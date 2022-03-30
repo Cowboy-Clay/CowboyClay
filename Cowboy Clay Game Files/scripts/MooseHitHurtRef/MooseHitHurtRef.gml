@@ -39,10 +39,10 @@ global.mooseSprRef =
 	[global.moose_animation_walk_blockLo_helmless = noone, spr_moose_walk_hurtbox],
 
 //idle - blockHi
-	[global.moose_animation_idle_blockHi = noone, spr_moose_idle_hurtbox],
+	[global.moose_animation_idle_blockHi_helmless = noone, spr_moose_idle_hurtbox],
 
 //wander - blockHi
-	[global.moose_animation_walk_blockHi = noone, spr_moose_idle_hurtbox],
+	[global.moose_animation_walk_blockHi_helmless = noone, spr_moose_idle_hurtbox],
 	
 //stabAnti
 	[global.moose_animation_stabAnti = noone, spr_moose_stabAnti_hurtbox],
