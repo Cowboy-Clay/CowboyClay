@@ -28,8 +28,8 @@ function get_lo_block(){
 // Sprites where the player is lo blocking
 global.player_object = obj_player;
 global.player_lo_block_sprites = [
-								 spr_player_idle_loBlock
-								 spr_player_walk_loBlock
+								 spr_player_idle_loBlock,
+								 spr_player_walk_loBlock,
 								 spr_player_blockLoStun
 								 ];
 

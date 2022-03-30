@@ -50,9 +50,6 @@
             {"propertyId":{"name":"startArmed","path":"objects/obj_player/obj_player.yy",},"objectId":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"value":"True","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
           ],"isDnd":false,"objectId":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":894.0,"y":3372.0,"resourceVersion":"1.0","name":"inst_3C14A0F","tags":[],"resourceType":"GMRInstance",},
         {"properties":[
-            {"propertyId":{"name":"start_pulling","path":"objects/obj_Moose/obj_Moose.yy",},"objectId":{"name":"obj_Moose","path":"objects/obj_Moose/obj_Moose.yy",},"value":"False","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
-          ],"isDnd":false,"objectId":{"name":"obj_Moose","path":"objects/obj_Moose/obj_Moose.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":768.0,"y":1056.0,"resourceVersion":"1.0","name":"inst_16A1184","tags":[],"resourceType":"GMRInstance",},
-        {"properties":[
             {"propertyId":{"name":"track","path":"objects/obj_music_controller/obj_music_controller.yy",},"objectId":{"name":"obj_music_controller","path":"objects/obj_music_controller/obj_music_controller.yy",},"value":"Ambird__ALL_AMBIENCE_","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
           ],"isDnd":false,"objectId":{"name":"obj_music_controller","path":"objects/obj_music_controller/obj_music_controller.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":1209.0,"y":3240.0,"resourceVersion":"1.0","name":"inst_1399C9CD","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_enemy_sword","path":"objects/obj_enemy_sword/obj_enemy_sword.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":2016.0,"y":2208.0,"resourceVersion":"1.0","name":"inst_60446C62","tags":[],"resourceType":"GMRInstance",},
@@ -274,7 +271,6 @@
     {"name":"inst_5466FA36","path":"rooms/LevelDesignTest/LevelDesignTest.yy",},
     {"name":"inst_10657493","path":"rooms/LevelDesignTest/LevelDesignTest.yy",},
     {"name":"inst_7809DED7","path":"rooms/LevelDesignTest/LevelDesignTest.yy",},
-    {"name":"inst_16A1184","path":"rooms/LevelDesignTest/LevelDesignTest.yy",},
     {"name":"inst_2BA7CC96","path":"rooms/LevelDesignTest/LevelDesignTest.yy",},
     {"name":"inst_1399C9CD","path":"rooms/LevelDesignTest/LevelDesignTest.yy",},
     {"name":"inst_60446C62","path":"rooms/LevelDesignTest/LevelDesignTest.yy",},
