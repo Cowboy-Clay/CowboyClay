@@ -99,7 +99,7 @@ global.moose_animation_charge_disarmed = spr_moose_charge_empty;
 
 //Hit
 global.moose_animation_hit = spr_moose_struck;
-global.moose_animation_hit_empty = spr_moose_struck_disarmed;
+global.moose_animation_hit_helmless = spr_moose_struck_disarmed;
 	global.moose_animation_hit_FPI = 1;
 	global.moose_animation_hit_type = AnimationType.FIRST_FRAME;
 
