@@ -26,7 +26,30 @@ function get_lo_attack(){
 }
 
 // Sprites where the player is lo attacking
-global.player_lo_attack_sprites = [];
+global.player_lo_attack_sprites = [
+								  spr_player_attackSwing,
+								  ];
 
 // Sprites where Moose is lo attacking
-global.moose_lo_attack_sprites = [];
+global.moose_lo_attack_sprites = [
+
+								 //charge
+								 spr_moose_charge,
+								 spr_moose_charge_noHelm,
+								 spr_moose_charge_empty,
+								 
+								 //slide
+								 spr_moose_slide,
+								 spr_moose_slide_noHelm,
+								 spr_moose_slide_empty,
+								 
+								 //jumping
+								 spr_moose_jumping,
+								 spr_moose_jumping_nohelm,
+								 spr_moose_jumping_empty,
+								 
+								 //spinning
+								 spr_moose_spin,
+								 spr_moose_spin_noHelm,
+								 spr_moose_spinning_empty
+								 ];

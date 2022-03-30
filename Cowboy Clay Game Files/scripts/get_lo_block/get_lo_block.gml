@@ -27,8 +27,18 @@ function get_lo_block(){
 
 // Sprites where the player is lo blocking
 global.player_object = obj_player;
-global.player_lo_block_sprites = [];
+global.player_lo_block_sprites = [
+								 spr_player_idle_loBlock
+								 spr_player_walk_loBlock
+								 spr_player_blockLoStun
+								 ];
 
 // Sprites where Moose is lo blocking
 global.moose_object = obj_Moose;
-global.moose_lo_block_sprites = [];
+global.moose_lo_block_sprites = [
+								spr_moose_blockLo,
+								spr_moose_blockLo_helmless,
+								spr_moose_blockLo_empty,
+								spr_moose_walkBlock,
+								spr_moose_walkBlock_noHelm
+								];
