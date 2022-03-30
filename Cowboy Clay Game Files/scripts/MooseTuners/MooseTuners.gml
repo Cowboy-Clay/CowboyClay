@@ -167,6 +167,18 @@ global.moose_animation_plunging_disarmed = spr_moose_plunging_noHelm;
 	global.moose_animation_plunging_FPI = 1;
 	global.moose_animation_plunging_type = AnimationType.FIRST_FRAME;
 
+//Plunge Bumping
+global.moose_animation_plungeBumping = spr_moose_plungeBumping;
+global.moose_animation_plungeBumping_helmless = spr_moose_plungeBumping_helmless;
+	global.moose_animation_plungeBumping_FPI = 20;
+	global.moose_animation_plungeBumping_type = AnimationType.HOLD;
+
+//Plunge Stuck
+global.moose_animation_plungeStuck = spr_moose_plungeStuck;
+global.moose_animation_plungeStuck_helmless = spr_moose_plungeStuck_helmless;
+	global.moose_animation_plungStuck_FPI = 20;
+	global.moose_animation_plungeStuck_type = AnimationType.LOOP;
+
 //Spinning
 global.moose_animation_spinning = spr_moose_spin;
 global.moose_animation_spinning_helmless = spr_moose_spin_noHelm;
