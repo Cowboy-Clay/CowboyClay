@@ -891,15 +891,15 @@ function update_animation() {
 			SetPlayerAnimation(a, global.player_fallFPI, global.player_fallAnimType);
 			break;
 		case PlayerState.BASIC_ATTACK_ANTI:
-			a = spr_player_attackAnti;
+			a = get_hi_attack_player(id,10) ? global.player_hiattackAntiAnim : spr_player_attackAnti;
 			SetPlayerAnimation(a, 1, AnimationType.FIRST_FRAME);
 			break;
 		case PlayerState.BASIC_ATTACK_SWING: 
-			a = spr_player_attackSwing;
+			a = get_hi_attack_player(id,10) ? global.player_hiattackSwingAnim : spr_player_attackSwing;
 			SetPlayerAnimation(a, 1, AnimationType.FIRST_FRAME);
 			break;
 		case PlayerState.BASIC_ATTACK_FOLLOW:
-			a = spr_player_attackFollow;
+			a = get_hi_attack_player(id,10) ? global.player_hiattackFollowAnim : spr_player_attackFollow;
 			SetPlayerAnimation(a, 1, AnimationType.FIRST_FRAME);
 			break;
 		case PlayerState.DASH_ANTI:			

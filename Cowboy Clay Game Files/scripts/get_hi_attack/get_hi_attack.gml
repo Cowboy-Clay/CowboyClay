@@ -6,7 +6,7 @@ function get_hi_attack(){
 	
 	switch object_index {
 		case global.player_object:
-			a = global.player_hi_attack_sprites;
+			return get_hi_attack_player(id, 10);
 			break;
 		case global.moose_object:
 			a = global.moose_hi_attack_sprites;

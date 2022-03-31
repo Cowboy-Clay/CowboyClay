@@ -172,6 +172,7 @@
     {"id":{"name":"spr_moose_charge_hurtbox","path":"sprites/spr_moose_charge_hurtbox/spr_moose_charge_hurtbox.yy",},"order":82,},
     {"id":{"name":"spr_envi_woodPlank3","path":"sprites/spr_envi_woodPlank3/spr_envi_woodPlank3.yy",},"order":14,},
     {"id":{"name":"spr_moose_dead","path":"sprites/spr_moose_dead/spr_moose_dead.yy",},"order":62,},
+    {"id":{"name":"get_hi_attack_player","path":"scripts/get_hi_attack_player/get_hi_attack_player.yy",},"order":8,},
     {"id":{"name":"spr_moose_jumpAnti_helmless","path":"sprites/spr_moose_jumpAnti_helmless/spr_moose_jumpAnti_helmless.yy",},"order":94,},
     {"id":{"name":"obj_cam_anchor","path":"objects/obj_cam_anchor/obj_cam_anchor.yy",},"order":0,},
     {"id":{"name":"spr_envi_woodBlock3","path":"sprites/spr_envi_woodBlock3/spr_envi_woodBlock3.yy",},"order":13,},
