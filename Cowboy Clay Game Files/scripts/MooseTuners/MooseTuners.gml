@@ -125,12 +125,12 @@ global.moose_animation_walk_blockLo_helmless = spr_moose_walkBlock_noHelm;
 	global.moose_animation_walk_blockLo_type = AnimationType.LOOP;
 
 //Idle - BlockHi
-global.moose_animation_idle_blockHi = spr_moose_hiBlock;
+global.moose_animation_idle_blockHi_helmless = spr_moose_hiBlock;
 	global.moose_animation_idle_blockHi_helmless_FPI = 1;
 	global.moose_animation_idle_blockHi_helmless_type = AnimationType.FIRST_FRAME;
 
 //Walk - BlockHi
-global.moose_animation_walk_blockHi = spr_moose_walk_hiBlock;
+global.moose_animation_walk_blockHi_helmless = spr_moose_walk_hiBlock;
 	global.moose_animation_walk_blockHi_helmless_FPI = 20;
 	global.moose_animation_walk_blockHi_helmless_type = AnimationType.LOOP;
 
