@@ -32,4 +32,9 @@ if !global.paused
 	SetPlayerFacingDirection();
 }
 
+if instance_exists(obj_Moose){
+	if place_meeting(x,y,obj_Moose) {
+		knock_away_from(id,obj_Moose.x, obj_Moose.y, 10);
+	}
+}
 collision_check_player(spr_player_collision, collision_mask, false, false);

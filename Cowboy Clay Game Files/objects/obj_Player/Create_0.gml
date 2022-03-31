@@ -922,3 +922,4 @@ function update_animation() {
 			break;
 	}
 }
+

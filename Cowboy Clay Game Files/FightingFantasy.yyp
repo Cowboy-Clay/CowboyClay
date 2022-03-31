@@ -150,6 +150,7 @@
     {"id":{"name":"spr_moose_jumping","path":"sprites/spr_moose_jumping/spr_moose_jumping.yy",},"order":68,},
     {"id":{"name":"PlayerJumpCurve","path":"animcurves/PlayerJumpCurve/PlayerJumpCurve.yy",},"order":1,},
     {"id":{"name":"spr_empty","path":"sprites/spr_empty/spr_empty.yy",},"order":4,},
+    {"id":{"name":"knock_away_from","path":"scripts/knock_away_from/knock_away_from.yy",},"order":16,},
     {"id":{"name":"spr_mech_breakableWallPiece1","path":"sprites/spr_mech_breakableWallPiece1/spr_mech_breakableWallPiece1.yy",},"order":7,},
     {"id":{"name":"spr_wall","path":"sprites/spr_wall/spr_wall.yy",},"order":6,},
     {"id":{"name":"Menu","path":"rooms/Menu/Menu.yy",},"order":3,},
