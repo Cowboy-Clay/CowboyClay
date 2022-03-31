@@ -522,7 +522,7 @@ function update_animation() {
 			SetMooseAnimation(a, global.moose_animation_idle_FPI, global.moose_animation_idle_type);
 			break;
 		case MooseState.HIT:
-			var a = armor > 0 ? global.moose_animation_hit : (armed==true ? global.moose_animation_hit_helmless : global.moose_animation_hit_disarmed);
+			var a = armor > 0 ? global.moose_animation_hit : (global.moose_animation_hit_helmless);
 			SetMooseAnimation(a, global.moose_animation_hit_FPI, global.moose_animation_hit_type);
 			break;
 			
@@ -530,7 +530,7 @@ function update_animation() {
 			break;
 			
 		case MooseState.DEAD:
-			var a = armor > 0 ? global.moose_animation_dead : (armed==true ? global.moose_animation_dead_helmless : global.moose_animation_dead_disarmed);
+			var a = global.moose_animation_dead;
 			SetMooseAnimation(a, global.moose_animation_dead_FPI, global.moose_animation_dead_type);
 			break;
 			
