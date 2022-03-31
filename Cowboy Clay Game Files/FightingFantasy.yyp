@@ -59,6 +59,7 @@
     {"id":{"name":"spr_moose_slideAnti","path":"sprites/spr_moose_slideAnti/spr_moose_slideAnti.yy",},"order":30,},
     {"id":{"name":"spr_player_sword_enviCollision","path":"sprites/spr_player_sword_enviCollision/spr_player_sword_enviCollision.yy",},"order":18,},
     {"id":{"name":"get_hi_block","path":"scripts/get_hi_block/get_hi_block.yy",},"order":0,},
+    {"id":{"name":"vector_away_normal","path":"scripts/vector_away_normal/vector_away_normal.yy",},"order":2,},
     {"id":{"name":"spr_moose_walk_hiBlock","path":"sprites/spr_moose_walk_hiBlock/spr_moose_walk_hiBlock.yy",},"order":75,},
     {"id":{"name":"spr_player_attackSwing_hitbox","path":"sprites/spr_player_attackSwing_hitbox/spr_player_attackSwing_hitbox.yy",},"order":19,},
     {"id":{"name":"spr_envi_woodplank","path":"sprites/spr_envi_woodplank/spr_envi_woodplank.yy",},"order":11,},
