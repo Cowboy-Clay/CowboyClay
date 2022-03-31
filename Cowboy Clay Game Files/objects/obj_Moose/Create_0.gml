@@ -309,7 +309,19 @@ function to_dive() {
 }
 function dive() {
 	vspeed = global.moose_dive_speed;
-	if collision_check_edge(x,y,spr_enemy_collision,Direction.DOWN,collision_mask) to_stuck();
+	if collision_check_edge(x,y,spr_enemy_collision,Direction.DOWN,[obj_player]) {
+		to_spin();
+		return;
+	}
+	if collision_check_edge(x,y,spr_enemy_collision,Direction.DOWN,collision_mask) {
+		if armor > 0 {
+			to_stuck();
+			return;
+		} else {
+			to_spin();
+			return;
+		}
+	}
 }
 function to_stuck() {
 	if armor < 1 {
