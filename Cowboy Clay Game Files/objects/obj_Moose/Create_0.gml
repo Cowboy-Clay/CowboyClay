@@ -309,7 +309,19 @@ function to_dive() {
 }
 function dive() {
 	vspeed = global.moose_dive_speed;
-	if collision_check_edge(x,y,spr_enemy_collision,Direction.DOWN,collision_mask) to_stuck();
+	if collision_check_edge(x,y,spr_enemy_collision,Direction.DOWN,[obj_player]) {
+		to_spin();
+		return;
+	}
+	if collision_check_edge(x,y,spr_enemy_collision,Direction.DOWN,collision_mask) {
+		if armor > 0 {
+			to_stuck();
+			return;
+		} else {
+			to_spin();
+			return;
+		}
+	}
 }
 function to_stuck() {
 	if armor < 1 {
@@ -495,10 +507,16 @@ function update_animation() {
 	switch(current_state) {
 		case MooseState.IDLE:
 			var a = armor > 0 ? global.moose_animation_idle : (armed==true ? global.moose_animation_idle_helmless : global.moose_animation_idle_disarmed);
+			if !(wanderCounter >= wandersPerIdle) && armor > 0 {
+				a = global.moose_animation_idle_blockLo;
+			}
 			SetMooseAnimation(a, global.moose_animation_idle_FPI, global.moose_animation_idle_type);
 			break;
 		case MooseState.WANDER:
 			var a = armor > 0 ? global.moose_animation_wander : (armed==true ? global.moose_animation_wander_helmless : global.moose_animation_wander_disarmed);
+			if !(wanderCounter >= wandersPerIdle) && armor > 0 {
+				a = global.moose_animation_walk_blockLo;
+			}
 			SetMooseAnimation(a, global.moose_animation_wander_FPI, global.moose_animation_wander_type);
 			break;
 		case MooseState.SLIDE_ANTI:
@@ -522,7 +540,7 @@ function update_animation() {
 			SetMooseAnimation(a, global.moose_animation_idle_FPI, global.moose_animation_idle_type);
 			break;
 		case MooseState.HIT:
-			var a = armor > 0 ? global.moose_animation_hit : (armed==true ? global.moose_animation_hit_helmless : global.moose_animation_hit_disarmed);
+			var a = armor > 0 ? global.moose_animation_hit : (global.moose_animation_hit_helmless);
 			SetMooseAnimation(a, global.moose_animation_hit_FPI, global.moose_animation_hit_type);
 			break;
 			
@@ -530,7 +548,7 @@ function update_animation() {
 			break;
 			
 		case MooseState.DEAD:
-			var a = armor > 0 ? global.moose_animation_dead : (armed==true ? global.moose_animation_dead_helmless : global.moose_animation_dead_disarmed);
+			var a = global.moose_animation_dead;
 			SetMooseAnimation(a, global.moose_animation_dead_FPI, global.moose_animation_dead_type);
 			break;
 			
@@ -666,22 +684,25 @@ function MakeMooseInvulnerable()
 function MooseGetHit()
 {
 	if invuln return;
-	if armed
-	{
+	if armor > 0 {
 		y-= 2;
 		vspeed -= 20;
-		if obj_player.x > x hspeed =  -20;
-		else hspeed = 20;
+		if obj_player.x > x hspeed = obj_player.x > x ? -20 : 20;
+		armor --;
+		MakeMooseInvulnerable();
+		current_state = MooseState.HIT;
+		wanderCounter = 0;
+	} else if armed {
+		y-= 2;
+		vspeed -= 20;
+		if obj_player.x > x hspeed = obj_player.x > x ? -20 : 20;
 		armed = false;
-		h = -1;
-		if obj_player.x < x h = 1;
+		h = obj_player.x < x ? 1 : -1;
 		obj_enemy_sword.EnemySwordFling(h,-1.67,17);
 		MakeMooseInvulnerable();
 		current_state = MooseState.HIT;
 		wanderCounter = 0;
-	}
-	else
-	{
+	} else {
 		if obj_player.x > x hspeed =  -20;
 		else hspeed = 20;
 		vspeed = -20;

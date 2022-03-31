@@ -1,5 +1,8 @@
 {
-  "spriteId": null,
+  "spriteId": {
+    "name": "spr_player_idle_loBlock",
+    "path": "sprites/spr_player_idle_loBlock/spr_player_idle_loBlock.yy",
+  },
   "solid": false,
   "visible": true,
   "spriteMaskId": {
