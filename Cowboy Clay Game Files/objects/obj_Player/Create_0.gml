@@ -45,12 +45,14 @@ global.player_dashFollow = 38;
 
 #region Jump Variables
 jumpTimer = 0; // Frame counter to determine how long the player is preparing their jump
+jump_buffer = 0;
 global.player_minJumpWindup = 3; // the min # of frames the player can prepare a jump
 global.player_maxJumpWindup = 30; // the max # of frames the player can prepare a jump
 global.player_minVertJumpForce = 16; // min vertical force applied by a jump
 global.player_maxVertJumpForce = 25; // max vertical force applied by a jump
 global.player_minHoriJumpForce = 0; // min horizontal force applied by a jump
 global.player_maxHoriJumpForce = 10; // max horizontal force applied by a jump
+global.player_jump_buffer_frames = 60;
 #endregion
 
 #region Basic Attack Variables
@@ -110,23 +112,14 @@ function UpdatePlayerState()
 				PlayerPlungeSword();
 				return;
 			}*/
-			if hiblock == 1 && keyboard_check(vk_up) && keyboard_check_pressed(ord("Z"))
-			{
-				PlayerSheathSword();
-				return;
+			
+			
+			if keyboard_check_pressed(ord("X")) {
+				jump_buffer = global.player_jump_buffer_frames;
 			}
-			if sheathed && !armed && keyboard_check(vk_down) && keyboard_check(ord("Z"))
-			{
-				PlayerUnsheathSword();
-				return;
-			}
-			if keyboard_check(vk_down) && keyboard_check_pressed(ord("X")) && !dashOnCooldown
-			{
-				//GoToDashAnti();
-				//return;
-			}
-			if keyboard_check_pressed(ord("X")) GoToPlayerJumpAnti();
+			if jump_buffer > 0 GoToPlayerJumpAnti();
 			else if OneWalkKeyHeld() GoToPlayerWalk();
+			if collision_check_edge(x,y,spr_player_collision,Direction.DOWN,collision_mask) == false GoToPlayerFall();
 			break;
 		case PlayerState.WALKING:
 			if keyboard_check(vk_down) && keyboard_check_pressed(ord("X")) && !dashOnCooldown
@@ -134,8 +127,12 @@ function UpdatePlayerState()
 				//GoToDashAnti();
 				//return;
 			}
-			if keyboard_check_pressed(ord("X")) GoToPlayerJumpAnti();
+			if keyboard_check_pressed(ord("X")) {
+				jump_buffer = global.player_jump_buffer_frames;
+			}
+			if jump_buffer > 0 GoToPlayerJumpAnti();
 			else if !OneWalkKeyHeld() GoToPlayerIdle();
+			if collision_check_edge(x,y,spr_player_collision,Direction.DOWN,collision_mask) == false GoToPlayerFall();
 			break;
 		case PlayerState.JUMP_ANTI:
 			if keyboard_check(vk_down) && keyboard_check_pressed(ord("X")) && !dashOnCooldown
@@ -145,7 +142,7 @@ function UpdatePlayerState()
 			}
 			break;
 		case PlayerState.JUMPING:
-			if vspeed >= 0 GoToPlayerFall();
+			if vspeed > 0 GoToPlayerFall();
 			break;
 		case PlayerState.FALLING:
 			if grounded
