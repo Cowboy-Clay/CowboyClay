@@ -886,8 +886,7 @@ function update_animation() {
 			SetPlayerAnimation(a, global.player_jumpFPI, global.player_jumpAnimType);
 			break;
 		case PlayerState.FALLING:	
-			// DEV NOTE: PLAYER HAS NO DISARMED FALL SPRITE
-			a = armed ? spr_player_fall : spr_player_fall;
+			a = armed ? spr_player_fall : spr_player_jumpDown_disarmed;
 			SetPlayerAnimation(a, global.player_fallFPI, global.player_fallAnimType);
 			break;
 		case PlayerState.BASIC_ATTACK_ANTI:
