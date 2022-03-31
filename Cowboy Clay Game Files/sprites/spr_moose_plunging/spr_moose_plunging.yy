@@ -55,7 +55,7 @@
     "backdropXOffset": 0.0,
     "backdropYOffset": 0.0,
     "xorigin": 317,
-    "yorigin": 203,
+    "yorigin": 195,
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_moose_plunging","path":"sprites/spr_moose_plunging/spr_moose_plunging.yy",},
