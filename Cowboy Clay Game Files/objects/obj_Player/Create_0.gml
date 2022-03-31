@@ -52,7 +52,7 @@ global.player_minVertJumpForce = 16; // min vertical force applied by a jump
 global.player_maxVertJumpForce = 25; // max vertical force applied by a jump
 global.player_minHoriJumpForce = 0; // min horizontal force applied by a jump
 global.player_maxHoriJumpForce = 10; // max horizontal force applied by a jump
-global.player_jump_buffer_frames = 60;
+global.player_jump_buffer_frames = 160;
 #endregion
 
 #region Basic Attack Variables
@@ -249,6 +249,7 @@ function GoToPlayerIdle()
 function GoToPlayerJumpAnti()
 {
 	jumpTimer = 0;
+	jump_buffer = -1;
 	current_state = PlayerState.JUMP_ANTI;
 }
 function GoToPlayerJump()
