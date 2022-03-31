@@ -27,7 +27,7 @@ if !global.paused
 	}
 	
 	// Animation
-	SwitchPlayerArmedAnims();
+	update_animation();
 	PlayPlayerAnimation();
 	SetPlayerFacingDirection();
 }

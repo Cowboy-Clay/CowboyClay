@@ -243,21 +243,16 @@ function GoToPlayerDead()
 	current_state = PlayerState.DEAD;
 	instance_deactivate_object(obj_player_hitbox);
 	instance_deactivate_object(obj_player_hurtbox);
-	SetPlayerAnimation(global.player_deathAnim, global.player_deathAnimFPI, global.player_deadAnimType);
 }
 
 function GoToPlayerIdle()
 {
 	current_state = PlayerState.IDLE;
-	if armed SetPlayerAnimation(global.player_idleAnim, global.player_idleFPI, global.player_idleAnimType);
-	else SetPlayerAnimation(global.player_idleAnim_disarmed, global.player_idleFPI, global.player_idleAnimType);
 }
 function GoToPlayerJumpAnti()
 {
 	jumpTimer = 0;
 	current_state = PlayerState.JUMP_ANTI;
-	if armed SetPlayerAnimation(global.player_jumpAntiAnim, global.player_jumpAntiFPI, global.player_jumpAntiAnimType);
-	else SetPlayerAnimation(global.player_jumpAntiAnim_disarmed, global.player_jumpAntiFPI, global.player_jumpAntiAnimType);
 }
 function GoToPlayerJump()
 {
@@ -273,9 +268,6 @@ function GoToPlayerJump()
 		hspeed -= lerp(global.player_minHoriJumpForce, global.player_maxHoriJumpForce, l);
 	}
 	current_state = PlayerState.JUMPING;
-	
-	if armed SetPlayerAnimation(global.player_jumpAnim, global.player_jumpFPI, global.player_jumpAnimType);
-	else SetPlayerAnimation(global.player_jumpAnim_disarmed, global.player_jumpFPI, global.player_jumpAnimType);
 }
 function GoToPlayerWalk()
 {
@@ -283,32 +275,24 @@ function GoToPlayerWalk()
 	
 	if keyboard_check(vk_left) lastDashTapDirection = Direction.LEFT;
 	else if keyboard_check(vk_right) lastDashTapDirection = Direction.RIGHT;
-	
-	if armed SetPlayerAnimation(global.player_walkAnim, global.player_walkFPI, global.player_walkAnimType);
-	else SetPlayerAnimation(global.player_walkAnim_disarmed, global.player_walkFPI, global.player_walkAnimType);
 }
 function GoToPlayerFall()
 {
 	current_state = PlayerState.FALLING;
-	if armed SetPlayerAnimation(global.player_fallAnim, global.player_fallFPI, global.player_fallAnimType);
-	else SetPlayerAnimation(global.player_fallAnim_disarmed, global.player_fallFPI, global.player_fallAnimType);
 }
 function GoToPlayerBasicAttack()
 {
 	attackTimer = global.player_attackAntiFrames;
 	current_state = PlayerState.BASIC_ATTACK_ANTI;
-	SetPlayerAnimation(global.player_attackAntiAnim, 1, AnimationType.HOLD);
 	if attackTimer <= 0
 	{
 		current_state = PlayerState.BASIC_ATTACK_SWING;
-		SetPlayerAnimation(global.player_attackSwingAnim, 1, AnimationType.HOLD);
 			obj_player_attackEffect.ShowPlayerAttack(spr_player_attackEffect,1);
 		attackTimer = global.player_attackSwingFrames;
 	}
 	if attackTimer <= 0
 	{
 		current_state = PlayerState.BASIC_ATTACK_FOLLOW;
-		SetPlayerAnimation(global.player_attackFollowAnim, 1, AnimationType.HOLD);
 			obj_player_attackEffect.HidePlayerAttack();
 		attackTimer = global.player_attackFollowFrames;
 	}
@@ -321,11 +305,9 @@ function GoToPlayerKick()
 {
 	attackTimer = global.player_kickAntiFrames;
 	current_state = PlayerState.KICK_ANTI;
-	SetPlayerAnimation(global.player_kickAntiAnim, 1, AnimationType.HOLD);
 	if attackTimer <= 0
 	{
 		current_state = PlayerState.KICK_SWING;
-		SetPlayerAnimation(global.player_kickAntiAnim, 1, AnimationType.HOLD);
 		//obj_player_attackEffect.ShowPlayerAttack(spr_player_kickEffect,1);
 		attackTimer = global.player_kickSwingFrames;
 	}
@@ -333,7 +315,6 @@ function GoToPlayerKick()
 	if attackTimer <= 0
 	{
 		current_state = PlayerState.KICK_FOLLOW;
-		SetPlayerAnimation(global.player_kickFollowAnim, 1, AnimationType.HOLD);
 		obj_player_attackEffect.HidePlayerAttack();
 		attackTimer = global.player_kickFollowFrames;
 	}
@@ -349,7 +330,6 @@ function GoToDashAnti()
 	
 	var a = global.player_dashAntiAnim;
 	if !armed a = global.player_dashAntiAnim_disarmed;
-	SetPlayerAnimation(a, global.player_dashAntiAnimFPI, global.player_dashAntiAnimType);
 	
 	dashTimer = 0;
 }
@@ -360,7 +340,6 @@ function GoToDash()
 	
 	var a = global.player_dashAnim;
 	if !armed a = global.player_dashAnim_disarmed;
-	SetPlayerAnimation(a, global.player_dashAnimFPI, global.player_dashAnimType);
 	
 	dashTimer = 0;
 	dashOnCooldown = true;
@@ -408,7 +387,6 @@ function GoToPlayerDashFollow()
 	
 	var a = global.player_dashFollowAnim;
 	if !armed a = global.player_dashFollowAnim_disarmed;
-	SetPlayerAnimation(a, global.player_dashFollowAnimFPI, global.player_dashFollowAnimType);
 }
 
 function CheckDash()
@@ -652,14 +630,12 @@ function PlayerAttack()
 		if current_state == PlayerState.BASIC_ATTACK_ANTI && attackTimer <= 0
 		{
 			current_state = PlayerState.BASIC_ATTACK_SWING;
-			SetPlayerAnimation(global.player_attackSwingAnim, 1, AnimationType.HOLD);
 			obj_player_attackEffect.ShowPlayerAttack(spr_player_attackEffect,1);
 			attackTimer = global.player_attackSwingFrames;
 		}
 		if current_state == PlayerState.BASIC_ATTACK_SWING && attackTimer <= 0
 		{
 			current_state = PlayerState.BASIC_ATTACK_FOLLOW;
-			SetPlayerAnimation(global.player_attackFollowAnim, 1, AnimationType.HOLD);
 			obj_player_attackEffect.HidePlayerAttack();
 			attackTimer = global.player_attackFollowFrames;
 		}
@@ -676,14 +652,12 @@ function PlayerAttack()
 		if current_state == PlayerState.KICK_ANTI && attackTimer <= 0
 		{
 			current_state = PlayerState.KICK_SWING;
-			SetPlayerAnimation(global.player_kickSwingAnim, 1, AnimationType.HOLD);
 			//obj_player_attackEffect.ShowPlayerAttack(
 			attackTimer = global.player_kickSwingFrames;
 		}
 		if current_state == PlayerState.KICK_SWING && attackTimer <= 0
 		{
 			current_state = PlayerState.KICK_FOLLOW;
-			SetPlayerAnimation(global.player_kickFollowAnim, 1, AnimationType.HOLD);
 			//obj_player_attackEffect.HidePlayerAttack();
 			attackTimer = global.player_kickFollowFrames;
 		}
@@ -766,6 +740,7 @@ function PlayPlayerAnimation()
 
 function SetPlayerAnimation(animation, fpi, type)
 {
+	if sprite_index == animation && currentFPI == fpi && currentAnimType == type return;
 	sprite_index = animation;
 	currentFPI = fpi;
 	currentAnimType = type;
@@ -877,4 +852,74 @@ function PlayerNotAttacking()
 	else if current_state == PlayerState.BASIC_ATTACK_FOLLOW return false;
 	else if current_state == PlayerState.BASIC_ATTACK_SWING return false;
 	else return true;
+}
+
+function update_animation() {
+	var a = noone;
+	switch(current_state) {
+		case PlayerState.IDLE:
+			if !armed {
+				a = spr_player_idle_disarmed;
+			} else if hiblock == 1 {
+				a = spr_player_blockHi;
+			} else {
+				a = spr_player_idle_loBlock;
+			}
+			SetPlayerAnimation(a, global.player_idleFPI, global.player_idleAnimType);
+			break;
+		case PlayerState.WALKING:			 
+			if !armed {
+				a = spr_player_walk_disarmed;
+			} else if hiblock == 1 {
+				a = spr_player_walk_hiBlock;
+			} else {
+				a = spr_player_walk_loBlock;
+			}
+			SetPlayerAnimation(a, global.player_walkFPI, global.player_walkAnimType);
+			break;
+		case PlayerState.JUMP_ANTI:
+			a = armed ? spr_player_jumpAnti : spr_player_jumpAnti_disarmed;
+			SetPlayerAnimation(a, global.player_jumpAntiFPI, global.player_jumpAntiAnimType);
+			break;
+		case PlayerState.JUMPING:	
+			 a = armed ? spr_player_jump : spr_player_jump_disarmed;
+			SetPlayerAnimation(a, global.player_jumpFPI, global.player_jumpAnimType);
+			break;
+		case PlayerState.FALLING:	
+			// DEV NOTE: PLAYER HAS NO DISARMED FALL SPRITE
+			a = armed ? spr_player_fall : spr_player_fall;
+			SetPlayerAnimation(a, global.player_fallFPI, global.player_fallAnimType);
+			break;
+		case PlayerState.BASIC_ATTACK_ANTI:
+			a = spr_player_attackAnti;
+			SetPlayerAnimation(a, 1, AnimationType.FIRST_FRAME);
+			break;
+		case PlayerState.BASIC_ATTACK_SWING: 
+			a = spr_player_attackSwing;
+			SetPlayerAnimation(a, 1, AnimationType.FIRST_FRAME);
+			break;
+		case PlayerState.BASIC_ATTACK_FOLLOW:
+			a = spr_player_attackFollow;
+			SetPlayerAnimation(a, 1, AnimationType.FIRST_FRAME);
+			break;
+		case PlayerState.DASH_ANTI:			
+			a = armed ? spr_player_dash_anti : spr_player_dash_anti_disarmed;
+			SetPlayerAnimation(a, global.player_dashAntiAnimFPI, global.player_dashAntiAnimType);
+			break;
+		case PlayerState.DASH:				 
+			a = armed ? spr_player_dash : spr_player_dash_disarmed;
+			SetPlayerAnimation(a, global.player_dashAnimFPI, global.player_dashAnimType);
+			break;
+		case PlayerState.DASH_FOLLOW:		 
+			a = armed? spr_player_dash_follow : spr_player_dash_follow_disarmed;
+			SetPlayerAnimation(a, global.player_dashFollowAnimFPI, global.player_dashFollowAnimType);
+			break;
+		case PlayerState.LOCK:
+			// This state has no specific animations
+			break;
+		case PlayerState.DEAD:
+			a = spr_player_death;
+			SetPlayerAnimation(a, global.player_deathAnimFPI, AnimationType.HOLD);
+			break;
+	}
 }
