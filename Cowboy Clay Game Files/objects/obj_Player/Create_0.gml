@@ -56,7 +56,7 @@ global.player_jump_buffer_frames = 160;
 #endregion
 
 #region Basic Attack Variables
-global.player_attackAntiFrames = 12; // # of frames the attack anti is shown
+global.player_attackAntiFrames = 15; // # of frames the attack anti is shown
 global.player_attackSwingFrames = 10;
 global.player_attackFollowFrames = 15;
 attackTimer = 0; // Frame counter to determine how long the player has been in each attack state
