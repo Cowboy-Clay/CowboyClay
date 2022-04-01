@@ -222,6 +222,7 @@
     {"id":{"name":"obj_enemy_sword","path":"objects/obj_enemy_sword/obj_enemy_sword.yy",},"order":2,},
     {"id":{"name":"spr_player_dash_anti_disarmed","path":"sprites/spr_player_dash_anti_disarmed/spr_player_dash_anti_disarmed.yy",},"order":21,},
     {"id":{"name":"collision_check_vert_only","path":"scripts/collision_check_vert_only/collision_check_vert_only.yy",},"order":6,},
+    {"id":{"name":"obj_fight_loader","path":"objects/obj_fight_loader/obj_fight_loader.yy",},"order":29,},
     {"id":{"name":"CCSlide1","path":"sprites/CCSlide1/CCSlide1.yy",},"order":14,},
     {"id":{"name":"_Full_Song__Always_Want_More_Of_It__Electric_Chorus_Guitar__With_Bass_","path":"sounds/_Full_Song__Always_Want_More_Of_It__Electric_Chorus_Guitar__With_Bass_/_Full_Song__Always_Want_More_Of_It__Electric_Chorus_Guitar__With_Bass_.yy",},"order":2,},
     {"id":{"name":"bumpy_trot","path":"animcurves/bumpy_trot/bumpy_trot.yy",},"order":2,},
@@ -290,8 +291,8 @@
     "children": [],
   },
   "RoomOrderNodes": [
-    {"roomId":{"name":"PlayerTestRoom","path":"rooms/PlayerTestRoom/PlayerTestRoom.yy",},},
     {"roomId":{"name":"LevelDesignTest","path":"rooms/LevelDesignTest/LevelDesignTest.yy",},},
+    {"roomId":{"name":"PlayerTestRoom","path":"rooms/PlayerTestRoom/PlayerTestRoom.yy",},},
     {"roomId":{"name":"Menu","path":"rooms/Menu/Menu.yy",},},
     {"roomId":{"name":"ShopScene","path":"rooms/ShopScene/ShopScene.yy",},},
     {"roomId":{"name":"room_collision_test","path":"rooms/room_collision_test/room_collision_test.yy",},},
