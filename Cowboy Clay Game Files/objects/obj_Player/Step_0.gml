@@ -36,7 +36,11 @@ if !global.paused
 
 if instance_exists(obj_Moose){
 	if place_meeting(x,y,obj_Moose) {
-		knock_away_from(id,obj_Moose.x, obj_Moose.y, 10);
+		if jump_buffer > 0 {
+			knock_away_from(id,obj_Moose.x, obj_Moose.y, 20);
+		} else {
+			knock_away_from(id,obj_Moose.x, obj_Moose.y, 10);
+		}
 	}
 }
 collision_check_player(spr_player_collision, collision_mask, false, false);
