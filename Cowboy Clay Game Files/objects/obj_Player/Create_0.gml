@@ -104,6 +104,10 @@ instance_create_layer(x,y,"PlayerTools", obj_cam_position);
 #region  State Machine
 function UpdatePlayerState()
 {
+	if keyboard_check_pressed(ord("X")) {
+		jump_buffer = global.player_jump_buffer_frames;
+	}
+	
 	switch current_state
 	{
 		case PlayerState.IDLE:
@@ -114,9 +118,7 @@ function UpdatePlayerState()
 			}*/
 			
 			
-			if keyboard_check_pressed(ord("X")) {
-				jump_buffer = global.player_jump_buffer_frames;
-			}
+			
 			if jump_buffer > 0 GoToPlayerJumpAnti();
 			else if OneWalkKeyHeld() GoToPlayerWalk();
 			if collision_check_edge(x,y,spr_player_collision,Direction.DOWN,collision_mask) == false GoToPlayerFall();
@@ -126,9 +128,6 @@ function UpdatePlayerState()
 			{
 				//GoToDashAnti();
 				//return;
-			}
-			if keyboard_check_pressed(ord("X")) {
-				jump_buffer = global.player_jump_buffer_frames;
 			}
 			if jump_buffer > 0 GoToPlayerJumpAnti();
 			else if !OneWalkKeyHeld() GoToPlayerIdle();
@@ -248,6 +247,8 @@ function GoToPlayerIdle()
 }
 function GoToPlayerJumpAnti()
 {
+	var g = collision_check_edge(x,y,spr_player_collision,Direction.DOWN,collision_mask) == false;
+	if g return;
 	jumpTimer = 0;
 	jump_buffer = -1;
 	current_state = PlayerState.JUMP_ANTI;
