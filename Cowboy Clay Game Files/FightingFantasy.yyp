@@ -43,6 +43,7 @@
     {"id":{"name":"spr_player_jumpAttack_Follow","path":"sprites/spr_player_jumpAttack_Follow/spr_player_jumpAttack_Follow.yy",},"order":40,},
     {"id":{"name":"spr_moose_throw_hurtbox","path":"sprites/spr_moose_throw_hurtbox/spr_moose_throw_hurtbox.yy",},"order":112,},
     {"id":{"name":"spr_envi_woodplank2","path":"sprites/spr_envi_woodplank2/spr_envi_woodplank2.yy",},"order":12,},
+    {"id":{"name":"spr_player_loBlock_stun","path":"sprites/spr_player_loBlock_stun/spr_player_loBlock_stun.yy",},"order":47,},
     {"id":{"name":"ElevatorTest","path":"rooms/ElevatorTest/ElevatorTest.yy",},"order":4,},
     {"id":{"name":"spr_moose_idle_hitbox","path":"sprites/spr_moose_idle_hitbox/spr_moose_idle_hitbox.yy",},"order":19,},
     {"id":{"name":"LevelDesignTest","path":"rooms/LevelDesignTest/LevelDesignTest.yy",},"order":5,},
