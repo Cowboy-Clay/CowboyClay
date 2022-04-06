@@ -61,7 +61,7 @@ global.player_animation_block_FPI = 1;
 global.player_animation_block_type = AnimationType.FIRST_FRAME;
 // Block success animations
 global.player_animation_hi_block_success = spr_player_hiBlock_stun;
-global.player_animation_lo_block_success = noone;
+global.player_animation_lo_block_success = spr_player_loBlock_stun;
 global.player_animation_block_success_FPI = 12;
 global.player_animation_block_success_type = AnimationType.HOLD;
 // Block failure animations
