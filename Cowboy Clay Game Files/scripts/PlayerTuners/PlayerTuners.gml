@@ -55,12 +55,12 @@ global.player_deathAnim = spr_player_death;
 global.player_deathAnimFPI = 6;
 global.player_deadAnimType = AnimationType.HOLD;
 // Block animations
-global.player_animation_hi_block = spr_player_blockHi;
+global.player_animation_hi_block = spr_player_hiBlock;
 global.player_animation_lo_block = spr_player_loBlock;
 global.player_animation_block_FPI = 1;
 global.player_animation_block_type = AnimationType.FIRST_FRAME;
 // Block success animations
-global.player_animation_hi_block_success = noone;
+global.player_animation_hi_block_success = spr_player_hiBlock_stun;
 global.player_animation_lo_block_success = noone;
 global.player_animation_block_success_FPI = 12;
 global.player_animation_block_success_type = AnimationType.HOLD;

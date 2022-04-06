@@ -316,6 +316,7 @@ function block() {
 	}
 }
 function to_block_follow(success) {
+	show_debug_message(success);
 	current_state = PlayerState.BLOCK_FOLLOW;
 	block_success = success;
 	state_timer = success ? global.player_block_success_frames : global.player_block_failure_frames;
@@ -1006,7 +1007,7 @@ function update_animation() {
 			break;
 		case PlayerState.BLOCK_FOLLOW:
 			a = hiblock == 1 ? (block_success ? global.player_animation_hi_block_success: global.player_animation_hi_block_failure) : (block_success ? global.player_animation_lo_block_success: global.player_animation_lo_block_failure);
-			SetPlayerAnimation(a,block_success ? global.player_animation_block_success_FPI : global.player_animation_block_failure_FPI, block_success ? global.player_animation_block_success_type : global.player_animation_block_failure_type);
+			SetPlayerAnimation(a, block_success ? global.player_animation_block_success_FPI : global.player_animation_block_failure_FPI, block_success ? global.player_animation_block_success_type : global.player_animation_block_failure_type);
 			break;
 	}
 }

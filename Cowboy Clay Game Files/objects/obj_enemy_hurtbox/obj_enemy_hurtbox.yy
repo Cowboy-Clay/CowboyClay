@@ -4,7 +4,7 @@
     "path": "sprites/spr_enemy_collision/spr_enemy_collision.yy",
   },
   "solid": false,
-  "visible": false,
+  "visible": true,
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": null,

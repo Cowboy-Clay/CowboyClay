@@ -17,7 +17,8 @@ if place_meeting(x,y,obj_enemy_hitbox) && obj_enemy_hitbox.sprite_index != noone
 	(get_instance_lo_block(obj_player) && get_instance_lo_attack(obj_Moose)) {
 		// succesful block recoil
 		obj_player.to_block_follow(true);
-		knock_away_from(obj_player,obj_Moose.x, obj_Moose.y, 15)
+		knock_away_from(obj_Moose,x,y,15);
+		//knock_away_from(obj_player,obj_Moose.x, obj_Moose.y, 15)
 		return;
 	}
 	
@@ -31,5 +32,8 @@ if place_meeting(x,y,obj_enemy_hitbox) && obj_enemy_hitbox.sprite_index != noone
 	}
 	
 	// Take an actual hit
+	if obj_player.current_state == PlayerState.BLOCK {
+		obj_player.GoToPlayerIdle();
+	}
 	obj_player.PlayerGetHit();
 }
