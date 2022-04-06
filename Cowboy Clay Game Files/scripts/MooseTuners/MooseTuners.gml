@@ -42,7 +42,7 @@ global.moose_slideMaxSpeed = 30;
 global.moose_slideFriction = .6;
 
 global.moose_chargeAntiTime = 37;
-global.moose_chargeAccel = 8;
+global.moose_chargeAccel = 1;
 
 global.moose_invulTime = 180;
 
