@@ -7,13 +7,14 @@ global.showDebugMessages = true; // set to true if you want to print debug messa
 #endregion
 
 #region State Variables
-enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW, LOCK, DEAD, KICK_ANTI, KICK_SWING, KICK_FOLLOW, SHEATHING, UNSHEATHING, PLUNGING };
+enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW, LOCK, DEAD, KICK_ANTI, KICK_SWING, KICK_FOLLOW, SHEATHING, UNSHEATHING, PLUNGING, BLOCK, BLOCK_FOLLOW };
 current_state = PlayerState.LOCK;
 facing = Direction.RIGHT; // The direction the player is facing
 armed = startArmed; // Is the player armed. startArmed is set in the variable menu
 sheathed = false;
 grounded = false;
 hiblock = 0;
+block_success = false;
 #endregion
 
 #region Physics Variables
@@ -73,6 +74,10 @@ sheathTimer = 0;
 
 global.player_plungeFrames = 7;
 
+global.player_block_frames = 45;
+global.player_block_success_frames = 5;
+global.player_block_failure_frames = 30;
+
 invulnerable = false;
 invulnerabilityTimer = 0;
 global.player_invulnerabilityTime = 180;
@@ -111,27 +116,86 @@ function UpdatePlayerState()
 	switch current_state
 	{
 		case PlayerState.IDLE:
-			/*if hiblock == 0 && keyboard_check(vk_down) && keyboard_check_pressed(ord("Z"))
-			{
-				PlayerPlungeSword();
-				return;
-			}*/
-			
-			
-			
-			if jump_buffer > 0 GoToPlayerJumpAnti();
-			else if OneWalkKeyHeld() GoToPlayerWalk();
-			if collision_check_edge(x,y,spr_player_collision,Direction.DOWN,collision_mask) == false GoToPlayerFall();
+			#region Fall
+			if collision_check_edge(x,y,spr_player_collision,Direction.DOWN,collision_mask) == false {
+				GoToPlayerFall();
+				break;
+			}
+			#endregion
+			#region Block
+			if armed {
+				// If you are only pressed up
+				if keyboard_check_pressed(vk_up) && !keyboard_check_pressed(vk_down) {
+					hiblock = 1;
+					to_block();
+					break;
+				}
+				// If you are only pressing down
+				else if keyboard_check_pressed(vk_down) && !keyboard_check_pressed(vk_up) {
+					hiblock = 0;
+					to_block();
+					break;
+				}
+				// If you somehow press both
+				else if keyboard_check_pressed(vk_up) && keyboard_check_pressed(vk_down) {
+					to_block_follow(false);
+					break;
+				}
+			}
+			#endregion
+			#region Jump
+			if jump_buffer > 0 {
+				GoToPlayerJumpAnti();
+				break;
+			} 
+			#endregion
+			#region Walk
+			if OneWalkKeyHeld() {
+				GoToPlayerWalk();
+				break;
+			}
+			#endregion
 			break;
 		case PlayerState.WALKING:
-			if keyboard_check(vk_down) && keyboard_check_pressed(ord("X")) && !dashOnCooldown
-			{
-				//GoToDashAnti();
-				//return;
+			#region Fall
+			if collision_check_edge(x,y,spr_player_collision,Direction.DOWN,collision_mask) == false {
+				GoToPlayerFall();
+				break;
 			}
-			if jump_buffer > 0 GoToPlayerJumpAnti();
-			else if !OneWalkKeyHeld() GoToPlayerIdle();
-			if collision_check_edge(x,y,spr_player_collision,Direction.DOWN,collision_mask) == false GoToPlayerFall();
+			#endregion
+			#region Block
+			if armed {
+				// If you are only pressed up
+				if keyboard_check_pressed(vk_up) && !keyboard_check_pressed(vk_down) {
+					hiblock = 1;
+					to_block();
+					break;
+				}
+				// If you are only pressing down
+				else if keyboard_check_pressed(vk_down) && !keyboard_check_pressed(vk_up) {
+					hiblock = 0;
+					to_block();
+					break;
+				}
+				// If you somehow press both
+				else if keyboard_check_pressed(vk_up) && keyboard_check_pressed(vk_down) {
+					to_block_follow(false);
+					break;
+				}
+			}
+			#endregion
+			#region Jump
+			if jump_buffer > 0 {
+				GoToPlayerJumpAnti();
+				break;
+			}
+			#endregion
+			#region Idle
+			if !OneWalkKeyHeld() {
+				GoToPlayerIdle();
+				break;
+			}
+			#endregion
 			break;
 		case PlayerState.JUMP_ANTI:
 			if keyboard_check(vk_down) && keyboard_check_pressed(ord("X")) && !dashOnCooldown
@@ -231,6 +295,35 @@ function PlayerStateBasedMethods()
 		case PlayerState.PLUNGING:
 			PlayerPlungeSword();
 			break;
+		case PlayerState.BLOCK:
+			block();
+			break;
+		case PlayerState.BLOCK_FOLLOW:
+			block_follow();
+			break;
+	}
+}
+
+function to_block() {
+	current_state = PlayerState.BLOCK;
+	state_timer = global.player_block_frames;
+}
+function block() {
+	state_timer --;
+	// if block state has run out then the block was a failure
+	if state_timer < 0 {
+		to_block_follow(false);
+	}
+}
+function to_block_follow(success) {
+	current_state = PlayerState.BLOCK_FOLLOW;
+	block_success = success;
+	state_timer = success ? global.player_block_success_frames : global.player_block_failure_frames;
+}
+function block_follow() {
+	state_timer--;
+	if state_timer < 0 {
+		GoToPlayerIdle();
 	}
 }
 
@@ -857,23 +950,11 @@ function update_animation() {
 	var a = noone;
 	switch(current_state) {
 		case PlayerState.IDLE:
-			if !armed {
-				a = spr_player_idle_disarmed;
-			} else if hiblock == 1 {
-				a = spr_player_blockHi;
-			} else {
-				a = spr_player_idle_loBlock;
-			}
+			a = armed ? global.player_idleAnim : global.player_idleAnim_disarmed;
 			SetPlayerAnimation(a, global.player_idleFPI, global.player_idleAnimType);
 			break;
 		case PlayerState.WALKING:			 
-			if !armed {
-				a = spr_player_walk_disarmed;
-			} else if hiblock == 1 {
-				a = spr_player_walk_hiBlock;
-			} else {
-				a = spr_player_walk_loBlock;
-			}
+			a = armed ? global.player_walkAnim : global.player_walkAnim_disarmed;
 			SetPlayerAnimation(a, global.player_walkFPI, global.player_walkAnimType);
 			break;
 		case PlayerState.JUMP_ANTI:
@@ -918,6 +999,14 @@ function update_animation() {
 		case PlayerState.DEAD:
 			a = spr_player_death;
 			SetPlayerAnimation(a, global.player_deathAnimFPI, AnimationType.HOLD);
+			break;
+		case PlayerState.BLOCK:
+			a = hiblock == 1 ? global.player_animation_hi_block : global.player_animation_lo_block;
+			SetPlayerAnimation(a, global.player_animation_block_FPI, global.player_animation_block_type);
+			break;
+		case PlayerState.BLOCK_FOLLOW:
+			a = hiblock == 1 ? (block_success ? global.player_animation_hi_block_success: global.player_animation_hi_block_failure) : (block_success ? global.player_animation_lo_block_success: global.player_animation_lo_block_failure);
+			SetPlayerAnimation(a,block_success ? global.player_animation_block_success_FPI : global.player_animation_block_failure_FPI, block_success ? global.player_animation_block_success_type : global.player_animation_block_failure_type);
 			break;
 	}
 }

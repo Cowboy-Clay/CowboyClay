@@ -16,6 +16,7 @@ if place_meeting(x,y,obj_enemy_hitbox) && obj_enemy_hitbox.sprite_index != noone
 	if (get_instance_hi_block(obj_player) && get_instance_hi_attack(obj_Moose)) ||
 	(get_instance_lo_block(obj_player) && get_instance_lo_attack(obj_Moose)) {
 		// succesful block recoil
+		obj_player.to_block_follow(true);
 		knock_away_from(obj_player,obj_Moose.x, obj_Moose.y, 15)
 		return;
 	}
@@ -24,6 +25,7 @@ if place_meeting(x,y,obj_enemy_hitbox) && obj_enemy_hitbox.sprite_index != noone
 	with (obj_player_hitbox) {
 		if place_meeting(x,y,obj_enemy_hitbox) {
 			//clash recoil
+			knock_away_from(obj_player,obj_Moose.x,obj_Moose.y+400,15);
 			return;
 		}
 	}
