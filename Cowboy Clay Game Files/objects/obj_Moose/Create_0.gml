@@ -6,6 +6,8 @@ instance_create_layer(0,0,layer,obj_enemy_sword);
 
 enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT, BLOCK, LOCK, DEAD, PULLING, LUNGE_ANTI, LUNGE, STAB_ANTI, STAB, JUMP_ANTI, JUMP, DIVE_ANTI, DIVE, STUCK, SPIN };
 
+time_limit_jump = 240;
+
 collision_mask = [obj_tile_coll, obj_door, obj_plate, obj_elevator];
 
 current_state = MooseState.IDLE;
@@ -88,11 +90,6 @@ function UpdateMooseState()
 			}
 			break;
 		case MooseState.CHARGE:
-			if place_meeting(x,y,obj_Wall)
-			{
-				MooseChargeToWait();
-				return;
-			}
 			break;
 		case MooseState.WAITING:
 			if armed
@@ -269,6 +266,7 @@ function jump_anti() {
 }
 function to_jump() {
 	current_state = MooseState.JUMP;
+	state_timer = 0;
 	jump_target = [obj_player.x, y-global.moose_jump_y_height];
 	jump_direction = jump_target[0] < x ? Direction.LEFT : Direction.RIGHT;
 }
@@ -293,6 +291,11 @@ function jump() {
 	if (x == jump_target[0] && y == jump_target[1]) ||
 	((jump_direction == Direction.LEFT && collision_check_edge(x,y,spr_enemy_collision,Direction.LEFT,collision_mask)) || (jump_direction == Direction.RIGHT &&collision_check_edge(x,y,spr_enemy_collision,Direction.RIGHT,collision_mask)) &&
 	collision_check_edge(x,y,spr_enemy_collision,Direction.UP,collision_mask)) {
+		to_dive_anti();
+	}
+	
+	state_timer ++;
+	if state_timer >= time_limit_jump {
 		to_dive_anti();
 	}
 }
@@ -355,10 +358,20 @@ function spin() {
 
 function MooseCharge()
 {
-	if facing == Direction.LEFT
+	if facing == Direction.LEFT {
 		hspeed -= global.moose_chargeAccel;
-	else
+		if collision_check_edge(x,y,spr_enemy_collision,Direction.LEFT, collision_mask) {
+			MooseChargeToWait();
+		}
+		return;
+	}
+	else {
 		hspeed += global.moose_chargeAccel;
+		if collision_check_edge(x,y,spr_enemy_collision,Direction.RIGHT, collision_mask) {
+			MooseChargeToWait();
+		}
+		return;
+	}
 }
 
 function MooseWander()
