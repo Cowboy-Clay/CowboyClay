@@ -220,6 +220,7 @@
     {"id":{"name":"get_hi_attack_player","path":"scripts/get_hi_attack_player/get_hi_attack_player.yy",},"order":8,},
     {"id":{"name":"spr_moose_jumpAnti_helmless","path":"sprites/spr_moose_jumpAnti_helmless/spr_moose_jumpAnti_helmless.yy",},"order":94,},
     {"id":{"name":"obj_cam_anchor","path":"objects/obj_cam_anchor/obj_cam_anchor.yy",},"order":0,},
+    {"id":{"name":"obj_sfx_controller","path":"objects/obj_sfx_controller/obj_sfx_controller.yy",},"order":30,},
     {"id":{"name":"spr_envi_woodBlock3","path":"sprites/spr_envi_woodBlock3/spr_envi_woodBlock3.yy",},"order":13,},
     {"id":{"name":"spr_eff_blockSparks","path":"sprites/spr_eff_blockSparks/spr_eff_blockSparks.yy",},"order":1,},
     {"id":{"name":"obj_menu_title","path":"objects/obj_menu_title/obj_menu_title.yy",},"order":19,},
@@ -340,8 +341,8 @@
     "children": [],
   },
   "RoomOrderNodes": [
-    {"roomId":{"name":"PlayerTestRoom","path":"rooms/PlayerTestRoom/PlayerTestRoom.yy",},},
     {"roomId":{"name":"LevelDesignTest","path":"rooms/LevelDesignTest/LevelDesignTest.yy",},},
+    {"roomId":{"name":"PlayerTestRoom","path":"rooms/PlayerTestRoom/PlayerTestRoom.yy",},},
     {"roomId":{"name":"Menu","path":"rooms/Menu/Menu.yy",},},
     {"roomId":{"name":"ShopScene","path":"rooms/ShopScene/ShopScene.yy",},},
     {"roomId":{"name":"room_collision_test","path":"rooms/room_collision_test/room_collision_test.yy",},},
