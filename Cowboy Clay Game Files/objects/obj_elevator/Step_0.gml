@@ -8,7 +8,7 @@ if mounted && ((obj_player.facing == Direction.LEFT && image_xscale == 1)||(obj_
 }
 if cooldown_timer >= 0 cooldown_timer --;
 
-switch(state)
+switch(current_state)
 {
 	case elevator_state.falling:
 		animation_counter --;

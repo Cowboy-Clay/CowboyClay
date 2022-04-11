@@ -97,3 +97,56 @@ function check_collision_based_sounds() {
 	}
 }
 #endregion
+
+#region State loops
+state_loop_based_sounds = [
+	[obj_elevator,[ 
+		[elevator_state.rising, sfx_elevator_rising],
+		[elevator_state.falling, sfx_elevator_falling]
+	]],
+];
+
+state_loop_based_instances = [
+	// [instance, state, emitter]
+];
+function check_state_loop_sounds() {
+	for (var i = 0; i < array_length(state_loop_based_sounds); i++) {
+		var current_object = state_loop_based_sounds[i][0];
+		for (var j = 0; j < instance_number(current_object); j++) {
+			var current_instance = instance_find(current_object, j);
+			for (var k = 0; k < array_length(state_loop_based_sounds[i][1]); k++) {
+				var s = state_loop_based_sounds[i][1][k][0];
+				var index = -1;
+				for (var l = 0; l < array_length(state_loop_based_instances); l++) {
+					if current_instance.id == state_loop_based_instances[l][0].id && s == state_loop_based_instances[l][1]{
+						index = l;
+						break;
+					}
+				}
+				if index == -1 {
+					index = array_length(state_loop_based_instances);
+					state_loop_based_instances[index] = [current_instance, current_instance.current_state, noone];
+				}
+					
+				// play if needed
+				if current_instance.current_state == s && state_loop_based_instances[index][2] == noone {
+					show_debug_message("starting sound");
+					e = audio_emitter_create();
+					audio_emitter_position(e,current_instance.x, current_instance.y,0);
+					audio_play_sound_on(e, state_loop_based_sounds[i][1][k][1], true, 100);
+					state_loop_based_instances[index][2] = e;
+				} else if current_instance.current_state == s && state_loop_based_instances[index][2] != noone {
+					show_debug_message("moving sound");
+					e = state_loop_based_instances[index][2];
+					audio_emitter_position(e,current_instance.x, current_instance.y,0)
+				} else if current_instance.current_state != s && state_loop_based_instances[index][2] != noone {
+					show_debug_message("stopping sound");
+					e = state_loop_based_instances[index][2];
+					audio_emitter_free(e);
+					state_loop_based_instances[index][2] = noone;
+				}
+			}
+		}
+	}
+}
+#endregion
