@@ -819,16 +819,7 @@ function PlayPlayerAnimation()
 			if currentAnimType == AnimationType.LOOP image_index = 0;
 			else if currentAnimType == AnimationType.HOLD image_index = sprite_get_number(sprite_index) - 1;
 		}
-		for(var i = 0; i < array_length(global.player_sfx_table); i++) {
-		if sprite_index == global.player_sfx_table[i][0] {
-			if image_index == global.player_sfx_table[i][1] {
-				audio_play_sound(global.player_sfx_table[i][2], 50, false);
-			}
-		}
 	}
-	}
-	
-	
 }
 
 function SetPlayerAnimation(animation, fpi, type)
@@ -854,20 +845,6 @@ function SetPlayerFacingDirection()
 	if facing == Direction.RIGHT
 		image_xscale = 1;
 	else image_xscale = -1;
-}
-
-function SwitchPlayerArmedAnims()
-{
-	if armed
-	{
-		if sprite_index == global.player_walkAnim_disarmed sprite_index = global.player_walkAnim;
-		if sprite_index == global.player_idleAnim_disarmed sprite_index = global.player_idleAnim;
-	}
-	else
-	{
-		if sprite_index == global.player_walkAnim sprite_index = global.player_walkAnim_disarmed;
-		if sprite_index == global.player_idleAnim sprite_index = global.player_idleAnim_disarmed;
-	}
 }
 #endregion
 
