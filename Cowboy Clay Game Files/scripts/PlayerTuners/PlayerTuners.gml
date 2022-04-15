@@ -1,5 +1,5 @@
 // Idle animations
-global.player_idleAnim = spr_player_idle;
+global.player_idleAnim = spr_player_walk_armed;
 global.player_idleAnim_disarmed = spr_player_idle_disarmed;
 global.player_idleFPI = 1;
 global.player_idleAnimType = AnimationType.FIRST_FRAME;
@@ -57,15 +57,15 @@ global.player_deadAnimType = AnimationType.HOLD;
 // Block animations
 global.player_animation_hi_block = spr_player_hiBlock;
 global.player_animation_lo_block = spr_player_loBlock;
-global.player_animation_block_FPI = 1;
-global.player_animation_block_type = AnimationType.FIRST_FRAME;
+global.player_animation_block_FPI = 9;
+global.player_animation_block_type = AnimationType.HOLD;
 // Block success animations
 global.player_animation_hi_block_success = spr_player_hiBlock_stun;
 global.player_animation_lo_block_success = spr_player_loBlock_stun;
 global.player_animation_block_success_FPI = 12;
 global.player_animation_block_success_type = AnimationType.HOLD;
 // Block failure animations
-global.player_animation_hi_block_failure = noone;
-global.player_animation_lo_block_failure = noone;
-global.player_animation_block_failure_FPI = 12;
+global.player_animation_hi_block_failure = spr_player_blockMiss;
+global.player_animation_lo_block_failure = spr_player_blockMiss;
+global.player_animation_block_failure_FPI = 3;
 global.player_animation_block_failure_type = AnimationType.HOLD;
