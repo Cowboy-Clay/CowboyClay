@@ -13,9 +13,9 @@ global.player_attackAntiAnim = spr_player_attackAnti;
 global.player_attackSwingAnim = spr_player_attackSwing;
 global.player_attackFollowAnim = spr_player_attackFollow;
 // Hi Attack animations
-global.player_hiattackAntiAnim = spr_player_attackAnti;
-global.player_hiattackSwingAnim = spr_player_attackSwing;
-global.player_hiattackFollowAnim = spr_player_attackFollow;
+global.player_hiattackAntiAnim = spr_player_jumpAttack_Anti;
+global.player_hiattackSwingAnim = spr_player_jumpAttack_Swing;
+global.player_hiattackFollowAnim = spr_player_jumpAttack_Follow;
 // Kick animations
 global.player_kickAntiAnim = spr_player_idle;
 global.player_kickSwingAnim = spr_player_idle;

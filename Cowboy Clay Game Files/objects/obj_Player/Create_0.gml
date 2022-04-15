@@ -718,7 +718,7 @@ function PlayerAttack()
 		// Increment the attack timer
 		attackTimer -= 1;
 		// Move through the different substates
-		if current_state == PlayerState.BASIC_ATTACK_ANTI && attackTimer <= 0
+		if current_state == PlayerState.BASIC_ATTACK_ANTI && attackTimer <= 0 && !keyboard_check(ord("Z"))
 		{
 			current_state = PlayerState.BASIC_ATTACK_SWING;
 			obj_player_attackEffect.ShowPlayerAttack(spr_player_attackEffect,1);
