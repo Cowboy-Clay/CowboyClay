@@ -1,24 +1,9 @@
-options = [asset_get_index("ShopScene")];
+global.menu_scene_to_load = asset_get_index("LevelDesignTest");
 
-menu_state = 0;
+global.menu_flash_time = 120;
+global.menu_flash_frames_per = 30;
+global.menu_flash_frames_per_fast = 8;
+flash_flag = false;
+fade_flag = false;
 
-timer = 420;
-
-current_option = 0;
-
-function next()
-{
-	current_option ++;
-	if current_option >= array_length(options) current_option = 0;
-}
-
-function previous()
-{
-	current_option --;
-	if current_option < 0 current_option = array_length(options) - 1;
-}
-
-function load()
-{
-	room_goto(options[current_option]);
-}
+timer = 0;

@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "CCSlide1",
-    "path": "sprites/CCSlide1/CCSlide1.yy",
+    "name": "CowboyClayTitle1",
+    "path": "sprites/CowboyClayTitle1/CowboyClayTitle1.yy",
   },
   "solid": false,
   "visible": true,
