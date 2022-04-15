@@ -47,11 +47,11 @@ global.player_dashFollow = 38;
 #region Jump Variables
 jumpTimer = 0; // Frame counter to determine how long the player is preparing their jump
 jump_buffer = 0;
-global.player_minJumpWindup = 3; // the min # of frames the player can prepare a jump
-global.player_maxJumpWindup = 30; // the max # of frames the player can prepare a jump
-global.player_minVertJumpForce = 18; // min vertical force applied by a jump
+global.player_minJumpWindup = 0; // the min # of frames the player can prepare a jump
+global.player_maxJumpWindup = 20; // the max # of frames the player can prepare a jump
+global.player_minVertJumpForce = 15; // min vertical force applied by a jump
 global.player_maxVertJumpForce = 25; // max vertical force applied by a jump
-global.player_minHoriJumpForce = 0; // min horizontal force applied by a jump
+global.player_minHoriJumpForce = 5; // min horizontal force applied by a jump
 global.player_maxHoriJumpForce = 10; // max horizontal force applied by a jump
 global.player_jump_buffer_frames = 160;
 #endregion
@@ -86,8 +86,8 @@ global.player_frictMulti_jumpAnti = .5;
 global.player_frictMulti_jumping = 0.2;
 global.player_frictMulti_attacking = 1;
 
-global.player_speedMulti_jumping = 1;
-global.player_speedMulti_falling = 0.3;
+global.player_speedMulti_jumping = .1;
+global.player_speedMulti_falling = 0.2;
 
 global.player_graviMulti_attacking = 0.8;
 
@@ -349,16 +349,14 @@ function GoToPlayerJumpAnti()
 }
 function GoToPlayerJump()
 {
-	var l = jumpTimer - global.player_minJumpWindup;
-	l = l / (global.player_maxJumpWindup - global.player_minJumpWindup);
-	vspeed -= lerp(global.player_minVertJumpForce, global.player_maxVertJumpForce, l);
+	vspeed -= jumpTimer >= global.player_maxJumpWindup ? global.player_maxVertJumpForce : global.player_minVertJumpForce;
 	if OneWalkKeyHeld() && keyboard_check(vk_right)
 	{
-		hspeed += lerp(global.player_minHoriJumpForce, global.player_maxHoriJumpForce, l);
+		hspeed += jumpTimer >= global.player_maxJumpWindup ? global.player_maxHoriJumpForce : global.player_minHoriJumpForce;
 	}
 	else if OneWalkKeyHeld() && keyboard_check(vk_left)
 	{
-		hspeed -= lerp(global.player_minHoriJumpForce, global.player_maxHoriJumpForce, l);
+		hspeed -= jumpTimer >= global.player_maxJumpWindup ? global.player_maxHoriJumpForce : global.player_minHoriJumpForce;
 	}
 	current_state = PlayerState.JUMPING;
 }
@@ -621,8 +619,8 @@ function PlayerWalk()
 		hspeed += curAc;
 	}
 	
-	if hspeed > 0 && keyboard_check(vk_right) facing = Direction.RIGHT;
-	else if hspeed < 0 && keyboard_check(vk_left) facing = Direction.LEFT;
+	if hspeed > 0 && keyboard_check(vk_right) && !keyboard_check(vk_shift) facing = Direction.RIGHT;
+	else if hspeed < 0 && keyboard_check(vk_left) && !keyboard_check(vk_shift) facing = Direction.LEFT;
 	
 	if abs(hspeed) > global.player_maxWalkSpeed && current_state != PlayerState.JUMPING && current_state != PlayerState.FALLING
 	{
