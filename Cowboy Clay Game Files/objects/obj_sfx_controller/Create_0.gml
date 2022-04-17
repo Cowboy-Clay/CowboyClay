@@ -1,12 +1,15 @@
+audio_falloff_set_model(audio_falloff_exponent_distance_clamped);
+
+#region Image based
 image_based_sounds = [
 	[obj_player,[ 
 		[global.player_walkAnim, 0, sfx_clay_walk_disarmed],
 		[global.player_walkAnim, 1, sfx_clay_walk_disarmed],
-		[global.player_walkAnim_disarmed, 1, sfx_clay_walk_disarmed]
-	]]
+		[global.player_walkAnim_disarmed, 1, sfx_clay_walk_disarmed],
+	]],
 ];
 
-instances_to_check = [
+image_based_instances = [
 	// [instance, sprite, image]
 ];
 
@@ -20,21 +23,21 @@ function check_image_based_sounds() {
 			
 			// Find instance position in instance array if it is there
 			var instance_index = -1;
-			for (var k = 0; k < array_length(instances_to_check); k++) {
-				if current_instance == instances_to_check[k][0] {
+			for (var k = 0; k < array_length(image_based_instances); k++) {
+				if current_instance == image_based_instances[k][0] {
 					instance_index = k;
 					break;
 				}
 			}
 			// If it was not in there then we add an entry
 			if instance_index == -1 {
-				instances_to_check[array_length(instances_to_check)] = [current_instance, -1, -1];
-				instance_index = array_length(instances_to_check) -1;
+				image_based_instances[array_length(image_based_instances)] = [current_instance, -1, -1];
+				instance_index = array_length(image_based_instances) -1;
 			}
 			
 			// Check if the animation has changed since last frame
-			if current_instance.sprite_index != instances_to_check[instance_index][1] || current_instance.image_index != instances_to_check[instance_index][2] {
-				instances_to_check[instance_index] = [current_instance, current_instance.sprite_index, current_instance.image_index];
+			if current_instance.sprite_index != image_based_instances[instance_index][1] || current_instance.image_index != image_based_instances[instance_index][2] {
+				image_based_instances[instance_index] = [current_instance, current_instance.sprite_index, current_instance.image_index];
 				for (var l = 0; l < array_length(image_based_sounds[i][1]); l++) {
 					if current_instance.sprite_index == image_based_sounds[i][1][l][0] && current_instance.image_index == image_based_sounds[i][1][l][1] {
 						audio_play_sound(image_based_sounds[i][1][l][2], 100, false);
@@ -44,3 +47,106 @@ function check_image_based_sounds() {
 		}
 	}
 }
+#endregion
+
+#region Collision based
+collision_based_sounds = [
+	[obj_player_hitbox,[ 
+		[obj_tile_coll, sfx_clay_walk_disarmed],
+	]],
+];
+
+collision_based_instances = [
+	// [instance, other, last]
+];
+
+function check_collision_based_sounds() {
+	for (var i = 0; i < array_length(collision_based_sounds); i++) {
+		var current_object = collision_based_sounds[i][0];
+		for (var j = 0; j < array_length(collision_based_sounds[i][1]); j++) {
+			var current_other = collision_based_sounds[i][1][j][0];
+			var current_sfx = collision_based_sounds[i][1][j][1];
+			for(var k = 0; k < instance_number(current_object); k++) {
+				var current_instance = instance_find(current_object, k);
+				
+				var colliding = false;
+				with(current_instance) {
+					colliding = place_meeting(x,y,current_other);
+				}
+				
+				var index = -1;
+				for (var l = 0; l < array_length(collision_based_instances); k++) {
+					if (collision_based_instances[k][0].id == current_instance.id && collision_based_instances[k][1].object_index == current_other.object_index) {
+						index = k;
+						break;
+					}
+				}
+				// If it wasn't found, then add it
+				if index == -1 {
+					index = array_length(collision_based_instances);
+					collision_based_instances[array_length(collision_based_instances)] = [current_instance, current_other, colliding];
+				}
+				
+				if collision_based_instances[index][2] == false && colliding == true {
+					collision_based_instances[index][2] = true;
+					audio_play_sound_at(current_sfx, current_instance.x, current_instance.y, 0, 500, 2000, 1.25, false, 100);
+				}
+				collision_based_instances[index][2] = colliding;
+			}
+		}
+	}
+}
+#endregion
+
+#region State loops
+state_loop_based_sounds = [
+	[obj_elevator,[ 
+		[elevator_state.rising, sfx_elevator_rising],
+		[elevator_state.falling, sfx_elevator_falling]
+	]],
+];
+
+state_loop_based_instances = [
+	// [instance, state, emitter]
+];
+function check_state_loop_sounds() {
+	for (var i = 0; i < array_length(state_loop_based_sounds); i++) {
+		var current_object = state_loop_based_sounds[i][0];
+		for (var j = 0; j < instance_number(current_object); j++) {
+			var current_instance = instance_find(current_object, j);
+			for (var k = 0; k < array_length(state_loop_based_sounds[i][1]); k++) {
+				var s = state_loop_based_sounds[i][1][k][0];
+				var index = -1;
+				for (var l = 0; l < array_length(state_loop_based_instances); l++) {
+					if current_instance.id == state_loop_based_instances[l][0].id && s == state_loop_based_instances[l][1]{
+						index = l;
+						break;
+					}
+				}
+				if index == -1 {
+					index = array_length(state_loop_based_instances);
+					state_loop_based_instances[index] = [current_instance, current_instance.current_state, noone];
+				}
+					
+				// play if needed
+				if current_instance.current_state == s && state_loop_based_instances[index][2] == noone {
+					show_debug_message("starting sound");
+					e = audio_emitter_create();
+					audio_emitter_position(e,current_instance.x, current_instance.y,0);
+					audio_play_sound_on(e, state_loop_based_sounds[i][1][k][1], true, 100);
+					state_loop_based_instances[index][2] = e;
+				} else if current_instance.current_state == s && state_loop_based_instances[index][2] != noone {
+					show_debug_message("moving sound");
+					e = state_loop_based_instances[index][2];
+					audio_emitter_position(e,current_instance.x, current_instance.y,0)
+				} else if current_instance.current_state != s && state_loop_based_instances[index][2] != noone {
+					show_debug_message("stopping sound");
+					e = state_loop_based_instances[index][2];
+					audio_emitter_free(e);
+					state_loop_based_instances[index][2] = noone;
+				}
+			}
+		}
+	}
+}
+#endregion

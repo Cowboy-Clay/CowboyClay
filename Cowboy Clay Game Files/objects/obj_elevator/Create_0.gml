@@ -1,5 +1,5 @@
 enum elevator_state { falling, rising, holding, broken, sitting };
-state = elevator_state.falling;
+current_state = elevator_state.sitting;
 
 grounded = false;
 
@@ -33,7 +33,7 @@ function check_mounted()
 function get_hit()
 {
 	cooldown_timer = cooldown;
-	state = elevator_state.rising;
+	current_state = elevator_state.rising;
 	rising_timer = time_before_slow;
 	curr_speed = impulse_speed;
 }
@@ -63,7 +63,7 @@ function rise()
 function go_to_holding()
 {
 	holding_timer = holding_time;
-	state = elevator_state.holding;
+	current_state = elevator_state.holding;
 }
 
 function hold()
@@ -77,15 +77,17 @@ function hold()
 
 function go_to_falling()
 {
-	state = elevator_state.falling;
+	current_state = elevator_state.falling;
 }
 
 function fall()
 {
 	Gravity(1,10,spr_mech_elevator_coll,collision_mask);
 	collision_check_vert_only(spr_mech_elevator_coll, collision_mask, false, false);
-	if collision_check_edge(x,y,spr_mech_elevator_coll, Direction.DOWN, collision_mask)
-		state = elevator_state.sitting;
+	if collision_check_edge(x,y,spr_mech_elevator_coll, Direction.DOWN, collision_mask) {
+		current_state = elevator_state.sitting;
+		show_debug_message("Going to sitting");
+	}
 	if mounted obj_player.vspeed = vspeed;
 }
 
@@ -93,6 +95,7 @@ function sit()
 {
 	cooldown_timer = -1;
 	vspeed = 0;
-	if !collision_check_edge(x,y,spr_mech_elevator_coll, Direction.DOWN, collision_mask)
+	if !collision_check_edge(x,y,spr_mech_elevator_coll, Direction.DOWN, collision_mask) {
 		go_to_falling();
+	}
 }

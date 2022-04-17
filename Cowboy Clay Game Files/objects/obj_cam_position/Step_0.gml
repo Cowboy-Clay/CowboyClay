@@ -20,4 +20,4 @@ x = lerp(x,ideal_x,0.1);
 y = lerp(y,ideal_y,0.1);
 
 camera_set_view_pos(cam,x-camera_get_view_width(cam)/2,y-camera_get_view_height(cam)/2);
-audio_listener_set_position(0,x-camera_get_view_width(cam)/2,y-camera_get_view_height(cam)/2,0);
+audio_listener_set_position(0,camera_get_view_x(cam),camera_get_view_y(cam),0);
