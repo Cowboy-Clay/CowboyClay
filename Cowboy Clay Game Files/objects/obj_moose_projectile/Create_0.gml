@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-rotation_speed = random(2)*5;
+rotation_speed = (random(2)-1)*5;
 
 start_x = x;
 start_y = y;
