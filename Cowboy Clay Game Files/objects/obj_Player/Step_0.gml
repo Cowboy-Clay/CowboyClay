@@ -27,6 +27,11 @@ if !global.paused
 		audio_stop_all();
 		room_goto(asset_get_index("LevelDesignTest"));
 	}
+	if keyboard_check_pressed(ord("T"))
+	{
+		audio_stop_all();
+		room_goto(asset_get_index("PlayerTestRoom"));
+	}
 	
 	// Animation
 	update_animation();
