@@ -7,7 +7,7 @@ global.showDebugMessages = true; // set to true if you want to print debug messa
 #endregion
 
 #region State Variables
-enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW, LOCK, DEAD, KICK_ANTI, KICK_SWING, KICK_FOLLOW, SHEATHING, UNSHEATHING, PLUNGING, BLOCK, BLOCK_FOLLOW };
+enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, ATTACK_CHARGE_CANCEL,BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW, LOCK, DEAD, KICK_ANTI, KICK_SWING, KICK_FOLLOW, SHEATHING, UNSHEATHING, PLUNGING, BLOCK, BLOCK_FOLLOW };
 current_state = PlayerState.LOCK;
 facing = Direction.RIGHT; // The direction the player is facing
 armed = startArmed; // Is the player armed. startArmed is set in the variable menu
@@ -57,7 +57,10 @@ global.player_jump_buffer_frames = 160;
 #endregion
 
 #region Basic Attack Variables
-global.player_attackAntiFrames = 15; // # of frames the attack anti is shown
+basic_attack_charge_timer = 0;
+global.player_basic_attack_charge_min = 0;
+global.player_attack_cancel_frames = 20;
+global.player_attackAntiFrames = 2; // # of frames the attack anti is shown
 global.player_attackSwingFrames = 10;
 global.player_attackFollowFrames = 15;
 attackTimer = 0; // Frame counter to determine how long the player has been in each attack state
@@ -107,193 +110,79 @@ instance_create_layer(x,y,"PlayerTools", obj_player_sword);
 instance_create_layer(x,y,"PlayerTools", obj_cam_position);
 
 #region  State Machine
-function UpdatePlayerState()
+function PlayerStateBasedMethods()
 {
-	if keyboard_check_pressed(ord("X")) {
+	jump_buffer --;
+	if keyboard_check_pressed(global.keybind_jump) {
 		jump_buffer = global.player_jump_buffer_frames;
 	}
 	
-	switch current_state
-	{
+	switch current_state {
 		case PlayerState.IDLE:
-			#region Fall
-			if collision_check_edge(x,y,spr_player_collision,Direction.DOWN,collision_mask) == false {
-				GoToPlayerFall();
-				break;
-			}
-			#endregion
-			#region Block
-			if armed {
-				// If you are only pressed up
-				if keyboard_check_pressed(vk_up) && !keyboard_check_pressed(vk_down) {
-					hiblock = 1;
-					to_block();
-					break;
-				}
-				// If you are only pressing down
-				else if keyboard_check_pressed(vk_down) && !keyboard_check_pressed(vk_up) {
-					hiblock = 0;
-					to_block();
-					break;
-				}
-				// If you somehow press both
-				else if keyboard_check_pressed(vk_up) && keyboard_check_pressed(vk_down) {
-					to_block_follow(false);
-					break;
-				}
-			}
-			#endregion
-			#region Jump
+			walk();
+			basic_attack_charge();
+			check_falling();
+			if check_blocks() && basic_attack_charge_timer == 0 break;
 			if jump_buffer > 0 {
 				GoToPlayerJumpAnti();
 				break;
-			} 
-			#endregion
-			#region Walk
-			if OneWalkKeyHeld() {
+			}
+			// Go to walk if you are moving
+			if abs(hspeed) > 0.1 {
 				GoToPlayerWalk();
 				break;
 			}
-			#endregion
 			break;
 		case PlayerState.WALKING:
-			#region Fall
-			if collision_check_edge(x,y,spr_player_collision,Direction.DOWN,collision_mask) == false {
-				GoToPlayerFall();
-				break;
-			}
-			#endregion
-			#region Block
-			if armed {
-				// If you are only pressed up
-				if keyboard_check_pressed(vk_up) && !keyboard_check_pressed(vk_down) {
-					hiblock = 1;
-					to_block();
-					break;
-				}
-				// If you are only pressing down
-				else if keyboard_check_pressed(vk_down) && !keyboard_check_pressed(vk_up) {
-					hiblock = 0;
-					to_block();
-					break;
-				}
-				// If you somehow press both
-				else if keyboard_check_pressed(vk_up) && keyboard_check_pressed(vk_down) {
-					to_block_follow(false);
-					break;
-				}
-			}
-			#endregion
-			#region Jump
+			walk();
+			basic_attack_charge();
+			check_falling();
+			if check_blocks() && basic_attack_charge_timer == 0 break;
 			if jump_buffer > 0 {
 				GoToPlayerJumpAnti();
 				break;
 			}
-			#endregion
-			#region Idle
-			if !OneWalkKeyHeld() {
+			if abs(hspeed) <= 0.1 {
 				GoToPlayerIdle();
-				break;
 			}
-			#endregion
 			break;
 		case PlayerState.JUMP_ANTI:
-			if keyboard_check(vk_down) && keyboard_check_pressed(ord("X")) && !dashOnCooldown
-			{
-				//GoToDashAnti();
-				//return;
-			}
-			break;
-		case PlayerState.JUMPING:
-			if vspeed > 0 GoToPlayerFall();
-			break;
-		case PlayerState.FALLING:
-			if grounded
-			{
-				if OneWalkKeyHeld() GoToPlayerWalk();
-				else GoToPlayerIdle();
-			}
-			break;
-		case PlayerState.DASH_ANTI:
-			dashTimer ++;
-			if dashTimer >= global.player_dashAnticipation GoToDash();
-			break;
-		case PlayerState.DASH_FOLLOW:
-			dashTimer ++;
-			if dashTimer >= global.player_dashFollow GoToPlayerIdle();
-			break;
-	}
-}
-
-function PlayerStateBasedMethods()
-{
-	switch current_state
-	{
-		case PlayerState.IDLE:
-			PlayerUpdateBlock();
-			PlayerDashCooldown();
-			PlayerAttack();
-			break;
-		case PlayerState.WALKING:
-			PlayerDashCooldown();
-			PlayerWalk();
-			PlayerAttack();
-			break;
-		case PlayerState.JUMP_ANTI:
-			PlayerDashCooldown();
-			PlayerAttack();
+			basic_attack_charge();
+			check_falling();
 			PlayerJumpAnti();
-			SetPlayerFacingBasedOnSprite();
 			break;
 		case PlayerState.JUMPING:
-			PlayerDashCooldown();
-			PlayerWalk();
-			PlayerAttack();
-			SetPlayerFacingBasedOnSprite();
+			basic_attack_charge();
+			check_falling();
 			break;
 		case PlayerState.FALLING:
-			PlayerDashCooldown();
-			PlayerWalk();
-			PlayerAttack();
-			SetPlayerFacingBasedOnSprite();
+			if !check_falling() GoToPlayerIdle();
+			basic_attack_charge();
 			break;
 		case PlayerState.BASIC_ATTACK_ANTI:
-			PlayerDashCooldown();
 			PlayerAttack();
 			break;
 		case PlayerState.BASIC_ATTACK_SWING:
-			PlayerDashCooldown();
 			PlayerAttack();
 			break;
 		case PlayerState.BASIC_ATTACK_FOLLOW:
-			PlayerDashCooldown();
 			PlayerAttack();
 			break;
 		case PlayerState.KICK_ANTI:
-			PlayerDashCooldown();
-			PlayerAttack();
 			break;
 		case PlayerState.KICK_SWING:
-			PlayerDashCooldown();
-			PlayerAttack();
 			break;
 		case PlayerState.KICK_FOLLOW:
-			PlayerDashCooldown();
-			PlayerAttack();
 			break;
 		case PlayerState.DASH_ANTI:
 			break;
 		case PlayerState.DASH:
-			PlayerDash();
 			break;
 		case PlayerState.SHEATHING:
-			PlayerSheathSword();
 			break;
 		case PlayerState.UNSHEATHING:
-			PlayerUnsheathSword();
 			break;
 		case PlayerState.PLUNGING:
-			PlayerPlungeSword();
 			break;
 		case PlayerState.BLOCK:
 			block();
@@ -301,7 +190,63 @@ function PlayerStateBasedMethods()
 		case PlayerState.BLOCK_FOLLOW:
 			block_follow();
 			break;
+		case PlayerState.ATTACK_CHARGE_CANCEL:
+			attack_cancel();
+			break;
 	}
+}
+
+function check_falling() {
+	if current_state == PlayerState.BASIC_ATTACK_ANTI ||
+	   current_state == PlayerState.BASIC_ATTACK_SWING ||
+	   current_state == PlayerState.BASIC_ATTACK_FOLLOW ||
+	   current_state == PlayerState.ATTACK_CHARGE_CANCEL {
+		   return false;
+	}
+	
+	if vspeed > 0 && !collision_check_edge(x,y,spr_player_collision, Direction.DOWN, collision_mask) {
+		GoToPlayerFall();
+		return true;
+	}
+	return false;
+}
+
+function attack_cancel() {
+	state_timer --;
+	if state_timer <= 0 {
+		GoToPlayerIdle();
+	}
+}
+function to_attack_cancel() {
+	state_timer = global.player_attack_cancel_frames;
+	current_state = PlayerState.ATTACK_CHARGE_CANCEL;
+}
+
+function basic_attack_charge() {
+	if basic_attack_charge_timer == 0 && keyboard_check_pressed(global.keybind_attack) {
+		basic_attack_charge_timer ++;
+	} else if basic_attack_charge_timer > 0 && keyboard_check(global.keybind_attack) {
+		basic_attack_charge_timer ++;
+	} else if basic_attack_charge_timer > 0 && basic_attack_charge_timer < global.player_basic_attack_charge_min && !keyboard_check(global.keybind_attack) {
+		to_attack_cancel();
+		basic_attack_charge_timer = 0;
+	} else if basic_attack_charge_timer > global.player_basic_attack_charge_min && !keyboard_check(global.keybind_attack) {
+		basic_attack_charge_timer = 0;
+		GoToPlayerBasicAttack();
+	}
+}
+
+function check_blocks() {
+	if keyboard_check_pressed(global.keybind_block) {
+		if keyboard_check(global.keybind_up) && !keyboard_check(global.keybind_down) {
+			hiblock = 1;
+		} else {
+			hiblock = 0;
+		}
+		to_block();
+		return true;
+	}
+	return false;
 }
 
 function to_block() {
@@ -377,8 +322,9 @@ function GoToPlayerBasicAttack()
 	current_state = PlayerState.BASIC_ATTACK_ANTI;
 	if attackTimer <= 0
 	{
-		current_state = PlayerState.BASIC_ATTACK_SWING;
-			obj_player_attackEffect.ShowPlayerAttack(spr_player_attackEffect,1);
+		current_state = PlayerState.BASIC_ATTACK_SWING; 
+		show_debug_message(get_hi_attack_player(id,5));
+			obj_player_attackEffect.ShowPlayerAttack(get_hi_attack_player(id,5) ? spr_player_jumpAttack_Slash : spr_player_attackEffect, 1);
 		attackTimer = global.player_attackSwingFrames;
 	}
 	if attackTimer <= 0
@@ -581,21 +527,7 @@ function PlayerSheathSword()
 	}
 }
 
-function PlayerUpdateBlock()
-{
-	if keyboard_check_pressed(vk_up) && hiblock == 0
-	{
-		hiblock = 1;
-		return;
-	}
-	else if keyboard_check_pressed(vk_down) && hiblock == 1
-	{
-		hiblock = 0;
-		return;
-	}
-}
-
-function PlayerWalk()
+function walk()
 {
 	var curAc = global.player_walkAccel;
 	
@@ -609,18 +541,18 @@ function PlayerWalk()
 			break;
 	}
 	// Left movement
-	if keyboard_check(vk_left) && !keyboard_check(vk_right)
+	if keyboard_check(global.keybind_left) && !keyboard_check(global.keybind_right)
 	{
 		hspeed -= curAc;
 	}
 	// Right movement
-	else if keyboard_check(vk_right) && !keyboard_check(vk_left)
+	else if keyboard_check(global.keybind_right) && !keyboard_check(global.keybind_left)
 	{
 		hspeed += curAc;
 	}
 	
-	if hspeed > 0 && keyboard_check(vk_right) && !keyboard_check(vk_shift) facing = Direction.RIGHT;
-	else if hspeed < 0 && keyboard_check(vk_left) && !keyboard_check(vk_shift) facing = Direction.LEFT;
+	if hspeed > 0 && keyboard_check(global.keybind_right) && !keyboard_check(global.keybind_face) facing = Direction.RIGHT;
+	else if hspeed < 0 && keyboard_check(global.keybind_left) && !keyboard_check(global.keybind_face) facing = Direction.LEFT;
 	
 	if abs(hspeed) > global.player_maxWalkSpeed && current_state != PlayerState.JUMPING && current_state != PlayerState.FALLING
 	{
@@ -702,26 +634,15 @@ function PlayerJumpAnti()
 
 function PlayerAttack()
 {
-	// If you are starting the attack
-	if current_state != PlayerState.BASIC_ATTACK_ANTI && current_state != PlayerState.BASIC_ATTACK_SWING 
-	&& current_state != PlayerState.BASIC_ATTACK_FOLLOW && keyboard_check_pressed(ord("Z")) && armed
-	{
-		GoToPlayerBasicAttack();
-	}
-	else if current_state != PlayerState.KICK_ANTI && current_state != PlayerState.KICK_SWING
-	&& current_state != PlayerState.KICK_FOLLOW && keyboard_check_pressed(ord("Z")) && !armed && !keyboard_check(vk_down)
-	{
-		GoToPlayerKick();
-	}
-	else if current_state == PlayerState.BASIC_ATTACK_ANTI || current_state == PlayerState.BASIC_ATTACK_SWING || current_state == PlayerState.BASIC_ATTACK_FOLLOW
+	if current_state == PlayerState.BASIC_ATTACK_ANTI || current_state == PlayerState.BASIC_ATTACK_SWING || current_state == PlayerState.BASIC_ATTACK_FOLLOW
 	{
 		// Increment the attack timer
 		attackTimer -= 1;
 		// Move through the different substates
-		if current_state == PlayerState.BASIC_ATTACK_ANTI && attackTimer <= 0 && !keyboard_check(ord("Z"))
+		if current_state == PlayerState.BASIC_ATTACK_ANTI && attackTimer <= 0
 		{
 			current_state = PlayerState.BASIC_ATTACK_SWING;
-			obj_player_attackEffect.ShowPlayerAttack(spr_player_attackEffect,1);
+			obj_player_attackEffect.ShowPlayerAttack(get_hi_attack_player(id, 10) ? spr_player_jumpAttack_Slash : spr_player_attackEffect,1);
 			attackTimer = global.player_attackSwingFrames;
 		}
 		if current_state == PlayerState.BASIC_ATTACK_SWING && attackTimer <= 0
@@ -984,6 +905,9 @@ function update_animation() {
 			a = hiblock == 1 ? (block_success ? global.player_animation_hi_block_success: global.player_animation_hi_block_failure) : (block_success ? global.player_animation_lo_block_success: global.player_animation_lo_block_failure);
 			SetPlayerAnimation(a, block_success ? global.player_animation_block_success_FPI : global.player_animation_block_failure_FPI, block_success ? global.player_animation_block_success_type : global.player_animation_block_failure_type);
 			break;
+		case PlayerState.ATTACK_CHARGE_CANCEL:
+			a = global.player_animation_hi_block_failure;
+			SetPlayerAnimation(a, global.player_animation_block_success_FPI, AnimationType.HOLD);
 	}
 }
 
