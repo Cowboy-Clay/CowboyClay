@@ -7,7 +7,7 @@ global.showDebugMessages = true; // set to true if you want to print debug messa
 #endregion
 
 #region State Variables
-enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, ATTACK_CHARGE_CANCEL,BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW, LOCK, DEAD, KICK_ANTI, KICK_SWING, KICK_FOLLOW, SHEATHING, UNSHEATHING, PLUNGING, BLOCK, BLOCK_FOLLOW };
+enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, ATTACK_CHARGE_CANCEL,BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW, LOCK, DEAD, KICK_ANTI, KICK_SWING, KICK_FOLLOW, SHEATHING, UNSHEATHING, PLUNGING, BLOCK, BLOCK_FOLLOW, SLING_ANTI, SLING_SWING, SLING_FOLLOW };
 current_state = PlayerState.LOCK;
 facing = Direction.RIGHT; // The direction the player is facing
 armed = startArmed; // Is the player armed. startArmed is set in the variable menu
@@ -58,13 +58,18 @@ global.player_jump_buffer_frames = 160;
 
 #region Basic Attack Variables
 basic_attack_charge_timer = 0;
-global.player_basic_attack_charge_min = 0;
+global.player_basic_attack_charge_min = 20;
 global.player_attack_cancel_frames = 20;
 global.player_attackAntiFrames = 2; // # of frames the attack anti is shown
 global.player_attackSwingFrames = 10;
 global.player_attackFollowFrames = 15;
 attackTimer = 0; // Frame counter to determine how long the player has been in each attack state
 #endregion
+sling_attack_charge_timer = 0;
+global.player_sling_attack_charge_min = 30;
+global.player_sling_anti_frames = 2;
+global.player_sling_swing_frames = 10;
+global.player_sling_follow_frames = 10;
 #region Kick Attack Variables
 global.player_kickAntiFrames = 2;
 global.player_kickSwingFrames = 10;
@@ -120,6 +125,7 @@ function PlayerStateBasedMethods()
 	switch current_state {
 		case PlayerState.IDLE:
 			walk();
+			sling_attack_charge();
 			basic_attack_charge();
 			check_falling();
 			if check_blocks() && basic_attack_charge_timer == 0 break;
@@ -135,6 +141,7 @@ function PlayerStateBasedMethods()
 			break;
 		case PlayerState.WALKING:
 			walk();
+			sling_attack_charge();
 			basic_attack_charge();
 			check_falling();
 			if check_blocks() && basic_attack_charge_timer == 0 break;
@@ -147,16 +154,19 @@ function PlayerStateBasedMethods()
 			}
 			break;
 		case PlayerState.JUMP_ANTI:
+			sling_attack_charge();
 			basic_attack_charge();
 			check_falling();
 			PlayerJumpAnti();
 			break;
 		case PlayerState.JUMPING:
+			sling_attack_charge();
 			basic_attack_charge();
 			check_falling();
 			break;
 		case PlayerState.FALLING:
 			if !check_falling() GoToPlayerIdle();
+			sling_attack_charge();
 			basic_attack_charge();
 			break;
 		case PlayerState.BASIC_ATTACK_ANTI:
@@ -193,6 +203,15 @@ function PlayerStateBasedMethods()
 		case PlayerState.ATTACK_CHARGE_CANCEL:
 			attack_cancel();
 			break;
+		case PlayerState.SLING_ANTI:
+			sling_attack_anti();
+			break;
+		case PlayerState.SLING_SWING:
+			sling_attack_swing();
+			break;
+		case PlayerState.SLING_FOLLOW:
+			sling_attack_follow();
+			break;
 	}
 }
 
@@ -223,7 +242,7 @@ function to_attack_cancel() {
 }
 
 function basic_attack_charge() {
-	if basic_attack_charge_timer == 0 && keyboard_check_pressed(global.keybind_attack) {
+	if basic_attack_charge_timer == 0 && keyboard_check_pressed(global.keybind_attack) && sling_attack_charge_timer == 0{
 		basic_attack_charge_timer ++;
 	} else if basic_attack_charge_timer > 0 && keyboard_check(global.keybind_attack) {
 		basic_attack_charge_timer ++;
@@ -233,6 +252,57 @@ function basic_attack_charge() {
 	} else if basic_attack_charge_timer > global.player_basic_attack_charge_min && !keyboard_check(global.keybind_attack) {
 		basic_attack_charge_timer = 0;
 		GoToPlayerBasicAttack();
+	}
+}
+function sling_attack_charge() {
+	if sling_attack_charge_timer == 0 && keyboard_check_pressed(global.keybind_sling) && basic_attack_charge_timer == 0{
+		show_debug_message("Began charging sling");
+		sling_attack_charge_timer ++;
+	} else if sling_attack_charge_timer > 0 && keyboard_check(global.keybind_sling) {
+		show_debug_message("continue charging sling");
+		sling_attack_charge_timer ++;
+	} else if sling_attack_charge_timer > 0 && sling_attack_charge_timer < global.player_sling_attack_charge_min && !keyboard_check(global.keybind_sling) {
+		show_debug_message("release sling early");
+		to_attack_cancel();
+		sling_attack_charge_timer = 0;
+	} else if sling_attack_charge_timer > global.player_sling_attack_charge_min && !keyboard_check(global.keybind_sling) {
+		show_debug_message("release sling good");
+		sling_attack_charge_timer = 0;
+		to_sling_attack_anti();
+	}
+}
+
+function to_sling_attack_anti() {
+	current_state = PlayerState.SLING_ANTI;
+	state_timer = global.player_sling_anti_frames;
+}
+function sling_attack_anti() {
+	state_timer --;
+	if state_timer < 0 {
+		to_sling_attack_swing();
+	}
+}
+function to_sling_attack_swing() {
+	current_state = PlayerState.SLING_SWING;
+	state_timer = global.player_sling_swing_frames;
+	// SPAWN PROJECTILE
+	var i = instance_create_depth(x,y,-100,obj_player_projectile);
+	i.facing = facing;
+}
+function sling_attack_swing() {
+	state_timer --;
+	if state_timer < 0 {
+		to_sling_attack_follow();
+	}
+}
+function to_sling_attack_follow() {
+	current_state = PlayerState.SLING_FOLLOW;
+	state_timer = global.player_sling_follow_frames;
+}
+function sling_attack_follow() {
+	state_timer --;
+	if state_timer < 0 {
+		GoToPlayerIdle();
 	}
 }
 

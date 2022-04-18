@@ -142,6 +142,7 @@
     {"id":{"name":"spr_moose_staggered_helmless","path":"sprites/spr_moose_staggered_helmless/spr_moose_staggered_helmless.yy",},"order":79,},
     {"id":{"name":"spr_moose_blockLo_helmless","path":"sprites/spr_moose_blockLo_helmless/spr_moose_blockLo_helmless.yy",},"order":5,},
     {"id":{"name":"edge_get_location","path":"scripts/edge_get_location/edge_get_location.yy",},"order":0,},
+    {"id":{"name":"obj_player_projectile","path":"objects/obj_player_projectile/obj_player_projectile.yy",},"order":5,},
     {"id":{"name":"LevelDesignTestRevision","path":"rooms/LevelDesignTestRevision/LevelDesignTestRevision.yy",},"order":7,},
     {"id":{"name":"spr_moose_stabAnti_empty","path":"sprites/spr_moose_stabAnti_empty/spr_moose_stabAnti_empty.yy",},"order":63,},
     {"id":{"name":"spr_moose_run","path":"sprites/spr_moose_run/spr_moose_run.yy",},"order":114,},
