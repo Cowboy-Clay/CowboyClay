@@ -168,7 +168,18 @@ function MooseStateBasedActions()
 }
 
 function choose_attack() {
-	to_projectile_anti();
+	var r = random(5);
+	if r < 1 {
+		to_projectile_anti();
+	} else if r < 2 {
+		MooseIdleToChargeAnti();
+	} else if r < 3 {
+		to_lunge_anti();
+	} else if r < 4 {
+		to_jump_anti();
+	} else {
+		MooseIdleToSlideAnti();
+	}
 	return;
 	
 	// toward the player
