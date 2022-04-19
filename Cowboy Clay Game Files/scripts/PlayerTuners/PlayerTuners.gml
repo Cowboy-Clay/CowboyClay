@@ -28,7 +28,7 @@ global.player_animation_jump_anti = [spr_player_jumpAnti, 1, AnimationType.FIRST
 global.player_animation_jump_anti_disarmed = [spr_player_jumpAnti_disarmed, 1, AnimationType.FIRST_FRAME];
 global.player_animation_jump_anti_sword_charge = [spr_player_chargeJumpAnti, 1, AnimationType.FIRST_FRAME];
 global.player_animation_jump_anti_sling_charge = [spr_player_jumpAnti, 1, AnimationType.FIRST_FRAME];
-global.player_animation_jump_anti_sling_charge_disarmed = [spr_player_jumpAnti_disarmed, 1, AnimationType.FIRST_FRAME];
+global.player_animation_jump_anti_sling_charge_disarmed = [spr_player_slingJumpAnti_disarmed, 1, AnimationType.FIRST_FRAME];
 
 global.player_animation_jump = [spr_player_jump, 2, AnimationType.LOOP];
 global.player_animation_jump_disarmed = [spr_player_jump_disarmed, 2, AnimationType.LOOP];
