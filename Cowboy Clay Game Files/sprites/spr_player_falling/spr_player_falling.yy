@@ -35,7 +35,7 @@
     "spriteId": {"name":"spr_player_falling","path":"sprites/spr_player_falling/spr_player_falling.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 14.0,
+    "playbackSpeed": 0.0,
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
