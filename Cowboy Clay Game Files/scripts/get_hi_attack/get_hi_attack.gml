@@ -27,7 +27,7 @@ function get_hi_attack(){
 
 // Sprites where the player is hi blocking
 global.player_hi_attack_sprites = [
-								  
+								  global.player_animation_sword_hi_swing,
 								  ];
 
 // Sprites where Moose is hi blocking

@@ -15,6 +15,7 @@ sheathed = false;
 grounded = false;
 hiblock = 0;
 block_success = false;
+special_fall = 0;
 #endregion
 
 #region Physics Variables
@@ -227,6 +228,7 @@ function check_falling() {
 		GoToPlayerFall();
 		return true;
 	}
+	special_fall = 0;
 	return false;
 }
 
@@ -274,6 +276,7 @@ function sling_attack_charge() {
 
 function to_sling_attack_anti() {
 	current_state = PlayerState.SLING_ANTI;
+	special_fall = 2;
 	state_timer = global.player_sling_anti_frames;
 }
 function sling_attack_anti() {
@@ -718,6 +721,7 @@ function PlayerAttack()
 		if current_state == PlayerState.BASIC_ATTACK_SWING && attackTimer <= 0
 		{
 			current_state = PlayerState.BASIC_ATTACK_FOLLOW;
+			special_fall = 1;
 			obj_player_attackEffect.HidePlayerAttack();
 			attackTimer = global.player_attackFollowFrames;
 		}
@@ -921,12 +925,12 @@ function update_animation() {
 				a = global.player_animation_idle_sword_charge;
 				break;
 			} else if sling_attack_charge_timer > 0 {
-				a = global.player_animation_idle_sling_charge;
+				a = armed ? global.player_animation_idle_sling_charge : global.player_animation_idle_sling_charge_disarmed;
 				break;
 			} else if armed {
-				a = global.player_animation_idle;
+				a = keyboard_check(global.keybind_face) ? global.player_animation_stra_idle : global.player_animation_idle;
 			} else {
-				a = global.player_animation_idle_disarmed;
+				a = keyboard_check(global.keybind_face) ? global.player_animation_stra_idle_disarmed : global.player_animation_idle_disarmed;
 			}
 			break;
 		case PlayerState.WALKING:
@@ -936,13 +940,13 @@ function update_animation() {
 					a = global.player_animation_walk_sword_charge;
 					break;
 				} else if sling_attack_charge_timer > 0 {
-					a = global.player_animation_walk_sling_charge;
+					a = armed ? global.player_animation_walk_sling_charge : global.player_animation_walk_sling_charge_disarmed;
 					break;
 				} else if armed {
-					a = global.player_animation_walk;
+					a = keyboard_check(global.keybind_face) ? global.player_animation_strastep : global.player_animation_walk;
 					break;
 				} else {
-					a = global.player_animation_walk_disarmed;
+					a = keyboard_check(global.keybind_face) ? global.player_animation_strastep_disarmed : global.player_animation_walk_disarmed;
 				}
 			}
 			// Backward
@@ -958,7 +962,23 @@ function update_animation() {
 					break;
 				} else {
 					a = global.player_animation_backstep_disarmed;
+					break;
 				}
+			}
+			break;
+		case PlayerState.JUMP_ANTI:
+			if basic_attack_charge_timer > 0 {
+				a = global.player_animation_jump_anti_sword_charge;
+				break;
+			} else if sling_attack_charge_timer > 0 {
+				a = armed ? global.player_animation_jump_anti_sling_charge : global.player_animation_jump_anti_sling_charge_disarmed;
+				break;
+			} else if armed {
+				a = global.player_animation_jump_anti;
+				break;
+			} else {
+				a = global.player_animation_jump_anti_disarmed;
+				break;
 			}
 			break;
 		case PlayerState.JUMPING:
@@ -966,7 +986,7 @@ function update_animation() {
 				a = global.player_animation_jump_sword_charge;
 				break;
 			} else if sling_attack_charge_timer > 0 {
-				a = global.player_animation_jump_sling_charge;
+				a = armed ? global.player_animation_jump_sling_charge : global.player_animation_jump_sling_charge_disarmed;
 				break;
 			} else if armed {
 				a = global.player_animation_jump;
@@ -982,6 +1002,10 @@ function update_animation() {
 			} else if sling_attack_charge_timer > 0 {
 				a = global.player_animation_fall_sling_charge;
 				break;
+			} else if special_fall == 1 {
+				a = global.player_animation_sword_hi_follow;
+			} else if special_fall == 2 {
+				a = armed ? global.player_animation_sling_hi_follow : global.player_animation_sling_hi_follow_disarmed;
 			} else if armed {
 				a = global.player_animation_fall;
 				break;
@@ -990,22 +1014,37 @@ function update_animation() {
 			}
 			break;
 		case PlayerState.BASIC_ATTACK_ANTI:
-			a = global.player_animation_sword_anti;
+			a = get_hi_attack_player(id, 10) ? global.player_animation_sword_hi_anti : global.player_animation_sword_anti;
 			break;
 		case PlayerState.BASIC_ATTACK_SWING:
-			a = global.player_animation_sword_swing;
+			a = get_hi_attack_player(id, 10) ? global.player_animation_sword_hi_swing : global.player_animation_sword_swing;
 			break;
 		case PlayerState.BASIC_ATTACK_FOLLOW:
-			a = global.player_animation_sword_follow;
+			a = get_hi_attack_player(id, 10) ? global.player_animation_sword_hi_follow : global.player_animation_sword_follow;
 			break;
 		case PlayerState.SLING_ANTI:
-			a = global.player_animation_sling_anti;
+			if get_hi_attack_player(id, 10) {
+				a = armed ? global.player_animation_sling_hi_anti : global.player_animation_sling_hi_anti_disarmed;
+				break;
+			} else  {
+				a = armed ? global.player_animation_sling_anti : global.player_animation_sling_anti_disarmed;
+			}
 			break;
 		case PlayerState.SLING_SWING:
-			a = global.player_animation_sling_swing;
+			if get_hi_attack_player(id, 10) {
+				a = armed ? global.player_animation_sling_hi_swing : global.player_animation_sling_hi_swing_disarmed;
+				break;
+			} else  {
+				a = armed ? global.player_animation_sling_swing : global.player_animation_sling_swing_disarmed;
+			}
 			break;
 		case PlayerState.SLING_FOLLOW:
-			a = global.player_animation_sling_follow;
+			if get_hi_attack_player(id, 10) {
+				a = armed ? global.player_animation_sling_hi_follow : global.player_animation_sling_hi_follow_disarmed;
+				break;
+			} else  {
+				a = armed ? global.player_animation_sling_follow : global.player_animation_sling_follow_disarmed;
+			}
 			break;
 		case PlayerState.ATTACK_CHARGE_CANCEL:
 			a = armed ? global.player_animation_attack_cancel : global.player_animation_attack_cancel_disarmed;
@@ -1021,6 +1060,9 @@ function update_animation() {
 				a = global.player_animation_block_failure;
 				break;
 			}
+		case PlayerState.DEAD:
+			a = global.player_animation_death;
+			break;
 	}
 	if a == noone {
 		show_debug_message("No animation was found in global declarations.");
