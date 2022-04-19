@@ -49,9 +49,9 @@ global.player_dashFollow = 38;
 jumpTimer = 0; // Frame counter to determine how long the player is preparing their jump
 jump_buffer = 0;
 global.player_minJumpWindup = 0; // the min # of frames the player can prepare a jump
-global.player_maxJumpWindup = 20; // the max # of frames the player can prepare a jump
-global.player_minVertJumpForce = 15; // min vertical force applied by a jump
-global.player_maxVertJumpForce = 25; // max vertical force applied by a jump
+global.player_maxJumpWindup = 60; // the max # of frames the player can prepare a jump
+global.player_minVertJumpForce = 20; // min vertical force applied by a jump
+global.player_maxVertJumpForce = 27.5; // max vertical force applied by a jump
 global.player_minHoriJumpForce = 5; // min horizontal force applied by a jump
 global.player_maxHoriJumpForce = 10; // max horizontal force applied by a jump
 global.player_jump_buffer_frames = 160;
@@ -95,8 +95,8 @@ global.player_frictMulti_jumpAnti = .5;
 global.player_frictMulti_jumping = 0.2;
 global.player_frictMulti_attacking = 1;
 
-global.player_speedMulti_jumping = .1;
-global.player_speedMulti_falling = 0.2;
+global.player_speedMulti_jumping = 0.5;
+global.player_speedMulti_falling = 0.4;
 
 global.player_graviMulti_attacking = 0.2;
 
@@ -163,12 +163,18 @@ function PlayerStateBasedMethods()
 		case PlayerState.JUMPING:
 			sling_attack_charge();
 			basic_attack_charge();
+			if basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 {
+				walk();
+			}
 			check_falling();
 			break;
 		case PlayerState.FALLING:
 			if !check_falling() GoToPlayerIdle();
 			sling_attack_charge();
 			basic_attack_charge();
+			if basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 {
+				walk();
+			}
 			break;
 		case PlayerState.BASIC_ATTACK_ANTI:
 			PlayerAttack();
@@ -701,7 +707,7 @@ function PlayerDashCooldown()
 function PlayerJumpAnti()
 {
 	jumpTimer += 1;
-	if jumpTimer > global.player_maxJumpWindup || (jumpTimer > global.player_minJumpWindup && keyboard_check(ord("X")) == false)
+	if (jumpTimer > global.player_minJumpWindup && keyboard_check(ord("X")) == false)
 	{
 		GoToPlayerJump();
 	}
