@@ -149,6 +149,7 @@
     {"id":{"name":"obj_tilemap_collision_spawner","path":"objects/obj_tilemap_collision_spawner/obj_tilemap_collision_spawner.yy",},"order":1,},
     {"id":{"name":"OneWalkKeyHeld","path":"scripts/OneWalkKeyHeld/OneWalkKeyHeld.yy",},"order":3,},
     {"id":{"name":"spr_player_dash_disarmed","path":"sprites/spr_player_dash_disarmed/spr_player_dash_disarmed.yy",},"order":17,},
+    {"id":{"name":"spr_player_slingJumpAnti","path":"sprites/spr_player_slingJumpAnti/spr_player_slingJumpAnti.yy",},"order":87,},
     {"id":{"name":"spr_moose_chargeBounce","path":"sprites/spr_moose_chargeBounce/spr_moose_chargeBounce.yy",},"order":132,},
     {"id":{"name":"spr_metra_idle","path":"sprites/spr_metra_idle/spr_metra_idle.yy",},"order":0,},
     {"id":{"name":"spr_moose_blockLo_disarmedHelm","path":"sprites/spr_moose_blockLo_disarmedHelm/spr_moose_blockLo_disarmedHelm.yy",},"order":3,},
