@@ -98,7 +98,7 @@ global.player_frictMulti_attacking = 1;
 global.player_speedMulti_jumping = .1;
 global.player_speedMulti_falling = 0.2;
 
-global.player_graviMulti_attacking = 0.8;
+global.player_graviMulti_attacking = 0.2;
 
 #region Animation Variables
 // Animation
@@ -289,6 +289,7 @@ function to_sling_attack_swing() {
 	current_state = PlayerState.SLING_SWING;
 	state_timer = global.player_sling_swing_frames;
 	// SPAWN PROJECTILE
+	if vspeed > 0 vspeed *= 0.2;
 	var i = instance_create_depth(x,y,-100,obj_player_projectile);
 	i.facing = facing;
 }
@@ -394,7 +395,8 @@ function GoToPlayerBasicAttack()
 	attackTimer = global.player_attackAntiFrames;
 	current_state = PlayerState.BASIC_ATTACK_ANTI;
 	if attackTimer <= 0
-	{
+	{	
+		if vspeed > 0 vspeed *= 0.2;
 		current_state = PlayerState.BASIC_ATTACK_SWING; 
 		show_debug_message(get_hi_attack_player(id,5));
 			obj_player_attackEffect.ShowPlayerAttack(get_hi_attack_player(id,5) ? spr_player_jumpAttack_Slash : spr_player_attackEffect, 1);
@@ -714,6 +716,7 @@ function PlayerAttack()
 		// Move through the different substates
 		if current_state == PlayerState.BASIC_ATTACK_ANTI && attackTimer <= 0
 		{
+			if vspeed > 0 vspeed *= 0.2;
 			current_state = PlayerState.BASIC_ATTACK_SWING;
 			obj_player_attackEffect.ShowPlayerAttack(get_hi_attack_player(id, 10) ? spr_player_jumpAttack_Slash : spr_player_attackEffect,1);
 			attackTimer = global.player_attackSwingFrames;
@@ -878,17 +881,14 @@ function PickPlayerFrict()
 function PickPlayerGravi()
 {
 	var g = global.player_gravityAccel;
+	if vspeed < 0 return g;
 	switch current_state
 	{
-		case PlayerState.BASIC_ATTACK_ANTI:
-			g *= global.player_graviMulti_attacking;
-			break;
 		case PlayerState.BASIC_ATTACK_SWING:
 			g *= global.player_graviMulti_attacking;
 			break;
-		case PlayerState.BASIC_ATTACK_FOLLOW:
+		case PlayerState.SLING_SWING:
 			g *= global.player_graviMulti_attacking;
-			break;
 	}
 	return g;
 }
