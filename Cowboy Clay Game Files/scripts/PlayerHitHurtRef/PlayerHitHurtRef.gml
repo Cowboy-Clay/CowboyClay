@@ -12,7 +12,7 @@ function GetPlayerHitBox()
 	var a = obj_player.sprite_index;
 	for (i = 0; i < array_length(global.playerSprRef); i+=1)
 	{
-		if global.playerSprRef[i][0] == a return global.playerSprRef[i][1];
+		if global.playerSprRef[i][0][0] == a return global.playerSprRef[i][1];
 	}
 	return spr_empty;
 }
@@ -22,7 +22,7 @@ function GetPlayerHurtBox()
 	var a = obj_player.sprite_index;
 	for (i = 0; i < array_length(global.playerSprRef); i += 1)
 	{
-		if global.playerSprRef[i][0] == a return global.playerSprRef[i][2];
+		if global.playerSprRef[i][0][0] == a return global.playerSprRef[i][2];
 	}
 	return spr_player_collision;
 }

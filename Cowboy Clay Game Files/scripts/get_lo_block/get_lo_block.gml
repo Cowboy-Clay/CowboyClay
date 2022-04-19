@@ -27,8 +27,8 @@ function get_lo_block(){
 
 // Sprites where the player is lo blocking
 global.player_lo_block_sprites = [
-								 global.player_animation_block_lo,
-								 global.player_animation_block_lo_recoil
+								 global.player_animation_block_lo[0],
+								 global.player_animation_block_lo_recoil[0]
 								 ];
 
 // Sprites where Moose is lo blocking
