@@ -1,3 +1,46 @@
+// [sprite, fpi, type]
+global.player_animation_idle = noone;
+global.player_animation_idle_disarmed = noone;
+global.player_animation_idle_sword_charge = noone;
+global.player_animation_idle_sling_charge = noone;
+
+global.player_animation_walk = noone;
+global.player_animation_walk_disarmed = noone;
+global.player_animation_walk_sword_charge = noone;
+global.player_animation_walk_sling_charge = noone;
+
+global.player_animation_backstep = noone;
+global.player_animation_backstep_disarmed = noone;
+global.player_animation_backstep_sword_charge = noone;
+global.player_animation_backstep_sling_charge = noone;
+
+global.player_animation_jump = noone;
+global.player_animation_jump_disarmed = noone;
+global.player_animation_jump_sword_charge = noone;
+global.player_animation_jump_sling_charge = noone;
+
+global.player_animation_fall = noone;
+global.player_animation_fall_disarmed = noone;
+global.player_animation_fall_sword_charge = noone;
+global.player_animation_fall_sling_charge = noone;
+
+global.player_animation_sword_anti = noone;
+global.player_animation_sword_swing = noone;
+global.player_animation_sword_follow = noone;
+
+global.player_animation_sling_anti = noone;
+global.player_animation_sling_swing = noone;
+global.player_animation_sling_follow = noone;
+
+global.player_animation_attack_cancel = noone;
+global.player_animation_attack_cancel_disarmed = noone;
+
+global.player_animation_block_hi = noone;
+global.player_animation_block_lo = noone;
+global.player_animation_block_hi_recoil = noone;
+global.player_animation_block_lo_recoil = noone;
+global.player_animation_block_failure = noone;
+
 // Idle animations
 global.player_idleAnim = spr_player_idle;
 global.player_idleAnim_disarmed = spr_player_idle_disarmed;
