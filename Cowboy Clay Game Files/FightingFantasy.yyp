@@ -165,7 +165,6 @@
     {"id":{"name":"obj_Moose","path":"objects/obj_Moose/obj_Moose.yy",},"order":4,},
     {"id":{"name":"spr_player_sling","path":"sprites/spr_player_sling/spr_player_sling.yy",},"order":64,},
     {"id":{"name":"keybinds","path":"scripts/keybinds/keybinds.yy",},"order":17,},
-    {"id":{"name":"spr_player_shoot","path":"sprites/spr_player_shoot/spr_player_shoot.yy",},"order":64,},
     {"id":{"name":"Friction","path":"scripts/Friction/Friction.yy",},"order":4,},
     {"id":{"name":"spr_moose_plungeStuck_helmless","path":"sprites/spr_moose_plungeStuck_helmless/spr_moose_plungeStuck_helmless.yy",},"order":101,},
     {"id":{"name":"spr_mech_elevator_coll","path":"sprites/spr_mech_elevator_coll/spr_mech_elevator_coll.yy",},"order":11,},
