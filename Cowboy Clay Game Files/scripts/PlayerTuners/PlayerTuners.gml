@@ -1,71 +1,75 @@
-// Idle animations
-global.player_idleAnim = spr_player_walk_armed;
-global.player_idleAnim_disarmed = spr_player_idle_disarmed;
-global.player_idleFPI = 1;
-global.player_idleAnimType = AnimationType.FIRST_FRAME;
-// Run animations
-global.player_walkAnim = spr_player_walk_armed;
-global.player_walkAnim_disarmed = spr_player_walk_disarmed;
-global.player_walkFPI = 12;
-global.player_walkAnimType = AnimationType.LOOP;
-// Attack animations
-global.player_attackAntiAnim = spr_player_attackAnti;
-global.player_attackSwingAnim = spr_player_attackSwing;
-global.player_attackFollowAnim = spr_player_attackFollow;
-// Hi Attack animations
-global.player_hiattackAntiAnim = spr_player_attackAnti;
-global.player_hiattackSwingAnim = spr_player_attackSwing;
-global.player_hiattackFollowAnim = spr_player_attackFollow;
-// Kick animations
-global.player_kickAntiAnim = spr_player_idle;
-global.player_kickSwingAnim = spr_player_idle;
-global.player_kickFollowAnim = spr_player_idle;
-// Jump anti anims
-global.player_jumpAntiAnim = spr_player_jumpAnti;
-global.player_jumpAntiAnim_disarmed = spr_player_jumpAnti_disarmed;
-global.player_jumpAntiFPI = 1;
-global.player_jumpAntiAnimType = AnimationType.HOLD;
-// Jump animations
-global.player_jumpAnim = spr_player_jump;
-global.player_jumpAnim_disarmed = spr_player_jump_disarmed;
-global.player_jumpFPI = 1;
-global.player_jumpAnimType = AnimationType.HOLD;
-// Fall animations
-global.player_fallAnim = spr_player_fall;
-global.player_fallAnim_disarmed = spr_player_jumpDown_disarmed;
-global.player_fallFPI = 1;
-global.player_fallAnimType = AnimationType.HOLD;
-// Dash anims
-global.player_dashAnim = spr_player_dash;
-global.player_dashAnim_disarmed = spr_player_dash_disarmed;
-global.player_dashAnimFPI = 1;
-global.player_dashAnimType = AnimationType.FIRST_FRAME;
-// Dash anticipation animations
-global.player_dashAntiAnim = spr_player_dash_anti;
-global.player_dashAntiAnim_disarmed = spr_player_dash_anti_disarmed;
-global.player_dashAntiAnimFPI = 1;
-global.player_dashAntiAnimType = AnimationType.FIRST_FRAME;
-// Dash follow animations
-global.player_dashFollowAnim = spr_player_dash_follow;
-global.player_dashFollowAnim_disarmed = spr_player_dash_follow_disarmed;
-global.player_dashFollowAnimFPI = 1;
-global.player_dashFollowAnimType = AnimationType.FIRST_FRAME;
-// Death animations
-global.player_deathAnim = spr_player_death;
-global.player_deathAnimFPI = 6;
-global.player_deadAnimType = AnimationType.HOLD;
-// Block animations
-global.player_animation_hi_block = spr_player_hiBlock;
-global.player_animation_lo_block = spr_player_loBlock;
-global.player_animation_block_FPI = 9;
-global.player_animation_block_type = AnimationType.HOLD;
-// Block success animations
-global.player_animation_hi_block_success = spr_player_hiBlock_stun;
-global.player_animation_lo_block_success = spr_player_loBlock_stun;
-global.player_animation_block_success_FPI = 12;
-global.player_animation_block_success_type = AnimationType.HOLD;
-// Block failure animations
-global.player_animation_hi_block_failure = spr_player_blockMiss;
-global.player_animation_lo_block_failure = spr_player_blockMiss;
-global.player_animation_block_failure_FPI = 3;
-global.player_animation_block_failure_type = AnimationType.HOLD;
+// [sprite, fpi, type]
+global.player_animation_idle = [spr_player_idle, 1, AnimationType.FIRST_FRAME];
+global.player_animation_idle_disarmed = [spr_player_idle_disarmed, 1, AnimationType.FIRST_FRAME];
+global.player_animation_idle_sword_charge = [spr_player_charging, 1, AnimationType.FIRST_FRAME];
+global.player_animation_idle_sling_charge = [spr_player_aim, 6, AnimationType.LOOP];
+global.player_animation_idle_sling_charge_disarmed = [spr_player_aim_disarmed, 6, AnimationType.LOOP];
+
+global.player_animation_stra_idle = [spr_player_strafe, 1, AnimationType.FIRST_FRAME];
+global.player_animation_stra_idle_disarmed = [spr_player_strafe_disarmed, 1, AnimationType.FIRST_FRAME];
+
+global.player_animation_walk = [spr_player_run, 6, AnimationType.LOOP];
+global.player_animation_walk_disarmed = [spr_player_run_disarmed, 6, AnimationType.LOOP];
+global.player_animation_walk_sword_charge = [spr_player_charging, 12, AnimationType.LOOP];
+global.player_animation_walk_sling_charge = [spr_player_aimWalk, 6, AnimationType.LOOP];
+global.player_animation_walk_sling_charge_disarmed = [spr_player_aimWalk_disarmed, 6, AnimationType.LOOP];
+
+global.player_animation_strastep = [spr_player_strafe, 12, AnimationType.LOOP];
+global.player_animation_backstep = [spr_player_strafe, 12, AnimationType.REVERSE_LOOP];
+global.player_animation_strastep_disarmed = [spr_player_strafe_disarmed, 12, AnimationType.LOOP];
+global.player_animation_backstep_disarmed = [spr_player_strafe_disarmed, 12, AnimationType.REVERSE_LOOP];
+global.player_animation_strastep_sword_charge = [spr_player_charging, 12, AnimationType.LOOP];
+global.player_animation_backstep_sword_charge = [spr_player_charging, 12, AnimationType.REVERSE_LOOP];
+global.player_animation_strastep_sling_charge = [spr_player_aimWalk, 6, AnimationType.LOOP];
+global.player_animation_backstep_sling_charge = [spr_player_aimWalkBack, 6, AnimationType.LOOP];
+global.player_animation_backstep_sling_charge_disarmed = [spr_player_aimWalkBack_disarmed, 6, AnimationType.LOOP];
+
+global.player_animation_jump_anti = [spr_player_jumpAnti, 1, AnimationType.FIRST_FRAME];
+global.player_animation_jump_anti_disarmed = [spr_player_jumpAnti_disarmed, 1, AnimationType.FIRST_FRAME];
+global.player_animation_jump_anti_sword_charge = [spr_player_chargeJumpAnti, 1, AnimationType.FIRST_FRAME];
+global.player_animation_jump_anti_sling_charge = [spr_player_slingJumpAnti, 6, AnimationType.LOOP];
+global.player_animation_jump_anti_sling_charge_disarmed = [spr_player_slingJumpAnti_disarmed, 6, AnimationType.LOOP];
+
+global.player_animation_jump = [spr_player_jump, 2, AnimationType.LOOP];
+global.player_animation_jump_disarmed = [spr_player_jump_disarmed, 2, AnimationType.LOOP];
+global.player_animation_jump_sword_charge = [spr_player_chargeJump, 1, AnimationType.FIRST_FRAME];
+global.player_animation_jump_sling_charge = [spr_player_aimJump, 6, AnimationType.LOOP];
+global.player_animation_jump_sling_charge_disarmed = [spr_player_aimJump_disarmed, 6, AnimationType.LOOP];
+
+global.player_animation_fall = [spr_player_falling, 4, AnimationType.LOOP];
+global.player_animation_fall_disarmed = [spr_player_falling_disarmed, 4, AnimationType.LOOP];
+global.player_animation_fall_sword_charge = [spr_player_charging, 1, AnimationType.FIRST_FRAME];
+global.player_animation_fall_sling_charge = [spr_player_aimFalling, 6, AnimationType.LOOP];
+global.player_animation_fall_sling_charge_disarmed = [spr_player_aimFalling_disarmed, 6, AnimationType.LOOP];
+
+global.player_animation_sword_anti = [spr_player_charging, 1, AnimationType.FIRST_FRAME];
+global.player_animation_sword_swing = [spr_player_slash, 1, AnimationType.FIRST_FRAME];
+global.player_animation_sword_follow = [spr_player_slashFollow, 1, AnimationType.FIRST_FRAME];
+global.player_animation_sword_hi_anti = [spr_player_jumpAttack_Anti, 1, AnimationType.FIRST_FRAME];
+global.player_animation_sword_hi_swing = [spr_player_jumpAttack_Swing, 1, AnimationType.FIRST_FRAME];
+global.player_animation_sword_hi_follow = [spr_player_jumpAttack_Follow, 6, AnimationType.LOOP];
+
+global.player_animation_sling_anti = [spr_player_aim, 1, AnimationType.FIRST_FRAME];
+global.player_animation_sling_anti_disarmed = [spr_player_aim_disarmed, 1, AnimationType.FIRST_FRAME];
+global.player_animation_sling_swing = [spr_player_sling, 1, AnimationType.FIRST_FRAME];
+global.player_animation_sling_swing_disarmed = [spr_player_sling_disarmed, 1, AnimationType.FIRST_FRAME];
+global.player_animation_sling_follow = [spr_player_slingFollow, 1, AnimationType.FIRST_FRAME];
+global.player_animation_sling_follow_disarmed = [spr_player_slingFollow_disarmed, 1, AnimationType.FIRST_FRAME];
+
+global.player_animation_sling_hi_anti = [spr_player_aim, 1, AnimationType.FIRST_FRAME];
+global.player_animation_sling_hi_anti_disarmed = [spr_player_aim_disarmed, 1, AnimationType.FIRST_FRAME];
+global.player_animation_sling_hi_swing = [spr_player_shootJump, 1, AnimationType.FIRST_FRAME];
+global.player_animation_sling_hi_swing_disarmed = [spr_player_shootJump, 1, AnimationType.FIRST_FRAME];
+global.player_animation_sling_hi_follow = [spr_player_shootFall, 6, AnimationType.LOOP];
+global.player_animation_sling_hi_follow_disarmed = [spr_player_shootFall_disarmed, 6, AnimationType.LOOP];
+
+global.player_animation_attack_cancel = [spr_player_blockMiss, 1, AnimationType.FIRST_FRAME];
+global.player_animation_attack_cancel_disarmed = [spr_player_blockMiss, 1, AnimationType.FIRST_FRAME];
+
+global.player_animation_block_hi = [spr_player_hiBlock, 3, AnimationType.HOLD];
+global.player_animation_block_lo = [spr_player_loBlock, 3, AnimationType.HOLD];
+global.player_animation_block_hi_recoil = [spr_player_hiBlock_stun, 1, AnimationType.FIRST_FRAME];
+global.player_animation_block_lo_recoil = [spr_player_loBlock_stun, 1, AnimationType.FIRST_FRAME];
+global.player_animation_block_failure = [spr_player_blockMiss, 1, AnimationType.FIRST_FRAME];
+
+global.player_animation_death = [spr_player_death, 4, AnimationType.HOLD];

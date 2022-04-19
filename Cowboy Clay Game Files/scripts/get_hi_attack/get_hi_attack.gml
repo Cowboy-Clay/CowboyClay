@@ -6,7 +6,7 @@ function get_hi_attack(){
 	
 	switch object_index {
 		case global.player_object:
-			return get_hi_attack_player(id, 10);
+			a = global.player_hi_attack_sprites;
 			break;
 		case global.moose_object:
 			a = global.moose_hi_attack_sprites;
@@ -27,7 +27,7 @@ function get_hi_attack(){
 
 // Sprites where the player is hi blocking
 global.player_hi_attack_sprites = [
-								  
+								  global.player_animation_sword_hi_swing[0],
 								  ];
 
 // Sprites where Moose is hi blocking

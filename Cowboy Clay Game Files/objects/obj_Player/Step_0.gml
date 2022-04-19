@@ -11,7 +11,6 @@ if !global.paused
 	if current_state != PlayerState.LOCK && current_state != PlayerState.DEAD
 	{
 		// State system
-		UpdatePlayerState();
 		PlayerStateBasedMethods();
 		PlayerPickupSword();
 		PlayerInvulnerability();

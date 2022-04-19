@@ -29,8 +29,8 @@ function get_hi_block(){
 
 // Sprites where the player is hi blocking
 global.player_hi_block_sprites = [
-								 global.player_animation_hi_block,
-								 global.player_animation_hi_block_success
+								 global.player_animation_block_hi[0],
+								 global.player_animation_block_hi_recoil[0]
 								 ];
 
 // Sprites where Moose is hi blocking

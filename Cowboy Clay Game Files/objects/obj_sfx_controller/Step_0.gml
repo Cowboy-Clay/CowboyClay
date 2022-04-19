@@ -1,1 +1,0 @@
-check_image_based_sounds();

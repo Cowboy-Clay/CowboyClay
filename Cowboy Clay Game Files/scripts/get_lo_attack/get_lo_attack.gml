@@ -27,7 +27,7 @@ function get_lo_attack(){
 
 // Sprites where the player is lo attacking
 global.player_lo_attack_sprites = [
-								  spr_player_attackSwing,
+								  global.player_animation_sword_swing[0],
 								  ];
 
 // Sprites where Moose is lo attacking

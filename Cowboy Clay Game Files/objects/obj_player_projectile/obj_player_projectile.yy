@@ -1,5 +1,8 @@
 {
-  "spriteId": null,
+  "spriteId": {
+    "name": "spr_player_slingBullet",
+    "path": "sprites/spr_player_slingBullet/spr_player_slingBullet.yy",
+  },
   "solid": false,
   "visible": true,
   "spriteMaskId": null,
@@ -24,11 +27,11 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "Player",
+    "path": "folders/Objects/Player.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_sfx_controller",
+  "name": "obj_player_projectile",
   "tags": [],
   "resourceType": "GMObject",
 }
