@@ -955,7 +955,7 @@ function update_animation() {
 					a = global.player_animation_backstep_sword_charge;
 					break;
 				} else if sling_attack_charge_timer > 0 {
-					a = global.player_animation_backstep_sling_charge;
+					a = armed ? global.player_animation_backstep_sling_charge : global.player_animation_backstep_sling_charge_disarmed;
 					break;
 				} else if armed {
 					a = global.player_animation_backstep;

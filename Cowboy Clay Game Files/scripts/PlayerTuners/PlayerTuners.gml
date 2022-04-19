@@ -21,7 +21,8 @@ global.player_animation_backstep_disarmed = [spr_player_strafe_disarmed, 5, Anim
 global.player_animation_strastep_sword_charge = [spr_player_charging, 3, AnimationType.LOOP];
 global.player_animation_backstep_sword_charge = [spr_player_charging, 3, AnimationType.REVERSE_LOOP];
 global.player_animation_strastep_sling_charge = [spr_player_aimWalk, 4, AnimationType.LOOP];
-global.player_animation_backstep_sling_charge = [spr_player_aimWalk, 4, AnimationType.REVERSE_LOOP];
+global.player_animation_backstep_sling_charge = [spr_player_aimWalkBack, 4, AnimationType.LOOP];
+global.player_animation_backstep_sling_charge_disarmed = [spr_player_aimWalkBack_disarmed, 4, AnimationType.LOOP];
 
 global.player_animation_jump_anti = [spr_player_jumpAnti, 1, AnimationType.FIRST_FRAME];
 global.player_animation_jump_anti_disarmed = [spr_player_jumpAnti_disarmed, 1, AnimationType.FIRST_FRAME];
