@@ -917,67 +917,119 @@ function update_animation() {
 	var a = noone;
 	switch(current_state) {
 		case PlayerState.IDLE:
-			a = armed ? global.player_idleAnim : global.player_idleAnim_disarmed;
-			SetPlayerAnimation(a, global.player_idleFPI, global.player_idleAnimType);
+			if basic_attack_charge_timer > 0 {
+				a = global.player_animation_idle_sword_charge;
+				break;
+			} else if sling_attack_charge_timer > 0 {
+				a = global.player_animation_idle_sling_charge;
+				break;
+			} else if armed {
+				a = global.player_animation_idle;
+			} else {
+				a = global.player_animation_idle_disarmed;
+			}
 			break;
-		case PlayerState.WALKING:			 
-			a = armed ? global.player_walkAnim : global.player_walkAnim_disarmed;
-			SetPlayerAnimation(a, global.player_walkFPI, global.player_walkAnimType);
+		case PlayerState.WALKING:
+			// Foward
+			if (hspeed < 0 && facing == Direction.LEFT) || (hspeed > 0 && facing == Direction.RIGHT) {
+				if basic_attack_charge_timer > 0 {
+					a = global.player_animation_walk_sword_charge;
+					break;
+				} else if sling_attack_charge_timer > 0 {
+					a = global.player_animation_walk_sling_charge;
+					break;
+				} else if armed {
+					a = global.player_animation_walk;
+					break;
+				} else {
+					a = global.player_animation_walk_disarmed;
+				}
+			}
+			// Backward
+			else {
+				if basic_attack_charge_timer > 0 {
+					a = global.player_animation_backstep_sword_charge;
+					break;
+				} else if sling_attack_charge_timer > 0 {
+					a = global.player_animation_backstep_sling_charge;
+					break;
+				} else if armed {
+					a = global.player_animation_backstep;
+					break;
+				} else {
+					a = global.player_animation_backstep_disarmed;
+				}
+			}
 			break;
-		case PlayerState.JUMP_ANTI:
-			a = armed ? spr_player_jumpAnti : spr_player_jumpAnti_disarmed;
-			SetPlayerAnimation(a, global.player_jumpAntiFPI, global.player_jumpAntiAnimType);
+		case PlayerState.JUMPING:
+			if basic_attack_charge_timer > 0 {
+				a = global.player_animation_jump_sword_charge;
+				break;
+			} else if sling_attack_charge_timer > 0 {
+				a = global.player_animation_jump_sling_charge;
+				break;
+			} else if armed {
+				a = global.player_animation_jump;
+				break;
+			} else {
+				a = global.player_animation_jump_disarmed;
+			}
 			break;
-		case PlayerState.JUMPING:	
-			 a = armed ? spr_player_jump : spr_player_jump_disarmed;
-			SetPlayerAnimation(a, global.player_jumpFPI, global.player_jumpAnimType);
-			break;
-		case PlayerState.FALLING:	
-			a = armed ? spr_player_fall : spr_player_jumpDown_disarmed;
-			SetPlayerAnimation(a, global.player_fallFPI, global.player_fallAnimType);
+		case PlayerState.FALLING:
+			if basic_attack_charge_timer > 0 {
+				a = global.player_animation_fall_sword_charge;
+				break;
+			} else if sling_attack_charge_timer > 0 {
+				a = global.player_animation_fall_sling_charge;
+				break;
+			} else if armed {
+				a = global.player_animation_fall;
+				break;
+			} else {
+				a = global.player_animation_fall_disarmed;
+			}
 			break;
 		case PlayerState.BASIC_ATTACK_ANTI:
-			a = get_hi_attack_player(id,10) ? global.player_hiattackAntiAnim : spr_player_attackAnti;
-			SetPlayerAnimation(a, 1, AnimationType.FIRST_FRAME);
+			a = global.player_animation_sword_anti;
 			break;
-		case PlayerState.BASIC_ATTACK_SWING: 
-			a = get_hi_attack_player(id,10) ? global.player_hiattackSwingAnim : spr_player_attackSwing;
-			SetPlayerAnimation(a, 1, AnimationType.FIRST_FRAME);
+		case PlayerState.BASIC_ATTACK_SWING:
+			a = global.player_animation_sword_swing;
 			break;
 		case PlayerState.BASIC_ATTACK_FOLLOW:
-			a = get_hi_attack_player(id,10) ? global.player_hiattackFollowAnim : spr_player_attackFollow;
-			SetPlayerAnimation(a, 1, AnimationType.FIRST_FRAME);
+			a = global.player_animation_sword_follow;
 			break;
-		case PlayerState.DASH_ANTI:			
-			a = armed ? spr_player_dash_anti : spr_player_dash_anti_disarmed;
-			SetPlayerAnimation(a, global.player_dashAntiAnimFPI, global.player_dashAntiAnimType);
+		case PlayerState.SLING_ANTI:
+			a = global.player_animation_sling_anti;
 			break;
-		case PlayerState.DASH:				 
-			a = armed ? spr_player_dash : spr_player_dash_disarmed;
-			SetPlayerAnimation(a, global.player_dashAnimFPI, global.player_dashAnimType);
+		case PlayerState.SLING_SWING:
+			a = global.player_animation_sling_swing;
 			break;
-		case PlayerState.DASH_FOLLOW:		 
-			a = armed? spr_player_dash_follow : spr_player_dash_follow_disarmed;
-			SetPlayerAnimation(a, global.player_dashFollowAnimFPI, global.player_dashFollowAnimType);
-			break;
-		case PlayerState.LOCK:
-			// This state has no specific animations
-			break;
-		case PlayerState.DEAD:
-			a = spr_player_death;
-			SetPlayerAnimation(a, global.player_deathAnimFPI, AnimationType.HOLD);
-			break;
-		case PlayerState.BLOCK:
-			a = hiblock == 1 ? global.player_animation_hi_block : global.player_animation_lo_block;
-			SetPlayerAnimation(a, global.player_animation_block_FPI, global.player_animation_block_type);
-			break;
-		case PlayerState.BLOCK_FOLLOW:
-			a = hiblock == 1 ? (block_success ? global.player_animation_hi_block_success: global.player_animation_hi_block_failure) : (block_success ? global.player_animation_lo_block_success: global.player_animation_lo_block_failure);
-			SetPlayerAnimation(a, block_success ? global.player_animation_block_success_FPI : global.player_animation_block_failure_FPI, block_success ? global.player_animation_block_success_type : global.player_animation_block_failure_type);
+		case PlayerState.SLING_FOLLOW:
+			a = global.player_animation_sling_follow;
 			break;
 		case PlayerState.ATTACK_CHARGE_CANCEL:
-			a = global.player_animation_hi_block_failure;
-			SetPlayerAnimation(a, global.player_animation_block_success_FPI, AnimationType.HOLD);
+			a = armed ? global.player_animation_attack_cancel : global.player_animation_attack_cancel_disarmed;
+			break;
+		case PlayerState.BLOCK:
+			a = hiblock == 1 ? global.player_animation_block_hi : global.player_animation_block_lo;
+			break;
+		case PlayerState.BLOCK_FOLLOW:
+			if block_success == true {
+				a = hiblock == 1 ? global.player_animation_block_hi_recoil : global.player_animation_block_lo_recoil;
+				break;
+			} else {
+				a = global.player_animation_block_failure;
+				break;
+			}
 	}
+	if a == noone {
+		show_debug_message("No animation was found in global declarations.");
+		return;
+	}
+	if array_length(a) != 3 {
+		show_debug_message("Animation array was not the right length.");
+		return;
+	}
+	SetPlayerAnimation(a[0], a[1], a[2]);
 }
 

@@ -1,10 +1,10 @@
 // [sprite, fpi, type]
-global.player_animation_idle = noone;
-global.player_animation_idle_disarmed = noone;
+global.player_animation_idle = [spr_player_idle, 1, AnimationType.FIRST_FRAME];
+global.player_animation_idle_disarmed = [spr_player_idle_disarmed, 1, AnimationType.FIRST_FRAME];
 global.player_animation_idle_sword_charge = noone;
 global.player_animation_idle_sling_charge = noone;
 
-global.player_animation_walk = noone;
+global.player_animation_walk = [spr_player_walk, 12, AnimationType.LOOP];
 global.player_animation_walk_disarmed = noone;
 global.player_animation_walk_sword_charge = noone;
 global.player_animation_walk_sling_charge = noone;
