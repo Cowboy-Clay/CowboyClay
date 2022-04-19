@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "goldProjectile",
-    "path": "sprites/goldProjectile/goldProjectile.yy",
+    "name": "spr_player_slingBullet",
+    "path": "sprites/spr_player_slingBullet/spr_player_slingBullet.yy",
   },
   "solid": false,
   "visible": true,
