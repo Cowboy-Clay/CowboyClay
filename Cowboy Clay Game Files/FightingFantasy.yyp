@@ -196,6 +196,7 @@
     {"id":{"name":"spr_player_sword_spin","path":"sprites/spr_player_sword_spin/spr_player_sword_spin.yy",},"order":12,},
     {"id":{"name":"spr_moose_stab_empty","path":"sprites/spr_moose_stab_empty/spr_moose_stab_empty.yy",},"order":64,},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":0,},
+    {"id":{"name":"spr_player_slingJumpAnti_disarmed","path":"sprites/spr_player_slingJumpAnti_disarmed/spr_player_slingJumpAnti_disarmed.yy",},"order":86,},
     {"id":{"name":"spr_moose_taunt_hitbox","path":"sprites/spr_moose_taunt_hitbox/spr_moose_taunt_hitbox.yy",},"order":36,},
     {"id":{"name":"Ferryman_s_Fumble","path":"sounds/Ferryman_s_Fumble/Ferryman_s_Fumble.yy",},"order":4,},
     {"id":{"name":"spr_player_shootFall_disarmed","path":"sprites/spr_player_shootFall_disarmed/spr_player_shootFall_disarmed.yy",},"order":67,},
