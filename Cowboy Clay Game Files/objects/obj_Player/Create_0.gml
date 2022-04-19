@@ -250,6 +250,10 @@ function to_attack_cancel() {
 }
 
 function basic_attack_charge() {
+	if !armed {
+		basic_attack_charge_timer = 0;
+		return;
+	}
 	if basic_attack_charge_timer == 0 && keyboard_check_pressed(global.keybind_attack) && sling_attack_charge_timer == 0{
 		basic_attack_charge_timer ++;
 	} else if basic_attack_charge_timer > 0 && keyboard_check(global.keybind_attack) {
@@ -621,6 +625,12 @@ function walk()
 			curAc = curAc * global.player_speedMulti_falling;
 			break;
 	}
+	if basic_attack_charge_timer > 0 {
+		curAc = curAc * 1;
+	}
+	if sling_attack_charge_timer > 0 {
+		curAc = curAc * 1;
+	}
 	// Left movement
 	if keyboard_check(global.keybind_left) && !keyboard_check(global.keybind_right)
 	{
@@ -635,9 +645,13 @@ function walk()
 	if hspeed > 0 && keyboard_check(global.keybind_right) && !keyboard_check(global.keybind_face) facing = Direction.RIGHT;
 	else if hspeed < 0 && keyboard_check(global.keybind_left) && !keyboard_check(global.keybind_face) facing = Direction.LEFT;
 	
-	if abs(hspeed) > global.player_maxWalkSpeed && current_state != PlayerState.JUMPING && current_state != PlayerState.FALLING
+	var max_speed = global.player_maxWalkSpeed;
+	if basic_attack_charge_timer > 0 || sling_attack_charge_timer > 0 {
+		max_speed *= .3;
+	}
+	if abs(hspeed) > max_speed && current_state != PlayerState.JUMPING && current_state != PlayerState.FALLING
 	{
-		hspeed = sign(hspeed) * lerp(abs(hspeed), global.player_maxWalkSpeed, .2);
+		hspeed = sign(hspeed) * lerp(abs(hspeed), max_speed, .2);
 		//hspeed = sign(hspeed) * global.player_maxWalkSpeed;
 	}
 }
