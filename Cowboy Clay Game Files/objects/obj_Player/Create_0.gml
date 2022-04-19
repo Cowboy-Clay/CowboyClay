@@ -806,6 +806,13 @@ function PlayPlayerAnimation()
 	if animFrameCounter >= currentFPI
 	{
 		animFrameCounter = 0;
+		if currentAnimType == AnimationType.REVERSE_LOOP {
+			image_index--;
+			if image_index < 0 {
+				image_index = sprite_get_number(sprite_index) - 1;
+			}
+			return;
+		}
 		image_index ++;
 		if image_index >= sprite_get_number(sprite_index)
 		{
