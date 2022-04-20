@@ -24,9 +24,9 @@ global.player_gravityMax = 20; // The basic maximum of gravity
 #endregion
 
 #region Walk Variables
-global.player_frictionValue = .33; // The basic rate of friction
-global.player_walkAccel = .5; // The basic rate of acceloration from walking
-global.player_maxWalkSpeed = 6; // The basic max walking speed
+global.player_frictionValue = .40; // The basic rate of friction
+global.player_walkAccel = .8; // The basic rate of acceloration from walking
+global.player_maxWalkSpeed = 8; // The basic max walking speed
 #endregion
 
 #region Dash Variables
@@ -54,7 +54,7 @@ global.player_minVertJumpForce = 20; // min vertical force applied by a jump
 global.player_maxVertJumpForce = 27.5; // max vertical force applied by a jump
 global.player_minHoriJumpForce = 5; // min horizontal force applied by a jump
 global.player_maxHoriJumpForce = 10; // max horizontal force applied by a jump
-global.player_jump_buffer_frames = 160;
+global.player_jump_buffer_frames = 20;
 #endregion
 
 #region Basic Attack Variables
@@ -67,7 +67,7 @@ global.player_attackFollowFrames = 15;
 attackTimer = 0; // Frame counter to determine how long the player has been in each attack state
 #endregion
 sling_attack_charge_timer = 0;
-global.player_sling_attack_charge_min = 30;
+global.player_sling_attack_charge_min = 0;
 global.player_sling_anti_frames = 2;
 global.player_sling_swing_frames = 10;
 global.player_sling_follow_frames = 10;
