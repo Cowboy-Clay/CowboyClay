@@ -58,6 +58,9 @@
         {"properties":[
             {"propertyId":{"name":"tilemap_name","path":"objects/obj_tilemap_collision_spawner/obj_tilemap_collision_spawner.yy",},"objectId":{"name":"obj_tilemap_collision_spawner","path":"objects/obj_tilemap_collision_spawner/obj_tilemap_collision_spawner.yy",},"value":"Tiles_1","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
           ],"isDnd":false,"objectId":{"name":"obj_tilemap_collision_spawner","path":"objects/obj_tilemap_collision_spawner/obj_tilemap_collision_spawner.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":96.0,"y":1760.0,"resourceVersion":"1.0","name":"inst_2894026C","tags":[],"resourceType":"GMRInstance",},
+        {"properties":[
+            {"propertyId":{"name":"track","path":"objects/obj_music_controller/obj_music_controller.yy",},"objectId":{"name":"obj_music_controller","path":"objects/obj_music_controller/obj_music_controller.yy",},"value":"Ambird__ALL_AMBIENCE_","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
+          ],"isDnd":false,"objectId":{"name":"obj_music_controller","path":"objects/obj_music_controller/obj_music_controller.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":416.0,"y":1801.0,"resourceVersion":"1.0","name":"inst_1CA2441D","tags":[],"resourceType":"GMRInstance",},
       ],"visible":true,"depth":300,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":32,"gridY":32,"layers":[],"hierarchyFrozen":false,"effectEnabled":true,"effectType":null,"properties":[],"resourceVersion":"1.0","name":"Instances","tags":[],"resourceType":"GMRInstanceLayer",},
     {"assets":[
         {"spriteId":{"name":"spr_envi_bridgePlank","path":"sprites/spr_envi_bridgePlank/spr_envi_bridgePlank.yy",},"headPosition":0.0,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"animationSpeed":1.0,"colour":4294967295,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":0.0,"y":2187.0,"resourceVersion":"1.0","name":"graphic_7A89B33","tags":[],"resourceType":"GMRSpriteGraphic",},
@@ -242,6 +245,7 @@
     {"name":"inst_716EE6BD","path":"rooms/LevelDesignRevision/LevelDesignRevision.yy",},
     {"name":"inst_3D9B0150","path":"rooms/LevelDesignRevision/LevelDesignRevision.yy",},
     {"name":"inst_6EED4E0B","path":"rooms/LevelDesignRevision/LevelDesignRevision.yy",},
+    {"name":"inst_1CA2441D","path":"rooms/LevelDesignRevision/LevelDesignRevision.yy",},
   ],
   "inheritCreationOrder": false,
   "sequenceId": null,

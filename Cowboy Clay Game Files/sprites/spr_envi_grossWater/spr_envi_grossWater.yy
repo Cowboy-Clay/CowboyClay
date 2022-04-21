@@ -38,7 +38,7 @@
     "spriteId": {"name":"spr_envi_grossWater","path":"sprites/spr_envi_grossWater/spr_envi_grossWater.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 6.0,
+    "playbackSpeed": 4.0,
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
