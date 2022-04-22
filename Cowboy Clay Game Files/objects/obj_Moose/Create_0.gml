@@ -171,6 +171,11 @@ function MooseStateBasedActions()
 }
 
 function choose_attack() {
+	if !armed {
+		MooseIdleToChargeAnti();
+		return;
+	}
+	
 	var r = random(5);
 	if r < 1 {
 		to_projectile_anti();
