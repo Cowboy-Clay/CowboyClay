@@ -7,7 +7,7 @@ global.showDebugMessages = true; // set to true if you want to print debug messa
 #endregion
 
 #region State Variables
-enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, ATTACK_CHARGE_CANCEL,BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW, LOCK, DEAD, KICK_ANTI, KICK_SWING, KICK_FOLLOW, SHEATHING, UNSHEATHING, PLUNGING, BLOCK, BLOCK_FOLLOW, SLING_ANTI, SLING_SWING, SLING_FOLLOW };
+enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, ATTACK_CHARGE_CANCEL,BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW, LOCK, DEAD, KICK_ANTI, KICK_SWING, KICK_FOLLOW, SHEATHING, UNSHEATHING, PLUNGING, BLOCK, BLOCK_FOLLOW, SLING_ANTI, SLING_SWING, SLING_FOLLOW, PAIN };
 current_state = PlayerState.LOCK;
 facing = Direction.RIGHT; // The direction the player is facing
 armed = startArmed; // Is the player armed. startArmed is set in the variable menu
@@ -86,6 +86,8 @@ global.player_plungeFrames = 7;
 global.player_block_frames = 45;
 global.player_block_success_frames = 5;
 global.player_block_failure_frames = 30;
+
+global.player_pain_frames = 45;
 
 invulnerable = false;
 invulnerabilityTimer = 0;
@@ -219,7 +221,22 @@ function PlayerStateBasedMethods()
 		case PlayerState.SLING_FOLLOW:
 			sling_attack_follow();
 			break;
+		case PlayerState.PAIN:
+			pain();
+			break;
 	}
+}
+
+function to_pain() {
+	state_timer = global.player_pain_frames;
+	current_state = PlayerState.PAIN;
+}
+function pain() {
+	if state_timer <= 0 {
+		GoToPlayerIdle();
+		return;
+	}
+	state_timer --;
 }
 
 function check_falling() {
