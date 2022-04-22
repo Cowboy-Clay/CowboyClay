@@ -815,14 +815,13 @@ function PlayerGetHit()
 	if invulnerable return;
 	if armed
 	{
-		vspeed -= 15;
-		if obj_Moose.x > x hspeed = - 20;
-		else hspeed = 20;
+		knock_away_from(id,obj_Moose.x, obj_Moose.y, 12);
 		armed = false;
 		h = -1;
 		if obj_Moose.x < x h = 1;
 		obj_player_sword.PlayerSwordFling(h,-1.67,17);
 		MakePlayerInvulnerable();
+		to_pain();
 	}
 	else
 	{
