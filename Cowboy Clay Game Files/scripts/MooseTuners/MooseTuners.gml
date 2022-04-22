@@ -48,6 +48,8 @@ global.moose_invulTime = 180;
 
 global.moose_blockDistance = 300;
 
+global.moose_stun_time = 160;
+
 // Animations
 
 // Idle
@@ -95,7 +97,7 @@ global.moose_animation_chargeAnti_disarmed = spr_moose_chargeAnti_empty;
 global.moose_animation_charge = spr_moose_charge;
 global.moose_animation_charge_helmless = spr_moose_charge_noHelm;
 global.moose_animation_charge_disarmed = spr_moose_charge_empty;
-	global.moose_animation_charge_FPI = 12;
+	global.moose_animation_charge_FPI = 8;
 	global.moose_animation_charge_type = AnimationType.LOOP;
 
 

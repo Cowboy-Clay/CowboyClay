@@ -9,16 +9,16 @@ if place_meeting(x,y,obj_player_hitbox) && obj_player_hitbox.sprite_index != spr
 {
 	// If you are invuln nothing happens
 	if variable_instance_exists(obj_Moose.id, "invuln") && variable_instance_get(obj_Moose.id, "invuln") == true {
-		return;
+		
 	}
 	
 	// check for matching attacks and blocks
-	if (get_instance_hi_block(obj_Moose.id) && get_instance_hi_attack(obj_player.id)) ||
+	else if (get_instance_hi_block(obj_Moose.id) && get_instance_hi_attack(obj_player.id)) ||
 	(get_instance_lo_block(obj_Moose.id) && get_instance_lo_attack(obj_player.id)) {
 		// succesful block recoil
 		knock_away_from(obj_player,x,y+400,15);
-		return;
-	}
+		
+	}else {
 	
 	// Check for hit box overlap
 	with (obj_enemy_hitbox) {
@@ -31,4 +31,23 @@ if place_meeting(x,y,obj_player_hitbox) && obj_player_hitbox.sprite_index != spr
 	
 	// Take an actual hit
 	obj_Moose.MooseGetHit();
+	}
+}
+
+if place_meeting(x,y,obj_player_projectile) {
+	if obj_player_projectile.y < y - 100 {
+		// Hi projectile
+		if get_instance_hi_block(obj_Moose) {
+	instance_destroy(instance_nearest(x,y,obj_player_projectile));
+			return;
+		}
+	} else {
+		// Lo projectile
+		if get_instance_lo_block(obj_Moose) {
+			instance_destroy(instance_nearest(x,y,obj_player_projectile));
+			return;
+		}
+	}
+	instance_destroy(instance_nearest(x,y,obj_player_projectile));
+	obj_Moose.to_stun();
 }
