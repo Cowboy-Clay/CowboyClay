@@ -604,7 +604,7 @@ function update_animation() {
 			break;
 		case MooseState.WANDER:
 			var a = armor > 0 ? global.moose_animation_wander : (armed==true ? global.moose_animation_wander_helmless : global.moose_animation_wander_disarmed);
-			if !(wanderCounter >= wandersPerIdle) && armor > 0 {
+			if armor > 0 {
 				a = global.moose_animation_walk_blockLo;
 			}
 			SetMooseAnimation(a, global.moose_animation_wander_FPI, global.moose_animation_wander_type);
