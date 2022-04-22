@@ -8,14 +8,14 @@
   "collisionTolerance": 0,
   "swfPrecision": 2.525,
   "bbox_left": 0,
-  "bbox_right": 125,
+  "bbox_right": 129,
   "bbox_top": 0,
-  "bbox_bottom": 145,
+  "bbox_bottom": 85,
   "HTile": false,
   "VTile": false,
   "For3D": false,
-  "width": 126,
-  "height": 146,
+  "width": 130,
+  "height": 86,
   "textureGroupId": {
     "name": "Default",
     "path": "texturegroups/Default",
@@ -24,12 +24,12 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"dbaada97-b04d-4866-9bfd-08f9760cfda9","path":"sprites/spr_envi_bridgePlank/spr_envi_bridgePlank.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"dbaada97-b04d-4866-9bfd-08f9760cfda9","path":"sprites/spr_envi_bridgePlank/spr_envi_bridgePlank.yy",},"LayerId":{"name":"5bdc1a9d-d478-4b45-a32a-47b455ec93e3","path":"sprites/spr_envi_bridgePlank/spr_envi_bridgePlank.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_envi_bridgePlank","path":"sprites/spr_envi_bridgePlank/spr_envi_bridgePlank.yy",},"resourceVersion":"1.0","name":"dbaada97-b04d-4866-9bfd-08f9760cfda9","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"5cb4a64c-dba6-43d1-85f7-8bed6e835eb8","path":"sprites/spr_envi_bushTile2/spr_envi_bushTile2.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"5cb4a64c-dba6-43d1-85f7-8bed6e835eb8","path":"sprites/spr_envi_bushTile2/spr_envi_bushTile2.yy",},"LayerId":{"name":"8ce49d91-c731-4b8b-a980-ad428d098726","path":"sprites/spr_envi_bushTile2/spr_envi_bushTile2.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_envi_bushTile2","path":"sprites/spr_envi_bushTile2/spr_envi_bushTile2.yy",},"resourceVersion":"1.0","name":"5cb4a64c-dba6-43d1-85f7-8bed6e835eb8","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
-    "spriteId": {"name":"spr_envi_bridgePlank","path":"sprites/spr_envi_bridgePlank/spr_envi_bridgePlank.yy",},
+    "spriteId": {"name":"spr_envi_bushTile2","path":"sprites/spr_envi_bushTile2/spr_envi_bushTile2.yy",},
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 30.0,
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"5ac85839-1576-410a-8346-d81ffd28601c","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"dbaada97-b04d-4866-9bfd-08f9760cfda9","path":"sprites/spr_envi_bridgePlank/spr_envi_bridgePlank.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"f136fa86-9174-475d-b6c0-05822b0e4f8b","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"5cb4a64c-dba6-43d1-85f7-8bed6e835eb8","path":"sprites/spr_envi_bushTile2/spr_envi_bushTile2.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
@@ -58,14 +58,14 @@
     "yorigin": 0,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"spr_envi_bridgePlank","path":"sprites/spr_envi_bridgePlank/spr_envi_bridgePlank.yy",},
+    "parent": {"name":"spr_envi_bushTile2","path":"sprites/spr_envi_bushTile2/spr_envi_bushTile2.yy",},
     "resourceVersion": "1.4",
-    "name": "spr_envi_bridgePlank",
+    "name": "spr_envi_bushTile2",
     "tags": [],
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"5bdc1a9d-d478-4b45-a32a-47b455ec93e3","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"8ce49d91-c731-4b8b-a980-ad428d098726","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": null,
   "parent": {
@@ -73,7 +73,7 @@
     "path": "folders/Sprites/Environment.yy",
   },
   "resourceVersion": "1.0",
-  "name": "spr_envi_bridgePlank",
+  "name": "spr_envi_bushTile2",
   "tags": [],
   "resourceType": "GMSprite",
 }
