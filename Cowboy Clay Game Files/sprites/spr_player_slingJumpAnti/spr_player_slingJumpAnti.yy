@@ -63,7 +63,7 @@
     "backdropXOffset": 0.0,
     "backdropYOffset": 0.0,
     "xorigin": 188,
-    "yorigin": 153,
+    "yorigin": 152,
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_player_slingJumpAnti","path":"sprites/spr_player_slingJumpAnti/spr_player_slingJumpAnti.yy",},
