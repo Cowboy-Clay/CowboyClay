@@ -36,5 +36,11 @@ if place_meeting(x,y,obj_enemy_hitbox) && obj_enemy_hitbox.sprite_index != noone
 	if obj_player.current_state == PlayerState.BLOCK {
 		obj_player.GoToPlayerIdle();
 	}
-	obj_player.PlayerGetHit();
+	
+	if obj_Moose.armed {
+		obj_player.PlayerGetHit();
+	} else {
+		knock_away_from(obj_player ,obj_Moose.x, obj_Moose.y, 12);
+		obj_player.to_pain();
+	}
 }

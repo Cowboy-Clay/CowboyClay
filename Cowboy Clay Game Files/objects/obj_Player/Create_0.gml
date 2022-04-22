@@ -1107,6 +1107,9 @@ function update_animation() {
 		case PlayerState.DEAD:
 			a = global.player_animation_death;
 			break;
+		case PlayerState.PAIN:
+			a = armed == true ? global.player_animation_pain : global.player_animation_pain_disarmed;
+			break;
 	}
 	if a == noone {
 		show_debug_message("No animation was found in global declarations.");

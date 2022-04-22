@@ -95,8 +95,8 @@ global.moose_animation_chargeAnti_disarmed = spr_moose_chargeAnti_empty;
 global.moose_animation_charge = spr_moose_charge;
 global.moose_animation_charge_helmless = spr_moose_charge_noHelm;
 global.moose_animation_charge_disarmed = spr_moose_charge_empty;
-	global.moose_animation_charge_FPI = 1;
-	global.moose_animation_charge_type = AnimationType.FIRST_FRAME;
+	global.moose_animation_charge_FPI = 12;
+	global.moose_animation_charge_type = AnimationType.LOOP;
 
 
 //Hit
