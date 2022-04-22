@@ -660,8 +660,8 @@ function walk()
 		hspeed += curAc;
 	}
 	
-	if hspeed > 0 && keyboard_check(global.keybind_right) && !keyboard_check(global.keybind_face) facing = Direction.RIGHT;
-	else if hspeed < 0 && keyboard_check(global.keybind_left) && !keyboard_check(global.keybind_face) facing = Direction.LEFT;
+	if hspeed > 0 && keyboard_check(global.keybind_right) && !keyboard_check(global.keybind_face) && basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 facing = Direction.RIGHT;
+	else if hspeed < 0 && keyboard_check(global.keybind_left) && !keyboard_check(global.keybind_face) && basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 facing = Direction.LEFT;
 	
 	var max_speed = global.player_maxWalkSpeed;
 	if basic_attack_charge_timer > 0 || sling_attack_charge_timer > 0 {
