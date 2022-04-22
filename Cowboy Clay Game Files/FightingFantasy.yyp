@@ -260,6 +260,7 @@
     {"id":{"name":"spr_mech_pressurePlate2","path":"sprites/spr_mech_pressurePlate2/spr_mech_pressurePlate2.yy",},"order":1,},
     {"id":{"name":"spr_player_throw","path":"sprites/spr_player_throw/spr_player_throw.yy",},"order":13,},
     {"id":{"name":"spr_moose_slideAnti_empty","path":"sprites/spr_moose_slideAnti_empty/spr_moose_slideAnti_empty.yy",},"order":32,},
+    {"id":{"name":"spr_controls_xbox","path":"sprites/spr_controls_xbox/spr_controls_xbox.yy",},"order":13,},
     {"id":{"name":"spr_moose_charge_hurtbox","path":"sprites/spr_moose_charge_hurtbox/spr_moose_charge_hurtbox.yy",},"order":82,},
     {"id":{"name":"spr_player_slingFollow","path":"sprites/spr_player_slingFollow/spr_player_slingFollow.yy",},"order":74,},
     {"id":{"name":"spr_envi_woodPlank3","path":"sprites/spr_envi_woodPlank3/spr_envi_woodPlank3.yy",},"order":14,},
