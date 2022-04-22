@@ -4,7 +4,7 @@ instance_create_layer(0,0,layer, obj_enemy_hitbox);
 instance_create_layer(0,0,layer, obj_enemy_hurtbox);
 instance_create_layer(0,0,layer,obj_enemy_sword);
 
-enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT, BLOCK, LOCK, DEAD, PULLING, LUNGE_ANTI, LUNGE, STAB_ANTI, STAB, JUMP_ANTI, JUMP, DIVE_ANTI, DIVE, STUCK, SPIN };
+enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT, BLOCK, LOCK, DEAD, PULLING, LUNGE_ANTI, LUNGE, STAB_ANTI, STAB, JUMP_ANTI, JUMP, DIVE_ANTI, DIVE, STUCK, SPIN, PROJECTILE_ANTI, PROJECTILE, PROJECTILE_FOLLOW};
 
 time_limit_jump = 240;
 
@@ -158,10 +158,30 @@ function MooseStateBasedActions()
 		case MooseState.SPIN:
 			spin();
 			break;
+		case MooseState.PROJECTILE_ANTI:
+			projectile_anti();
+			break;
+		case MooseState.PROJECTILE:
+			projectile();
+			break;
 	}
 }
 
 function choose_attack() {
+	var r = random(5);
+	if r < 1 {
+		to_projectile_anti();
+	} else if r < 2 {
+		MooseIdleToChargeAnti();
+	} else if r < 3 {
+		to_lunge_anti();
+	} else if r < 4 {
+		to_jump_anti();
+	} else {
+		MooseIdleToSlideAnti();
+	}
+	return;
+	
 	// toward the player
 	if (wanderDir == Direction.LEFT && obj_player.x < x) || (wanderDir == Direction.RIGHT && obj_player.x > x) {
 		// Far
@@ -355,6 +375,45 @@ function spin() {
 	}
 }
 #endregion
+
+function to_projectile_anti() {
+	current_state = MooseState.PROJECTILE_ANTI;
+}
+function projectile_anti() {
+	if obj_player.x < x {
+		hspeed += global.moose_wanderAccel;
+		if collision_check_edge(x,y,spr_enemy_collision, Direction.RIGHT, collision_mask) {
+			to_projectile();
+			return;
+		}
+	} else {
+		hspeed -= global.moose_wanderAccel;
+		if collision_check_edge(x,y,spr_enemy_collision, Direction.LEFT, collision_mask) {
+			to_projectile();
+			return;
+		}
+	}
+}
+function to_projectile() {
+	current_state = MooseState.PROJECTILE;
+	state_timer = 90;
+	var furthest = obj_player.x < x ? -1400 : 1400;
+	var nearest = obj_player.x < x ? -200 : 200;
+	var projectile_count = 6;
+	var blank = floor(random(projectile_count));
+	for (var i = 0; i < projectile_count; i++) {
+		if i == blank continue;
+		var inst = instance_create_depth(x,y,-100,obj_moose_projectile);
+		inst.start_x = x;
+		inst.start_y = y;
+		inst.arc_width = lerp(nearest, furthest, i/projectile_count);
+		inst.arc_height = -600;
+	}
+}
+function projectile() {
+	show_debug_message(state_timer);
+	if state_timer <= 0 MooseWanderToIdle();
+}
 
 function MooseCharge()
 {

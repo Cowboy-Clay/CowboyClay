@@ -102,6 +102,7 @@
     {"id":{"name":"spr_moose_slideAnti_hitbox","path":"sprites/spr_moose_slideAnti_hitbox/spr_moose_slideAnti_hitbox.yy",},"order":34,},
     {"id":{"name":"spr_controls","path":"sprites/spr_controls/spr_controls.yy",},"order":8,},
     {"id":{"name":"obj_enemy_attackEffect","path":"objects/obj_enemy_attackEffect/obj_enemy_attackEffect.yy",},"order":0,},
+    {"id":{"name":"obj_moose_projectile","path":"objects/obj_moose_projectile/obj_moose_projectile.yy",},"order":7,},
     {"id":{"name":"get_lo_attack","path":"scripts/get_lo_attack/get_lo_attack.yy",},"order":3,},
     {"id":{"name":"spr_moose_chargeAnti_noHelm","path":"sprites/spr_moose_chargeAnti_noHelm/spr_moose_chargeAnti_noHelm.yy",},"order":54,},
     {"id":{"name":"spr_box","path":"sprites/spr_box/spr_box.yy",},"order":3,},
