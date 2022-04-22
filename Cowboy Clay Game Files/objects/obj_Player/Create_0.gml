@@ -321,6 +321,7 @@ function sling_attack_follow() {
 }
 
 function check_blocks() {
+	if !armed return;
 	if keyboard_check_pressed(global.keybind_block) {
 		if keyboard_check(global.keybind_up) && !keyboard_check(global.keybind_down) {
 			hiblock = 1;

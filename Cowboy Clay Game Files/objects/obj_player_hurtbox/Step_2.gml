@@ -14,7 +14,8 @@ if place_meeting(x,y,obj_enemy_hitbox) && obj_enemy_hitbox.sprite_index != noone
 	
 	// check for matching attacks and blocks
 	if (get_instance_hi_block(obj_player) && get_instance_hi_attack(obj_Moose)) ||
-	(get_instance_lo_block(obj_player) && get_instance_lo_attack(obj_Moose)) {
+	(get_instance_lo_block(obj_player) && get_instance_lo_attack(obj_Moose) && 
+	((obj_player.facing == Direction.LEFT && obj_Moose.x < obj_player.x) || (obj_player.facing == Direction.RIGHT && obj_player.x < obj_Moose.x))) {
 		// succesful block recoil
 		obj_player.to_block_follow(true);
 		knock_away_from(obj_Moose,x,y,15);
