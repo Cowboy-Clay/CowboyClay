@@ -17,9 +17,9 @@ for (i = 0; i < width; i ++)
 {
 	for (j = 0; j < height; j++)
 	{
-		if tilemap_get_at_pixel(tiles, starting_x + i*increment, starting_y + j*increment)
+		if tilemap_get_at_pixel(tiles, starting_x + i*tile_width, starting_y + j*tile_height)
 		{
-			var inst = instance_create_depth(starting_x + i*increment, starting_y + j*increment, 0, obj_tile_coll);
+			var inst = instance_create_depth(starting_x + i*tile_width, starting_y + j*tile_height, 0, obj_tile_coll);
 			inst.image_xscale = 1 * tile_width_multi;
 			inst.image_yscale = 1 * tile_height_multi;
 		}
