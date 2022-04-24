@@ -791,6 +791,8 @@ function MooseGetHit()
 		MakeMooseInvulnerable();
 		current_state = MooseState.HIT;
 		wanderCounter = 0;
+		var helm = instance_create_layer(x,y,layer, obj_moose_helmet);
+		helm.activate(obj_player.x < x ? Direction.RIGHT : Direction.LEFT);
 	} else if armed {
 		y-= 2;
 		vspeed -= 20;
