@@ -268,6 +268,7 @@ function attack_cancel() {
 	}
 }
 function to_attack_cancel() {
+	instance_create_depth(x,y,depth+10, obj_question_mark);
 	audio_play_sound(sfx_clay_confused, 10, false);
 	state_timer = global.player_attack_cancel_frames;
 	current_state = PlayerState.ATTACK_CHARGE_CANCEL;
@@ -378,7 +379,10 @@ function block() {
 }
 function to_block_follow(success) {
 	show_debug_message(success);
-	if !success audio_play_sound(sfx_clay_confused,10,false);
+	if !success {
+		instance_create_depth(x,y,depth+10, obj_question_mark);
+		audio_play_sound(sfx_clay_confused,10,false);
+	}
 	current_state = PlayerState.BLOCK_FOLLOW;
 	block_success = success;
 	state_timer = success ? global.player_block_success_frames : global.player_block_failure_frames;

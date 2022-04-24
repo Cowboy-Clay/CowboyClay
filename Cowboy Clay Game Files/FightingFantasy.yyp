@@ -300,6 +300,7 @@
     {"id":{"name":"sfx_sword_plunge","path":"sounds/sfx_sword_plunge/sfx_sword_plunge.yy",},"order":2,},
     {"id":{"name":"obj_tile_coll","path":"objects/obj_tile_coll/obj_tile_coll.yy",},"order":0,},
     {"id":{"name":"spr_moose_stabAnti_noHelm","path":"sprites/spr_moose_stabAnti_noHelm/spr_moose_stabAnti_noHelm.yy",},"order":58,},
+    {"id":{"name":"obj_question_mark","path":"objects/obj_question_mark/obj_question_mark.yy",},"order":6,},
     {"id":{"name":"spr_eff_walkDust","path":"sprites/spr_eff_walkDust/spr_eff_walkDust.yy",},"order":8,},
     {"id":{"name":"obj_sceneControl_test","path":"objects/obj_sceneControl_test/obj_sceneControl_test.yy",},"order":0,},
     {"id":{"name":"stripe","path":"sprites/stripe/stripe.yy",},"order":17,},

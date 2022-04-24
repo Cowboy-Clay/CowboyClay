@@ -38,7 +38,7 @@
     "spriteId": {"name":"spr_player_questionMark","path":"sprites/spr_player_questionMark/spr_player_questionMark.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 0.0,
+    "playbackSpeed": 20.0,
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
