@@ -326,6 +326,7 @@ function sling_attack_anti() {
 	}
 }
 function to_sling_attack_swing() {
+	audio_play_sound(sfx_clay_sling_attack, 5, false);
 	current_state = PlayerState.SLING_SWING;
 	state_timer = global.player_sling_swing_frames;
 	// SPAWN PROJECTILE

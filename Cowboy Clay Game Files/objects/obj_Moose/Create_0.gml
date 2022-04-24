@@ -790,6 +790,7 @@ function MooseInvuln()
 	if invuln == false return;
 	invulnTimer --;
 	visible = ceil(invulnTimer/7)%2;
+	visible = !visible;
 	if invulnTimer <= 0
 	{
 		invuln = false;
