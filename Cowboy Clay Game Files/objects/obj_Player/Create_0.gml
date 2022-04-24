@@ -61,7 +61,7 @@ global.player_jump_buffer_frames = 20;
 
 #region Basic Attack Variables
 basic_attack_charge_timer = 0;
-global.player_basic_attack_charge_min = 20;
+global.player_basic_attack_charge_min = 45;
 global.player_attack_cancel_frames = 20;
 global.player_attackAntiFrames = 2; // # of frames the attack anti is shown
 global.player_attackSwingFrames = 10;
@@ -70,6 +70,7 @@ attackTimer = 0; // Frame counter to determine how long the player has been in e
 #endregion
 sling_attack_charge_timer = 0;
 global.player_sling_attack_charge_min = 0;
+global.player_sling_attack_charge_full = 80;
 global.player_sling_anti_frames = 2;
 global.player_sling_swing_frames = 6;
 global.player_sling_follow_frames = 16;
@@ -234,7 +235,7 @@ function PlayerStateBasedMethods()
 }
 
 function to_pain() {
-	hitstun(.3);
+	hitstun(.25);
 	state_timer = global.player_pain_frames;
 	current_state = PlayerState.PAIN;
 }
@@ -312,12 +313,13 @@ function sling_attack_charge() {
 		sling_attack_charge_timer = 0;
 	} else if sling_attack_charge_timer > global.player_sling_attack_charge_min && !keyboard_check(global.keybind_sling) {
 		show_debug_message("release sling good");
+		to_sling_attack_anti(sling_attack_charge_timer / global.player_sling_attack_charge_full);
 		sling_attack_charge_timer = 0;
-		to_sling_attack_anti();
 	}
 }
 
-function to_sling_attack_anti() {
+function to_sling_attack_anti(charge_percent) {
+	sling_attack_charge_percent = charge_percent;
 	current_state = PlayerState.SLING_ANTI;
 	special_fall = 2;
 	state_timer = global.player_sling_anti_frames;
@@ -336,6 +338,7 @@ function to_sling_attack_swing() {
 	if vspeed > 0 vspeed *= 0.2;
 	var i = instance_create_depth(x,y,-100,obj_player_projectile);
 	i.facing = facing;
+	i.h = lerp(i.h/6, i.h, clamp(sling_attack_charge_percent,0,1));
 }
 function sling_attack_swing() {
 	state_timer --;
@@ -853,7 +856,7 @@ function PlayerGetHit()
 	}
 	else
 	{
-		hitstun(.7);
+		hitstun(.3);
 		if obj_Moose.x > x hspeed = - 20;
 		else hspeed = 20;
 		vspeed = -20

@@ -51,7 +51,7 @@ global.moose_invulTime = 180;
 
 global.moose_blockDistance = 300;
 
-global.moose_stun_time = 160;
+global.moose_stun_time = 90;
 
 // Animations
 
