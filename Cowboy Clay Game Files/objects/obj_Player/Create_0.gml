@@ -1157,7 +1157,8 @@ function update_animation() {
 function check_frame_sounds() {
 	if sprite_index == global.player_animation_walk[0] || sprite_index == global.player_animation_walk_sling_charge[0] || sprite_index == global.player_animation_walk_sword_charge[0] || sprite_index == global.player_animation_walk_disarmed[0] || sprite_index == global.player_animation_walk_sling_charge_disarmed[0]{
 		if image_index == 2{
-			instance_create_depth(x,y,depth-100, obj_player_walk_dust).image_xscale = facing == Direction.RIGHT ? 1 : -1;
+			if abs(hspeed) >= 3
+				instance_create_depth(x,y,depth-100, obj_player_walk_dust).image_xscale = facing == Direction.RIGHT ? 1 : -1;
 			audio_play_sound(sfx_clay_walk_disarmed, 10, false);
 			
 			return;
@@ -1165,14 +1166,12 @@ function check_frame_sounds() {
 	}
 	if sprite_index == global.player_animation_strastep[0] || sprite_index == global.player_animation_strastep_disarmed[0] || sprite_index == global.player_animation_strastep_sword_charge[0] {
 		if image_index == 1 || image_index == 2 {
-			instance_create_depth(x,y,depth-100, obj_player_walk_dust).image_xscale = facing == Direction.RIGHT ? 1 : -1;
 			audio_play_sound(sfx_clay_walk_disarmed, 10, false);
 			return;
 		}
 	}
 	if sprite_index == global.player_animation_strastep_sling_charge[0] || sprite_index == global.player_animation_backstep_sling_charge[0] || sprite_index == global.player_animation_backstep_sling_charge_disarmed[0]{
 		if image_index == 2{
-			instance_create_depth(x,y,depth-100, obj_player_walk_dust).image_xscale = facing == Direction.RIGHT ? 1 : -1;
 			audio_play_sound(sfx_clay_walk_disarmed, 10, false);
 			return;
 		}

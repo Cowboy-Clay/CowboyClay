@@ -47,7 +47,7 @@
     "spriteId": {"name":"spr_eff_walkDust","path":"sprites/spr_eff_walkDust/spr_eff_walkDust.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 15.0,
+    "playbackSpeed": 30.0,
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
