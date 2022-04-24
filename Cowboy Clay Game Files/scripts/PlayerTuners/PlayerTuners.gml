@@ -38,7 +38,7 @@ global.player_animation_jump_sling_charge_disarmed = [spr_player_aimJump_disarme
 
 global.player_animation_fall = [spr_player_falling, 4, AnimationType.LOOP];
 global.player_animation_fall_disarmed = [spr_player_falling_disarmed, 4, AnimationType.LOOP];
-global.player_animation_fall_sword_charge = [spr_player_charging, 1, AnimationType.FIRST_FRAME];
+global.player_animation_fall_sword_charge = [spr_player_chargeJump, 6, AnimationType.FIRST_FRAME];
 global.player_animation_fall_sling_charge = [spr_player_aimFalling, 6, AnimationType.LOOP];
 global.player_animation_fall_sling_charge_disarmed = [spr_player_aimFalling_disarmed, 6, AnimationType.LOOP];
 

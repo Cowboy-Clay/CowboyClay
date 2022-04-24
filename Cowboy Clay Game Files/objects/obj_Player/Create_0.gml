@@ -69,8 +69,8 @@ attackTimer = 0; // Frame counter to determine how long the player has been in e
 sling_attack_charge_timer = 0;
 global.player_sling_attack_charge_min = 0;
 global.player_sling_anti_frames = 2;
-global.player_sling_swing_frames = 10;
-global.player_sling_follow_frames = 10;
+global.player_sling_swing_frames = 6;
+global.player_sling_follow_frames = 16;
 #region Kick Attack Variables
 global.player_kickAntiFrames = 2;
 global.player_kickSwingFrames = 10;
