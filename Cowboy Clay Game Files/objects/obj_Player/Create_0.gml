@@ -173,7 +173,10 @@ function PlayerStateBasedMethods()
 			check_falling();
 			break;
 		case PlayerState.FALLING:
-			if !check_falling() GoToPlayerIdle();
+			if !check_falling(){
+				audio_play_sound(sfx_clay_land, 5, false);
+				GoToPlayerIdle();
+			}
 			sling_attack_charge();
 			basic_attack_charge();
 			if basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 {
@@ -265,6 +268,7 @@ function attack_cancel() {
 	}
 }
 function to_attack_cancel() {
+	audio_play_sound(sfx_clay_confused, 10, false);
 	state_timer = global.player_attack_cancel_frames;
 	current_state = PlayerState.ATTACK_CHARGE_CANCEL;
 }
@@ -373,6 +377,7 @@ function block() {
 }
 function to_block_follow(success) {
 	show_debug_message(success);
+	if !success audio_play_sound(sfx_clay_confused,10,false);
 	current_state = PlayerState.BLOCK_FOLLOW;
 	block_success = success;
 	state_timer = success ? global.player_block_success_frames : global.player_block_failure_frames;
@@ -405,6 +410,7 @@ function GoToPlayerJumpAnti()
 }
 function GoToPlayerJump()
 {
+	audio_play_sound(sfx_clay_jump, 5, false);
 	vspeed -= jumpTimer >= global.player_maxJumpWindup ? global.player_maxVertJumpForce : global.player_minVertJumpForce;
 	if OneWalkKeyHeld() && keyboard_check(vk_right)
 	{
