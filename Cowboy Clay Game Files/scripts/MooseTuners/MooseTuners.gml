@@ -13,6 +13,9 @@ global.moose_wanderAccel = .8;
 global.moose_wanderMaxSpeed = 1.4;
 global.moose_wanderFriction = .7;
 
+global.moose_attack_close_distance = 350;
+global.moose_attack_far_distance = 950;
+global.moose_attack_safe_distance = 600;
 global.moose_attack_distance_threshold = 500;
 
 // Stab

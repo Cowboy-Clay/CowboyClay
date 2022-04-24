@@ -171,50 +171,58 @@ function MooseStateBasedActions()
 }
 
 function choose_attack() {
-	if !armed {
-		MooseIdleToChargeAnti();
-		return;
-	}
-	
-	var r = random(5);
-	if r < 1 {
-		to_projectile_anti();
-	} else if r < 2 {
-		MooseIdleToChargeAnti();
-	} else if r < 3 {
-		to_lunge_anti();
-	} else if r < 4 {
-		to_jump_anti();
-	} else {
-		MooseIdleToSlideAnti();
-	}
-	return;
-	
-	// toward the player
-	if (wanderDir == Direction.LEFT && obj_player.x < x) || (wanderDir == Direction.RIGHT && obj_player.x > x) {
-		// Far
-		if distance_to_object(obj_player) >= global.moose_attack_distance_threshold {
-			// Charge attack
-			MooseIdleToChargeAnti();
-		}
-		// Near
-		else {
-			// Stab
-			to_lunge_anti();
-		}
-	}
-	// away from player
-	else {
-		// Far
-		if distance_to_object(obj_player) >= global.moose_attack_distance_threshold {
-			// Jump
-			to_jump_anti();
-		}
-		// Near
-		else {
-			// Slide
-			MooseIdleToSlideAnti();
-		}
+	var dist_to_player = distance_to_object(obj_player);
+	switch get_phase() {
+		case 1:
+			if dist_to_player < global.moose_attack_close_distance {
+				to_stab_anti();
+				return;
+			}
+			if dist_to_player > global.moose_attack_far_distance {
+				MooseIdleToChargeAnti();
+				return;
+			}
+			var r = random(1);
+			if r < 1/3 {
+				MooseIdleToChargeAnti();
+				return;
+			} else {
+				MooseIdleToSlideAnti();
+				return;
+			}
+			break;
+		case 2:
+			if dist_to_player < global.moose_attack_close_distance {
+				to_stab_anti();
+				return;
+			}
+			
+			var r = random(1);
+			if r < 4/7 {
+				MooseIdleToSlideAnti();
+				return;
+			} else {
+				to_projectile_anti();
+			}
+			break;
+		case 3:
+			if dist_to_player > global.moose_attack_safe_distance {
+				MooseIdleToChargeAnti();
+				return;
+			}
+			
+			var back = obj_player.x < x ? Direction.RIGHT : Direction.LEFT;
+			var dist_to_wall distance_to_wall(back);
+			
+			if dist_to_wall < global.moose_attack_close_distance {
+				MooseIdleToSlideAnti();
+				return;
+			} else {
+				to_projectile_anti();
+				return;
+			}
+			
+			break;
 	}
 }
 
@@ -884,4 +892,21 @@ function message_state() {
 	}
 	
 	show_debug_message(s);
+}
+
+function get_phase() {
+	if armor > 0 return 1;
+	else if armed return 2;
+	else return 3;
+}
+
+function retalliation() {
+}
+
+function distance_to_wall(d) {
+	var cur = d == Direction.RIGHT ? 100 : -100;
+	while collision_line_mask(x,y,x+d,y,collision_mask,false,true) {
+		d += d == Direction.RIGHT ? 100 : -100;
+	}
+	return d;
 }

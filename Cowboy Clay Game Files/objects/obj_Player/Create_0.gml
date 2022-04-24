@@ -228,6 +228,7 @@ function PlayerStateBasedMethods()
 }
 
 function to_pain() {
+	hitstun(.3);
 	state_timer = global.player_pain_frames;
 	current_state = PlayerState.PAIN;
 }
@@ -812,7 +813,7 @@ function PlayerPickupSword()
 
 function PlayerGetHit()
 {
-	if invulnerable return;
+	if invulnerable || current_state == PlayerState.DEAD return;
 	if armed
 	{
 		knock_away_from(id,obj_Moose.x, obj_Moose.y, 12);
@@ -825,6 +826,7 @@ function PlayerGetHit()
 	}
 	else
 	{
+		hitstun(.7);
 		if obj_Moose.x > x hspeed = - 20;
 		else hspeed = 20;
 		vspeed = -20
