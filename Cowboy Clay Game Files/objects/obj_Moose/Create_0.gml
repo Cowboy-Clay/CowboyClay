@@ -212,7 +212,7 @@ function choose_attack() {
 			}
 			
 			var back = obj_player.x < x ? Direction.RIGHT : Direction.LEFT;
-			var dist_to_wall distance_to_wall(back);
+			var dist_to_wall = distance_to_wall(back);
 			
 			if dist_to_wall < global.moose_attack_close_distance {
 				MooseIdleToSlideAnti();
