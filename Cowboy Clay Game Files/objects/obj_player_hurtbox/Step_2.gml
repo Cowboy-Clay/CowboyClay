@@ -38,9 +38,11 @@ if place_meeting(x,y,obj_enemy_hitbox) && obj_enemy_hitbox.sprite_index != noone
 	}
 	
 	if obj_Moose.armed {
+		hitstun(.3);
 		obj_player.PlayerGetHit();
 	} else {
 		knock_away_from(obj_player ,obj_Moose.x, obj_Moose.y, 12);
+		hitstun(.3);
 		obj_player.to_pain();
 	}
 }
@@ -49,5 +51,6 @@ if place_meeting(x,y,obj_moose_projectile) {
 	if obj_player.current_state == PlayerState.BLOCK {
 		obj_player.GoToPlayerIdle();
 	}
+	hitstun(.3);
 	obj_player.PlayerGetHit();
 }

@@ -31,6 +31,7 @@ if place_meeting(x,y,obj_player_hitbox) && obj_player_hitbox.sprite_index != spr
 	
 	// Take an actual hit
 	obj_Moose.MooseGetHit();
+	hitstun(.3);
 	}
 }
 
