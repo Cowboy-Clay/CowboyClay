@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_player_questionMark",
-    "path": "sprites/spr_player_questionMark/spr_player_questionMark.yy",
+    "name": "spr_eff_hiBlockShine",
+    "path": "sprites/spr_eff_hiBlockShine/spr_eff_hiBlockShine.yy",
   },
   "solid": false,
   "visible": true,
@@ -21,9 +21,8 @@
   "physicsKinematic": false,
   "physicsShapePoints": [],
   "eventList": [
-    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":7,"eventType":7,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
@@ -32,7 +31,7 @@
     "path": "folders/Objects/Player/Effects.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_question_mark",
+  "name": "obj_player_hi_block_spark",
   "tags": [],
   "resourceType": "GMObject",
 }
