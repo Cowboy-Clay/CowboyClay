@@ -8,8 +8,8 @@
   "type": 0,
   "bitDepth": 1,
   "audioGroupId": {
-    "name": "audiogroup_default",
-    "path": "audiogroups/audiogroup_default",
+    "name": "sfx_elevator",
+    "path": "audiogroups/sfx_elevator",
   },
   "soundFile": "sfx_elevator_rising.ogg",
   "duration": 1.2,

@@ -8,8 +8,8 @@
   "type": 0,
   "bitDepth": 1,
   "audioGroupId": {
-    "name": "audiogroup_default",
-    "path": "audiogroups/audiogroup_default",
+    "name": "sfx_clay",
+    "path": "audiogroups/sfx_clay",
   },
   "soundFile": "sfx_clay_walk_disarmed.ogg",
   "duration": 0.375011,

@@ -1,6 +1,8 @@
 /// @description Code to be executed when player is created
 collision_mask = [obj_Ground, obj_Wall, obj_plate, obj_door,obj_box, obj_elevator, obj_tile_coll];
-	
+
+audio_group_load(sfx_clay);
+
 #region Master Variables
 global.paused = false; // true if the game should be paused
 global.showDebugMessages = true; // set to true if you want to print debug messages
@@ -272,6 +274,11 @@ function basic_attack_charge() {
 		basic_attack_charge_timer = 0;
 		return;
 	}
+	
+	if basic_attack_charge_timer == global.player_basic_attack_charge_min {
+		audio_play_sound(sfx_sword_anti, 10, false);
+	}
+	
 	if basic_attack_charge_timer == 0 && keyboard_check_pressed(global.keybind_attack) && sling_attack_charge_timer == 0{
 		basic_attack_charge_timer ++;
 	} else if basic_attack_charge_timer > 0 && keyboard_check(global.keybind_attack) {
@@ -281,6 +288,7 @@ function basic_attack_charge() {
 		basic_attack_charge_timer = 0;
 	} else if basic_attack_charge_timer > global.player_basic_attack_charge_min && !keyboard_check(global.keybind_attack) {
 		basic_attack_charge_timer = 0;
+		audio_play_sound(sfx_sword_swing, 10, false);
 		GoToPlayerBasicAttack();
 	}
 }
@@ -853,6 +861,7 @@ function PlayPlayerAnimation()
 			if image_index < 0 {
 				image_index = sprite_get_number(sprite_index) - 1;
 			}
+			check_frame_sounds();
 			return;
 		}
 		image_index ++;
@@ -861,6 +870,7 @@ function PlayPlayerAnimation()
 			if currentAnimType == AnimationType.LOOP image_index = 0;
 			else if currentAnimType == AnimationType.HOLD image_index = sprite_get_number(sprite_index) - 1;
 		}
+		check_frame_sounds();
 	}
 }
 
@@ -1124,3 +1134,23 @@ function update_animation() {
 	SetPlayerAnimation(a[0], a[1], a[2]);
 }
 
+function check_frame_sounds() {
+	if sprite_index == global.player_animation_walk[0] || sprite_index == global.player_animation_walk_sling_charge[0] || sprite_index == global.player_animation_walk_sword_charge[0] || sprite_index == global.player_animation_walk_disarmed[0] || sprite_index == global.player_animation_walk_sling_charge_disarmed[0]{
+		if image_index == 2{
+			audio_play_sound(sfx_clay_walk_disarmed, 10, false);
+			return;
+		}
+	}
+	if sprite_index == global.player_animation_strastep[0] || sprite_index == global.player_animation_strastep_disarmed[0] || sprite_index == global.player_animation_strastep_sword_charge[0] {
+		if image_index == 1 || image_index == 2 {
+			audio_play_sound(sfx_clay_walk_disarmed, 10, false);
+			return;
+		}
+	}
+	if sprite_index == global.player_animation_strastep_sling_charge[0] || sprite_index == global.player_animation_backstep_sling_charge[0] || sprite_index == global.player_animation_backstep_sling_charge_disarmed[0]{
+		if image_index == 2{
+			audio_play_sound(sfx_clay_walk_disarmed, 10, false);
+			return;
+		}
+	}
+}

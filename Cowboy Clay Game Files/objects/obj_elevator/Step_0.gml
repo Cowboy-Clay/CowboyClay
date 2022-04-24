@@ -20,6 +20,9 @@ switch(current_state)
 			}
 		}
 		fall();
+		
+		if audio_is_playing(sfx_elevator_falling) == false audio_play_sound(sfx_elevator_falling,25,true);
+		if audio_is_playing(sfx_elevator_rising) audio_stop_sound(sfx_elevator_rising);
 		break;
 	case elevator_state.rising:
 		rise();
@@ -31,12 +34,18 @@ switch(current_state)
 				image_index = 0;
 			}
 		}
+		if audio_is_playing(sfx_elevator_rising) == false audio_play_sound(sfx_elevator_rising,25,true);
+		if audio_is_playing(sfx_elevator_falling) audio_stop_sound(sfx_elevator_falling);
 		break;
 	case elevator_state.holding:
 		hold();
+		if audio_is_playing(sfx_elevator_rising) audio_stop_sound(sfx_elevator_rising);
+		if audio_is_playing(sfx_elevator_falling) audio_stop_sound(sfx_elevator_falling);
 		break;
 	case elevator_state.sitting:
 		sit();
+		if audio_is_playing(sfx_elevator_rising) audio_stop_sound(sfx_elevator_rising);
+		if audio_is_playing(sfx_elevator_falling) audio_stop_sound(sfx_elevator_falling);
 		break;
 }
 

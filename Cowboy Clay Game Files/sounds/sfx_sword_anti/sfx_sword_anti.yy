@@ -8,8 +8,8 @@
   "type": 0,
   "bitDepth": 1,
   "audioGroupId": {
-    "name": "sfx",
-    "path": "audiogroups/sfx",
+    "name": "sfx_clay",
+    "path": "audiogroups/sfx_clay",
   },
   "soundFile": "sfx_sword_anti.wav",
   "duration": 0.460272,

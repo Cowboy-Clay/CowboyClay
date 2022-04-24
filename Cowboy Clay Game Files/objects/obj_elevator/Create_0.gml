@@ -1,3 +1,7 @@
+if audio_group_is_loaded(sfx_elevator) == false {
+	audio_group_load(sfx_elevator);
+}
+
 enum elevator_state { falling, rising, holding, broken, sitting };
 current_state = elevator_state.sitting;
 
