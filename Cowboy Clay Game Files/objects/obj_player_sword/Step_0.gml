@@ -1,5 +1,8 @@
 if current_state == SwordState.FLYING
 {
+	if audio_is_playing(sfx_clay_sword_spin) == false {
+		audio_play_sound(sfx_clay_sword_spin, 50, true);
+	}
 	Gravity(global.sword_grav, global.sword_grav_max,sprite_index,collision_mask);
 	//sc = CheckSwordCollisions();
 	//if sc == 1 PlayerSwordStickInWall(SwordState.STUCK_WALL_LEFT);
@@ -16,6 +19,9 @@ if current_state == SwordState.FLYING
 }
 else
 {
+	if audio_is_playing(sfx_clay_sword_spin) {
+		audio_stop_sound(sfx_clay_sword_spin);
+	}
 	vspeed = 0;
 	hspeed = 0;
 }

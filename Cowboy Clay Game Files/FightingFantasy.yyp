@@ -353,6 +353,7 @@
     {"id":{"name":"spr_envi_bridgeTileset","path":"sprites/spr_envi_bridgeTileset/spr_envi_bridgeTileset.yy",},"order":42,},
     {"id":{"name":"spr_player_walk_armed","path":"sprites/spr_player_walk_armed/spr_player_walk_armed.yy",},"order":41,},
     {"id":{"name":"spr_player_damaged","path":"sprites/spr_player_damaged/spr_player_damaged.yy",},"order":88,},
+    {"id":{"name":"sfx_clay_sword_spin","path":"sounds/sfx_clay_sword_spin/sfx_clay_sword_spin.yy",},"order":5,},
     {"id":{"name":"spr_moose_jumping_hitbox","path":"sprites/spr_moose_jumping_hitbox/spr_moose_jumping_hitbox.yy",},"order":97,},
     {"id":{"name":"spr_moose_burp","path":"sprites/spr_moose_burp/spr_moose_burp.yy",},"order":127,},
     {"id":{"name":"sfx_sword_retrieve","path":"sounds/sfx_sword_retrieve/sfx_sword_retrieve.yy",},"order":5,},
