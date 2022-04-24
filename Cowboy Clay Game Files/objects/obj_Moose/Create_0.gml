@@ -821,8 +821,9 @@ function MooseGetHit()
 		MakeMooseInvulnerable();
 		current_state = MooseState.HIT;
 		wanderCounter = 0;
-		var helm = instance_create_layer(x,y,layer, obj_moose_helmet);
+		var helm = instance_create_depth(x,y-100,depth-100, obj_moose_helmet);
 		helm.activate(obj_player.x < x ? Direction.RIGHT : Direction.LEFT);
+		audio_play_sound(sfx_moose_dehelm, 2, false);
 	} else if armed {
 		y-= 2;
 		vspeed -= 20;

@@ -373,6 +373,7 @@
     {"id":{"name":"spr_moose_jumping_hitbox","path":"sprites/spr_moose_jumping_hitbox/spr_moose_jumping_hitbox.yy",},"order":97,},
     {"id":{"name":"spr_moose_burp","path":"sprites/spr_moose_burp/spr_moose_burp.yy",},"order":127,},
     {"id":{"name":"sfx_sword_retrieve","path":"sounds/sfx_sword_retrieve/sfx_sword_retrieve.yy",},"order":3,},
+    {"id":{"name":"sfx_moose_dehelm","path":"sounds/sfx_moose_dehelm/sfx_moose_dehelm.yy",},"order":13,},
     {"id":{"name":"get_instance_lo_block","path":"scripts/get_instance_lo_block/get_instance_lo_block.yy",},"order":7,},
     {"id":{"name":"spr_envi_bushTileset","path":"sprites/spr_envi_bushTileset/spr_envi_bushTileset.yy",},"order":43,},
     {"id":{"name":"sfx_moose_block","path":"sounds/sfx_moose_block/sfx_moose_block.yy",},"order":7,},
