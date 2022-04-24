@@ -1,3 +1,5 @@
+audio_group_load(sfx_moose);
+
 instance_create_layer(0,0,layer, obj_enemy_attackEffect);
 instance_create_layer(0,0,layer, obj_enemy_blockbox);
 instance_create_layer(0,0,layer, obj_enemy_hitbox);
@@ -248,6 +250,7 @@ function get_gravity() {
 
 function to_stun() {
 	current_state = MooseState.STUN;
+	audio_play_sound(sfx_moose_stun, 4, false);
 	state_timer = global.moose_stun_time;
 }
 function stun() {
@@ -295,6 +298,7 @@ function stab_anti() {
 	if state_timer <= 0 to_stab();
 }
 function to_stab() {
+	audio_play_sound(sfx_moose_swing, 2, false);
 	current_state = MooseState.STAB;
 	state_timer = global.moose_stab_frames;
 }
@@ -313,6 +317,7 @@ function jump_anti() {
 	if state_timer <= 0 to_jump();
 }
 function to_jump() {
+	audio_play_sound(sfx_moose_jump, 2, false);
 	current_state = MooseState.JUMP;
 	state_timer = 0;
 	jump_target = [obj_player.x, y-global.moose_jump_y_height];
@@ -355,6 +360,7 @@ function dive_anti() {
 	if state_timer <= 0 to_dive();
 }
 function to_dive() {
+	audio_play_sound(sfx_moose_plunge, 2, false);
 	current_state = MooseState.DIVE;
 }
 function dive() {
@@ -398,6 +404,7 @@ function to_spin() {
 function spin() {
 	if collision_check_edge(x,y,spr_enemy_collision,Direction.DOWN,collision_mask) {
 		MooseWanderToIdle();
+		audio_play_sound(sfx_moose_land, 3, false);
 	}
 }
 #endregion
@@ -503,12 +510,14 @@ function MooseToBlock()
 function MooseChargeToWait()
 {
 	obj_enemy_sword.falling = true;
-	
+	audio_play_sound(sfx_moose_crash,2,false);
 	current_state = MooseState.WAITING;
 }
 
 function MooseIdleToChargeAnti()
 {
+	audio_play_sound(sfx_moose_charge_anti,2, false);
+	
 	if !armed {
 		if obj_enemy_sword.x < x facing = Direction.LEFT;
 		else facing = Direction.RIGHT;
@@ -524,6 +533,7 @@ function MooseIdleToChargeAnti()
 
 function MooseChargeAntiToCharge()
 {
+	audio_play_sound(sfx_moose_charge, 2, false);
 	current_state = MooseState.CHARGE;
 }
 
@@ -574,6 +584,8 @@ function MooseWaitToIdle()
 
 function MooseIdleToSlideAnti()
 {
+	audio_play_sound(sfx_moose_slide_anti, 2, false);
+	
 	state_timer = global.moose_slideAntiDuration;
 	
 	MooseFacePlayer();
@@ -583,6 +595,8 @@ function MooseIdleToSlideAnti()
 
 function MooseSlideAntiToSlide()
 {
+	audio_play_sound(sfx_moose_slide, 2, false);
+	
 	if facing == Direction.LEFT hspeed = -global.moose_slideImpulse;
 	else hspeed = global.moose_slideImpulse;
 	
@@ -723,6 +737,7 @@ function PlayMooseAnimation()
 			if currentAnimType == AnimationType.LOOP image_index = 0;
 			else if currentAnimType == AnimationType.HOLD image_index = sprite_get_number(sprite_index) - 1;
 		}
+		check_frame_sounds();
 	}
 }
 
@@ -909,4 +924,17 @@ function distance_to_wall(d) {
 		d += d == Direction.RIGHT ? 100 : -100;
 	}
 	return d;
+}
+
+function check_frame_sounds() {
+	if sprite_index == spr_moose_walk || sprite_index == spr_moose_walk_disarmedHelm || sprite_index == spr_moose_walk_empty || sprite_index == spr_moose_walk_hiBlock || sprite_index == spr_moose_walk_noHelm || sprite_index == spr_moose_walkBlock || sprite_index == spr_moose_walkBlock_noHelm{
+		if image_index == 0 {
+			audio_play_sound(sfx_moose_step_0, 10, false);
+			return;
+		} 
+		if image_index == 2 {
+			audio_play_sound(sfx_moose_step_1, 10, false);
+			return;
+		}
+	}
 }

@@ -964,6 +964,7 @@ function PlayerInvulnerability()
 	if invulnerable == false return;
 	invulnerabilityTimer --;
 	visible = ceil(invulnerabilityTimer/7)%2;
+	visible = !visible;
 	if invulnerabilityTimer <= 0 
 	{
 		visible = true;
