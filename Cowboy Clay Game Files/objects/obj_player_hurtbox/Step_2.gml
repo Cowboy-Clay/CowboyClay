@@ -17,6 +17,7 @@ if place_meeting(x,y,obj_enemy_hitbox) && obj_enemy_hitbox.sprite_index != noone
 	(get_instance_lo_block(obj_player) && get_instance_lo_attack(obj_Moose) && 
 	((obj_player.facing == Direction.LEFT && obj_Moose.x < obj_player.x) || (obj_player.facing == Direction.RIGHT && obj_player.x < obj_Moose.x))) {
 		// succesful block recoil
+		audio_play_sound(sfx_clay_block, 5, false);
 		obj_player.to_block_follow(true);
 		knock_away_from(obj_Moose,x,y,15);
 		//knock_away_from(obj_player,obj_Moose.x, obj_Moose.y, 15)
@@ -26,6 +27,7 @@ if place_meeting(x,y,obj_enemy_hitbox) && obj_enemy_hitbox.sprite_index != noone
 	// Check for hit box overlap
 	with (obj_player_hitbox) {
 		if place_meeting(x,y,obj_enemy_hitbox) {
+			audio_play_sound(sfx_clay_block, 5, false);
 			//clash recoil
 			knock_away_from(obj_player,obj_Moose.x,obj_Moose.y+400,15);
 			return;

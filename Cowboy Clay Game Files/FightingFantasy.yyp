@@ -317,6 +317,7 @@
     {"id":{"name":"spr_envi_crack1","path":"sprites/spr_envi_crack1/spr_envi_crack1.yy",},"order":34,},
     {"id":{"name":"hitstun","path":"scripts/hitstun/hitstun.yy",},"order":18,},
     {"id":{"name":"spr_player_chargeJumpAnti","path":"sprites/spr_player_chargeJumpAnti/spr_player_chargeJumpAnti.yy",},"order":84,},
+    {"id":{"name":"sfx_clay_block","path":"sounds/sfx_clay_block/sfx_clay_block.yy",},"order":6,},
     {"id":{"name":"spr_player_walk","path":"sprites/spr_player_walk/spr_player_walk.yy",},"order":27,},
     {"id":{"name":"tset_wood","path":"tilesets/tset_wood/tset_wood.yy",},"order":0,},
     {"id":{"name":"spr_moose_stab_hitbox","path":"sprites/spr_moose_stab_hitbox/spr_moose_stab_hitbox.yy",},"order":91,},
