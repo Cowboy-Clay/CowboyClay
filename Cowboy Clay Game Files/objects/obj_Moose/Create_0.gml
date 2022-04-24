@@ -249,12 +249,18 @@ function get_gravity() {
 }
 
 function to_stun() {
+	if current_state == MooseState.STUN {
+		audio_play_sound(sfx_moose_grunt_0,5, false);
+		to_idle();
+		return;
+	}
 	current_state = MooseState.STUN;
 	audio_play_sound(sfx_moose_stun, 4, false);
 	state_timer = global.moose_stun_time;
 }
 function stun() {
 	if state_timer < 0 {
+		audio_play_sound(sfx_moose_grunt_0,5, false);
 		to_idle();
 	}
 }

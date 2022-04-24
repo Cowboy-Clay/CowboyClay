@@ -254,6 +254,7 @@
     {"id":{"name":"sfx_moose_slide","path":"sounds/sfx_moose_slide/sfx_moose_slide.yy",},"order":6,},
     {"id":{"name":"sfx_moose_step_0","path":"sounds/sfx_moose_step_0/sfx_moose_step_0.yy",},"order":10,},
     {"id":{"name":"Menu","path":"rooms/Menu/Menu.yy",},"order":3,},
+    {"id":{"name":"sfx_moose_grunt_0","path":"sounds/sfx_moose_grunt_0/sfx_moose_grunt_0.yy",},"order":9,},
     {"id":{"name":"spr_player_otherRun","path":"sprites/spr_player_otherRun/spr_player_otherRun.yy",},"order":91,},
     {"id":{"name":"spr_moose_plungeStuck","path":"sprites/spr_moose_plungeStuck/spr_moose_plungeStuck.yy",},"order":100,},
     {"id":{"name":"spr_title","path":"sprites/spr_title/spr_title.yy",},"order":6,},

@@ -41,12 +41,14 @@ if place_meeting(x,y,obj_player_projectile) {
 	if obj_player_projectile.y < y - 100 {
 		// Hi projectile
 		if get_instance_hi_block(obj_Moose) {
-	instance_destroy(instance_nearest(x,y,obj_player_projectile));
+			audio_play_sound(sfx_moose_block, 5, false);
+			instance_destroy(instance_nearest(x,y,obj_player_projectile));
 			return;
 		}
 	} else {
 		// Lo projectile
 		if get_instance_lo_block(obj_Moose) {
+			audio_play_sound(sfx_moose_block, 5, false);
 			instance_destroy(instance_nearest(x,y,obj_player_projectile));
 			return;
 		}
