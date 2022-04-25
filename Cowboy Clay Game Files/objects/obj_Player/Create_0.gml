@@ -235,7 +235,7 @@ function PlayerStateBasedMethods()
 }
 
 function to_pain() {
-	hitstun(.25);
+	//hitstun(.);
 	state_timer = global.player_pain_frames;
 	current_state = PlayerState.PAIN;
 }
@@ -848,8 +848,8 @@ function PlayerGetHit()
 	{
 		knock_away_from(id,obj_Moose.x, obj_Moose.y, 12);
 		armed = false;
-		h = -1;
-		if obj_Moose.x < x h = 1;
+		h = 1;
+		if obj_Moose.x < x h = -1;
 		obj_player_sword.PlayerSwordFling(h,-1.67,17);
 		MakePlayerInvulnerable();
 		to_pain();

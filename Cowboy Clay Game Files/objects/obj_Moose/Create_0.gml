@@ -179,8 +179,6 @@ function MooseStateBasedActions()
 }
 
 function choose_attack() {
-	to_jump_anti();
-	return;
 	
 	var dist_to_player = distance_to_object(obj_player);
 	switch get_phase() {
