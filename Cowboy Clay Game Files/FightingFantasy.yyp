@@ -381,6 +381,7 @@
     {"id":{"name":"sfx_sword_retrieve","path":"sounds/sfx_sword_retrieve/sfx_sword_retrieve.yy",},"order":3,},
     {"id":{"name":"obj_player_land_dust","path":"objects/obj_player_land_dust/obj_player_land_dust.yy",},"order":5,},
     {"id":{"name":"sfx_moose_dehelm","path":"sounds/sfx_moose_dehelm/sfx_moose_dehelm.yy",},"order":13,},
+    {"id":{"name":"obj_tumbleweed","path":"objects/obj_tumbleweed/obj_tumbleweed.yy",},"order":32,},
     {"id":{"name":"get_instance_lo_block","path":"scripts/get_instance_lo_block/get_instance_lo_block.yy",},"order":7,},
     {"id":{"name":"spr_envi_bushTileset","path":"sprites/spr_envi_bushTileset/spr_envi_bushTileset.yy",},"order":43,},
     {"id":{"name":"sfx_moose_block","path":"sounds/sfx_moose_block/sfx_moose_block.yy",},"order":7,},
