@@ -1,5 +1,5 @@
 /// @description Code to be executed when player is created
-collision_mask = [obj_Ground, obj_Wall, obj_plate, obj_door,obj_box, obj_elevator, obj_tile_coll];
+collision_mask = [obj_wall_breakable, obj_Ground, obj_Wall, obj_plate, obj_door,obj_box, obj_elevator, obj_tile_coll];
 
 audio_group_load(sfx_clay);
 
