@@ -31,7 +31,7 @@ global.moose_jump_anti_frames = 10;
 global.moose_jump_y_height = 500;
 global.moose_jump_x_speed = 20;
 global.moose_jump_y_speed = 10;
-global.moose_dive_anti_frames = 45;
+global.moose_dive_anti_frames = 0;
 global.moose_dive_speed = 20;
 global.moose_stuck_frames = 60;
 global.moose_spin_x_speed = 10;
@@ -52,6 +52,13 @@ global.moose_invulTime = 180;
 global.moose_blockDistance = 300;
 
 global.moose_stun_time = 90;
+
+global.moose_too_many_head_jumps = 10;
+global.moose_player_jump_charge_too_long_time = 240;
+global.moose_player_basic_charge_too_long_time = 220;
+global.moose_player_sling_charge_too_long_time = 200;
+global.moose_player_too_close_distance = 500;
+global.moose_player_too_close_time = 240;
 
 // Animations
 
@@ -204,3 +211,8 @@ global.moose_animation_staggered_helmless = spr_moose_staggered_helmless;
 global.moose_animation_staggered_disarmed = spr_moose_staggered_empty;
 	global.moose_animation_staggered_FPI = 20;
 	global.moose_animation_staggered_type = AnimationType.LOOP;
+	
+global.moose_animation_stuck = spr_moose_plungeStuck;
+global.moose_animation_stuck_helmless = spr_moose_plungeStuck_helmless
+	global.moose_animation_stuck_FPI = 15;
+	global.moose_animation_stuck_type = AnimationType.LOOP;

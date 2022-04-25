@@ -7,6 +7,7 @@ if !global.paused
 		UpdateMooseState();
 		MooseStateBasedActions();
 		MoosePickupSword();
+		retalliation();
 	}
 	else if current_state == MooseState.LOCK
 	{

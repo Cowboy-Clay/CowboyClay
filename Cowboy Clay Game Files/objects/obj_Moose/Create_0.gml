@@ -11,6 +11,7 @@ enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING,
 time_limit_jump = 240;
 
 collision_mask = [obj_tile_coll, obj_door, obj_plate, obj_elevator];
+collision_mask = [obj_tile_coll, obj_door, obj_plate, obj_elevator];
 
 current_state = MooseState.IDLE;
 armed = true;
@@ -39,6 +40,11 @@ jump_direction = Direction.LEFT;
 currentFPI = 1;
 currentAnimType = AnimationType.FIRST_FRAME;
 animFrameCounter = 0;
+
+// Retalliation
+player_too_close_timer = 0;
+head_jump_counter = 0;
+
 
 if start_pulling current_state = MooseState.PULLING;
 
@@ -173,6 +179,9 @@ function MooseStateBasedActions()
 }
 
 function choose_attack() {
+	to_jump_anti();
+	return;
+	
 	var dist_to_player = distance_to_object(obj_player);
 	switch get_phase() {
 		case 1:
@@ -241,8 +250,11 @@ function get_gravity() {
 		case MooseState.JUMP:
 			return 0;
 			break;
-		case MooseState.DIVE:
+		case MooseState.DIVE_ANTI:
 			return 0;
+			break;
+		case MooseState.DIVE:
+			return .5;
 			break;
 	}
 	return 1;
@@ -348,7 +360,7 @@ function jump() {
 	// State ends when we are at the right position
 	// Or if we've collided in both directions
 	if (x == jump_target[0] && y == jump_target[1]) ||
-	((jump_direction == Direction.LEFT && collision_check_edge(x,y,spr_enemy_collision,Direction.LEFT,collision_mask)) || (jump_direction == Direction.RIGHT &&collision_check_edge(x,y,spr_enemy_collision,Direction.RIGHT,collision_mask)) &&
+	((jump_direction == Direction.LEFT && collision_check_edge(x,y,spr_enemy_collision,Direction.LEFT,collision_mask)) || (jump_direction == Direction.RIGHT &&collision_check_edge(x,y,spr_enemy_collision,Direction.RIGHT,collision_mask)) ||
 	collision_check_edge(x,y,spr_enemy_collision,Direction.UP,collision_mask)) {
 		to_dive_anti();
 	}
@@ -368,9 +380,9 @@ function dive_anti() {
 function to_dive() {
 	audio_play_sound(sfx_moose_plunge, 2, false);
 	current_state = MooseState.DIVE;
+	vspeed = global.moose_dive_speed;
 }
 function dive() {
-	vspeed = global.moose_dive_speed;
 	with obj_enemy_hitbox {
 		if place_meeting(x,y,obj_player_hurtbox) {
 			with obj_Moose {
@@ -380,7 +392,14 @@ function dive() {
 			}
 		}
 	}
-	if collision_check_edge(x,y,spr_enemy_collision,Direction.DOWN,collision_mask) {
+	if collision_check_edge(x,y+10,spr_enemy_collision,Direction.DOWN,collision_mask) {
+		while !collision_check_edge(x,y,spr_enemy_collision, Direction.DOWN, collision_mask) {
+			y++;
+		}
+		// Spawn shockwaves
+		spawn_shockwave(depth-100,x,y+150,Direction.LEFT, 45, 200, Curve.ROOT);
+		spawn_shockwave(depth-100,x,y+150,Direction.RIGHT, 45, 200, Curve.ROOT);
+		
 		if armor > 0 {
 			to_stuck();
 			return;
@@ -713,8 +732,8 @@ function update_animation() {
 			SetMooseAnimation(a, global.moose_animation_plunging_FPI, global.moose_animation_plunging_type);
 			break;
 		case MooseState.STUCK:
-			var a = armor > 0 ? global.moose_animation_plunging : (armed==true ? global.moose_animation_plunging_helmless : global.moose_animation_plunging_disarmed);
-			SetMooseAnimation(a, global.moose_animation_plunging_FPI, global.moose_animation_plunging_type);
+			var a = armor > 0 ? global.moose_animation_stuck : global.moose_animation_stuck_helmless;
+			SetMooseAnimation(a, global.moose_animation_stuck_FPI, global.moose_animation_stuck_type);
 			break;
 		case MooseState.SPIN:
 			var a = armor > 0 ? global.moose_animation_spinning : (armed==true ? global.moose_animation_spinning_helmless : global.moose_animation_spinning_disarmed);
@@ -924,14 +943,86 @@ function get_phase() {
 }
 
 function retalliation() {
+	switch(current_state) {
+		case MooseState.CHARGE: return;break;
+		case MooseState.CHARGE_ANTI: return;break;
+		case MooseState.DEAD: return; break;
+		case MooseState.DIVE: return; break;
+		case MooseState.DIVE_ANTI: return; break;
+		case MooseState.HIT: return; break;
+		case MooseState.JUMP: return; break;
+		case MooseState.JUMP_ANTI: return; break;
+		case MooseState.LOCK: return; break;
+		case MooseState.LUNGE: return; break;
+		case MooseState.LUNGE_ANTI: return; break;
+		case MooseState.PROJECTILE: return; break;
+		case MooseState.PROJECTILE_ANTI: return; break;
+		case MooseState.PROJECTILE_FOLLOW: return; break;
+		case MooseState.SLIDE: return; break;
+		case MooseState.SLIDE_ANTI: return; break;
+		case MooseState.SPIN: return; break;
+		case MooseState.STAB: return; break;
+		case MooseState.STAB_ANTI: return; break;
+		case MooseState.STUCK: return; break;
+		case MooseState.STUN: return; break;
+		case MooseState.WAITING: return; break;
+	}
+	
+	var dist_to_player = distance_to_object(obj_player);
+	
+	// Player too close
+	if dist_to_player < global.moose_player_too_close_distance {
+		player_too_close_timer ++;
+		if player_too_close_timer > global.moose_player_too_close_time {
+			player_too_close_timer = 0;
+			var p = obj_player.x < x ? distance_to_wall(Direction.RIGHT) : distance_to_wall(Direction.LEFT);
+			
+			if p > 600 {
+				to_projectile_anti();
+				return;
+			} else {
+				//to_burp_anti();
+				to_projectile_anti();
+				return;
+			}
+		}
+	} else {
+		player_too_close_timer = 0;
+	}
+	// Basic attack charge too long
+	if obj_player.basic_attack_charge_timer > global.moose_player_basic_charge_too_long_time {
+		to_projectile_anti();
+		return;
+	}
+	// Sling attack charge too long
+	if obj_player.sling_attack_charge_timer > global.moose_player_sling_charge_too_long_time {
+		to_jump_anti();
+		return;
+	}
+	// Jump charge too long
+	if obj_player.jumpTimer > global.moose_player_jump_charge_too_long_time {
+		MooseIdleToSlideAnti();
+		return;
+	}
+	
+	// head jumps
+	if collision_check_edge(x,y-10,spr_enemy_collision, Direction.UP, [obj_player]){
+		head_jump_counter++;
+		if head_jump_counter >= global.moose_too_many_head_jumps {
+			to_spin();
+		}
+	}
+	if head_jump_counter > 0 && floor(current_time/500) % 2  == 0 {
+		head_jump_counter --;
+	}
 }
 
 function distance_to_wall(d) {
 	var cur = d == Direction.RIGHT ? 100 : -100;
 	while collision_line_mask(x,y,x+d,y,collision_mask,false,true) {
-		d += d == Direction.RIGHT ? 100 : -100;
+		cur += d == Direction.RIGHT ? 100 : -100;
 	}
-	return d;
+	return cur;
 }
 
 function check_frame_sounds() {
