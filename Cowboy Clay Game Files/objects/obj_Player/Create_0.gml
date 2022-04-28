@@ -78,7 +78,7 @@ global.player_sling_follow_frames = 16;
 global.player_kickAntiFrames = 5;
 global.player_kickSwingFrames = 25;
 global.player_kickFollowFrames = 6;
-global.player_kick_force = 5;
+global.player_kick_force = 10;
 #endregion
 
 global.player_sheathFrames = 40;
@@ -252,6 +252,7 @@ function to_kick_anti() {
 	kick_anti();
 }
 function kick_anti() {
+	hspeed *= 0.2;
 	if state_timer <= 0 {
 		to_kick_swing();
 		return;
