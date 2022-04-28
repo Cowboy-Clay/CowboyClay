@@ -12,9 +12,7 @@ collision_mask = [obj_Ground, obj_Wall, obj_plate, obj_door,obj_box, obj_tile_co
 cooldown = 30;
 cooldown_timer = 0;
 
-impulse_speed = 8;
-impulse_speed = 8;
-impulse_speed = 8;
+impulse_speed = impact_speed;
 curr_speed = 0;
 time_before_slow = 30;
 rising_timer = 0;
