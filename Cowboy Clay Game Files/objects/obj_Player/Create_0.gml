@@ -75,9 +75,10 @@ global.player_sling_anti_frames = 2;
 global.player_sling_swing_frames = 6;
 global.player_sling_follow_frames = 16;
 #region Kick Attack Variables
-global.player_kickAntiFrames = 2;
-global.player_kickSwingFrames = 10;
-global.player_kickFollowFrames = 2;
+global.player_kickAntiFrames = 5;
+global.player_kickSwingFrames = 25;
+global.player_kickFollowFrames = 6;
+global.player_kick_force = 5;
 #endregion
 
 global.player_sheathFrames = 40;
@@ -117,7 +118,7 @@ layer_create(-300, "PlayerTools");
 instance_create_layer(x,y,"PlayerTools", obj_player_attackEffect);
 instance_create_layer(x,y,"PlayerTools", obj_player_hitbox);
 instance_create_layer(x,y,"PlayerTools", obj_player_hurtbox);
-instance_create_layer(x,y,"PlayerTools", obj_player_sword);
+if startArmed == true instance_create_layer(x,y,"PlayerTools", obj_player_sword);
 instance_create_layer(x,y,"PlayerTools", obj_cam_position);
 
 #region  State Machine
@@ -139,6 +140,10 @@ function PlayerStateBasedMethods()
 				GoToPlayerJumpAnti();
 				break;
 			}
+			if basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 && keyboard_check_pressed(global.keybind_kick) {
+				to_kick_anti();
+				break;
+			}
 			// Go to walk if you are moving
 			if abs(hspeed) > 0.1 {
 				GoToPlayerWalk();
@@ -153,6 +158,10 @@ function PlayerStateBasedMethods()
 			if check_blocks() && basic_attack_charge_timer == 0 break;
 			if jump_buffer > 0 {
 				GoToPlayerJumpAnti();
+				break;
+			}
+			if basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 && keyboard_check_pressed(global.keybind_kick) {
+				to_kick_anti();
 				break;
 			}
 			if abs(hspeed) <= 0.1 {
@@ -195,10 +204,13 @@ function PlayerStateBasedMethods()
 			PlayerAttack();
 			break;
 		case PlayerState.KICK_ANTI:
+			kick_anti();
 			break;
 		case PlayerState.KICK_SWING:
+			kick_swing();
 			break;
 		case PlayerState.KICK_FOLLOW:
+			kick_follow();
 			break;
 		case PlayerState.DASH_ANTI:
 			break;
@@ -232,6 +244,60 @@ function PlayerStateBasedMethods()
 			pain();
 			break;
 	}
+}
+
+function to_kick_anti() {
+	state_timer = global.player_kickAntiFrames;
+	current_state = PlayerState.KICK_ANTI;
+	kick_anti();
+}
+function kick_anti() {
+	if state_timer <= 0 {
+		to_kick_swing();
+		return;
+	}
+	state_timer--;
+}
+function to_kick_swing() {
+	state_timer = global.player_kickSwingFrames;
+	current_state = PlayerState.KICK_SWING;
+	hspeed += facing == Direction.RIGHT ? global.player_kick_force : -1 * global.player_kick_force;
+	instance_create_depth(x,y,depth-100, obj_player_walk_dust).image_xscale = facing == Direction.RIGHT ? 1 : -1;
+	kick_swing();
+}
+function kick_swing() {
+	if facing == Direction.LEFT &&
+	   collision_check_edge(x,y,spr_player_collision,Direction.LEFT,collision_mask) && 
+	   instance_exists(obj_player_sword) &&
+	   obj_player_sword.current_state == SwordState.STUCK_WALL_LEFT &&
+	   abs(obj_player_sword.x - x) < 200 {
+		obj_player_sword.to_kicked(); 
+	} else if facing == Direction.RIGHT &&
+	          collision_check_edge(x,y,spr_player_collision,Direction.RIGHT, collision_mask) &&
+			  instance_exists(obj_player_sword) &&
+			  obj_player_sword.current_state == SwordState.STUCK_WALL_RIGHT &&
+			  abs(obj_player_sword.x - x) < 200 {
+		obj_player_sword.to_kicked();	  
+	}
+	   
+	
+	if state_timer <= 0 {
+		to_kick_follow();
+		return;
+	}
+	state_timer --;
+}
+function to_kick_follow() {
+	state_timer = global.player_kickFollowFrames;
+	current_state = PlayerState.KICK_FOLLOW;
+	kick_follow();
+}
+function kick_follow() {
+	if state_timer <= 0 {
+		GoToPlayerIdle();
+		return;
+	}
+	state_timer --;
 }
 
 function to_pain() {
@@ -1144,6 +1210,15 @@ function update_animation() {
 			break;
 		case PlayerState.PAIN:
 			a = armed == true ? global.player_animation_pain : global.player_animation_pain_disarmed;
+			break;
+		case PlayerState.KICK_ANTI:
+			a = armed == true ? global.player_animation_kick_anti : global.player_animation_kick_anti_disarmed;
+			break;
+		case PlayerState.KICK_SWING:
+			a = armed == true ? global.player_animation_kick_swing : global.player_animation_kick_swing_disarmed;
+			break;
+		case PlayerState.KICK_FOLLOW:
+			a = armed == true ? global.player_animation_kick_follow : global.player_animation_kick_follow_disarmed;
 			break;
 	}
 	if a == noone {

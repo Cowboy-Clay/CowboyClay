@@ -7,7 +7,7 @@ current_state = elevator_state.sitting;
 
 grounded = false;
 
-collision_mask = [obj_Ground, obj_Wall, obj_plate, obj_door,obj_box, obj_tile_coll];
+collision_mask = [obj_Ground, obj_Wall, obj_plate, obj_door,obj_box, obj_tile_coll, obj_elevatorBlocker];
 
 cooldown = 30;
 cooldown_timer = 0;

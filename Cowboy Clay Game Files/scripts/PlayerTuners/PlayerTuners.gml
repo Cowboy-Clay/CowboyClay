@@ -75,3 +75,12 @@ global.player_animation_block_failure = [spr_player_blockMiss, 1, AnimationType.
 global.player_animation_pain = [spr_player_damaged, 1, AnimationType.FIRST_FRAME];
 global.player_animation_pain_disarmed = [spr_player_damaged_disarmed, 1, AnimationType.FIRST_FRAME];
 global.player_animation_death = [spr_player_death, 4, AnimationType.HOLD];
+
+global.player_animation_kick_anti = [spr_player_kickAnti,1,AnimationType.FIRST_FRAME];
+global.player_animation_kick_anti_disarmed = [spr_player_kickAnti_disarmed,1,AnimationType.FIRST_FRAME];
+
+global.player_animation_kick_swing = [spr_player_kick,1,AnimationType.FIRST_FRAME];
+global.player_animation_kick_swing_disarmed = [spr_player_kick_disarmed,1,AnimationType.FIRST_FRAME];
+
+global.player_animation_kick_follow = [spr_player_kickAnti,1,AnimationType.FIRST_FRAME];
+global.player_animation_kick_follow_disarmed = [spr_player_kickAnti_disarmed,1,AnimationType.FIRST_FRAME];
