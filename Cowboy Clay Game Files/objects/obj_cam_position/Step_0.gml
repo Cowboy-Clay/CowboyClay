@@ -19,5 +19,10 @@ if instance_exists(obj_cam_anchor)
 x = lerp(x,ideal_x,0.1);
 y = lerp(y,ideal_y,0.1);
 
+if x > max_x x = max_x;
+if x < min_x x = min_x;
+if y > max_y y = max_y;
+if y < min_y y = min_y;
+
 camera_set_view_pos(cam,x-camera_get_view_width(cam)/2,y-camera_get_view_height(cam)/2);
 audio_listener_set_position(0,camera_get_view_x(cam),camera_get_view_y(cam),0);
