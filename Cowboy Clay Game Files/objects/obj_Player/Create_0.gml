@@ -856,7 +856,7 @@ function PlayerGetHit()
 	}
 	else
 	{
-		hitstun(.3);
+		hitstun(.0);
 		if obj_Moose.x > x hspeed = - 20;
 		else hspeed = 20;
 		vspeed = -20
