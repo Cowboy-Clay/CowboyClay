@@ -440,9 +440,9 @@ function check_blocks() {
 
 function to_block() {
 	if hiblock == 1 {
-		instance_create_depth(x,y,depth-100, obj_player_hi_block_spark);
+		instance_create_depth(x,y,depth-100, obj_player_hi_block_spark).image_xscale = image_xscale;
 	} else {
-		instance_create_depth(x,y,depth-100, obj_player_lo_block_spark);
+		instance_create_depth(x,y,depth-100, obj_player_lo_block_spark).image_xscale = image_xscale;
 	}
 	current_state = PlayerState.BLOCK;
 	state_timer = global.player_block_frames;
@@ -457,7 +457,7 @@ function block() {
 function to_block_follow(success) {
 	show_debug_message(success);
 	if !success {
-		instance_create_depth(x,y,depth+10, obj_question_mark);
+		instance_create_depth(x,y,depth+10, obj_question_mark).x -= facing == Direction.LEFT ? 100 : 0;
 		audio_play_sound(sfx_clay_confused,10,false);
 	}
 	current_state = PlayerState.BLOCK_FOLLOW;
