@@ -34,6 +34,7 @@ if place_meeting(x,y,obj_player_hitbox) && obj_player_hitbox.sprite_index != spr
 		// Take an actual hit
 		if obj_player.current_state == PlayerState.KICK_SWING {
 			obj_Moose.to_stun();
+			obj_player.GoToPlayerIdle();
 		} else {
 			obj_Moose.MooseGetHit();
 			hitstun(.24);
