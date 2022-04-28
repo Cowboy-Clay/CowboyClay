@@ -1,4 +1,5 @@
-current_state = SwordState.INACTIVE;
+enum SwordState { INACTIVE, FLYING, STUCK_FLOOR, STUCK_WALL_LEFT, STUCK_WALL_RIGHT, KICKED };
+current_state = stuckOnStart ? SwordState.STUCK_FLOOR : SwordState.INACTIVE;
 
 collision_mask = [obj_tile_coll, obj_plate, obj_elevator, obj_box, obj_door];
 
@@ -78,6 +79,9 @@ function SetPlayerSwordRotation()
 		case SwordState.STUCK_WALL_RIGHT:
 			image_angle = 90;
 			break;
+		case SwordState.KICKED:	
+			image_angle = 0;
+			break;
 	}
 }
 
@@ -127,4 +131,27 @@ function teleport_to(xPos,yPos)
 	PlayerSwordStickInGround();
 	x=xPos;
 	y=yPos;
+}
+
+function to_kicked() {
+	if current_state != SwordState.STUCK_WALL_LEFT && current_state != SwordState.STUCK_WALL_RIGHT return;
+	SetSwordAnimation(spr_player_sword,1,AnimationType.FIRST_FRAME);
+	if current_state == SwordState.STUCK_WALL_LEFT {
+		while(collision_check_edge(x,y,sprite_index, Direction.LEFT,collision_mask)) {
+			x++;
+		}
+	} else {
+		while(collision_check_edge(x,y,sprite_index, Direction.RIGHT,collision_mask)) {
+			x--;
+		}
+	}
+	current_state = SwordState.KICKED;
+}
+
+function kicked() {
+	Gravity(global.sword_grav, global.sword_grav_max,sprite_index,collision_mask);
+	if collision_check_edge(x,y,spr_player_sword,Direction.DOWN,collision_mask){
+		PlayerSwordStickInGround();
+		return;
+	}
 }

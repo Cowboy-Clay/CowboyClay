@@ -17,6 +17,9 @@ if current_state == SwordState.FLYING
 	else if collision_check_edge(x+hspeed, y+vspeed, sprite_index, Direction.DOWN, collision_mask)
 		PlayerSwordStickInGround();
 }
+else if current_state == SwordState.KICKED{
+	kicked();
+}
 else
 {
 	if audio_is_playing(sfx_clay_sword_spin) {
