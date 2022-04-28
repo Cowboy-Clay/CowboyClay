@@ -6,6 +6,8 @@ global.playerSprRef =
 	[global.player_animation_sword_swing, spr_player_attackSwing_hitbox, spr_player_collision],
 	[global.player_animation_sword_follow , spr_empty, spr_player_collision],
 	[global.player_animation_sword_hi_swing, spr_player_jumpAttack_Slash, spr_player_collision],
+	[global.player_animation_kick_swing, spr_player_kickHitbox,spr_player_collision],
+	[global.player_animation_kick_swing_disarmed, spr_player_kickHitbox,spr_player_collision],
 ]
 
 function GetPlayerHitBox()

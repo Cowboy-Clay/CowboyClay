@@ -21,19 +21,23 @@ if place_meeting(x,y,obj_player_hitbox) && obj_player_hitbox.sprite_index != spr
 		
 	}else {
 	
-	// Check for hit box overlap
-	with (obj_enemy_hitbox) {
-		if place_meeting(x,y,obj_player_hitbox) {
-			//clash recoil
-			audio_play_sound(sfx_moose_block, 5, false);
-			knock_away_from(obj_Moose, obj_player.x,obj_player.y,5);
-			return;
+		// Check for hit box overlap
+		with (obj_enemy_hitbox) {
+			if place_meeting(x,y,obj_player_hitbox) {
+				//clash recoil
+				audio_play_sound(sfx_moose_block, 5, false);
+				knock_away_from(obj_Moose, obj_player.x,obj_player.y,5);
+				return;
+			}
 		}
-	}
 	
-	// Take an actual hit
-	obj_Moose.MooseGetHit();
-	hitstun(.24);
+		// Take an actual hit
+		if obj_player.current_state == PlayerState.KICK_SWING {
+			obj_Moose.to_stun();
+		} else {
+			obj_Moose.MooseGetHit();
+			hitstun(.24);
+		}
 	}
 }
 
