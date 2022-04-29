@@ -442,6 +442,7 @@
     {"id":{"name":"spr_player_kickAnti","path":"sprites/spr_player_kickAnti/spr_player_kickAnti.yy",},"order":98,},
     {"id":{"name":"spr_moose_struck","path":"sprites/spr_moose_struck/spr_moose_struck.yy",},"order":73,},
     {"id":{"name":"spr_player_aimFalling","path":"sprites/spr_player_aimFalling/spr_player_aimFalling.yy",},"order":56,},
+    {"id":{"name":"spr_player_shootJump_disarmed","path":"sprites/spr_player_shootJump_disarmed/spr_player_shootJump_disarmed.yy",},"order":101,},
     {"id":{"name":"PlayerHitHurtRef","path":"scripts/PlayerHitHurtRef/PlayerHitHurtRef.yy",},"order":4,},
     {"id":{"name":"spr_player_walkStop","path":"sprites/spr_player_walkStop/spr_player_walkStop.yy",},"order":93,},
     {"id":{"name":"spr_envi_window2","path":"sprites/spr_envi_window2/spr_envi_window2.yy",},"order":28,},

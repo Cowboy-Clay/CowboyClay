@@ -24,12 +24,12 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"859289b0-8069-4dc2-91e0-dc5da47c32f9","path":"sprites/spr_player_falling/spr_player_falling.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"859289b0-8069-4dc2-91e0-dc5da47c32f9","path":"sprites/spr_player_falling/spr_player_falling.yy",},"LayerId":{"name":"796183af-da5f-403b-9915-dcebb41ddd56","path":"sprites/spr_player_falling/spr_player_falling.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_player_falling","path":"sprites/spr_player_falling/spr_player_falling.yy",},"resourceVersion":"1.0","name":"859289b0-8069-4dc2-91e0-dc5da47c32f9","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"cb70ee27-2429-4399-a025-1022a7d866d4","path":"sprites/spr_player_falling/spr_player_falling.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"cb70ee27-2429-4399-a025-1022a7d866d4","path":"sprites/spr_player_falling/spr_player_falling.yy",},"LayerId":{"name":"796183af-da5f-403b-9915-dcebb41ddd56","path":"sprites/spr_player_falling/spr_player_falling.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_player_falling","path":"sprites/spr_player_falling/spr_player_falling.yy",},"resourceVersion":"1.0","name":"cb70ee27-2429-4399-a025-1022a7d866d4","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"b3b0e6de-6ab8-4ea7-8335-7920827a9201","path":"sprites/spr_player_falling/spr_player_falling.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"b3b0e6de-6ab8-4ea7-8335-7920827a9201","path":"sprites/spr_player_falling/spr_player_falling.yy",},"LayerId":{"name":"20201672-cdfe-40b6-8e4e-0545301276c6","path":"sprites/spr_player_falling/spr_player_falling.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_player_falling","path":"sprites/spr_player_falling/spr_player_falling.yy",},"resourceVersion":"1.0","name":"b3b0e6de-6ab8-4ea7-8335-7920827a9201","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"9592889e-b6b8-42b6-906a-7cfe18818b14","path":"sprites/spr_player_falling/spr_player_falling.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"9592889e-b6b8-42b6-906a-7cfe18818b14","path":"sprites/spr_player_falling/spr_player_falling.yy",},"LayerId":{"name":"20201672-cdfe-40b6-8e4e-0545301276c6","path":"sprites/spr_player_falling/spr_player_falling.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_player_falling","path":"sprites/spr_player_falling/spr_player_falling.yy",},"resourceVersion":"1.0","name":"9592889e-b6b8-42b6-906a-7cfe18818b14","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"spr_player_falling","path":"sprites/spr_player_falling/spr_player_falling.yy",},
@@ -44,8 +44,8 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"546e6f33-0e33-44af-abd0-1c0c15a6f765","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"859289b0-8069-4dc2-91e0-dc5da47c32f9","path":"sprites/spr_player_falling/spr_player_falling.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
-            {"id":"4cd76afd-2d2b-4bda-abe4-65f475e8a112","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"cb70ee27-2429-4399-a025-1022a7d866d4","path":"sprites/spr_player_falling/spr_player_falling.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"c7987667-5396-42e8-9a39-e0f73169fa24","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"b3b0e6de-6ab8-4ea7-8335-7920827a9201","path":"sprites/spr_player_falling/spr_player_falling.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"39dd9b2d-6e20-4d00-81d3-19e017a659ea","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"9592889e-b6b8-42b6-906a-7cfe18818b14","path":"sprites/spr_player_falling/spr_player_falling.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
@@ -69,7 +69,7 @@
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"796183af-da5f-403b-9915-dcebb41ddd56","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"20201672-cdfe-40b6-8e4e-0545301276c6","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": null,
   "parent": {
