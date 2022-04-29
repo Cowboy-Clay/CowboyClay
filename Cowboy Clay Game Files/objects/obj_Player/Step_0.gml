@@ -1,5 +1,9 @@
 // @description All code run each frame
 
+if keyboard_check_pressed(vk_f11){
+	window_set_fullscreen(!window_get_fullscreen());
+}
+
 if sling_attack_charge_timer > 0 || current_state == PlayerState.SLING_ANTI {
 	if(audio_is_playing(sfx_clay_sling) == false) {
 		audio_play_sound(sfx_clay_sling, 5, true);

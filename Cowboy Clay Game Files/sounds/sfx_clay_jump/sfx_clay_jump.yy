@@ -1,7 +1,7 @@
 {
   "conversionMode": 0,
   "compression": 0,
-  "volume": 0.09,
+  "volume": 0.46,
   "preload": false,
   "bitRate": 128,
   "sampleRate": 44100,

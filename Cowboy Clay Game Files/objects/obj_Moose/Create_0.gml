@@ -741,6 +741,27 @@ function update_animation() {
 			var a = armor > 0 ? spr_moose_staggered : (armed == true ? spr_moose_staggered_helmless : spr_moose_staggered_empty);
 			SetMooseAnimation(a, 6, AnimationType.LOOP);
 			break;
+		case MooseState.PROJECTILE_ANTI:
+			var a = noone;
+			if armor > 0 a = spr_moose_throwAnti;
+			else if armed a = spr_moose_throwAnti_helmless;
+			else a = spr_moose_throwAnti_empty;
+			SetMooseAnimation(a,1,AnimationType.FIRST_FRAME);
+			break;
+		case MooseState.PROJECTILE:
+			var a = noone;
+			if armor > 0 a = spr_moose_throw;
+			else if armed a = spr_moose_throw_helmless;
+			else a = spr_moose_throw_empty;
+			SetMooseAnimation(a,1,AnimationType.FIRST_FRAME);
+			break;
+		case MooseState.PROJECTILE_FOLLOW:
+			var a = noone;
+			if armor > 0 a = spr_moose_throw;
+			else if armed a = spr_moose_throw_helmless;
+			else a = spr_moose_throw_empty;
+			SetMooseAnimation(a,1,AnimationType.FIRST_FRAME);
+			break;
 	}
 }
 function PlayMooseAnimation()
@@ -975,12 +996,12 @@ function retalliation() {
 			player_too_close_timer = 0;
 			var p = obj_player.x < x ? distance_to_wall(Direction.RIGHT) : distance_to_wall(Direction.LEFT);
 			
-			if p > 600 {
+			if p > 300 {
 				to_projectile_anti();
 				return;
 			} else {
 				//to_burp_anti();
-				to_projectile_anti();
+				to_stab_anti();
 				return;
 			}
 		}

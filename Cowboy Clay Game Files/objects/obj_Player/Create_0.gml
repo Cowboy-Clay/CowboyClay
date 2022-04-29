@@ -51,8 +51,8 @@ global.player_dashFollow = 38;
 jumpTimer = 0; // Frame counter to determine how long the player is preparing their jump
 jump_buffer = 0;
 global.player_minJumpWindup = 0; // the min # of frames the player can prepare a jump
-global.player_maxJumpWindup = 60; // the max # of frames the player can prepare a jump
-global.player_minVertJumpForce = 20; // min vertical force applied by a jump
+global.player_maxJumpWindup = 30; // the max # of frames the player can prepare a jump
+global.player_minVertJumpForce = 23.5; // min vertical force applied by a jump
 global.player_maxVertJumpForce = 27.5; // max vertical force applied by a jump
 global.player_minHoriJumpForce = 5; // min horizontal force applied by a jump
 global.player_maxHoriJumpForce = 10; // max horizontal force applied by a jump
@@ -69,7 +69,7 @@ global.player_attackFollowFrames = 15;
 attackTimer = 0; // Frame counter to determine how long the player has been in each attack state
 #endregion
 sling_attack_charge_timer = 0;
-global.player_sling_attack_charge_min = 0;
+global.player_sling_attack_charge_min = 10;
 global.player_sling_attack_charge_full = 80;
 global.player_sling_anti_frames = 2;
 global.player_sling_swing_frames = 6;
@@ -119,7 +119,7 @@ instance_create_layer(x,y,"PlayerTools", obj_player_attackEffect);
 instance_create_layer(x,y,"PlayerTools", obj_player_hitbox);
 instance_create_layer(x,y,"PlayerTools", obj_player_hurtbox);
 if startArmed == true instance_create_layer(x,y,"PlayerTools", obj_player_sword);
-instance_create_layer(x,y,"PlayerTools", obj_cam_position);
+if instance_exists(obj_cam_position) == false instance_create_layer(x,y,"PlayerTools", obj_cam_position);
 
 #region  State Machine
 function PlayerStateBasedMethods()
@@ -349,7 +349,7 @@ function basic_attack_charge() {
 	}
 	
 	if basic_attack_charge_timer == global.player_basic_attack_charge_min {
-		instance_create_depth(x,y,depth-10, obj_player_charge_spark)
+		instance_create_depth(x,y,depth-10, obj_player_charge_spark);
 		audio_play_sound(sfx_sword_anti, 10, false);
 	}
 	
@@ -836,6 +836,9 @@ function PlayerDashCooldown()
 function PlayerJumpAnti()
 {
 	jumpTimer += 1;
+	if jumpTimer < global.player_maxJumpWindup {
+		if instance_exists(obj_player_charge_spark) == false instance_create_depth(x,y,depth-10, obj_player_charge_spark).image_speed = 1.25;
+	}
 	if (jumpTimer > global.player_minJumpWindup && keyboard_check(ord("X")) == false)
 	{
 		GoToPlayerJump();
@@ -922,7 +925,7 @@ function PlayerGetHit()
 	}
 	else
 	{
-		hitstun(.0);
+		//hitstun(.,false);
 		if obj_Moose.x > x hspeed = - 20;
 		else hspeed = 20;
 		vspeed = -20

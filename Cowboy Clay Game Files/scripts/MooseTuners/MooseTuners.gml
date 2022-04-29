@@ -58,7 +58,7 @@ global.moose_player_jump_charge_too_long_time = 240;
 global.moose_player_basic_charge_too_long_time = 220;
 global.moose_player_sling_charge_too_long_time = 200;
 global.moose_player_too_close_distance = 500;
-global.moose_player_too_close_time = 240;
+global.moose_player_too_close_time = 190;
 
 // Animations
 
