@@ -407,6 +407,7 @@
     {"id":{"name":"obj_plate","path":"objects/obj_plate/obj_plate.yy",},"order":1,},
     {"id":{"name":"spr_oldboi","path":"sprites/spr_oldboi/spr_oldboi.yy",},"order":0,},
     {"id":{"name":"spr_moose_jumpAnti","path":"sprites/spr_moose_jumpAnti/spr_moose_jumpAnti.yy",},"order":67,},
+    {"id":{"name":"obj_debugger","path":"objects/obj_debugger/obj_debugger.yy",},"order":35,},
     {"id":{"name":"spr_moose_throw_helmless","path":"sprites/spr_moose_throw_helmless/spr_moose_throw_helmless.yy",},"order":107,},
     {"id":{"name":"spr_eff_chargeSpark","path":"sprites/spr_eff_chargeSpark/spr_eff_chargeSpark.yy",},"order":10,},
     {"id":{"name":"obj_wall_broken","path":"objects/obj_wall_broken/obj_wall_broken.yy",},"order":34,},
@@ -473,8 +474,8 @@
     "children": [],
   },
   "RoomOrderNodes": [
-    {"roomId":{"name":"PlayerTestRoom","path":"rooms/PlayerTestRoom/PlayerTestRoom.yy",},},
     {"roomId":{"name":"FinalLevelDesign","path":"rooms/FinalLevelDesign/FinalLevelDesign.yy",},},
+    {"roomId":{"name":"PlayerTestRoom","path":"rooms/PlayerTestRoom/PlayerTestRoom.yy",},},
     {"roomId":{"name":"LevelDesignRevision","path":"rooms/LevelDesignRevision/LevelDesignRevision.yy",},},
     {"roomId":{"name":"LevelDesignTest","path":"rooms/LevelDesignTest/LevelDesignTest.yy",},},
     {"roomId":{"name":"Menu","path":"rooms/Menu/Menu.yy",},},
