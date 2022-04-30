@@ -838,8 +838,8 @@ function PlayerDashCooldown()
 function PlayerJumpAnti()
 {
 	jumpTimer += 1;
-	if jumpTimer < global.player_maxJumpWindup {
-		if instance_exists(obj_player_charge_spark) == false instance_create_depth(x,y,depth-10, obj_player_charge_spark).image_speed = 1.25;
+	if jumpTimer == global.player_maxJumpWindup {
+		instance_create_depth(x,y,depth-100,obj_player_jump_charge).image_xscale = image_xscale;
 	}
 	if (jumpTimer > global.player_minJumpWindup && button_check(buttons.jump) == false)
 	{
@@ -895,11 +895,6 @@ function PlayerAttack()
 			GoToPlayerIdle();
 		}
 	}
-}
-
-function PlayerKick()
-{
-	
 }
 
 function PlayerPickupSword()

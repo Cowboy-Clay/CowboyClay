@@ -56,7 +56,7 @@
     "spriteId": {"name":"spr_effect_jumpCharge","path":"sprites/spr_effect_jumpCharge/spr_effect_jumpCharge.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 0.0,
+    "playbackSpeed": 60.0,
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,

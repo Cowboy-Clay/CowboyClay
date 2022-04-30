@@ -297,6 +297,7 @@
     {"id":{"name":"spr_eff_enemyStrike","path":"sprites/spr_eff_enemyStrike/spr_eff_enemyStrike.yy",},"order":3,},
     {"id":{"name":"sfx_clay_sling","path":"sounds/sfx_clay_sling/sfx_clay_sling.yy",},"order":7,},
     {"id":{"name":"spr_envi_tallGrass","path":"sprites/spr_envi_tallGrass/spr_envi_tallGrass.yy",},"order":18,},
+    {"id":{"name":"obj_player_jump_charge","path":"objects/obj_player_jump_charge/obj_player_jump_charge.yy",},"order":7,},
     {"id":{"name":"sfx_moose_crash","path":"sounds/sfx_moose_crash/sfx_moose_crash.yy",},"order":2,},
     {"id":{"name":"spr_mech_breakableWall","path":"sprites/spr_mech_breakableWall/spr_mech_breakableWall.yy",},"order":9,},
     {"id":{"name":"sfx_moose_charge","path":"sounds/sfx_moose_charge/sfx_moose_charge.yy",},"order":1,},
