@@ -71,7 +71,7 @@ global.player_attackFollowFrames = 15;
 attackTimer = 0; // Frame counter to determine how long the player has been in each attack state
 #endregion
 sling_attack_charge_timer = 0;
-global.player_sling_attack_charge_min = 10;
+global.player_sling_attack_charge_min = 60;
 global.player_sling_attack_charge_full = 80;
 global.player_sling_anti_frames = 2;
 global.player_sling_swing_frames = 6;
@@ -1075,7 +1075,12 @@ function update_animation() {
 				a = global.player_animation_idle_sword_charge;
 				break;
 			} else if sling_attack_charge_timer > 0 {
+				show_debug_message("TEST");
 				a = armed ? global.player_animation_idle_sling_charge : global.player_animation_idle_sling_charge_disarmed;
+				if sling_attack_charge_timer < global.player_sling_attack_charge_min {
+					show_debug_message("TEST2");
+					a = armed ? [spr_player_aimStart,6,AnimationType.LOOP] : [spr_player_aimStart_disarmed,6,AnimationType.LOOP];
+				}
 				break;
 			} else if armed {
 				a = button_check(buttons.strafe) ? global.player_animation_stra_idle : global.player_animation_idle;
@@ -1091,6 +1096,9 @@ function update_animation() {
 					break;
 				} else if sling_attack_charge_timer > 0 {
 					a = armed ? global.player_animation_walk_sling_charge : global.player_animation_walk_sling_charge_disarmed;
+					if sling_attack_charge_timer < global.player_sling_attack_charge_min {
+						a = armed ? [spr_player_aimStartWalk,6,AnimationType.LOOP] : [spr_player_aimStartWalk_disarmed,6,AnimationType.LOOP];
+					}
 					break;
 				} else if armed {
 					a = button_check(buttons.strafe) ? global.player_animation_strastep : global.player_animation_walk;
@@ -1106,6 +1114,9 @@ function update_animation() {
 					break;
 				} else if sling_attack_charge_timer > 0 {
 					a = armed ? global.player_animation_backstep_sling_charge : global.player_animation_backstep_sling_charge_disarmed;
+					if sling_attack_charge_timer < global.player_sling_attack_charge_min {
+						a = armed ? [spr_player_aimStartWalkBack,6,AnimationType.LOOP] : [spr_player_aimStartWalkBack_disarmed,6,AnimationType.LOOP];
+					}
 					break;
 				} else if armed {
 					a = global.player_animation_backstep;
@@ -1122,6 +1133,9 @@ function update_animation() {
 				break;
 			} else if sling_attack_charge_timer > 0 {
 				a = armed ? global.player_animation_jump_anti_sling_charge : global.player_animation_jump_anti_sling_charge_disarmed;
+				if sling_attack_charge_timer < global.player_sling_attack_charge_min {
+					a = armed ? [spr_player_aimStartJumpAnti,6,AnimationType.LOOP] : [spr_player_aimStartJumpAnti_disarmed,6,AnimationType.LOOP];
+				}
 				break;
 			} else if armed {
 				a = global.player_animation_jump_anti;
@@ -1137,6 +1151,9 @@ function update_animation() {
 				break;
 			} else if sling_attack_charge_timer > 0 {
 				a = armed ? global.player_animation_jump_sling_charge : global.player_animation_jump_sling_charge_disarmed;
+				if sling_attack_charge_timer < global.player_sling_attack_charge_min {
+					a = armed ? [spr_player_aimStartJump,6,AnimationType.LOOP] : [spr_player_aimStartJump_disarmed,6,AnimationType.LOOP];
+				}
 				break;
 			} else if armed {
 				a = global.player_animation_jump;
@@ -1151,6 +1168,9 @@ function update_animation() {
 				break;
 			} else if sling_attack_charge_timer > 0 {
 				a = global.player_animation_fall_sling_charge;
+				if sling_attack_charge_timer < global.player_sling_attack_charge_min {
+					a = armed ? [spr_player_aimStartFall,6,AnimationType.LOOP] : [spr_player_aimStartFall_disarmed,6,AnimationType.LOOP];
+				}
 				break;
 			} else if special_fall == 1 {
 				a = global.player_animation_sword_hi_follow;
