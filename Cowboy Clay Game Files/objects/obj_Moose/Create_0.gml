@@ -106,10 +106,9 @@ function UpdateMooseState()
 			}
 			break;
 		case MooseState.HIT:
-			if grounded
-			{
-				MooseWanderToIdle();
-				return;
+			state_timer--;
+			if state_timer <= 0 {
+				to_idle();
 			}
 			break;
 		case MooseState.BLOCK:
@@ -705,7 +704,7 @@ function update_animation() {
 					}
 				}
 			} else { 
-				var a = spr_moose_idle_disarmed;
+				var a = spr_moose_idle_empty;
 			}
 			SetMooseAnimation(a, global.moose_animation_idle_FPI, global.moose_animation_idle_type);
 			break;
@@ -928,11 +927,13 @@ function MooseGetHit()
 		armor --;
 		MakeMooseInvulnerable();
 		current_state = MooseState.HIT;
+		state_timer = 60;
 		wanderCounter = 0;
 		var helm = instance_create_depth(x,y-100,depth-100, obj_moose_helmet);
 		helm.activate(obj_player.x < x ? Direction.RIGHT : Direction.LEFT);
 		audio_play_sound(sfx_moose_dehelm, 2, false);
 	} else if armed {
+		state_timer = 60;
 		y-= 2;
 		vspeed -= 20;
 		if obj_player.x > x hspeed = obj_player.x > x ? -20 : 20;
