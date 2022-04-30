@@ -270,7 +270,7 @@ function burp_anti() {
 function to_burp_swing() {
 	current_state = MooseState.BURP_SWING;
 	state_timer = global.moose_burp_swing_time;
-	spawn_shockwave(depth-100,x,y,facing, 45, 200, Curve.ROOT);
+	spawn_shockwave(depth-100,x,y,(obj_player.x < x ? Direction.LEFT : Direction.RIGHT), 45, 300, Curve.ROOT);
 	burp_swing();
 }
 function burp_swing() {
