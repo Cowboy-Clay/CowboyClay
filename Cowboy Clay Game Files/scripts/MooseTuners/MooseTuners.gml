@@ -22,8 +22,8 @@ global.moose_attack_distance_threshold = 500;
 global.moose_lunge_anti_frames = 5;
 global.moose_lunge_speed = 15;
 global.moose_lunge_distance_max = 900;
-global.moose_lunge_target_distance_to_player = 150;
-global.moose_stab_anti_frames = 0;
+global.moose_lunge_target_distance_to_player = 100;
+global.moose_stab_anti_frames = 25;
 global.moose_stab_frames = 15;
 
 // Jump
