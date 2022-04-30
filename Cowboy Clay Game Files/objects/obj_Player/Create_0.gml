@@ -59,6 +59,8 @@ global.player_maxHoriJumpForce = 10; // max horizontal force applied by a jump
 global.player_jump_buffer_frames = 20;
 #endregion
 
+global.player_attack_turn_buffer = 18;
+
 #region Basic Attack Variables
 basic_attack_charge_timer = 0;
 global.player_basic_attack_charge_min = 45;
@@ -757,8 +759,8 @@ function walk()
 		hspeed += curAc;
 	}
 	
-	if hspeed > 0 && button_check(buttons.right) && !button_check(buttons.strafe) && basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 facing = Direction.RIGHT;
-	else if hspeed < 0 && button_check(buttons.left) && !button_check(buttons.strafe) && basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 facing = Direction.LEFT;
+	if hspeed > 0 && button_check(buttons.right) && !button_check(buttons.strafe) && basic_attack_charge_timer <= global.player_attack_turn_buffer && sling_attack_charge_timer <= global.player_attack_turn_buffer facing = Direction.RIGHT;
+	else if hspeed < 0 && button_check(buttons.left) && !button_check(buttons.strafe) && basic_attack_charge_timer<= global.player_attack_turn_buffer && sling_attack_charge_timer <= global.player_attack_turn_buffer facing = Direction.LEFT;
 	
 	var max_speed = global.player_maxWalkSpeed;
 	if basic_attack_charge_timer > 0 || sling_attack_charge_timer > 0 {
