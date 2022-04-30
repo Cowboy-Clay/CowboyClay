@@ -1162,7 +1162,7 @@ function update_animation() {
 				a = global.player_animation_fall_sword_charge;
 				break;
 			} else if sling_attack_charge_timer > 0 {
-				a = global.player_animation_fall_sling_charge;
+				a = armed ? global.player_animation_fall_sling_charge : global.player_animation_fall_sling_charge_disarmed;
 				if sling_attack_charge_timer < global.player_sling_attack_charge_min {
 					a = armed ? [spr_player_aimStartFall,6,AnimationType.LOOP] : [spr_player_aimStartFall_disarmed,6,AnimationType.LOOP];
 				}
