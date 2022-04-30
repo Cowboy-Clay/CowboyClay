@@ -1,5 +1,5 @@
-ideal_x = obj_player.x;
-ideal_y = obj_player.y;
+ideal_x = obj_player.x + offset_x;
+ideal_y = obj_player.y + offset_y;
 
 if instance_exists(obj_cam_anchor)
 {
