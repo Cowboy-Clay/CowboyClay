@@ -740,7 +740,7 @@ function update_animation() {
 			SetMooseAnimation(a, global.moose_animation_idle_FPI, global.moose_animation_idle_type);
 			break;
 		case MooseState.HIT:
-			var a = armor > 0 ? global.moose_animation_hit : (global.moose_animation_hit_helmless);
+			var a = armed ? global.moose_animation_hit : (global.moose_animation_hit_helmless);
 			SetMooseAnimation(a, global.moose_animation_hit_FPI, global.moose_animation_hit_type);
 			break;
 			
