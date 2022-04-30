@@ -15,6 +15,7 @@ enum buttons {left, right, up, down, attack, jump, sling, strafe, block, kick, r
 
 global.controls_keyboard_and_mouse = [vk_left, vk_right, vk_up, vk_down, ord("Z"), ord("X"), ord("A"), vk_shift, ord("C"), ord("S"), ord("T")];
 global.controls_xbox_controller = [gp_padl, gp_padr, gp_padu, gp_padd, gp_shoulderrb, gp_face1, gp_face3, gp_shoulderl, gp_face2, gp_shoulderr, gp_select];
+global.controls_xbox_controller_mac = [];
 global.controls_playstation_controller = [gp_padl, gp_padr, gp_padu, gp_padd, gp_shoulderrb, gp_face2, gp_face1, gp_shoulderl, gp_face3, gp_shoulderr, gp_select];
 
 function button_check(button) {
@@ -87,5 +88,5 @@ function button_check_released(button) {
 	return false;
 }
 
-global._xbox_controllers = ["XInput STANDARD GAMEPAD"];
+global._xbox_controllers = ["XInput STANDARD GAMEPAD", "Xbox Wireless Controller"];
 global._playstation_controllers = ["Wireless Controller"];

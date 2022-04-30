@@ -149,6 +149,7 @@
     {"id":{"name":"spr_envi_leftWall","path":"sprites/spr_envi_leftWall/spr_envi_leftWall.yy",},"order":51,},
     {"id":{"name":"AnimationCurve4","path":"animcurves/AnimationCurve4/AnimationCurve4.yy",},"order":10,},
     {"id":{"name":"spr_moose_throw","path":"sprites/spr_moose_throw/spr_moose_throw.yy",},"order":105,},
+    {"id":{"name":"obj_cutable_grass","path":"objects/obj_cutable_grass/obj_cutable_grass.yy",},"order":6,},
     {"id":{"name":"spr_metra_kick","path":"sprites/spr_metra_kick/spr_metra_kick.yy",},"order":1,},
     {"id":{"name":"spr_moose_charge","path":"sprites/spr_moose_charge/spr_moose_charge.yy",},"order":50,},
     {"id":{"name":"spr_moose_walkBlock_noHelm","path":"sprites/spr_moose_walkBlock_noHelm/spr_moose_walkBlock_noHelm.yy",},"order":49,},
