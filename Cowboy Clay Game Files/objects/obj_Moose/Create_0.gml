@@ -191,7 +191,7 @@ function choose_attack() {
 	switch get_phase() {
 		case 1:
 			if dist_to_player < global.moose_attack_close_distance {
-				to_stab_anti();
+				to_lunge_anti();
 				return;
 			}
 			if dist_to_player > global.moose_attack_far_distance {
@@ -209,7 +209,7 @@ function choose_attack() {
 			break;
 		case 2:
 			if dist_to_player < global.moose_attack_close_distance {
-				to_stab_anti();
+				to_lunge_anti();
 				return;
 			}
 			
@@ -763,7 +763,7 @@ function update_animation() {
 			SetMooseAnimation(a, 1, AnimationType.FIRST_FRAME);
 			break;
 		case MooseState.LUNGE:
-			var a = armor > 0 ? global.moose_animation_stabAnti : (armed==true ? global.moose_animation_stabAnti_helmless : global.moose_animation_stabAnti_disarmed);
+			var a = armor > 0 ? spr_moose_run : (armed==true ? spr_moose_run_helmless : spr_moose_run_empty);
 			SetMooseAnimation(a, 1, AnimationType.FIRST_FRAME);
 			break;
 		case MooseState.STAB_ANTI:
@@ -823,6 +823,25 @@ function update_animation() {
 			else a = spr_moose_throw_empty;
 			SetMooseAnimation(a,1,AnimationType.FIRST_FRAME);
 			break;
+		case MooseState.BURP_ANTI:
+			var a = noone;
+			if armor > 0  a = spr_moose_burpAnti;
+			else if armed a = spr_moose_burpAnti_helmless;
+			else a = spr_moose_burpAnti_empty;
+			SetMooseAnimation(a,8,AnimationType.HOLD);
+		case MooseState.BURP_SWING:
+			var a = noone;
+			if armor > 0  a = spr_moose_burp;
+			else if armed a = spr_moose_burp_helmless;
+			else a = spr_moose_burp_empty;
+			SetMooseAnimation(a,8,AnimationType.HOLD);
+			break;
+		case MooseState.BURP_FOLLOW:
+			var a = noone;
+			if armor > 0  a = spr_moose_burpFollow;
+			else if armed a = spr_moose_burpFollow_helmless;
+			else a = spr_moose_burpFollow_empty;
+			SetMooseAnimation(a,8,AnimationType.HOLD);
 	}
 }
 function PlayMooseAnimation()
@@ -1063,8 +1082,7 @@ function retalliation() {
 				to_projectile_anti();
 				return;
 			} else {
-				//to_burp_anti();
-				to_stab_anti();
+				to_burp_anti();
 				return;
 			}
 		}
