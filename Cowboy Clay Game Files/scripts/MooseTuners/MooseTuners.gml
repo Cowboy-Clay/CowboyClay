@@ -24,7 +24,7 @@ global.moose_lunge_speed = 15;
 global.moose_lunge_distance_max = 900;
 global.moose_lunge_target_distance_to_player = 100;
 global.moose_stab_anti_frames = 25;
-global.moose_stab_frames = 45;
+global.moose_stab_frames = 20;
 
 // Jump
 global.moose_jump_anti_frames = 10;
@@ -161,7 +161,7 @@ global.moose_animation_stabAnti_disarmed = spr_moose_stabAnti_empty;
 global.moose_animation_stab = spr_moose_stab;
 global.moose_animation_stab_helmless = spr_moose_stab_noHelm;
 global.moose_animation_stab_disarmed = spr_moose_stab_empty;
-	global.moose_animation_stab_FPI = 20;
+	global.moose_animation_stab_FPI = 5;
 	global.moose_animation_stab_type = AnimationType.HOLD;
 
 //JumpAnti
