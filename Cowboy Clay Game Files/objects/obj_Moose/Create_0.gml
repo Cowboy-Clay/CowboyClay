@@ -225,19 +225,10 @@ function choose_attack() {
 			if dist_to_player > global.moose_attack_safe_distance {
 				MooseIdleToChargeAnti();
 				return;
-			}
-			
-			var back = obj_player.x < x ? Direction.RIGHT : Direction.LEFT;
-			var dist_to_wall = distance_to_wall(back);
-			
-			if dist_to_wall < global.moose_attack_close_distance {
-				MooseIdleToSlideAnti();
-				return;
-			} else {
+			}else{
 				to_projectile_anti();
 				return;
 			}
-			
 			break;
 	}
 }

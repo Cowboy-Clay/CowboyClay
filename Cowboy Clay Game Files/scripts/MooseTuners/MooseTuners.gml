@@ -24,7 +24,7 @@ global.moose_lunge_speed = 15;
 global.moose_lunge_distance_max = 900;
 global.moose_lunge_target_distance_to_player = 100;
 global.moose_stab_anti_frames = 25;
-global.moose_stab_frames = 15;
+global.moose_stab_frames = 45;
 
 // Jump
 global.moose_jump_anti_frames = 10;
