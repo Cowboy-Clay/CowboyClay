@@ -51,14 +51,18 @@ global.moose_invulTime = 180;
 
 global.moose_blockDistance = 300;
 
-global.moose_stun_time = 90;
+global.moose_stun_time = 120;
 
 global.moose_too_many_head_jumps = 10;
 global.moose_player_jump_charge_too_long_time = 240;
 global.moose_player_basic_charge_too_long_time = 220;
 global.moose_player_sling_charge_too_long_time = 200;
-global.moose_player_too_close_distance = 500;
+global.moose_player_too_close_distance = 400;
 global.moose_player_too_close_time = 190;
+
+global.moose_burp_anti_time = 12;
+global.moose_burp_swing_time = 25;
+global.moose_burp_follow_time = 16;
 
 // Animations
 

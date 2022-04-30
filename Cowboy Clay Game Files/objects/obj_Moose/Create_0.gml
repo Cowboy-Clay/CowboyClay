@@ -6,7 +6,7 @@ instance_create_layer(0,0,layer, obj_enemy_hitbox);
 instance_create_layer(0,0,layer, obj_enemy_hurtbox);
 instance_create_layer(0,0,layer,obj_enemy_sword);
 
-enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT, BLOCK, LOCK, DEAD, PULLING, LUNGE_ANTI, LUNGE, STAB_ANTI, STAB, JUMP_ANTI, JUMP, DIVE_ANTI, DIVE, STUCK, SPIN, PROJECTILE_ANTI, PROJECTILE, PROJECTILE_FOLLOW, STUN};
+enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT, BLOCK, LOCK, DEAD, PULLING, LUNGE_ANTI, LUNGE, STAB_ANTI, STAB, JUMP_ANTI, JUMP, DIVE_ANTI, DIVE, STUCK, SPIN, PROJECTILE_ANTI, PROJECTILE, PROJECTILE_FOLLOW, STUN, BURP_ANTI, BURP_SWING, BURP_FOLLOW};
 
 time_limit_jump = 240;
 
@@ -44,7 +44,6 @@ animFrameCounter = 0;
 // Retalliation
 player_too_close_timer = 0;
 head_jump_counter = 0;
-
 
 if start_pulling current_state = MooseState.PULLING;
 
@@ -175,6 +174,15 @@ function MooseStateBasedActions()
 		case MooseState.STUN:
 			stun();
 			break;
+		case MooseState.BURP_ANTI:
+			burp_anti();
+			break;
+		case MooseState.BURP_SWING:
+			burp_swing();
+			break;
+		case MooseState.BURP_FOLLOW:
+			burp_follow();
+			break;
 	}
 }
 
@@ -256,6 +264,41 @@ function get_gravity() {
 			break;
 	}
 	return 1;
+}
+
+function to_burp_anti() {
+	current_state = MooseState.BURP_ANTI;
+	state_timer = global.moose_burp_anti_time;
+	burp_anti();
+}
+function burp_anti() {
+	if state_timer <= 0 {
+		to_burp_swing();
+	}
+	state_timer --;
+}
+function to_burp_swing() {
+	current_state = MooseState.BURP_SWING;
+	state_timer = global.moose_burp_swing_time;
+	spawn_shockwave(depth-100,x,y,facing, 45, 200, Curve.ROOT);
+	burp_swing();
+}
+function burp_swing() {
+	if state_timer <= 0 {
+		to_burp_follow();
+	}
+	state_timer --;
+}
+function to_burp_follow() {
+	current_state = MooseState.BURP_FOLLOW;
+	state_timer = global.moose_burp_follow_time;
+	burp_follow();
+}
+function burp_follow() {
+	if state_timer <= 0 {
+		to_idle();
+	}
+	state_timer --;
 }
 
 function to_stun() {
@@ -644,18 +687,45 @@ function SetMooseAnimation(animation, fpi, type)
 }
 
 function update_animation() {
+	var phase = get_phase();
 	switch(current_state) {
 		case MooseState.IDLE:
-			var a = armor > 0 ? global.moose_animation_idle : (armed==true ? global.moose_animation_idle_helmless : global.moose_animation_idle_disarmed);
-			if !(wanderCounter >= wandersPerIdle) && armor > 0 {
-				a = global.moose_animation_idle_blockLo;
+			if phase == 1 {
+				if distance_to_object(obj_player) < 400 {
+					var a = spr_moose_blockLo;
+				} else {
+					var a = spr_moose_idle;
+				}
+			} else if phase == 2 {
+				with(obj_player) {
+					if collision_check_edge(x,y,spr_player_collision, Direction.DOWN, collision_mask) {
+						var a = spr_moose_blockLo_helmless;
+					} else {
+						var a = spr_moose_hiBlock;
+					}
+				}
+			} else { 
+				var a = spr_moose_idle_disarmed;
 			}
 			SetMooseAnimation(a, global.moose_animation_idle_FPI, global.moose_animation_idle_type);
 			break;
 		case MooseState.WANDER:
-			var a = armor > 0 ? global.moose_animation_wander : (armed==true ? global.moose_animation_wander_helmless : global.moose_animation_wander_disarmed);
-			if armor > 0 {
-				a = global.moose_animation_walk_blockLo;
+			if phase == 1 {
+				if distance_to_object(obj_player) < 400 {
+					var a = global.moose_animation_walk_blockLo;
+				} else {
+					var a = global.moose_animation_wander;
+				}
+			} else if phase == 2 {
+				with(obj_player) {
+					if collision_check_edge(x,y,spr_player_collision, Direction.DOWN, collision_mask) {
+						var a = global.moose_animation_walk_blockLo_helmless;
+					} else {
+						var a = global.moose_animation_wander_blockHi;
+					}
+				}
+			} else {
+				var a = global.moose_animation_wander_disarmed;
 			}
 			SetMooseAnimation(a, global.moose_animation_wander_FPI, global.moose_animation_wander_type);
 			break;

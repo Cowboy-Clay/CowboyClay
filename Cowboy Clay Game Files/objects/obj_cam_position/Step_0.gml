@@ -1,5 +1,5 @@
-ideal_x = obj_player.x;
-ideal_y = obj_player.y;
+ideal_x = obj_player.x + offset_x;
+ideal_y = obj_player.y + offset_y;
 
 if instance_exists(obj_cam_anchor)
 {
@@ -10,6 +10,17 @@ if instance_exists(obj_cam_anchor)
 		ideal_y = a.y;
 		
 
+		var ww = lerp(camera_get_view_width(cam), cam_width*a.vport_multi, 0.1);
+		var hh = lerp(camera_get_view_height(cam), cam_height*a.vport_multi, 0.1);
+		camera_set_view_size(cam,ww,hh);
+	}
+}
+if instance_exists(obj_cam_bound) {
+	if place_meeting(ideal_x,ideal_y,obj_cam_bound) {
+		var a = instance_nearest(ideal_x,ideal_y,obj_cam_bound);
+		ideal_x = clamp(ideal_x,a.min_x, a.max_x);
+		ideal_y = clamp(ideal_y,a.min_y, a.max_y);
+		
 		var ww = lerp(camera_get_view_width(cam), cam_width*a.vport_multi, 0.1);
 		var hh = lerp(camera_get_view_height(cam), cam_height*a.vport_multi, 0.1);
 		camera_set_view_size(cam,ww,hh);
