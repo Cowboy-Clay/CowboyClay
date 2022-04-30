@@ -378,6 +378,7 @@
     {"id":{"name":"spr_moose_throwAnti_empty","path":"sprites/spr_moose_throwAnti_empty/spr_moose_throwAnti_empty.yy",},"order":109,},
     {"id":{"name":"obj_enemy_sword","path":"objects/obj_enemy_sword/obj_enemy_sword.yy",},"order":2,},
     {"id":{"name":"spr_player_dash_anti_disarmed","path":"sprites/spr_player_dash_anti_disarmed/spr_player_dash_anti_disarmed.yy",},"order":20,},
+    {"id":{"name":"obj_cam_bound","path":"objects/obj_cam_bound/obj_cam_bound.yy",},"order":2,},
     {"id":{"name":"collision_check_vert_only","path":"scripts/collision_check_vert_only/collision_check_vert_only.yy",},"order":6,},
     {"id":{"name":"spr_moose_throwAnti_helmless","path":"sprites/spr_moose_throwAnti_helmless/spr_moose_throwAnti_helmless.yy",},"order":110,},
     {"id":{"name":"obj_fight_loader","path":"objects/obj_fight_loader/obj_fight_loader.yy",},"order":29,},
