@@ -682,6 +682,7 @@ function SetMooseAnimation(animation, fpi, type)
 	sprite_index = animation;
 	currentFPI = fpi;
 	currentAnimType = type;
+	image_index = 0;
 	animFrameCounter = 0;
 }
 
