@@ -71,7 +71,7 @@ global.player_attackFollowFrames = 15;
 attackTimer = 0; // Frame counter to determine how long the player has been in each attack state
 #endregion
 sling_attack_charge_timer = 0;
-global.player_sling_attack_charge_min = 60;
+global.player_sling_attack_charge_min = 30;
 global.player_sling_attack_charge_full = 80;
 global.player_sling_anti_frames = 2;
 global.player_sling_swing_frames = 6;
