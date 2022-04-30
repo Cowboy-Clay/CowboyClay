@@ -285,6 +285,7 @@
     {"id":{"name":"room_collision_test","path":"rooms/room_collision_test/room_collision_test.yy",},"order":6,},
     {"id":{"name":"spr_player_idle_loBlock","path":"sprites/spr_player_idle_loBlock/spr_player_idle_loBlock.yy",},"order":28,},
     {"id":{"name":"spr_envi_bgGradient1","path":"sprites/spr_envi_bgGradient1/spr_envi_bgGradient1.yy",},"order":47,},
+    {"id":{"name":"spr_moose_hit_disarmed","path":"sprites/spr_moose_hit_disarmed/spr_moose_hit_disarmed.yy",},"order":135,},
     {"id":{"name":"spr_foregroundBattlementTileset_Sheet","path":"sprites/spr_foregroundBattlementTileset_Sheet/spr_foregroundBattlementTileset_Sheet.yy",},"order":54,},
     {"id":{"name":"collision_check","path":"scripts/collision_check/collision_check.yy",},"order":1,},
     {"id":{"name":"spr_player_dash_anti","path":"sprites/spr_player_dash_anti/spr_player_dash_anti.yy",},"order":18,},
