@@ -320,6 +320,7 @@
     {"id":{"name":"spr_moose_jumpAnti_helmless","path":"sprites/spr_moose_jumpAnti_helmless/spr_moose_jumpAnti_helmless.yy",},"order":94,},
     {"id":{"name":"obj_cam_anchor","path":"objects/obj_cam_anchor/obj_cam_anchor.yy",},"order":0,},
     {"id":{"name":"spr_bushTileset","path":"sprites/spr_bushTileset/spr_bushTileset.yy",},"order":44,},
+    {"id":{"name":"obj_tumbleweed_spawner","path":"objects/obj_tumbleweed_spawner/obj_tumbleweed_spawner.yy",},"order":36,},
     {"id":{"name":"spr_player_aimFalling_disarmed","path":"sprites/spr_player_aimFalling_disarmed/spr_player_aimFalling_disarmed.yy",},"order":57,},
     {"id":{"name":"spr_envi_woodBlock3","path":"sprites/spr_envi_woodBlock3/spr_envi_woodBlock3.yy",},"order":11,},
     {"id":{"name":"spr_eff_blockSparks","path":"sprites/spr_eff_blockSparks/spr_eff_blockSparks.yy",},"order":1,},
