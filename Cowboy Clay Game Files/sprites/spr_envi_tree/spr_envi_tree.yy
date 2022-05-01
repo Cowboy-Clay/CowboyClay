@@ -69,8 +69,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Environment",
-    "path": "folders/Sprites/Environment.yy",
+    "name": "FightingFantasy",
+    "path": "FightingFantasy.yyp",
   },
   "resourceVersion": "1.0",
   "name": "spr_envi_tree",
