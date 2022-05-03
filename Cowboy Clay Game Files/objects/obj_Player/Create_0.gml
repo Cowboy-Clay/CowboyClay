@@ -9,8 +9,8 @@ global.showDebugMessages = true; // set to true if you want to print debug messa
 #endregion
 
 #region State Variables
-enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, ATTACK_CHARGE_CANCEL,BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW, LOCK, DEAD, KICK_ANTI, KICK_SWING, KICK_FOLLOW, SHEATHING, UNSHEATHING, PLUNGING, BLOCK, BLOCK_FOLLOW, SLING_ANTI, SLING_SWING, SLING_FOLLOW, PAIN };
-current_state = PlayerState.LOCK;
+enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, ATTACK_CHARGE_CANCEL,BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW, LOCK, DEAD, KICK_ANTI, KICK_SWING, KICK_FOLLOW, SHEATHING, UNSHEATHING, PLUNGING, BLOCK, BLOCK_FOLLOW, SLING_ANTI, SLING_SWING, SLING_FOLLOW, PAIN, REVIVING };
+current_state = PlayerState.REVIVING;
 facing = Direction.RIGHT; // The direction the player is facing
 armed = startArmed; // Is the player armed. startArmed is set in the variable menu
 sheathed = false;
@@ -935,6 +935,8 @@ function PlayerGetHit()
 #region Animation Controls
 function PlayPlayerAnimation()
 {
+	if current_state == PlayerState.REVIVING return;
+	
 	if currentAnimType == AnimationType.FIRST_FRAME
 	{
 		image_index = 0;
@@ -1239,6 +1241,13 @@ function update_animation() {
 			break;
 		case PlayerState.KICK_FOLLOW:
 			a = armed == true ? global.player_animation_kick_follow : global.player_animation_kick_follow_disarmed;
+			break;
+		case PlayerState.REVIVING:
+			if sprite_index != spr_player_resurrect{
+				sprite_index = spr_player_resurrect;
+				image_index = 0;
+			}
+			return;
 			break;
 	}
 	if a == noone {
