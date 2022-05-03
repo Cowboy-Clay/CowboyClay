@@ -245,6 +245,14 @@ function PlayerStateBasedMethods()
 		case PlayerState.PAIN:
 			pain();
 			break;
+		case PlayerState.DEAD:
+			if state_timer != -1 state_timer ++;
+			if state_timer > 60 {
+				show_debug_message("Spawning game over screen");
+				instance_create_depth(camera_get_view_x(view_camera[0]), camera_get_view_y(view_camera[0]),-1000,obj_gameover);
+				if instance_exists(obj_Moose) obj_Moose.to_sleep();
+				state_timer = -1;
+			}
 	}
 }
 
@@ -321,6 +329,10 @@ function check_falling() {
 	   current_state == PlayerState.BASIC_ATTACK_FOLLOW ||
 	   current_state == PlayerState.ATTACK_CHARGE_CANCEL {
 		   return false;
+	}
+	
+	if vspeed > 0 && place_meeting(x,y+2,obj_elevator) {
+		return false;
 	}
 	
 	if vspeed > 0 && !collision_check_edge(x,y,spr_player_collision, Direction.DOWN, collision_mask) {
@@ -475,6 +487,7 @@ function block_follow() {
 function GoToPlayerDead()
 {
 	current_state = PlayerState.DEAD;
+	state_timer = 0;
 	instance_deactivate_object(obj_player_hitbox);
 	instance_deactivate_object(obj_player_hurtbox);
 }
@@ -1247,6 +1260,8 @@ function update_animation() {
 				sprite_index = spr_player_resurrect;
 				image_index = 0;
 			}
+			instance_activate_object(obj_player_hitbox);
+			instance_activate_object(obj_player_hurtbox);
 			return;
 			break;
 	}

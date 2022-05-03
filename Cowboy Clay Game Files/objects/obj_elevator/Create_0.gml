@@ -58,9 +58,10 @@ function rise()
 	if vspeed >= 0
 	{
 		vspeed = 0;	
+		
 		go_to_holding();
 	}
-	collision_check_vert_only(spr_mech_elevator_coll, collision_mask,false, false);
+	collision_check_elevator(spr_mech_elevator_coll, collision_mask,false, false);
 	if mounted obj_player.vspeed = vspeed;
 }
 
@@ -87,7 +88,7 @@ function go_to_falling()
 function fall()
 {
 	Gravity(1,10,spr_mech_elevator_coll,collision_mask);
-	collision_check_vert_only(spr_mech_elevator_coll, collision_mask, false, false);
+	collision_check_elevator(spr_mech_elevator_coll, collision_mask, false, false);
 	if collision_check_edge(x,y,spr_mech_elevator_coll, Direction.DOWN, collision_mask) {
 		current_state = elevator_state.sitting;
 		show_debug_message("Going to sitting");

@@ -6,7 +6,7 @@ instance_create_layer(0,0,layer, obj_enemy_hitbox);
 instance_create_layer(0,0,layer, obj_enemy_hurtbox);
 instance_create_layer(0,0,layer,obj_enemy_sword);
 
-enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT, BLOCK, LOCK, DEAD, PULLING, LUNGE_ANTI, LUNGE, STAB_ANTI, STAB, JUMP_ANTI, JUMP, DIVE_ANTI, DIVE, STUCK, SPIN, PROJECTILE_ANTI, PROJECTILE, PROJECTILE_FOLLOW, STUN, BURP_ANTI, BURP_SWING, BURP_FOLLOW};
+enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT, BLOCK, LOCK, DEAD, PULLING, LUNGE_ANTI, LUNGE, STAB_ANTI, STAB, JUMP_ANTI, JUMP, DIVE_ANTI, DIVE, STUCK, SPIN, PROJECTILE_ANTI, PROJECTILE, PROJECTILE_FOLLOW, STUN, BURP_ANTI, BURP_SWING, BURP_FOLLOW, SLEEP};
 
 time_limit_jump = 240;
 
@@ -182,6 +182,26 @@ function MooseStateBasedActions()
 		case MooseState.BURP_FOLLOW:
 			burp_follow();
 			break;
+		case MooseState.SLEEP:
+			sleep();
+			break;
+	}
+}
+
+function to_sleep() {
+	current_state = MooseState.SLEEP;
+	if instance_exists(obj_player) {
+		var i = 1;
+		while (place_meeting(x,y,obj_player) || collision_check_edge(x,y,spr_enemy_collision,Direction.LEFT, collision_mask) || collision_check_edge(x,y,spr_enemy_collision,Direction.RIGHT, collision_mask)) {
+			x += i;
+			i = -1 * sign(i) * (abs(i)+1);
+		}
+	}
+}
+
+function sleep() {
+	if instance_exists(obj_player) && obj_player.armed {
+		to_idle();
 	}
 }
 
