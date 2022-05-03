@@ -1,5 +1,5 @@
 /// @description Code to be executed when player is created
-collision_mask = [obj_wall_breakable, obj_Ground, obj_Wall, obj_plate, obj_door,obj_box, obj_elevator, obj_tile_coll];
+collision_mask = [obj_wall_breakable, obj_Ground, obj_Wall, obj_plate, obj_door,obj_box, obj_elevator, obj_tile_coll, obj_house, obj_tallHouse, obj_longHouse, obj_midHouse];
 
 audio_group_load(sfx_clay);
 
@@ -89,9 +89,9 @@ sheathTimer = 0;
 
 global.player_plungeFrames = 7;
 
-global.player_block_frames = 45;
-global.player_block_success_frames = 5;
-global.player_block_failure_frames = 30;
+global.player_block_frames = 15;
+global.player_block_success_frames = 3;
+global.player_block_failure_frames = 35;
 
 global.player_pain_frames = 45;
 
