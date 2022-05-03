@@ -4,6 +4,8 @@ if keyboard_check_pressed(vk_f11){
 	window_set_fullscreen(!window_get_fullscreen());
 }
 
+if keyboard_check_pressed(ord("P")) GoToPlayerDead();
+
 if sling_attack_charge_timer > 0 || current_state == PlayerState.SLING_ANTI {
 	if(audio_is_playing(sfx_clay_sling) == false) {
 		audio_play_sound(sfx_clay_sling, 5, true);
@@ -20,7 +22,7 @@ if !global.paused
 	
 	jump_buffer--;
 	
-	if current_state != PlayerState.LOCK && current_state != PlayerState.DEAD
+	if current_state != PlayerState.LOCK
 	{
 		// State system
 		PlayerStateBasedMethods();
@@ -29,9 +31,8 @@ if !global.paused
 	}
 	else if current_state == PlayerState.LOCK
 	{
-		GoToPlayerIdle();
+		to_idle();
 	}
-	else if current_state == PlayerState.DEAD obj_Moose.current_state = MooseState.LOCK;
 	
 	if keyboard_check_pressed(ord("R"))
 	{

@@ -1,3 +1,5 @@
+image_xscale = direct == Direction.LEFT ? 1 : -1;
+
 if timer >= lifetime {
 	in_use = false;
 	}

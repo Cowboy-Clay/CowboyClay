@@ -9,8 +9,8 @@ global.showDebugMessages = true; // set to true if you want to print debug messa
 #endregion
 
 #region State Variables
-enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, ATTACK_CHARGE_CANCEL,BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW, LOCK, DEAD, KICK_ANTI, KICK_SWING, KICK_FOLLOW, SHEATHING, UNSHEATHING, PLUNGING, BLOCK, BLOCK_FOLLOW, SLING_ANTI, SLING_SWING, SLING_FOLLOW, PAIN };
-current_state = PlayerState.LOCK;
+enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, ATTACK_CHARGE_CANCEL,BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW, LOCK, DEAD, KICK_ANTI, KICK_SWING, KICK_FOLLOW, SHEATHING, UNSHEATHING, PLUNGING, BLOCK, BLOCK_FOLLOW, SLING_ANTI, SLING_SWING, SLING_FOLLOW, PAIN, REVIVING };
+current_state = _skip_revive ? PlayerState.IDLE : PlayerState.REVIVING;
 facing = Direction.RIGHT; // The direction the player is facing
 armed = startArmed; // Is the player armed. startArmed is set in the variable menu
 sheathed = false;
@@ -110,9 +110,9 @@ global.player_graviMulti_attacking = 0.2;
 
 #region Animation Variables
 // Animation
-currentAnimType = AnimationType.FIRST_FRAME;
+currentAnimType = AnimationType.LOOP;
 animFrameCounter = 0;
-currentFPI = 1;
+currentFPI = 6;
 
 #endregion
 
@@ -167,7 +167,7 @@ function PlayerStateBasedMethods()
 				break;
 			}
 			if abs(hspeed) <= 0.1 {
-				GoToPlayerIdle();
+				to_idle();
 			}
 			break;
 		case PlayerState.JUMP_ANTI:
@@ -188,7 +188,7 @@ function PlayerStateBasedMethods()
 			if !check_falling(){
 				audio_play_sound(sfx_clay_land, 5, false);
 				instance_create_depth(x,y,depth-100, obj_player_land_dust);
-				GoToPlayerIdle();
+				to_idle();
 			}
 			sling_attack_charge();
 			basic_attack_charge();
@@ -245,6 +245,14 @@ function PlayerStateBasedMethods()
 		case PlayerState.PAIN:
 			pain();
 			break;
+		case PlayerState.DEAD:
+			if state_timer != -1 state_timer ++;
+			if state_timer > 60 {
+				show_debug_message("Spawning game over screen");
+				instance_create_depth(camera_get_view_x(view_camera[0]), camera_get_view_y(view_camera[0]),-1000,obj_gameover);
+				if instance_exists(obj_Moose) obj_Moose.to_sleep();
+				state_timer = -1;
+			}
 	}
 }
 
@@ -296,7 +304,7 @@ function to_kick_follow() {
 }
 function kick_follow() {
 	if state_timer <= 0 {
-		GoToPlayerIdle();
+		to_idle();
 		return;
 	}
 	state_timer --;
@@ -309,7 +317,7 @@ function to_pain() {
 }
 function pain() {
 	if state_timer <= 0 {
-		GoToPlayerIdle();
+		to_idle();
 		return;
 	}
 	state_timer --;
@@ -323,6 +331,10 @@ function check_falling() {
 		   return false;
 	}
 	
+	if vspeed > 0 && place_meeting(x,y+2,obj_elevator) {
+		return false;
+	}
+	
 	if vspeed > 0 && !collision_check_edge(x,y,spr_player_collision, Direction.DOWN, collision_mask) {
 		GoToPlayerFall();
 		return true;
@@ -334,7 +346,7 @@ function check_falling() {
 function attack_cancel() {
 	state_timer --;
 	if state_timer <= 0 {
-		GoToPlayerIdle();
+		to_idle();
 	}
 }
 function to_attack_cancel() {
@@ -377,7 +389,7 @@ function sling_attack_charge() {
 		sling_attack_charge_timer ++;
 	} else if sling_attack_charge_timer > 0 && sling_attack_charge_timer < global.player_sling_attack_charge_min && !button_check(buttons.sling) {
 		show_debug_message("release sling early");
-		to_attack_cancel();
+		to_idle();
 		sling_attack_charge_timer = 0;
 	} else if sling_attack_charge_timer > global.player_sling_attack_charge_min && !button_check(buttons.sling) {
 		show_debug_message("release sling good");
@@ -421,7 +433,7 @@ function to_sling_attack_follow() {
 function sling_attack_follow() {
 	state_timer --;
 	if state_timer < 0 {
-		GoToPlayerIdle();
+		to_idle();
 	}
 }
 
@@ -468,18 +480,19 @@ function to_block_follow(success) {
 function block_follow() {
 	state_timer--;
 	if state_timer < 0 {
-		GoToPlayerIdle();
+		to_idle();
 	}
 }
 
 function GoToPlayerDead()
 {
 	current_state = PlayerState.DEAD;
+	state_timer = 0;
 	instance_deactivate_object(obj_player_hitbox);
 	instance_deactivate_object(obj_player_hurtbox);
 }
 
-function GoToPlayerIdle()
+function to_idle()
 {
 	current_state = PlayerState.IDLE;
 }
@@ -537,7 +550,7 @@ function GoToPlayerBasicAttack()
 	}
 	if attackTimer <= 0
 	{
-		GoToPlayerIdle();
+		to_idle();
 	}
 }
 function GoToPlayerKick()
@@ -559,7 +572,7 @@ function GoToPlayerKick()
 	}
 	if attackTimer <= 0
 	{
-		GoToPlayerIdle();
+		to_idle();
 	}
 }
 
@@ -592,7 +605,7 @@ function GoToDash()
 				if place_meeting(i,y,obj_Wall)
 				{
 					x = i + 1;
-					GoToPlayerIdle();
+					to_idle();
 					return;
 				}
 			}
@@ -604,7 +617,7 @@ function GoToDash()
 				if place_meeting(i,y, obj_Wall)
 				{
 					x = i - 1;
-					GoToPlayerIdle();
+					to_idle();
 					return;
 				}
 			}
@@ -688,7 +701,7 @@ function PlayerPlungeSword()
 		sheathed = false;
 		obj_player_sword.PlayerSwordFling(0,-1,.5);
 		obj_player_sword.plungeFlag = true
-		GoToPlayerIdle();
+		to_idle();
 	}
 }
 
@@ -707,7 +720,7 @@ function PlayerUnsheathSword()
 		armed = true;
 		sheathed = false;
 		hiblock = 1;
-		GoToPlayerIdle();
+		to_idle();
 	}
 }
 
@@ -725,7 +738,7 @@ function PlayerSheathSword()
 	{
 		armed = false;
 		sheathed = true;
-		GoToPlayerIdle();
+		to_idle();
 	}
 }
 
@@ -811,7 +824,7 @@ function PlayerDash()
 				if place_meeting(i,y, obj_Wall)
 				{
 					x = i - 1;
-					GoToPlayerIdle();
+					to_idle();
 					return;
 				}
 			}
@@ -870,7 +883,7 @@ function PlayerAttack()
 		}
 		if current_state == PlayerState.BASIC_ATTACK_FOLLOW && attackTimer <= 0
 		{
-			GoToPlayerIdle();
+			to_idle();
 		}
 	}
 	else if current_state == PlayerState.KICK_ANTI || current_state == PlayerState.KICK_SWING || current_state == PlayerState.KICK_FOLLOW
@@ -892,7 +905,7 @@ function PlayerAttack()
 		}
 		if current_state == PlayerState.KICK_FOLLOW && attackTimer <= 0
 		{
-			GoToPlayerIdle();
+			to_idle();
 		}
 	}
 }
@@ -935,6 +948,8 @@ function PlayerGetHit()
 #region Animation Controls
 function PlayPlayerAnimation()
 {
+	if current_state == PlayerState.REVIVING return;
+	
 	if currentAnimType == AnimationType.FIRST_FRAME
 	{
 		image_index = 0;
@@ -1239,6 +1254,15 @@ function update_animation() {
 			break;
 		case PlayerState.KICK_FOLLOW:
 			a = armed == true ? global.player_animation_kick_follow : global.player_animation_kick_follow_disarmed;
+			break;
+		case PlayerState.REVIVING:
+			if sprite_index != spr_player_resurrect{
+				sprite_index = spr_player_resurrect;
+				image_index = 0;
+			}
+			instance_activate_object(obj_player_hitbox);
+			instance_activate_object(obj_player_hurtbox);
+			return;
 			break;
 	}
 	if a == noone {

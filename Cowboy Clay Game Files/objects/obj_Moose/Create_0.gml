@@ -6,7 +6,7 @@ instance_create_layer(0,0,layer, obj_enemy_hitbox);
 instance_create_layer(0,0,layer, obj_enemy_hurtbox);
 instance_create_layer(0,0,layer,obj_enemy_sword);
 
-enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT, BLOCK, LOCK, DEAD, PULLING, LUNGE_ANTI, LUNGE, STAB_ANTI, STAB, JUMP_ANTI, JUMP, DIVE_ANTI, DIVE, STUCK, SPIN, PROJECTILE_ANTI, PROJECTILE, PROJECTILE_FOLLOW, STUN, BURP_ANTI, BURP_SWING, BURP_FOLLOW};
+enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT, BLOCK, LOCK, DEAD, PULLING, LUNGE_ANTI, LUNGE, STAB_ANTI, STAB, JUMP_ANTI, JUMP, DIVE_ANTI, DIVE, STUCK, SPIN, PROJECTILE_ANTI, PROJECTILE, PROJECTILE_FOLLOW, STUN, BURP_ANTI, BURP_SWING, BURP_FOLLOW, SLEEP};
 
 time_limit_jump = 240;
 
@@ -182,6 +182,26 @@ function MooseStateBasedActions()
 		case MooseState.BURP_FOLLOW:
 			burp_follow();
 			break;
+		case MooseState.SLEEP:
+			sleep();
+			break;
+	}
+}
+
+function to_sleep() {
+	current_state = MooseState.SLEEP;
+	if instance_exists(obj_player) {
+		var i = 1;
+		while (place_meeting(x,y,obj_player) || collision_check_edge(x,y,spr_enemy_collision,Direction.LEFT, collision_mask) || collision_check_edge(x,y,spr_enemy_collision,Direction.RIGHT, collision_mask)) {
+			x += i;
+			i = -1 * sign(i) * (abs(i)+1);
+		}
+	}
+}
+
+function sleep() {
+	if instance_exists(obj_player) && obj_player.armed {
+		to_idle();
 	}
 }
 
@@ -270,10 +290,15 @@ function burp_anti() {
 function to_burp_swing() {
 	current_state = MooseState.BURP_SWING;
 	state_timer = global.moose_burp_swing_time;
-	spawn_shockwave(depth-100,x,y,facing, 45, 200, Curve.ROOT);
+	spawn_shockwave(depth-100,x,y,(obj_player.x < x ? Direction.LEFT : Direction.RIGHT), 75, 300, Curve.LINEAR);
 	burp_swing();
 }
 function burp_swing() {
+	if facing == Direction.LEFT {
+		hspeed += global.moose_burp_swing_acceleration;
+	}else {
+		hspeed -= global.moose_burp_swing_acceleration;
+	}
 	if state_timer <= 0 {
 		to_burp_follow();
 	}
@@ -717,8 +742,12 @@ function update_animation() {
 				}
 			} else {
 				var a = global.moose_animation_wander_disarmed;
-			}
+			} 
+			if (facing == Direction.LEFT && hspeed > 0) || (facing == Direction.RIGHT && hspeed < 0) {
+			SetMooseAnimation(a, global.moose_animation_wander_FPI, AnimationType.REVERSE_LOOP);
+			}else {
 			SetMooseAnimation(a, global.moose_animation_wander_FPI, global.moose_animation_wander_type);
+			}
 			break;
 		case MooseState.SLIDE_ANTI:
 			var a = armor > 0 ? global.moose_animation_slideAnti : (armed==true ? global.moose_animation_slideAnti_helmless : global.moose_animation_slideAnti_disarmed);
@@ -764,7 +793,7 @@ function update_animation() {
 			break;
 		case MooseState.LUNGE:
 			var a = armor > 0 ? spr_moose_run : (armed==true ? spr_moose_run_helmless : spr_moose_run_empty);
-			SetMooseAnimation(a, 1, AnimationType.FIRST_FRAME);
+			SetMooseAnimation(a, 8, AnimationType.LOOP);
 			break;
 		case MooseState.STAB_ANTI:
 			var a = armor > 0 ? global.moose_animation_stabAnti : (armed==true ? global.moose_animation_stabAnti_helmless : global.moose_animation_stabAnti_disarmed);
@@ -834,7 +863,7 @@ function update_animation() {
 			if armor > 0  a = spr_moose_burp;
 			else if armed a = spr_moose_burp_helmless;
 			else a = spr_moose_burp_empty;
-			SetMooseAnimation(a,8,AnimationType.HOLD);
+			SetMooseAnimation(a,6,AnimationType.LOOP);
 			break;
 		case MooseState.BURP_FOLLOW:
 			var a = noone;
@@ -842,6 +871,12 @@ function update_animation() {
 			else if armed a = spr_moose_burpFollow_helmless;
 			else a = spr_moose_burpFollow_empty;
 			SetMooseAnimation(a,8,AnimationType.HOLD);
+		case MooseState.SLEEP:
+			var a = noone;
+			if armor > 0 a = spr_moose_sleep;
+			else if armed a = spr_moose_sleep_helmless;
+			else a = spr_moose_sleep_empty;
+			SetMooseAnimation(a,12,AnimationType.LOOP);
 	}
 }
 function PlayMooseAnimation()
@@ -855,6 +890,14 @@ function PlayMooseAnimation()
 	if animFrameCounter >= currentFPI
 	{
 		animFrameCounter = 0;
+		if currentAnimType == AnimationType.REVERSE_LOOP {
+			image_index--;
+			if image_index < 0 {
+				image_index = sprite_get_number(sprite_index) - 1;
+			}
+			check_frame_sounds();
+			return;
+		}
 		image_index ++;
 		if image_index >= sprite_get_number(sprite_index)
 		{

@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "CowboyClayTitle1",
-    "path": "sprites/CowboyClayTitle1/CowboyClayTitle1.yy",
+    "name": "GameOverScreen",
+    "path": "sprites/GameOverScreen/GameOverScreen.yy",
   },
   "solid": false,
   "visible": true,
@@ -32,7 +32,7 @@
     "path": "folders/Objects.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_menu_title",
+  "name": "obj_gameover",
   "tags": [],
   "resourceType": "GMObject",
 }
