@@ -1,18 +1,13 @@
-if variable_global_exists("music_controller") {
-	if global.music_controller != noone instance_destroy(id);
+currently_playing = noone;
+
+
+audio_stop_all();if start_on_create {
+	currently_playing = audio_play_sound(track,0,true);
 }
 
-global.music_controller = self;
-current_track = track;
-sound_instance = noone;
-
-if start_on_create {
-	sound_instance = audio_play_sound(current_track, 100, true);
-}
-
-function resume() {
-	audio_resume_sound(sound_instance);
-}
-function pause() {
-	audio_pause_sound(sound_instance);
+function switch_track(next_track) {
+	audio_sound_gain(currently_playing, 0, 500);
+	currently_playing = audio_play_sound(next_track,0,true);
+	audio_sound_gain(currently_playing,0,0);
+	audio_sound_gain(currently_playing,1,1000);
 }

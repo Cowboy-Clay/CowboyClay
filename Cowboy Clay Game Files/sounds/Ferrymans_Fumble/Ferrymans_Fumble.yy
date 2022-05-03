@@ -1,7 +1,7 @@
 {
   "conversionMode": 0,
   "compression": 0,
-  "volume": 0.25,
+  "volume": 1.0,
   "preload": false,
   "bitRate": 128,
   "sampleRate": 44100,
@@ -11,14 +11,14 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "Ambird__ALL_AMBIENCE_.ogg",
-  "duration": 192.0,
+  "soundFile": "Ferrymans_Fumble.ogg",
+  "duration": 141.818192,
   "parent": {
     "name": "Music",
     "path": "folders/Sounds/Music.yy",
   },
   "resourceVersion": "1.0",
-  "name": "Ambird__ALL_AMBIENCE_",
+  "name": "Ferrymans_Fumble",
   "tags": [],
   "resourceType": "GMSound",
 }
