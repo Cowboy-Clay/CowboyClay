@@ -110,9 +110,9 @@ global.player_graviMulti_attacking = 0.2;
 
 #region Animation Variables
 // Animation
-currentAnimType = AnimationType.FIRST_FRAME;
+currentAnimType = AnimationType.LOOP;
 animFrameCounter = 0;
-currentFPI = 1;
+currentFPI = 6;
 
 #endregion
 

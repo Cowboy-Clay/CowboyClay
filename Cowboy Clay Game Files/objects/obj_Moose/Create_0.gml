@@ -717,8 +717,12 @@ function update_animation() {
 				}
 			} else {
 				var a = global.moose_animation_wander_disarmed;
-			}
+			} 
+			if (facing == Direction.LEFT && hspeed > 0) || (facing == Direction.RIGHT && hspeed < 0) {
+			SetMooseAnimation(a, global.moose_animation_wander_FPI, AnimationType.REVERSE_LOOP);
+			}else {
 			SetMooseAnimation(a, global.moose_animation_wander_FPI, global.moose_animation_wander_type);
+			}
 			break;
 		case MooseState.SLIDE_ANTI:
 			var a = armor > 0 ? global.moose_animation_slideAnti : (armed==true ? global.moose_animation_slideAnti_helmless : global.moose_animation_slideAnti_disarmed);
@@ -764,7 +768,7 @@ function update_animation() {
 			break;
 		case MooseState.LUNGE:
 			var a = armor > 0 ? spr_moose_run : (armed==true ? spr_moose_run_helmless : spr_moose_run_empty);
-			SetMooseAnimation(a, 1, AnimationType.FIRST_FRAME);
+			SetMooseAnimation(a, 8, AnimationType.LOOP);
 			break;
 		case MooseState.STAB_ANTI:
 			var a = armor > 0 ? global.moose_animation_stabAnti : (armed==true ? global.moose_animation_stabAnti_helmless : global.moose_animation_stabAnti_disarmed);
@@ -855,6 +859,14 @@ function PlayMooseAnimation()
 	if animFrameCounter >= currentFPI
 	{
 		animFrameCounter = 0;
+		if currentAnimType == AnimationType.REVERSE_LOOP {
+			image_index--;
+			if image_index < 0 {
+				image_index = sprite_get_number(sprite_index) - 1;
+			}
+			check_frame_sounds();
+			return;
+		}
 		image_index ++;
 		if image_index >= sprite_get_number(sprite_index)
 		{
