@@ -270,10 +270,15 @@ function burp_anti() {
 function to_burp_swing() {
 	current_state = MooseState.BURP_SWING;
 	state_timer = global.moose_burp_swing_time;
-	spawn_shockwave(depth-100,x,y,(obj_player.x < x ? Direction.LEFT : Direction.RIGHT), 45, 300, Curve.ROOT);
+	spawn_shockwave(depth-100,x,y,(obj_player.x < x ? Direction.LEFT : Direction.RIGHT), 75, 300, Curve.LINEAR);
 	burp_swing();
 }
 function burp_swing() {
+	if facing == Direction.LEFT {
+		hspeed += global.moose_burp_swing_acceleration;
+	}else {
+		hspeed -= global.moose_burp_swing_acceleration;
+	}
 	if state_timer <= 0 {
 		to_burp_follow();
 	}
@@ -838,7 +843,7 @@ function update_animation() {
 			if armor > 0  a = spr_moose_burp;
 			else if armed a = spr_moose_burp_helmless;
 			else a = spr_moose_burp_empty;
-			SetMooseAnimation(a,8,AnimationType.HOLD);
+			SetMooseAnimation(a,6,AnimationType.LOOP);
 			break;
 		case MooseState.BURP_FOLLOW:
 			var a = noone;

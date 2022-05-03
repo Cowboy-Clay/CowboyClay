@@ -61,8 +61,9 @@ global.moose_player_too_close_distance = 200;
 global.moose_player_too_close_time = 60;
 
 global.moose_burp_anti_time = 12;
-global.moose_burp_swing_time = 25;
+global.moose_burp_swing_time = 100;
 global.moose_burp_follow_time = 16;
+global.moose_burp_swing_acceleration = .7;
 
 // Animations
 
