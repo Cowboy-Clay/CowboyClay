@@ -37,7 +37,7 @@ if place_meeting(x,y,obj_enemy_hitbox) && obj_enemy_hitbox.sprite_index != noone
 	
 	// Take an actual hit
 	if obj_player.current_state == PlayerState.BLOCK {
-		obj_player.GoToPlayerIdle();
+		obj_player.to_idle();
 	}
 	
 	if obj_Moose.armed {
@@ -50,7 +50,7 @@ if place_meeting(x,y,obj_enemy_hitbox) && obj_enemy_hitbox.sprite_index != noone
 
 if place_meeting(x,y,obj_moose_projectile) {
 	if obj_player.current_state == PlayerState.BLOCK {
-		obj_player.GoToPlayerIdle();
+		obj_player.to_idle();
 	}
 	obj_player.PlayerGetHit();
 }

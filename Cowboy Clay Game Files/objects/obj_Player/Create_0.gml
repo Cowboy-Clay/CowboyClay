@@ -167,7 +167,7 @@ function PlayerStateBasedMethods()
 				break;
 			}
 			if abs(hspeed) <= 0.1 {
-				GoToPlayerIdle();
+				to_idle();
 			}
 			break;
 		case PlayerState.JUMP_ANTI:
@@ -188,7 +188,7 @@ function PlayerStateBasedMethods()
 			if !check_falling(){
 				audio_play_sound(sfx_clay_land, 5, false);
 				instance_create_depth(x,y,depth-100, obj_player_land_dust);
-				GoToPlayerIdle();
+				to_idle();
 			}
 			sling_attack_charge();
 			basic_attack_charge();
@@ -296,7 +296,7 @@ function to_kick_follow() {
 }
 function kick_follow() {
 	if state_timer <= 0 {
-		GoToPlayerIdle();
+		to_idle();
 		return;
 	}
 	state_timer --;
@@ -309,7 +309,7 @@ function to_pain() {
 }
 function pain() {
 	if state_timer <= 0 {
-		GoToPlayerIdle();
+		to_idle();
 		return;
 	}
 	state_timer --;
@@ -334,7 +334,7 @@ function check_falling() {
 function attack_cancel() {
 	state_timer --;
 	if state_timer <= 0 {
-		GoToPlayerIdle();
+		to_idle();
 	}
 }
 function to_attack_cancel() {
@@ -377,7 +377,7 @@ function sling_attack_charge() {
 		sling_attack_charge_timer ++;
 	} else if sling_attack_charge_timer > 0 && sling_attack_charge_timer < global.player_sling_attack_charge_min && !button_check(buttons.sling) {
 		show_debug_message("release sling early");
-		to_attack_cancel();
+		to_idle();
 		sling_attack_charge_timer = 0;
 	} else if sling_attack_charge_timer > global.player_sling_attack_charge_min && !button_check(buttons.sling) {
 		show_debug_message("release sling good");
@@ -421,7 +421,7 @@ function to_sling_attack_follow() {
 function sling_attack_follow() {
 	state_timer --;
 	if state_timer < 0 {
-		GoToPlayerIdle();
+		to_idle();
 	}
 }
 
@@ -468,7 +468,7 @@ function to_block_follow(success) {
 function block_follow() {
 	state_timer--;
 	if state_timer < 0 {
-		GoToPlayerIdle();
+		to_idle();
 	}
 }
 
@@ -479,7 +479,7 @@ function GoToPlayerDead()
 	instance_deactivate_object(obj_player_hurtbox);
 }
 
-function GoToPlayerIdle()
+function to_idle()
 {
 	current_state = PlayerState.IDLE;
 }
@@ -537,7 +537,7 @@ function GoToPlayerBasicAttack()
 	}
 	if attackTimer <= 0
 	{
-		GoToPlayerIdle();
+		to_idle();
 	}
 }
 function GoToPlayerKick()
@@ -559,7 +559,7 @@ function GoToPlayerKick()
 	}
 	if attackTimer <= 0
 	{
-		GoToPlayerIdle();
+		to_idle();
 	}
 }
 
@@ -592,7 +592,7 @@ function GoToDash()
 				if place_meeting(i,y,obj_Wall)
 				{
 					x = i + 1;
-					GoToPlayerIdle();
+					to_idle();
 					return;
 				}
 			}
@@ -604,7 +604,7 @@ function GoToDash()
 				if place_meeting(i,y, obj_Wall)
 				{
 					x = i - 1;
-					GoToPlayerIdle();
+					to_idle();
 					return;
 				}
 			}
@@ -688,7 +688,7 @@ function PlayerPlungeSword()
 		sheathed = false;
 		obj_player_sword.PlayerSwordFling(0,-1,.5);
 		obj_player_sword.plungeFlag = true
-		GoToPlayerIdle();
+		to_idle();
 	}
 }
 
@@ -707,7 +707,7 @@ function PlayerUnsheathSword()
 		armed = true;
 		sheathed = false;
 		hiblock = 1;
-		GoToPlayerIdle();
+		to_idle();
 	}
 }
 
@@ -725,7 +725,7 @@ function PlayerSheathSword()
 	{
 		armed = false;
 		sheathed = true;
-		GoToPlayerIdle();
+		to_idle();
 	}
 }
 
@@ -811,7 +811,7 @@ function PlayerDash()
 				if place_meeting(i,y, obj_Wall)
 				{
 					x = i - 1;
-					GoToPlayerIdle();
+					to_idle();
 					return;
 				}
 			}
@@ -870,7 +870,7 @@ function PlayerAttack()
 		}
 		if current_state == PlayerState.BASIC_ATTACK_FOLLOW && attackTimer <= 0
 		{
-			GoToPlayerIdle();
+			to_idle();
 		}
 	}
 	else if current_state == PlayerState.KICK_ANTI || current_state == PlayerState.KICK_SWING || current_state == PlayerState.KICK_FOLLOW
@@ -892,7 +892,7 @@ function PlayerAttack()
 		}
 		if current_state == PlayerState.KICK_FOLLOW && attackTimer <= 0
 		{
-			GoToPlayerIdle();
+			to_idle();
 		}
 	}
 }

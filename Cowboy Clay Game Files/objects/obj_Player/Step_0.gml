@@ -29,7 +29,7 @@ if !global.paused
 	}
 	else if current_state == PlayerState.LOCK
 	{
-		GoToPlayerIdle();
+		to_idle();
 	}
 	else if current_state == PlayerState.DEAD obj_Moose.current_state = MooseState.LOCK;
 	
