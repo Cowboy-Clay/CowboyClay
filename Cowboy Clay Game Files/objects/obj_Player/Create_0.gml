@@ -853,6 +853,7 @@ function PlayerJumpAnti()
 	jumpTimer += 1;
 	if jumpTimer == global.player_maxJumpWindup {
 		instance_create_depth(x,y,depth-100,obj_player_jump_charge).image_xscale = image_xscale;
+		audio_play_sound(sfx_clay_hit, -2, false);
 	}
 	if (jumpTimer > global.player_minJumpWindup && button_check(buttons.jump) == false)
 	{
@@ -925,7 +926,6 @@ function PlayerGetHit()
 	if invulnerable || current_state == PlayerState.DEAD return;
 	if armed
 	{
-		audio_play_sound(sfx_clay_hit, -2, false);
 		knock_away_from(id,obj_Moose.x, obj_Moose.y, 12);
 		armed = false;
 		h = 1;
@@ -936,7 +936,6 @@ function PlayerGetHit()
 	}
 	else
 	{
-		audio_play_sound(sfx_clay_hit, -2, false);
 		//hitstun(.,false);
 		if obj_Moose.x > x hspeed = - 20;
 		else hspeed = 20;
