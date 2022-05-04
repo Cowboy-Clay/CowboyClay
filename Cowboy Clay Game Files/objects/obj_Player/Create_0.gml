@@ -925,6 +925,7 @@ function PlayerGetHit()
 	if invulnerable || current_state == PlayerState.DEAD return;
 	if armed
 	{
+		audio_play_sound(sfx_clay_hit, -2, false);
 		knock_away_from(id,obj_Moose.x, obj_Moose.y, 12);
 		armed = false;
 		h = 1;
@@ -935,6 +936,7 @@ function PlayerGetHit()
 	}
 	else
 	{
+		audio_play_sound(sfx_clay_hit, -2, false);
 		//hitstun(.,false);
 		if obj_Moose.x > x hspeed = - 20;
 		else hspeed = 20;

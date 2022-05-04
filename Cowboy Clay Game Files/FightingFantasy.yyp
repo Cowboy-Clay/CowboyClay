@@ -51,6 +51,7 @@
     {"id":{"name":"spr_player_resurrect","path":"sprites/spr_player_resurrect/spr_player_resurrect.yy",},"order":99,},
     {"id":{"name":"obj_door","path":"objects/obj_door/obj_door.yy",},"order":0,},
     {"id":{"name":"tset_battlements5","path":"tilesets/tset_battlements5/tset_battlements5.yy",},"order":4,},
+    {"id":{"name":"sfx_clay_hit","path":"sounds/sfx_clay_hit/sfx_clay_hit.yy",},"order":11,},
     {"id":{"name":"spr_moose_jumping_hurtbox","path":"sprites/spr_moose_jumping_hurtbox/spr_moose_jumping_hurtbox.yy",},"order":86,},
     {"id":{"name":"obj_player_sword","path":"objects/obj_player_sword/obj_player_sword.yy",},"order":2,},
     {"id":{"name":"sfx_switch_up","path":"sounds/sfx_switch_up/sfx_switch_up.yy",},"order":1,},
