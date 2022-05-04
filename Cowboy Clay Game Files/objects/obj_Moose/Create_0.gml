@@ -10,6 +10,8 @@ enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING,
 
 time_limit_jump = 240;
 
+dead_timer = 90;
+
 collision_mask = [obj_tile_coll, obj_door, obj_plate, obj_elevator];
 collision_mask = [obj_tile_coll, obj_door, obj_plate, obj_elevator];
 

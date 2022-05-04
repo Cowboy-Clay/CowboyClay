@@ -27,6 +27,13 @@ if !global.paused
 	MooseInvuln();
 }
 
+if current_state == MooseState.DEAD {
+	dead_timer --;
+}
+if !instance_exists(obj_wipe_out) && dead_timer <= 0 {
+	instance_create_depth(x,y,-1000,obj_wipe_out);
+}
+
 collision_check(spr_enemy_collision,collision_mask, false, false);
 
 var pl, pr;
