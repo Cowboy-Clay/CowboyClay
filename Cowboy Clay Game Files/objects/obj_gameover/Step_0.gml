@@ -1,11 +1,6 @@
 switch (current_state) {
 	case 0:
-		// fade in 
-		image_alpha += 1/45;
-		if image_alpha >= 1 {
-			current_state = 1;
-			image_speed = 1;
-		}
+		
 		break;
 	case 1:
 		if keyboard_check_pressed(vk_anykey){
