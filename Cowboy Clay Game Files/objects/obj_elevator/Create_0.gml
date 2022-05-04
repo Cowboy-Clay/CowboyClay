@@ -91,6 +91,7 @@ function fall()
 	collision_check_elevator(spr_mech_elevator_coll, collision_mask, false, false);
 	if collision_check_edge(x,y,spr_mech_elevator_coll, Direction.DOWN, collision_mask) {
 		current_state = elevator_state.sitting;
+		audio_play_sound(sfx_elevator_crash,-10,false);
 		show_debug_message("Going to sitting");
 	}
 	if mounted obj_player.vspeed = vspeed;
