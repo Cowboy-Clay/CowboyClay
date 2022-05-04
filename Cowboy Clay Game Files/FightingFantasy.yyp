@@ -419,6 +419,7 @@
     {"id":{"name":"spr_envi_bushTile3","path":"sprites/spr_envi_bushTile3/spr_envi_bushTile3.yy",},"order":38,},
     {"id":{"name":"spr_moose_idle","path":"sprites/spr_moose_idle/spr_moose_idle.yy",},"order":13,},
     {"id":{"name":"spr_moose_spinning_hitbox","path":"sprites/spr_moose_spinning_hitbox/spr_moose_spinning_hitbox.yy",},"order":95,},
+    {"id":{"name":"sfx_moose_burp","path":"sounds/sfx_moose_burp/sfx_moose_burp.yy",},"order":14,},
     {"id":{"name":"spr_envi_bridgeTileset","path":"sprites/spr_envi_bridgeTileset/spr_envi_bridgeTileset.yy",},"order":42,},
     {"id":{"name":"spr_player_walk_armed","path":"sprites/spr_player_walk_armed/spr_player_walk_armed.yy",},"order":41,},
     {"id":{"name":"spr_player_damaged","path":"sprites/spr_player_damaged/spr_player_damaged.yy",},"order":88,},
@@ -576,7 +577,7 @@
     {"CopyToMask":153157610357391598,"filePath":"datafiles","resourceVersion":"1.0","name":"Idle.aseprite","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2022.3.0.624",
+    "IDEVersion": "2022.3.0.625",
   },
   "resourceVersion": "1.5",
   "name": "FightingFantasy",
