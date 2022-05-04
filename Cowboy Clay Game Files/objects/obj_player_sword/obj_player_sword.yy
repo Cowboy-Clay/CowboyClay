@@ -6,8 +6,8 @@
   "solid": false,
   "visible": true,
   "spriteMaskId": {
-    "name": "spr_player_collision",
-    "path": "sprites/spr_player_collision/spr_player_collision.yy",
+    "name": "spr_mech_pushBlockCollision",
+    "path": "sprites/spr_mech_pushBlockCollision/spr_mech_pushBlockCollision.yy",
   },
   "persistent": false,
   "parentObjectId": null,

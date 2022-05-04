@@ -82,6 +82,7 @@
     {"id":{"name":"spr_player_loBlock_stun","path":"sprites/spr_player_loBlock_stun/spr_player_loBlock_stun.yy",},"order":47,},
     {"id":{"name":"ElevatorTest","path":"rooms/ElevatorTest/ElevatorTest.yy",},"order":0,},
     {"id":{"name":"spr_moose_idle_hitbox","path":"sprites/spr_moose_idle_hitbox/spr_moose_idle_hitbox.yy",},"order":19,},
+    {"id":{"name":"StrafeText","path":"sprites/StrafeText/StrafeText.yy",},"order":22,},
     {"id":{"name":"LevelDesignTest","path":"rooms/LevelDesignTest/LevelDesignTest.yy",},"order":2,},
     {"id":{"name":"sfx_moose_step_1","path":"sounds/sfx_moose_step_1/sfx_moose_step_1.yy",},"order":11,},
     {"id":{"name":"spr_tile_coll","path":"sprites/spr_tile_coll/spr_tile_coll.yy",},"order":10,},
@@ -616,7 +617,7 @@
     {"CopyToMask":153157610357391598,"filePath":"datafiles","resourceVersion":"1.0","name":"Idle.aseprite","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2022.3.0.624",
+    "IDEVersion": "2022.3.0.625",
   },
   "resourceVersion": "1.5",
   "name": "FightingFantasy",
