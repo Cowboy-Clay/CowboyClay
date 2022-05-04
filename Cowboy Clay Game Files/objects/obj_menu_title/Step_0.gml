@@ -33,6 +33,17 @@ if sprite_index != last_sprite || floor(image_index) != last_image {
 		}
 	}
 	
+	if sprite_index == Shot3 && image_index == 1 {
+		audio_play_sound(sfx_clay_sling,-1,true);
+	} else if sprite_index != Shot3 && audio_is_playing(sfx_clay_sling) {
+		audio_stop_sound(sfx_clay_sling);
+	}
+	
+	if sprite_index == Shot5 && image_index == 1 {
+		audio_play_sound(sfx_clay_sword_spin,-1,true);
+	} else if sprite_index == Shot6 && image_index == 22 && audio_is_playing(sfx_clay_sword_spin) {
+		audio_stop_sound(sfx_clay_sword_spin);
+	}
 	last_sprite = sprite_index;
 	last_image = floor(image_index);
 }
