@@ -1,5 +1,9 @@
 // @description All code run each frame
 
+if sprite_index == spr_player_resurrect && image_index == 1 && audio_is_playing(sfx_player_revive) == false {
+	audio_play_sound(sfx_player_revive, -2, false);
+}
+
 if keyboard_check_pressed(vk_f11){
 	window_set_fullscreen(!window_get_fullscreen());
 }
