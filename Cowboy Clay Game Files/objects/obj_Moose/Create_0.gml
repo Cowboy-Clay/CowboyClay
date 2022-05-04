@@ -998,12 +998,13 @@ function MooseGetHit()
 		MakeMooseInvulnerable();
 		current_state = MooseState.HIT;
 		wanderCounter = 0;
+		audio_play_sound(sfx_moose_dehelm, 2, false);
 	} else {
 		if obj_player.x > x hspeed =  -20;
 		else hspeed = 20;
 		vspeed = -20;
 		MooseToDead();
-		obj_player.current_state = PlayerState.LOCK;
+		audio_play_sound(sfx_moose_dehelm, 2, false);
 	}
 }
 
