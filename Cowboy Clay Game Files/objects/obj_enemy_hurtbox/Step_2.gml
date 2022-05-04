@@ -16,6 +16,8 @@ if place_meeting(x,y,obj_player_hitbox) && obj_player_hitbox.sprite_index != spr
 	else if (get_instance_hi_block(obj_Moose.id) && get_instance_hi_attack(obj_player.id)) ||
 	(get_instance_lo_block(obj_Moose.id) && get_instance_lo_attack(obj_player.id)) {
 		// succesful block recoil
+		if get_instance_hi_attack(obj_player.id) instance_create_layer(x,y,layer,obj_moose_block_spark_hi);
+		if get_instance_lo_attack(obj_player.id) instance_create_layer(x,y,layer,obj_moose_block_spark_lo);
 		audio_play_sound(sfx_moose_block, 5, false);
 		knock_away_from(obj_player,x,y+400,15);
 		

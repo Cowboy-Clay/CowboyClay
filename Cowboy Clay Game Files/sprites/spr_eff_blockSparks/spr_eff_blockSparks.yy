@@ -44,7 +44,7 @@
     "spriteId": {"name":"spr_eff_blockSparks","path":"sprites/spr_eff_blockSparks/spr_eff_blockSparks.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 0.0,
+    "playbackSpeed": 20.0,
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
