@@ -7,5 +7,7 @@ if place_meeting(x,y,obj_player_hitbox) && (obj_player.current_state == PlayerSt
 	b.half = 2;
 	knock_away_from(b, obj_player_hitbox.x, obj_player_hitbox.y, 10);
 	
+	audio_play_sound(sfx_wall_smash_1,-4,false);
+	
 	instance_destroy(id);
 }

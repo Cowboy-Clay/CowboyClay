@@ -46,6 +46,7 @@
     {"id":{"name":"spr_bridgeTiles","path":"sprites/spr_bridgeTiles/spr_bridgeTiles.yy",},"order":45,},
     {"id":{"name":"obj_midHouse","path":"objects/obj_midHouse/obj_midHouse.yy",},"order":9,},
     {"id":{"name":"spr_moose_chargeBounce_helmless","path":"sprites/spr_moose_chargeBounce_helmless/spr_moose_chargeBounce_helmless.yy",},"order":133,},
+    {"id":{"name":"sfx_wall_smash_1","path":"sounds/sfx_wall_smash_1/sfx_wall_smash_1.yy",},"order":12,},
     {"id":{"name":"sfx_sword_anti","path":"sounds/sfx_sword_anti/sfx_sword_anti.yy",},"order":4,},
     {"id":{"name":"spr_player_resurrect","path":"sprites/spr_player_resurrect/spr_player_resurrect.yy",},"order":99,},
     {"id":{"name":"obj_door","path":"objects/obj_door/obj_door.yy",},"order":0,},
