@@ -15,3 +15,10 @@ function switch_track(next_track) {
 function quiet() {
 	audio_sound_gain(currently_playing,0.3,500);
 }
+
+function pause() {
+	audio_sound_gain(currently_playing,0,500);
+}
+function resume() {
+	audio_sound_gain(currently_playing,1,500);
+}

@@ -11,14 +11,14 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "ClayDeathAltWhistle2.ogg",
+  "soundFile": "sfx_clay_die.ogg",
   "duration": 5.769229,
   "parent": {
     "name": "Clay",
     "path": "folders/Sounds/SFX/Clay.yy",
   },
   "resourceVersion": "1.0",
-  "name": "ClayDeathAltWhistle2",
+  "name": "sfx_clay_die",
   "tags": [],
   "resourceType": "GMSound",
 }

@@ -488,6 +488,8 @@ function GoToPlayerDead()
 {
 	current_state = PlayerState.DEAD;
 	state_timer = 0;
+	audio_play_sound(sfx_clay_die,0,false);
+	if instance_exists(obj_music_controller) obj_music_controller.pause();
 	instance_deactivate_object(obj_player_hitbox);
 	instance_deactivate_object(obj_player_hurtbox);
 }

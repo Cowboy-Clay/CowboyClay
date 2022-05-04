@@ -73,7 +73,7 @@
     {"id":{"name":"obj_wipe_in","path":"objects/obj_wipe_in/obj_wipe_in.yy",},"order":2,},
     {"id":{"name":"tset_bridge","path":"tilesets/tset_bridge/tset_bridge.yy",},"order":2,},
     {"id":{"name":"spr_moose_stabAnti","path":"sprites/spr_moose_stabAnti/spr_moose_stabAnti.yy",},"order":61,},
-    {"id":{"name":"ClayDeathAltWhistle2","path":"sounds/ClayDeathAltWhistle2/ClayDeathAltWhistle2.yy",},"order":10,},
+    {"id":{"name":"sfx_clay_die","path":"sounds/sfx_clay_die/sfx_clay_die.yy",},"order":10,},
     {"id":{"name":"spr_player_aimStartJumpAnti_disarmed","path":"sprites/spr_player_aimStartJumpAnti_disarmed/spr_player_aimStartJumpAnti_disarmed.yy",},"order":113,},
     {"id":{"name":"obj_player_lo_block_spark","path":"objects/obj_player_lo_block_spark/obj_player_lo_block_spark.yy",},"order":2,},
     {"id":{"name":"spr_player_jumpAttack_Follow","path":"sprites/spr_player_jumpAttack_Follow/spr_player_jumpAttack_Follow.yy",},"order":40,},

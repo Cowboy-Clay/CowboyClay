@@ -2,6 +2,7 @@
 
 if sprite_index == spr_player_resurrect && image_index == 1 && audio_is_playing(sfx_player_revive) == false {
 	audio_play_sound(sfx_player_revive, -2, false);
+	if instance_exists(obj_music_controller) obj_music_controller.resume();
 }
 
 if keyboard_check_pressed(vk_f11){
