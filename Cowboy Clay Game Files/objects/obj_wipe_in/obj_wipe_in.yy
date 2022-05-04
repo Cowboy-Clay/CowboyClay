@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "CowboyClayTitle1",
-    "path": "sprites/CowboyClayTitle1/CowboyClayTitle1.yy",
+    "name": "wipe",
+    "path": "sprites/wipe/wipe.yy",
   },
   "solid": false,
   "visible": true,
@@ -21,9 +21,9 @@
   "physicsKinematic": false,
   "physicsShapePoints": [],
   "eventList": [
+    {"isDnD":false,"eventNum":7,"eventType":7,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":7,"eventType":7,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
@@ -32,7 +32,7 @@
     "path": "folders/Objects/Screens.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_menu_title",
+  "name": "obj_wipe_in",
   "tags": [],
   "resourceType": "GMObject",
 }
