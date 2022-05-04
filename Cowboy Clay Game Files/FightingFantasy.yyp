@@ -86,6 +86,7 @@
     {"id":{"name":"spr_eff_jumpDust","path":"sprites/spr_eff_jumpDust/spr_eff_jumpDust.yy",},"order":5,},
     {"id":{"name":"spr_moose_death","path":"sprites/spr_moose_death/spr_moose_death.yy",},"order":10,},
     {"id":{"name":"collision_check_edge","path":"scripts/collision_check_edge/collision_check_edge.yy",},"order":2,},
+    {"id":{"name":"sfx_moose_knife_plant","path":"sounds/sfx_moose_knife_plant/sfx_moose_knife_plant.yy",},"order":15,},
     {"id":{"name":"MooseTuners","path":"scripts/MooseTuners/MooseTuners.yy",},"order":2,},
     {"id":{"name":"obj_player_charge_spark","path":"objects/obj_player_charge_spark/obj_player_charge_spark.yy",},"order":1,},
     {"id":{"name":"spr_player_charging","path":"sprites/spr_player_charging/spr_player_charging.yy",},"order":51,},
