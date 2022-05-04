@@ -42,6 +42,7 @@
     {"id":{"name":"obj_enemy_blockbox","path":"objects/obj_enemy_blockbox/obj_enemy_blockbox.yy",},"order":6,},
     {"id":{"name":"spr_player_questionMark","path":"sprites/spr_player_questionMark/spr_player_questionMark.yy",},"order":50,},
     {"id":{"name":"sfx_moose_swing","path":"sounds/sfx_moose_swing/sfx_moose_swing.yy",},"order":8,},
+    {"id":{"name":"sfx_moose_death","path":"sounds/sfx_moose_death/sfx_moose_death.yy",},"order":17,},
     {"id":{"name":"obj_cam_position","path":"objects/obj_cam_position/obj_cam_position.yy",},"order":1,},
     {"id":{"name":"spr_bridgeTiles","path":"sprites/spr_bridgeTiles/spr_bridgeTiles.yy",},"order":45,},
     {"id":{"name":"obj_midHouse","path":"objects/obj_midHouse/obj_midHouse.yy",},"order":9,},
