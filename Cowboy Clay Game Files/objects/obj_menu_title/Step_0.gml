@@ -7,6 +7,7 @@ if (keyboard_check_pressed(ord("X")) || gamepad_button_check_pressed(0,gp_face3)
 		room_goto(FinalLevelDesign);
 		return;
 	}
+	if instance_exists(obj_music_controller) obj_music_controller.quiet();
 	audio_play_sound(sfx_start,0,false);
 	sprite_index = sequence[0];
 	image_index = 0;

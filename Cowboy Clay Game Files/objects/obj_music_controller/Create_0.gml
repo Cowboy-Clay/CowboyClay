@@ -11,3 +11,7 @@ function switch_track(next_track) {
 	audio_sound_gain(currently_playing,0,0);
 	audio_sound_gain(currently_playing,1,1000);
 }
+
+function quiet() {
+	audio_sound_gain(currently_playing,0.3,500);
+}
