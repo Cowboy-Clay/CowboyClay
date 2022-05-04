@@ -203,6 +203,7 @@ function to_sleep() {
 
 function sleep() {
 	if instance_exists(obj_player) && obj_player.armed {
+		if instance_exists(obj_music_controller) obj_music_controller.resume();
 		to_idle();
 	}
 }
