@@ -1007,6 +1007,7 @@ function MooseGetHit()
 		else hspeed = 20;
 		vspeed = -20;
 		MooseToDead();
+		if instance_exists(obj_music_controller) obj_music_controller.pause();
 		audio_play_sound(sfx_moose_death, 2, false);
 	}
 }
