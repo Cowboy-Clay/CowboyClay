@@ -57,6 +57,18 @@
     {"compositeImage":{"FrameId":{"name":"ce0c506c-6346-421f-ae53-c68fbefd6d8e","path":"sprites/GameOverScreen/GameOverScreen.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
         {"FrameId":{"name":"ce0c506c-6346-421f-ae53-c68fbefd6d8e","path":"sprites/GameOverScreen/GameOverScreen.yy",},"LayerId":{"name":"9fa809ca-d1d1-421c-950d-fc8d099e2420","path":"sprites/GameOverScreen/GameOverScreen.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
       ],"parent":{"name":"GameOverScreen","path":"sprites/GameOverScreen/GameOverScreen.yy",},"resourceVersion":"1.0","name":"ce0c506c-6346-421f-ae53-c68fbefd6d8e","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"6d53b480-f8c3-4de9-b3ff-cf52c65fbb02","path":"sprites/GameOverScreen/GameOverScreen.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"6d53b480-f8c3-4de9-b3ff-cf52c65fbb02","path":"sprites/GameOverScreen/GameOverScreen.yy",},"LayerId":{"name":"9fa809ca-d1d1-421c-950d-fc8d099e2420","path":"sprites/GameOverScreen/GameOverScreen.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"GameOverScreen","path":"sprites/GameOverScreen/GameOverScreen.yy",},"resourceVersion":"1.0","name":"6d53b480-f8c3-4de9-b3ff-cf52c65fbb02","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"78e5d074-e188-48e3-939c-b695714b70ca","path":"sprites/GameOverScreen/GameOverScreen.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"78e5d074-e188-48e3-939c-b695714b70ca","path":"sprites/GameOverScreen/GameOverScreen.yy",},"LayerId":{"name":"9fa809ca-d1d1-421c-950d-fc8d099e2420","path":"sprites/GameOverScreen/GameOverScreen.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"GameOverScreen","path":"sprites/GameOverScreen/GameOverScreen.yy",},"resourceVersion":"1.0","name":"78e5d074-e188-48e3-939c-b695714b70ca","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"c8fd15d8-877b-4681-ab12-5d418e84c3cc","path":"sprites/GameOverScreen/GameOverScreen.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"c8fd15d8-877b-4681-ab12-5d418e84c3cc","path":"sprites/GameOverScreen/GameOverScreen.yy",},"LayerId":{"name":"9fa809ca-d1d1-421c-950d-fc8d099e2420","path":"sprites/GameOverScreen/GameOverScreen.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"GameOverScreen","path":"sprites/GameOverScreen/GameOverScreen.yy",},"resourceVersion":"1.0","name":"c8fd15d8-877b-4681-ab12-5d418e84c3cc","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"dbac1aac-d0d5-4b9c-a799-e32ff51414ad","path":"sprites/GameOverScreen/GameOverScreen.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"dbac1aac-d0d5-4b9c-a799-e32ff51414ad","path":"sprites/GameOverScreen/GameOverScreen.yy",},"LayerId":{"name":"9fa809ca-d1d1-421c-950d-fc8d099e2420","path":"sprites/GameOverScreen/GameOverScreen.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"GameOverScreen","path":"sprites/GameOverScreen/GameOverScreen.yy",},"resourceVersion":"1.0","name":"dbac1aac-d0d5-4b9c-a799-e32ff51414ad","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"GameOverScreen","path":"sprites/GameOverScreen/GameOverScreen.yy",},
@@ -66,7 +78,7 @@
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
-    "length": 11.0,
+    "length": 15.0,
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
@@ -82,6 +94,10 @@
             {"id":"9329b946-945b-4760-bd8b-6627544115ef","Key":8.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"6fa83f7c-932b-4914-9a48-6b062e007703","path":"sprites/GameOverScreen/GameOverScreen.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"f9101b03-f688-4f30-b6c2-4c0c8826e5f1","Key":9.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"76232332-d1fa-47b8-bc12-dc4fb466af58","path":"sprites/GameOverScreen/GameOverScreen.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"7f46d052-9620-4f77-9db7-a1fa4f4c6f01","Key":10.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"ce0c506c-6346-421f-ae53-c68fbefd6d8e","path":"sprites/GameOverScreen/GameOverScreen.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"9e339734-6eac-4bf2-84a0-7b9bfef6af8d","Key":11.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"6d53b480-f8c3-4de9-b3ff-cf52c65fbb02","path":"sprites/GameOverScreen/GameOverScreen.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"d394f7dc-14f7-4a07-9852-320869e7b631","Key":12.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"78e5d074-e188-48e3-939c-b695714b70ca","path":"sprites/GameOverScreen/GameOverScreen.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"c7407738-14cc-4ef5-9f62-801f1c21d140","Key":13.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"c8fd15d8-877b-4681-ab12-5d418e84c3cc","path":"sprites/GameOverScreen/GameOverScreen.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"60416180-eb5e-4e27-b1f7-b86b85b28302","Key":14.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"dbac1aac-d0d5-4b9c-a799-e32ff51414ad","path":"sprites/GameOverScreen/GameOverScreen.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
