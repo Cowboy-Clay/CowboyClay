@@ -220,6 +220,7 @@
     {"id":{"name":"spr_moose_run_helmless","path":"sprites/spr_moose_run_helmless/spr_moose_run_helmless.yy",},"order":116,},
     {"id":{"name":"obj_player_hitbox","path":"objects/obj_player_hitbox/obj_player_hitbox.yy",},"order":3,},
     {"id":{"name":"obj_Moose","path":"objects/obj_Moose/obj_Moose.yy",},"order":4,},
+    {"id":{"name":"wipe","path":"sprites/wipe/wipe.yy",},"order":10,},
     {"id":{"name":"spr_player_sling","path":"sprites/spr_player_sling/spr_player_sling.yy",},"order":64,},
     {"id":{"name":"keybinds","path":"scripts/keybinds/keybinds.yy",},"order":11,},
     {"id":{"name":"obj_tallHouse","path":"objects/obj_tallHouse/obj_tallHouse.yy",},"order":8,},
@@ -582,7 +583,7 @@
     {"CopyToMask":153157610357391598,"filePath":"datafiles","resourceVersion":"1.0","name":"Idle.aseprite","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2022.3.0.624",
+    "IDEVersion": "2022.3.0.625",
   },
   "resourceVersion": "1.5",
   "name": "FightingFantasy",
