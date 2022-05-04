@@ -44,6 +44,11 @@ if sprite_index != last_sprite || floor(image_index) != last_image {
 	} else if sprite_index == Shot6 && image_index == 22 && audio_is_playing(sfx_clay_sword_spin) {
 		audio_stop_sound(sfx_clay_sword_spin);
 	}
+	
+	if sprite_index == Shot6_2 && image_index == 19 {
+		audio_play_sound(sfx_gunshot,-1,false);
+	}
+	
 	last_sprite = sprite_index;
 	last_image = floor(image_index);
 }

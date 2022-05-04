@@ -415,6 +415,7 @@
     {"id":{"name":"spr_moose_taunt","path":"sprites/spr_moose_taunt/spr_moose_taunt.yy",},"order":35,},
     {"id":{"name":"spr_moose_slide_empty","path":"sprites/spr_moose_slide_empty/spr_moose_slide_empty.yy",},"order":26,},
     {"id":{"name":"SuperJumpText","path":"sprites/SuperJumpText/SuperJumpText.yy",},"order":19,},
+    {"id":{"name":"sfx_gunshot","path":"sounds/sfx_gunshot/sfx_gunshot.yy",},"order":15,},
     {"id":{"name":"spr_envi_ground","path":"sprites/spr_envi_ground/spr_envi_ground.yy",},"order":2,},
     {"id":{"name":"obj_enemy_hurtbox","path":"objects/obj_enemy_hurtbox/obj_enemy_hurtbox.yy",},"order":4,},
     {"id":{"name":"spr_moose_plungeBumping","path":"sprites/spr_moose_plungeBumping/spr_moose_plungeBumping.yy",},"order":98,},
