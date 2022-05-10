@@ -8,14 +8,14 @@
   "collisionTolerance": 0,
   "swfPrecision": 2.525,
   "bbox_left": 0,
-  "bbox_right": 87,
+  "bbox_right": 93,
   "bbox_top": 0,
-  "bbox_bottom": 169,
+  "bbox_bottom": 161,
   "HTile": false,
   "VTile": false,
   "For3D": false,
-  "width": 88,
-  "height": 170,
+  "width": 94,
+  "height": 162,
   "textureGroupId": {
     "name": "Default",
     "path": "texturegroups/Default",
@@ -24,9 +24,9 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"96c10a3e-2ede-4fb6-83de-712b08e70148","path":"sprites/spr_mech_breakableWallPiece1/spr_mech_breakableWallPiece1.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"96c10a3e-2ede-4fb6-83de-712b08e70148","path":"sprites/spr_mech_breakableWallPiece1/spr_mech_breakableWallPiece1.yy",},"LayerId":{"name":"76817768-44a6-4abb-a398-e855633d2cde","path":"sprites/spr_mech_breakableWallPiece1/spr_mech_breakableWallPiece1.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_mech_breakableWallPiece1","path":"sprites/spr_mech_breakableWallPiece1/spr_mech_breakableWallPiece1.yy",},"resourceVersion":"1.0","name":"96c10a3e-2ede-4fb6-83de-712b08e70148","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"9d989d1f-aae9-4bc2-8f00-7a333efeaee0","path":"sprites/spr_mech_breakableWallPiece1/spr_mech_breakableWallPiece1.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"9d989d1f-aae9-4bc2-8f00-7a333efeaee0","path":"sprites/spr_mech_breakableWallPiece1/spr_mech_breakableWallPiece1.yy",},"LayerId":{"name":"e082cb2f-1bd1-4a8f-a4ca-ca36b662c9c2","path":"sprites/spr_mech_breakableWallPiece1/spr_mech_breakableWallPiece1.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_mech_breakableWallPiece1","path":"sprites/spr_mech_breakableWallPiece1/spr_mech_breakableWallPiece1.yy",},"resourceVersion":"1.0","name":"9d989d1f-aae9-4bc2-8f00-7a333efeaee0","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"spr_mech_breakableWallPiece1","path":"sprites/spr_mech_breakableWallPiece1/spr_mech_breakableWallPiece1.yy",},
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"5c62a459-515e-4953-ae9b-51143af26816","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"96c10a3e-2ede-4fb6-83de-712b08e70148","path":"sprites/spr_mech_breakableWallPiece1/spr_mech_breakableWallPiece1.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"a8db572f-4c31-4ea4-8036-33dd4b994272","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"9d989d1f-aae9-4bc2-8f00-7a333efeaee0","path":"sprites/spr_mech_breakableWallPiece1/spr_mech_breakableWallPiece1.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
@@ -54,8 +54,8 @@
     "backdropHeight": 768,
     "backdropXOffset": 0.0,
     "backdropYOffset": 0.0,
-    "xorigin": 44,
-    "yorigin": 85,
+    "xorigin": 47,
+    "yorigin": 81,
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_mech_breakableWallPiece1","path":"sprites/spr_mech_breakableWallPiece1/spr_mech_breakableWallPiece1.yy",},
@@ -65,7 +65,7 @@
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"76817768-44a6-4abb-a398-e855633d2cde","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"e082cb2f-1bd1-4a8f-a4ca-ca36b662c9c2","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": null,
   "parent": {
