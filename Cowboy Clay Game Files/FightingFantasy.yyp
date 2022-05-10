@@ -101,6 +101,7 @@
     {"id":{"name":"MooseTuners","path":"scripts/MooseTuners/MooseTuners.yy",},"order":2,},
     {"id":{"name":"sfx_start","path":"sounds/sfx_start/sfx_start.yy",},"order":14,},
     {"id":{"name":"obj_player_charge_spark","path":"objects/obj_player_charge_spark/obj_player_charge_spark.yy",},"order":1,},
+    {"id":{"name":"input_set_bind","path":"scripts/input_set_bind/input_set_bind.yy",},"order":7,},
     {"id":{"name":"spr_player_charging","path":"sprites/spr_player_charging/spr_player_charging.yy",},"order":51,},
     {"id":{"name":"spr_moose_jumping_nohelm","path":"sprites/spr_moose_jumping_nohelm/spr_moose_jumping_nohelm.yy",},"order":70,},
     {"id":{"name":"gamepad_hat_check","path":"scripts/gamepad_hat_check/gamepad_hat_check.yy",},"order":3,},
