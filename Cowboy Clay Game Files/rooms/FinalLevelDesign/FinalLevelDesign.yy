@@ -15,6 +15,7 @@
   "layers": [
     {"instances":[
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_wipe_in","path":"objects/obj_wipe_in/obj_wipe_in.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":384.0,"y":2208.0,"resourceVersion":"1.0","name":"inst_78A7EC1B","tags":[],"resourceType":"GMRInstance",},
+        {"properties":[],"isDnd":false,"objectId":{"name":"obj_input_manager","path":"objects/obj_input_manager/obj_input_manager.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":3904.0,"y":2112.0,"resourceVersion":"1.0","name":"inst_525C2633","tags":[],"resourceType":"GMRInstance",},
       ],"visible":true,"depth":0,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":32,"gridY":32,"layers":[],"hierarchyFrozen":false,"effectEnabled":true,"effectType":null,"properties":[],"resourceVersion":"1.0","name":"Top","tags":[],"resourceType":"GMRInstanceLayer",},
     {"tilesetId":{"name":"tset_battlements5","path":"tilesets/tset_battlements5/tset_battlements5.yy",},"x":-17,"y":20,"tiles":{"SerialiseWidth":79,"SerialiseHeight":18,"TileSerialiseData":[
 2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,2147483648,
@@ -607,6 +608,7 @@
     {"name":"inst_2E2556B1","path":"rooms/FinalLevelDesign/FinalLevelDesign.yy",},
     {"name":"inst_4722E9AA","path":"rooms/FinalLevelDesign/FinalLevelDesign.yy",},
     {"name":"inst_78A7EC1B","path":"rooms/FinalLevelDesign/FinalLevelDesign.yy",},
+    {"name":"inst_525C2633","path":"rooms/FinalLevelDesign/FinalLevelDesign.yy",},
   ],
   "inheritCreationOrder": false,
   "sequenceId": null,
