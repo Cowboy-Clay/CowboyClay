@@ -529,7 +529,7 @@ function to_projectile() {
 	}
 }
 function projectile() {
-	show_debug_message(state_timer);
+	//show_debug_message(state_timer);
 	if state_timer <= 0 MooseWanderToIdle();
 }
 

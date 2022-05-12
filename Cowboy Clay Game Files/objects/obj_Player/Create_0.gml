@@ -127,7 +127,7 @@ if instance_exists(obj_cam_position) == false instance_create_layer(x,y,"PlayerT
 function PlayerStateBasedMethods()
 {
 	jump_buffer --;
-	if button_check_pressed(buttons.jump) {
+	if input_check_pressed(input_action.jump) {
 		jump_buffer = global.player_jump_buffer_frames;
 	}
 	
@@ -142,7 +142,7 @@ function PlayerStateBasedMethods()
 				GoToPlayerJumpAnti();
 				break;
 			}
-			if basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 && button_check_pressed(buttons.kick) {
+			if basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 && input_check_pressed(input_action.kick) {
 				to_kick_anti();
 				break;
 			}
@@ -162,7 +162,7 @@ function PlayerStateBasedMethods()
 				GoToPlayerJumpAnti();
 				break;
 			}
-			if basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 && button_check_pressed(buttons.kick) {
+			if basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 && input_check_pressed(input_action.kick) {
 				to_kick_anti();
 				break;
 			}
@@ -367,32 +367,32 @@ function basic_attack_charge() {
 		audio_play_sound(sfx_sword_anti, 10, false);
 	}
 	
-	if basic_attack_charge_timer == 0 && button_check_pressed(buttons.attack) && sling_attack_charge_timer == 0{
+	if basic_attack_charge_timer == 0 && input_check_pressed(input_action.attack) && sling_attack_charge_timer == 0{
 		basic_attack_charge_timer ++;
-	} else if basic_attack_charge_timer > 0 && button_check(buttons.attack) {
+	} else if basic_attack_charge_timer > 0 && input_check(input_action.attack) {
 		basic_attack_charge_timer ++;
-	} else if basic_attack_charge_timer > 0 && basic_attack_charge_timer < global.player_basic_attack_charge_min && !button_check(buttons.attack) {
+	} else if basic_attack_charge_timer > 0 && basic_attack_charge_timer < global.player_basic_attack_charge_min && !input_check(input_action.attack) {
 		to_attack_cancel();
 		basic_attack_charge_timer = 0;
-	} else if basic_attack_charge_timer > global.player_basic_attack_charge_min && !button_check(buttons.attack) {
+	} else if basic_attack_charge_timer > global.player_basic_attack_charge_min && !input_check(input_action.attack) {
 		basic_attack_charge_timer = 0;
 		audio_play_sound(sfx_sword_swing, 10, false);
 		GoToPlayerBasicAttack();
 	}
 }
 function sling_attack_charge() {
-	if sling_attack_charge_timer == 0 && button_check_pressed(buttons.sling) && basic_attack_charge_timer == 0{
-		show_debug_message("Began charging sling");
+	if sling_attack_charge_timer == 0 && input_check_pressed(input_action.sling) && basic_attack_charge_timer == 0{
+		//show_debug_message("Began charging sling");
 		sling_attack_charge_timer ++;
-	} else if sling_attack_charge_timer > 0 && button_check(buttons.sling) {
-		show_debug_message("continue charging sling");
+	} else if sling_attack_charge_timer > 0 && input_check(input_action.sling) {
+		//show_debug_message("continue charging sling");
 		sling_attack_charge_timer ++;
-	} else if sling_attack_charge_timer > 0 && sling_attack_charge_timer < global.player_sling_attack_charge_min && !button_check(buttons.sling) {
-		show_debug_message("release sling early");
+	} else if sling_attack_charge_timer > 0 && sling_attack_charge_timer < global.player_sling_attack_charge_min && !input_check(input_action.sling) {
+		//show_debug_message("release sling early");
 		to_idle();
 		sling_attack_charge_timer = 0;
-	} else if sling_attack_charge_timer > global.player_sling_attack_charge_min && !button_check(buttons.sling) {
-		show_debug_message("release sling good");
+	} else if sling_attack_charge_timer > global.player_sling_attack_charge_min && !input_check(input_action.sling) {
+		//show_debug_message("release sling good");
 		to_sling_attack_anti(sling_attack_charge_timer / global.player_sling_attack_charge_full);
 		sling_attack_charge_timer = 0;
 	}
@@ -439,8 +439,8 @@ function sling_attack_follow() {
 
 function check_blocks() {
 	if !armed return;
-	if button_check_pressed(buttons.block) {
-		if button_check(buttons.up) && !button_check(buttons.down) {
+	if input_check_pressed(input_action.block) {
+		if input_check(input_action.up) && !input_check(input_action.down) {
 			hiblock = 1;
 		} else {
 			hiblock = 0;
@@ -468,7 +468,7 @@ function block() {
 	}
 }
 function to_block_follow(success) {
-	show_debug_message(success);
+	//show_debug_message(success);
 	if !success {
 		instance_create_depth(x,y,depth+10, obj_question_mark);
 		audio_play_sound(sfx_clay_confused,10,false);
@@ -511,11 +511,11 @@ function GoToPlayerJump()
 	instance_create_depth(x,y,depth-100, obj_player_jump_dust);
 	audio_play_sound(sfx_clay_jump, 5, false);
 	vspeed -= jumpTimer >= global.player_maxJumpWindup ? global.player_maxVertJumpForce : global.player_minVertJumpForce;
-	if OneWalkKeyHeld() && button_check(buttons.right)
+	if OneWalkKeyHeld() && input_check(input_action.right)
 	{
 		hspeed += jumpTimer >= global.player_maxJumpWindup ? global.player_maxHoriJumpForce : global.player_minHoriJumpForce;
 	}
-	else if OneWalkKeyHeld() && button_check(buttons.left)
+	else if OneWalkKeyHeld() && input_check(input_action.left)
 	{
 		hspeed -= jumpTimer >= global.player_maxJumpWindup ? global.player_maxHoriJumpForce : global.player_minHoriJumpForce;
 	}
@@ -525,8 +525,8 @@ function GoToPlayerWalk()
 {
 	current_state = PlayerState.WALKING;
 	
-	if button_check(buttons.left) lastDashTapDirection = Direction.LEFT;
-	else if button_check(buttons.right) lastDashTapDirection = Direction.RIGHT;
+	if input_check(input_action.left) lastDashTapDirection = Direction.LEFT;
+	else if input_check(input_action.right) lastDashTapDirection = Direction.RIGHT;
 }
 function GoToPlayerFall()
 {
@@ -540,7 +540,7 @@ function GoToPlayerBasicAttack()
 	{	
 		if vspeed > 0 vspeed *= 0.2;
 		current_state = PlayerState.BASIC_ATTACK_SWING; 
-		show_debug_message(get_hi_attack_player(id,5));
+		//show_debug_message(get_hi_attack_player(id,5));
 			obj_player_attackEffect.ShowPlayerAttack(get_hi_attack_player(id,5) ? spr_player_jumpAttack_Slash : spr_player_attackEffect, 1);
 		attackTimer = global.player_attackSwingFrames;
 	}
@@ -656,7 +656,7 @@ function CheckDash()
 		return;
 	}
 	
-	if button_check_pressed(buttons.left)
+	if input_check(input_action.left)
 	{
 		if lastDashTapDirection == Direction.LEFT && dashTimer <= global.player_dashFrameAllowance && dashTimer != 0
 		{
@@ -668,7 +668,7 @@ function CheckDash()
 			lastDashTapDirection = Direction.LEFT;
 		}
 	}
-	else if button_check_pressed(buttons.right)
+	else if input_check(input_action.right)
 	{
 		if lastDashTapDirection == Direction.RIGHT && dashTimer <= global.player_dashFrameAllowance && dashTimer != 0
 		{
@@ -764,18 +764,18 @@ function walk()
 		curAc = curAc * 1;
 	}
 	// Left movement
-	if button_check(buttons.left) && !button_check(buttons.right)
+	if input_check(input_action.left) && !input_check(input_action.right)
 	{
 		hspeed -= curAc;
 	}
 	// Right movement
-	else if button_check(buttons.right) && !button_check(buttons.left)
+	else if input_check(input_action.right) && !input_check(input_action.left)
 	{
 		hspeed += curAc;
 	}
 	
-	if hspeed > 0 && button_check(buttons.right) && !button_check(buttons.strafe) && basic_attack_charge_timer <= global.player_attack_turn_buffer && sling_attack_charge_timer <= global.player_attack_turn_buffer facing = Direction.RIGHT;
-	else if hspeed < 0 && button_check(buttons.left) && !button_check(buttons.strafe) && basic_attack_charge_timer<= global.player_attack_turn_buffer && sling_attack_charge_timer <= global.player_attack_turn_buffer facing = Direction.LEFT;
+	if hspeed > 0 && input_check(input_action.right) && !input_check(input_action.face) && basic_attack_charge_timer <= global.player_attack_turn_buffer && sling_attack_charge_timer <= global.player_attack_turn_buffer facing = Direction.RIGHT;
+	else if hspeed < 0 && input_check(input_action.left) && !input_check(input_action.face) && basic_attack_charge_timer<= global.player_attack_turn_buffer && sling_attack_charge_timer <= global.player_attack_turn_buffer facing = Direction.LEFT;
 	
 	var max_speed = global.player_maxWalkSpeed;
 	if basic_attack_charge_timer > 0 || sling_attack_charge_timer > 0 {
@@ -857,7 +857,7 @@ function PlayerJumpAnti()
 		instance_create_depth(x,y,depth-100,obj_player_jump_charge).image_xscale = image_xscale;
 		audio_play_sound(sfx_clay_hit, -2, false);
 	}
-	if (jumpTimer > global.player_minJumpWindup && button_check(buttons.jump) == false)
+	if (jumpTimer > global.player_minJumpWindup && input_check(input_action.jump) == false)
 	{
 		GoToPlayerJump();
 	}
@@ -1088,17 +1088,15 @@ function update_animation() {
 				a = global.player_animation_idle_sword_charge;
 				break;
 			} else if sling_attack_charge_timer > 0 {
-				show_debug_message("TEST");
 				a = armed ? global.player_animation_idle_sling_charge : global.player_animation_idle_sling_charge_disarmed;
 				if sling_attack_charge_timer < global.player_sling_attack_charge_min {
-					show_debug_message("TEST2");
 					a = armed ? [spr_player_aimStart,6,AnimationType.LOOP] : [spr_player_aimStart_disarmed,6,AnimationType.LOOP];
 				}
 				break;
 			} else if armed {
-				a = button_check(buttons.strafe) ? global.player_animation_stra_idle : global.player_animation_idle;
+				a = input_check(input_action.face) ? global.player_animation_stra_idle : global.player_animation_idle;
 			} else {
-				a = button_check(buttons.strafe) ? global.player_animation_stra_idle_disarmed : global.player_animation_idle_disarmed;
+				a = input_check(input_action.face) ? global.player_animation_stra_idle_disarmed : global.player_animation_idle_disarmed;
 			}
 			break;
 		case PlayerState.WALKING:
@@ -1114,10 +1112,10 @@ function update_animation() {
 					}
 					break;
 				} else if armed {
-					a = button_check(buttons.strafe) ? global.player_animation_strastep : global.player_animation_walk;
+					a = input_check(input_action.face) ? global.player_animation_strastep : global.player_animation_walk;
 					break;
 				} else {
-					a = button_check(buttons.strafe) ? global.player_animation_strastep_disarmed : global.player_animation_walk_disarmed;
+					a = input_check(input_action.face) ? global.player_animation_strastep_disarmed : global.player_animation_walk_disarmed;
 				}
 			}
 			// Backward

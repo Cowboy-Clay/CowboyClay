@@ -15,7 +15,7 @@ function spawn_shockwave(instance_depth, instance_x, instance_y, instance_direct
 		var i = instance_create_depth(instance_x, instance_y, instance_depth, global.shockwave_object);
 		i.initiate(i.x, i.y, instance_direction, instance_lifetime, instance_distance, instance_curve);
 	} else {
-		show_debug_message("Attempting to reuse shockwave");
+		//show_debug_message("Attempting to reuse shockwave");
 		s.initiate(instance_x, instance_y, instance_direction, instance_lifetime, instance_distance, instance_curve);
 	}
 }
