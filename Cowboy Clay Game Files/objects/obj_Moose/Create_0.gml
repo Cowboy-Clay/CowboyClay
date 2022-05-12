@@ -10,6 +10,10 @@ enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING,
 
 time_limit_jump = 240;
 
+max_hp = 20;
+hp = max_hp;
+panicking = false;
+
 dead_timer = 90;
 
 collision_mask = [obj_tile_coll, obj_door, obj_plate, obj_elevator];
@@ -125,10 +129,12 @@ function MooseStateBasedActions()
 	switch current_state
 	{
 		case MooseState.IDLE:
+			panicking = false;
 			MooseFacePlayer();
 			MooseCheckBlock();
 			break;
 		case MooseState.WANDER:
+			panicking = false;
 			MooseFacePlayer();
 			MooseWander();
 			MooseCheckBlock();
@@ -488,6 +494,7 @@ function to_spin() {
 }
 function spin() {
 	if collision_check_edge(x,y,spr_enemy_collision,Direction.DOWN,collision_mask) {
+		panicking = false;
 		MooseWanderToIdle();
 		audio_play_sound(sfx_moose_land, 3, false);
 	}
@@ -1116,6 +1123,7 @@ function retalliation() {
 		case MooseState.STUCK: return; break;
 		case MooseState.STUN: return; break;
 		case MooseState.WAITING: return; break;
+		case MooseState.SLEEP: return; break;
 	}
 	
 	var dist_to_player = distance_to_object(obj_player);
@@ -1185,4 +1193,37 @@ function check_frame_sounds() {
 			return;
 		}
 	}
+}
+
+function take_hit_minor() {
+	if panicking {
+		hp -= 3;
+		panicking = false;
+		if hp > 0 
+			to_stun();
+		else 
+			take_hit_major();
+	} else {
+		hp -= 1;
+		panicking = true;
+		if hp > 0 
+			choose_panic_attack();
+		else 
+			take_hit_major();
+	}
+}
+
+function take_hit_major() {
+	MooseGetHit();
+	hp = max_hp;
+}
+
+function choose_panic_attack() {
+	var _phase = get_phase();
+	if _phase == 1 
+		to_jump_anti();
+	else if _phase == 2 
+		to_lunge_anti();
+	else
+		MooseIdleToChargeAnti();
 }

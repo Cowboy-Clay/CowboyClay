@@ -22,7 +22,7 @@ if place_meeting(x,y,obj_enemy_hitbox) && obj_enemy_hitbox.sprite_index != noone
 		audio_play_sound(sfx_clay_block, 5, false);
 		obj_player.to_block_follow(true);
 		knock_away_from(obj_Moose,x,y,15);
-		obj_Moose.to_stun();
+		obj_Moose.take_hit_minor();
 		//knock_away_from(obj_player,obj_Moose.x, obj_Moose.y, 15)
 		return;
 	}
