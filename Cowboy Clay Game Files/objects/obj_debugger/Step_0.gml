@@ -27,6 +27,6 @@
 //show_debug_message("Anypad is reading " + string(gamepad_axis_check("-1")) + " on axis -1.");
 //show_debug_message("Anypad is reading " + string(gamepad_axis_check("+1")) + " on axis +1.");
 
-show_debug_message("Left: " + string(input_check(input_action.left)));
-show_debug_message("Left_Pressed: " + string(input_check_pressed(input_action.left)));
-show_debug_message("Left_released: " + string(input_check_released(input_action.left)));
+//show_debug_message("Left: " + string(input_check(input_action.left)));
+//show_debug_message("Left_Pressed: " + string(input_check_pressed(input_action.left)));
+//show_debug_message("Left_released: " + string(input_check_released(input_action.left)));
