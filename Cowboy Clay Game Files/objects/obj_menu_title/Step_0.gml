@@ -2,7 +2,10 @@ if keyboard_check_pressed(vk_f11){
 	window_set_fullscreen(!window_get_fullscreen());
 }
 
-if (keyboard_check_pressed(ord("X")) || gamepad_button_check_pressed(0,gp_face3)) && sprite_index == CowboyClayTitle1 {
+if keyboard_check_pressed(ord("X")) input_set_binds_keyboard();
+else if gamepad_button_check_pressed_anypad(gp_face3) input_set_binds_xbox();
+
+if (keyboard_check_pressed(ord("X")) || gamepad_button_check_pressed_anypad(gp_face3)) && sprite_index == CowboyClayTitle1 {
 	if array_length(sequence) == 0 {
 		room_goto(FinalLevelDesign);
 		return;
@@ -11,7 +14,7 @@ if (keyboard_check_pressed(ord("X")) || gamepad_button_check_pressed(0,gp_face3)
 	audio_play_sound(sfx_start,0,false);
 	sprite_index = sequence[0];
 	image_index = 0;
-} else if (keyboard_check_pressed(ord("X")) || gamepad_button_check_pressed(0,gp_face3)) {
+} else if (keyboard_check_pressed(ord("X")) || gamepad_button_check_pressed_anypad(gp_face3)) {
 	room_goto(FinalLevelDesign);
 	return;
 }
