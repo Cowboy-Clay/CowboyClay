@@ -1,4 +1,6 @@
 if activated {
+	if instance_exists(obj_enemy_healthbar) == false instance_create_layer(0,0,layer, obj_enemy_healthbar);
+
 	if obj_player.basic_attack_charge_timer > 0 || obj_player.sling_attack_charge_timer > 0 || obj_player.current_state == PlayerState.KICK_ANTI {
 		var m = instance_create_layer(x,y,layer,obj_Moose);
 		m.facing = Direction.RIGHT;

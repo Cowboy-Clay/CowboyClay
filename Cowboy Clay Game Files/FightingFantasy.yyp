@@ -11,6 +11,7 @@
     {"id":{"name":"obj_moose_block_spark_lo","path":"objects/obj_moose_block_spark_lo/obj_moose_block_spark_lo.yy",},"order":9,},
     {"id":{"name":"spr_moose_idle_disarmed_hitbox","path":"sprites/spr_moose_idle_disarmed_hitbox/spr_moose_idle_disarmed_hitbox.yy",},"order":15,},
     {"id":{"name":"spr_moose_stabAnti_hurtbox","path":"sprites/spr_moose_stabAnti_hurtbox/spr_moose_stabAnti_hurtbox.yy",},"order":83,},
+    {"id":{"name":"obj_enemy_healthbar","path":"objects/obj_enemy_healthbar/obj_enemy_healthbar.yy",},"order":12,},
     {"id":{"name":"spr_envi_lotsaHouses","path":"sprites/spr_envi_lotsaHouses/spr_envi_lotsaHouses.yy",},"order":26,},
     {"id":{"name":"spr_moose_scaredRun","path":"sprites/spr_moose_scaredRun/spr_moose_scaredRun.yy",},"order":134,},
     {"id":{"name":"obj_wipe_out","path":"objects/obj_wipe_out/obj_wipe_out.yy",},"order":3,},

@@ -5,7 +5,6 @@ instance_create_layer(0,0,layer, obj_enemy_blockbox);
 instance_create_layer(0,0,layer, obj_enemy_hitbox);
 instance_create_layer(0,0,layer, obj_enemy_hurtbox);
 instance_create_layer(0,0,layer,obj_enemy_sword);
-
 enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT, BLOCK, LOCK, DEAD, PULLING, LUNGE_ANTI, LUNGE, STAB_ANTI, STAB, JUMP_ANTI, JUMP, DIVE_ANTI, DIVE, STUCK, SPIN, PROJECTILE_ANTI, PROJECTILE, PROJECTILE_FOLLOW, STUN, BURP_ANTI, BURP_SWING, BURP_FOLLOW, SLEEP};
 
 time_limit_jump = 240;
