@@ -1,5 +1,5 @@
 var _center_x = camera_get_view_width(view_camera[0]) / 2;
-var _y = 100 + sprite_get_height(frame_spr)/2;
+var _y = 25;
 
 // Draw frame
 draw_sprite(frame_spr,0,_center_x,_y);
