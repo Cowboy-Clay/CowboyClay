@@ -1,6 +1,9 @@
 enum input_type {key, button, hat, axis};
 enum input_action {up, down, left, right, attack, jump, sling, face, block, kick};
 
+enum input_setting {keyboard, xbox_controller, playstation_controller, custom};
+global.input_current_setting = input_setting.keyboard;
+
 global.input_up_primary = [input_type.key, vk_up];
 global.input_up_secondary = noone;
 global.input_up_value = false;

@@ -1,6 +1,8 @@
 function input_set_binds_xbox(){
 	show_debug_message("Switching to xBox controls");
 	
+	global.input_current_setting = input_setting.xbox_controller;
+	
 	input_set_bind(input_action.left, true, input_type.button, gp_padl);
 	input_set_bind(input_action.left, false, input_type.axis, "-0");
 	

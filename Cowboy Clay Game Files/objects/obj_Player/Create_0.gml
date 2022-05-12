@@ -382,17 +382,17 @@ function basic_attack_charge() {
 }
 function sling_attack_charge() {
 	if sling_attack_charge_timer == 0 && input_check_pressed(input_action.sling) && basic_attack_charge_timer == 0{
-		show_debug_message("Began charging sling");
+		//show_debug_message("Began charging sling");
 		sling_attack_charge_timer ++;
 	} else if sling_attack_charge_timer > 0 && input_check(input_action.sling) {
-		show_debug_message("continue charging sling");
+		//show_debug_message("continue charging sling");
 		sling_attack_charge_timer ++;
 	} else if sling_attack_charge_timer > 0 && sling_attack_charge_timer < global.player_sling_attack_charge_min && !input_check(input_action.sling) {
-		show_debug_message("release sling early");
+		//show_debug_message("release sling early");
 		to_idle();
 		sling_attack_charge_timer = 0;
 	} else if sling_attack_charge_timer > global.player_sling_attack_charge_min && !input_check(input_action.sling) {
-		show_debug_message("release sling good");
+		//show_debug_message("release sling good");
 		to_sling_attack_anti(sling_attack_charge_timer / global.player_sling_attack_charge_full);
 		sling_attack_charge_timer = 0;
 	}
@@ -468,7 +468,7 @@ function block() {
 	}
 }
 function to_block_follow(success) {
-	show_debug_message(success);
+	//show_debug_message(success);
 	if !success {
 		instance_create_depth(x,y,depth+10, obj_question_mark);
 		audio_play_sound(sfx_clay_confused,10,false);
@@ -540,7 +540,7 @@ function GoToPlayerBasicAttack()
 	{	
 		if vspeed > 0 vspeed *= 0.2;
 		current_state = PlayerState.BASIC_ATTACK_SWING; 
-		show_debug_message(get_hi_attack_player(id,5));
+		//show_debug_message(get_hi_attack_player(id,5));
 			obj_player_attackEffect.ShowPlayerAttack(get_hi_attack_player(id,5) ? spr_player_jumpAttack_Slash : spr_player_attackEffect, 1);
 		attackTimer = global.player_attackSwingFrames;
 	}
@@ -1088,10 +1088,8 @@ function update_animation() {
 				a = global.player_animation_idle_sword_charge;
 				break;
 			} else if sling_attack_charge_timer > 0 {
-				show_debug_message("TEST");
 				a = armed ? global.player_animation_idle_sling_charge : global.player_animation_idle_sling_charge_disarmed;
 				if sling_attack_charge_timer < global.player_sling_attack_charge_min {
-					show_debug_message("TEST2");
 					a = armed ? [spr_player_aimStart,6,AnimationType.LOOP] : [spr_player_aimStart_disarmed,6,AnimationType.LOOP];
 				}
 				break;

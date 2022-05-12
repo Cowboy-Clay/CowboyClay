@@ -67,6 +67,7 @@
     {"id":{"name":"spr_mech_pushBlock","path":"sprites/spr_mech_pushBlock/spr_mech_pushBlock.yy",},"order":5,},
     {"id":{"name":"spr_player_dash","path":"sprites/spr_player_dash/spr_player_dash.yy",},"order":16,},
     {"id":{"name":"spr_player_aimJump_disarmed","path":"sprites/spr_player_aimJump_disarmed/spr_player_aimJump_disarmed.yy",},"order":73,},
+    {"id":{"name":"input_set_binds_playstation","path":"scripts/input_set_binds_playstation/input_set_binds_playstation.yy",},"order":13,},
     {"id":{"name":"spr_player_jump_disarmed","path":"sprites/spr_player_jump_disarmed/spr_player_jump_disarmed.yy",},"order":31,},
     {"id":{"name":"spr_envi_bushTile1","path":"sprites/spr_envi_bushTile1/spr_envi_bushTile1.yy",},"order":0,},
     {"id":{"name":"sfx_elevator_falling","path":"sounds/sfx_elevator_falling/sfx_elevator_falling.yy",},"order":10,},

@@ -1,6 +1,8 @@
 function input_set_binds_keyboard(){
 	show_debug_message("Switching to keyboard controls");
 	
+	global.input_current_setting = input_setting.keyboard;
+	
 	input_set_bind(input_action.left, true, input_type.key, vk_left);
 	input_set_bind_unbind(input_action.left, false);
 	
