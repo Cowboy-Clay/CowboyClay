@@ -220,6 +220,7 @@
     {"id":{"name":"Shot2","path":"sprites/Shot2/Shot2.yy",},"order":4,},
     {"id":{"name":"spr_moose_pull","path":"sprites/spr_moose_pull/spr_moose_pull.yy",},"order":21,},
     {"id":{"name":"CowboyClayTitle1","path":"sprites/CowboyClayTitle1/CowboyClayTitle1.yy",},"order":1,},
+    {"id":{"name":"spr_HPFrame","path":"sprites/spr_HPFrame/spr_HPFrame.yy",},"order":3,},
     {"id":{"name":"spr_mech_rustyGear","path":"sprites/spr_mech_rustyGear/spr_mech_rustyGear.yy",},"order":13,},
     {"id":{"name":"obj_tilemap_collision_spawner","path":"objects/obj_tilemap_collision_spawner/obj_tilemap_collision_spawner.yy",},"order":1,},
     {"id":{"name":"LevelDesignRevision","path":"rooms/LevelDesignRevision/LevelDesignRevision.yy",},"order":1,},
