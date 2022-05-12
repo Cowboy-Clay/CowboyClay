@@ -50,4 +50,7 @@ if activated {
 			}
 			break;
 	}
+} else if x < obj_player.x && distance_to_object(obj_player) > 200 && distance_to_object(obj_player) < 6000 && abs(y - obj_player.y) < 200 {
+	activated = true;
+	if instance_exists(obj_music_controller) obj_music_controller.switch_track(Ferrymans_Fumble);
 }
