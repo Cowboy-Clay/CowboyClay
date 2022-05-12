@@ -13,6 +13,9 @@ time_limit_jump = 240;
 max_hp = 20;
 hp = max_hp;
 panicking = false;
+hp_regen_timer = 0;
+hp_regen_time_long = 600;
+hp_regen_time_short = 100;
 
 dead_timer = 90;
 
@@ -1196,6 +1199,8 @@ function check_frame_sounds() {
 }
 
 function take_hit_minor() {
+	hp_regen_timer = 0;
+	
 	if panicking {
 		hp -= 3;
 		panicking = false;
@@ -1214,6 +1219,8 @@ function take_hit_minor() {
 }
 
 function take_hit_major() {
+	hp_regen_timer = 0;
+	
 	MooseGetHit();
 	hp = max_hp;
 }
@@ -1226,4 +1233,15 @@ function choose_panic_attack() {
 		to_lunge_anti();
 	else
 		MooseIdleToChargeAnti();
+}
+
+function regen_hp() {
+	if hp_regen_timer == hp_regen_time_long {
+		hp = hp + 1> max_hp ? max_hp : hp + 1;
+	} else if hp_regen_timer > hp_regen_time_long {
+		if (hp_regen_timer - hp_regen_time_long) % hp_regen_time_short == 0 {
+			hp = hp + 1> max_hp ? max_hp : hp + 1;
+		}
+	}
+	hp_regen_timer ++;
 }
