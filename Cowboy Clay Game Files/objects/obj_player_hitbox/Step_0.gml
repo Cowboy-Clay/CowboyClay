@@ -1,4 +1,4 @@
-if obj_player.current_state == PlayerState.KICK_SWING && place_meeting(x,y,obj_tile_coll) && !wallkick_cooldown {
+if obj_player.current_state == PlayerState.KICK_SWING && (place_meeting(x,y,obj_tile_coll) || place_meeting(x,y,obj_Moose)) && !wallkick_cooldown {
 	wallkick_cooldown = true;
 	if obj_player.facing == Direction.LEFT {
 		obj_player.hspeed = 5;
