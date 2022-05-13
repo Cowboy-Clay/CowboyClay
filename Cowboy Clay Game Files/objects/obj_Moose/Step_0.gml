@@ -2,6 +2,9 @@
 // You can write your code in this editor
 if !global.paused
 {
+	show_debug_message(instance_number(obj_enemy_sword));
+	
+	MoosePickupSword();
 	if current_state == MooseState.PANIC_WAIT && instance_exists(obj_moose_panic_mark) == false {
 		instance_create_layer(x,y,layer,obj_moose_panic_mark);
 	} else if current_state != MooseState.PANIC_WAIT && instance_exists(obj_moose_panic_mark) {
@@ -14,7 +17,6 @@ if !global.paused
 	{
 		UpdateMooseState();
 		MooseStateBasedActions();
-		MoosePickupSword();
 		retalliation();
 	}
 	else if current_state == MooseState.LOCK

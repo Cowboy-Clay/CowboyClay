@@ -36,5 +36,7 @@ global.player_hi_block_sprites = [
 // Sprites where Moose is hi blocking
 global.moose_hi_block_sprites = [
 								spr_moose_hiBlock,
-								spr_moose_walk_hiBlock
+								spr_moose_walk_hiBlock,
+								spr_moose_chargeBounce,
+								spr_moose_chargeBounce_helmless
 								];

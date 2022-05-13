@@ -78,6 +78,8 @@ function SetEnemySwordRotation()
 		case SwordState.STUCK_WALL_RIGHT:
 			image_angle = 180;
 			break;
+		case SwordState.KICKED:
+			image_angle = 0;
 	}
 }
 
@@ -113,7 +115,8 @@ function EnemySwordAnimate()
 
 function EnemySwordCanBePickedUp()
 {
-	return current_state == SwordState.STUCK_FLOOR || current_state == SwordState.STUCK_WALL_LEFT || current_state == SwordState.STUCK_WALL_RIGHT;
+	if current_state == SwordState.FLYING || current_state == SwordState.INACTIVE return false;
+	return true;
 }
 
 function to_fall() {

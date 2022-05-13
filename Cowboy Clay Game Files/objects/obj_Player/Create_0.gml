@@ -90,7 +90,7 @@ sheathTimer = 0;
 global.player_plungeFrames = 7;
 
 global.player_block_frames = 45;
-global.player_block_active_frames = 20;
+global.player_block_active_frames = 15;
 global.player_block_success_frames = 25;
 global.player_block_failure_frames = 35;
 
@@ -184,6 +184,10 @@ function PlayerStateBasedMethods()
 				walk();
 			}
 			check_falling();
+			state_timer ++;
+			if state_timer > 5 && collision_check_edge(x,y,spr_player_collision,Direction.DOWN, collision_mask) {
+				to_idle();
+			}
 			break;
 		case PlayerState.FALLING:
 			if !check_falling(){
@@ -507,6 +511,7 @@ function GoToPlayerJump()
 	{
 		hspeed -= jumpTimer >= global.player_maxJumpWindup ? global.player_maxHoriJumpForce : global.player_minHoriJumpForce;
 	}
+	state_timer =0;
 	current_state = PlayerState.JUMPING;
 }
 function GoToPlayerWalk()
@@ -903,6 +908,7 @@ function PlayerAttack()
 
 function PlayerPickupSword()
 {
+	if current_state == PlayerState.DEAD return;
 	if !armed && place_meeting(x,y,obj_player_sword) && obj_player_sword.SwordCanBePickedUp()
 	{
 		audio_play_sound(sfx_sword_retrieve,25,false);

@@ -20,7 +20,10 @@ function get_lo_block(){
 	}
 	
 	for (var i = 0; i < array_length(a); i++) {
-		if sprite_index == a[i] && (obj_player.state_timer+global.player_block_active_frames > global.player_block_frames || id != obj_player){
+		if sprite_index == a[i] {
+			if sprite_index == global.player_animation_block_lo[0] || sprite_index == global.player_animation_block_lo_disarmed[0] {
+				if obj_player.state_timer + global.player_block_active_frames < global.player_block_frames return false;
+			}
 			return true;
 		}
 	}
@@ -40,5 +43,7 @@ global.moose_lo_block_sprites = [
 								spr_moose_blockLo_helmless,
 								spr_moose_blockLo_empty,
 								spr_moose_walkBlock,
-								spr_moose_walkBlock_noHelm
+								spr_moose_walkBlock_noHelm,
+								spr_moose_chargeBounce,
+								spr_moose_chargeBounce_helmless
 								];

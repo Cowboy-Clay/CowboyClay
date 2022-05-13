@@ -1,10 +1,12 @@
 audio_group_load(sfx_moose);
 
+while instance_exists(obj_enemy_sword) instance_destroy(obj_enemy_sword);
+
 instance_create_layer(0,0,layer, obj_enemy_attackEffect);
 instance_create_layer(0,0,layer, obj_enemy_blockbox);
 instance_create_layer(0,0,layer, obj_enemy_hitbox);
 instance_create_layer(0,0,layer, obj_enemy_hurtbox);
-instance_create_layer(0,0,layer,obj_enemy_sword);
+//instance_create_layer(0,0,layer,obj_enemy_sword);
 enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT, BLOCK, LOCK, DEAD, PULLING, LUNGE_ANTI, LUNGE, STAB_ANTI, STAB, JUMP_ANTI, JUMP, DIVE_ANTI, DIVE, STUCK, SPIN, PROJECTILE_ANTI, PROJECTILE, PROJECTILE_FOLLOW, STUN, BURP_ANTI, BURP_SWING, BURP_FOLLOW, SLEEP,PANIC_WAIT};
 
 time_limit_jump = 240;
@@ -590,10 +592,11 @@ function MooseFacePlayer()
 
 function MoosePickupSword()
 {
+	if instance_exists(obj_enemy_sword) == false return;
 	if !armed && place_meeting(x,y,obj_enemy_sword) && obj_enemy_sword.EnemySwordCanBePickedUp()
 	{
 		armed = true;
-		obj_enemy_sword.current_state = SwordState.INACTIVE;
+		instance_destroy(obj_enemy_sword);
 	}
 }
 
@@ -619,7 +622,8 @@ function MooseToBlock()
 
 function MooseChargeToWait()
 {
-	obj_enemy_sword.to_fall();
+	if instance_exists(obj_enemy_sword)
+		obj_enemy_sword.to_fall();
 	audio_play_sound(sfx_moose_crash,2,false);
 	current_state = MooseState.WAITING;
 }
@@ -1009,7 +1013,6 @@ function MakeMooseInvulnerable(_time)
 
 function MooseGetHit()
 {
-	if invuln return;
 	if armor > 0 {
 		y-= 2;
 		vspeed -= 20;
@@ -1029,7 +1032,8 @@ function MooseGetHit()
 		if obj_player.x > x hspeed = obj_player.x > x ? -20 : 20;
 		armed = false;
 		h = obj_player.x < x ? -1 : 1;
-		obj_enemy_sword.EnemySwordFling(h,-1.67,17);
+		var s = instance_create_layer(x,y,layer,obj_enemy_sword);
+		s.EnemySwordFling(h,-1.67,17);
 		MakeMooseInvulnerable(global.moose_invulTime);
 		current_state = MooseState.HIT;
 		wanderCounter = 0;
@@ -1221,7 +1225,7 @@ function check_frame_sounds() {
 }
 
 function take_hit_minor() {
-	MakeMooseInvulnerable(50);
+	MakeMooseInvulnerable(10);
 	
 	hp_regen_timer = 0;
 	
@@ -1243,7 +1247,7 @@ function take_hit_minor() {
 }
 
 function take_hit_major() {
-	MakeMooseInvulnerable(90);
+	MakeMooseInvulnerable(5);
 	hp_regen_timer = 0;
 	
 	MooseGetHit();

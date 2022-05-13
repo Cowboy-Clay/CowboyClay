@@ -35,7 +35,7 @@ if place_meeting(x,y,obj_player_hitbox) && obj_player_hitbox.sprite_index != spr
 		}
 	
 		// Take an actual hit
-		if obj_player.current_state == PlayerState.KICK_SWING {
+		if obj_player.current_state == PlayerState.KICK_SWING && !obj_player_hitbox.wallkick_cooldown{
 			obj_Moose.take_hit_minor();
 			obj_player.to_kick_follow();
 			var xx = (x + obj_player.x)/2;

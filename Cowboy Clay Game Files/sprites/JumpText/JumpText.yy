@@ -7,15 +7,15 @@
   "edgeFiltering": false,
   "collisionTolerance": 0,
   "swfPrecision": 2.525,
-  "bbox_left": 10,
-  "bbox_right": 287,
-  "bbox_top": 20,
-  "bbox_bottom": 111,
+  "bbox_left": 16,
+  "bbox_right": 157,
+  "bbox_top": 8,
+  "bbox_bottom": 73,
   "HTile": false,
   "VTile": false,
   "For3D": false,
-  "width": 298,
-  "height": 126,
+  "width": 176,
+  "height": 86,
   "textureGroupId": {
     "name": "Default",
     "path": "texturegroups/Default",
@@ -24,12 +24,12 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"9aa22e62-0f5e-41e9-af87-6fae2156ee09","path":"sprites/ParryText/ParryText.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"9aa22e62-0f5e-41e9-af87-6fae2156ee09","path":"sprites/ParryText/ParryText.yy",},"LayerId":{"name":"967da850-a6b2-47af-a848-527434196619","path":"sprites/ParryText/ParryText.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"ParryText","path":"sprites/ParryText/ParryText.yy",},"resourceVersion":"1.0","name":"9aa22e62-0f5e-41e9-af87-6fae2156ee09","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"da322cb1-fac0-4e04-9117-38968a0f0fd0","path":"sprites/JumpText/JumpText.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"da322cb1-fac0-4e04-9117-38968a0f0fd0","path":"sprites/JumpText/JumpText.yy",},"LayerId":{"name":"a97f9413-834e-4029-8d61-089142e20e76","path":"sprites/JumpText/JumpText.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"JumpText","path":"sprites/JumpText/JumpText.yy",},"resourceVersion":"1.0","name":"da322cb1-fac0-4e04-9117-38968a0f0fd0","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
-    "spriteId": {"name":"ParryText","path":"sprites/ParryText/ParryText.yy",},
+    "spriteId": {"name":"JumpText","path":"sprites/JumpText/JumpText.yy",},
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 30.0,
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"bdbfb214-2cb1-4a19-ad67-b15919427209","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"9aa22e62-0f5e-41e9-af87-6fae2156ee09","path":"sprites/ParryText/ParryText.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"07b2f421-9001-41db-a9ca-78bc7d2ef568","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"da322cb1-fac0-4e04-9117-38968a0f0fd0","path":"sprites/JumpText/JumpText.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
@@ -58,14 +58,14 @@
     "yorigin": 0,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"ParryText","path":"sprites/ParryText/ParryText.yy",},
+    "parent": {"name":"JumpText","path":"sprites/JumpText/JumpText.yy",},
     "resourceVersion": "1.4",
-    "name": "ParryText",
+    "name": "JumpText",
     "tags": [],
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"967da850-a6b2-47af-a848-527434196619","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"a97f9413-834e-4029-8d61-089142e20e76","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": null,
   "parent": {
@@ -73,7 +73,7 @@
     "path": "folders/Sprites.yy",
   },
   "resourceVersion": "1.0",
-  "name": "ParryText",
+  "name": "JumpText",
   "tags": [],
   "resourceType": "GMSprite",
 }
