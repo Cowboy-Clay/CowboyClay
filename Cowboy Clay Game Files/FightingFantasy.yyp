@@ -193,6 +193,7 @@
     {"id":{"name":"spr_player_jump","path":"sprites/spr_player_jump/spr_player_jump.yy",},"order":68,},
     {"id":{"name":"spr_moose_idle_disarmed_hurtbox","path":"sprites/spr_moose_idle_disarmed_hurtbox/spr_moose_idle_disarmed_hurtbox.yy",},"order":16,},
     {"id":{"name":"spr_player_slingFollow_disarmed","path":"sprites/spr_player_slingFollow_disarmed/spr_player_slingFollow_disarmed.yy",},"order":75,},
+    {"id":{"name":"obj_moose_panic_mark","path":"objects/obj_moose_panic_mark/obj_moose_panic_mark.yy",},"order":13,},
     {"id":{"name":"spr_player_strafe","path":"sprites/spr_player_strafe/spr_player_strafe.yy",},"order":77,},
     {"id":{"name":"TBC","path":"sprites/TBC/TBC.yy",},"order":0,},
     {"id":{"name":"spr_tileset_wood","path":"sprites/spr_tileset_wood/spr_tileset_wood.yy",},"order":14,},
