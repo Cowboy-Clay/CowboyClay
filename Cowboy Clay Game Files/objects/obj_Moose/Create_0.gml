@@ -908,6 +908,7 @@ function update_animation() {
 			break;
 		case MooseState.PANIC_WAIT:
 			var a = spr_moose_chargeBounce;
+			if armor == 0 a = spr_moose_chargeBounce_helmless;
 			SetMooseAnimation(a,1,AnimationType.FIRST_FRAME);
 			break;
 	}
