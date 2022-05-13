@@ -20,7 +20,7 @@ function get_lo_block(){
 	}
 	
 	for (var i = 0; i < array_length(a); i++) {
-		if sprite_index == a[i] && obj_player.state_timer+global.player_block_active_frames > global.player_block_frames{
+		if sprite_index == a[i] && (obj_player.state_timer+global.player_block_active_frames > global.player_block_frames || id != obj_player){
 			return true;
 		}
 	}
@@ -30,6 +30,7 @@ function get_lo_block(){
 // Sprites where the player is lo blocking
 global.player_lo_block_sprites = [
 								 global.player_animation_block_lo[0],
+								 global.player_animation_block_lo_disarmed[0]
 								 //global.player_animation_block_lo_recoil[0]
 								 ];
 

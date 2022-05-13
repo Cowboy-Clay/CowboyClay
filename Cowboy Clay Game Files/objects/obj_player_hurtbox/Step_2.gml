@@ -13,7 +13,7 @@ if place_meeting(x,y,obj_enemy_hitbox) && obj_enemy_hitbox.sprite_index != noone
 	}
 	
 	// check for matching attacks and blocks
-	if get_instance_lo_block(obj_player) || (get_instance_hi_attack(obj_Moose) || (get_instance_lo_attack(obj_Moose) && ((obj_player.facing == Direction.LEFT && obj_Moose.x < obj_player.x) || (obj_player.facing == Direction.RIGHT && obj_player.x < obj_Moose.x))))
+	if get_instance_lo_block(obj_player) && (get_instance_hi_attack(obj_Moose) || (get_instance_lo_attack(obj_Moose) && ((obj_player.facing == Direction.LEFT && obj_player.x > obj_Moose.x)||(obj_player.facing == Direction.RIGHT && obj_player.x < obj_Moose.x))))
 	 {
 		// succesful block recoil
 		if get_instance_hi_block(obj_player) instance_create_layer(x,y,layer,obj_player_block_spark_hi);
