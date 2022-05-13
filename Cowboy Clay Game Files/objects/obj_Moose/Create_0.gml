@@ -560,14 +560,14 @@ function MooseCharge()
 {
 	if facing == Direction.LEFT {
 		hspeed -= global.moose_chargeAccel;
-		if collision_check_edge(x,y,spr_enemy_collision,Direction.LEFT, collision_mask) {
+		if collision_check_edge(x,y,spr_enemy_collision,Direction.LEFT, collision_mask) || (collision_check_edge(x,y,spr_enemy_collision,Direction.LEFT, [obj_player]) && collision_check_edge_other(obj_player, obj_player.x, obj_player.y, spr_player_collision, Direction.LEFT, obj_player.collision_mask))  {
 			MooseChargeToWait();
 		}
 		return;
 	}
 	else {
 		hspeed += global.moose_chargeAccel;
-		if collision_check_edge(x,y,spr_enemy_collision,Direction.RIGHT, collision_mask) {
+		if collision_check_edge(x,y,spr_enemy_collision,Direction.RIGHT, collision_mask)|| (collision_check_edge(x,y,spr_enemy_collision,Direction.RIGHT, [obj_player]) && collision_check_edge_other(obj_player, obj_player.x, obj_player.y, spr_player_collision, Direction.RIGHT, obj_player.collision_mask)) {
 			MooseChargeToWait();
 		}
 		return;

@@ -1,6 +1,3 @@
-
-
-
 function input_update() {
 	// up
 	var _up_old = global.input_up_value;
