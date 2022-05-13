@@ -15,21 +15,21 @@ function input_set_binds_xbox(){
 	input_set_bind(input_action.down, true, input_type.button, gp_padd);
 	input_set_bind(input_action.down, false, input_type.axis, "-1");
 	
-	input_set_bind(input_action.attack, true, input_type.button, gp_shoulderrb);
+	input_set_bind(input_action.attack, true, input_type.button, gp_face3);
 	input_set_bind_unbind(input_action.attack, false);
 	
 	input_set_bind(input_action.jump, true, input_type.button, gp_face1);
 	input_set_bind_unbind(input_action.jump, false);
 	
-	input_set_bind(input_action.block, true, input_type.button, gp_face2);
+	input_set_bind(input_action.block, true, input_type.button, gp_shoulderr);
 	input_set_bind_unbind(input_action.block, false);
 	
-	input_set_bind(input_action.sling, true, input_type.button, gp_face3);
+	input_set_bind(input_action.sling, true, input_type.button, gp_shoulderrb);
 	input_set_bind_unbind(input_action.sling, false);
 	
-	input_set_bind(input_action.kick, true, input_type.button, gp_shoulderr);
+	input_set_bind(input_action.kick, true, input_type.button, gp_face2);
 	input_set_bind_unbind(input_action.kick, false);
 	
-	input_set_bind(input_action.face, true, input_type.button, gp_shoulderl);
+	input_set_bind(input_action.face, true, input_type.button, gp_shoulderlb);
 	input_set_bind_unbind(input_action.face, false);	
 }
