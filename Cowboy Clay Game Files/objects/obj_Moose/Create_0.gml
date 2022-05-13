@@ -617,7 +617,7 @@ function MooseToBlock()
 
 function MooseChargeToWait()
 {
-	obj_enemy_sword.falling = true;
+	obj_enemy_sword.to_fall();
 	audio_play_sound(sfx_moose_crash,2,false);
 	current_state = MooseState.WAITING;
 }

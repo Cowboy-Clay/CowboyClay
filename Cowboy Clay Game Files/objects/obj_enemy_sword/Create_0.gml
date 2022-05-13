@@ -115,3 +115,18 @@ function EnemySwordCanBePickedUp()
 {
 	return current_state == SwordState.STUCK_FLOOR || current_state == SwordState.STUCK_WALL_LEFT || current_state == SwordState.STUCK_WALL_RIGHT;
 }
+
+function to_fall() {
+	if current_state == SwordState.STUCK_WALL_LEFT {
+		while collision_check_edge(x,y,sprite_index,Direction.LEFT,collision_mask) {
+			x++;
+		}
+	}
+	if current_state == SwordState.STUCK_WALL_RIGHT {
+		while collision_check_edge(x,y,sprite_index,Direction.RIGHT,collision_mask) {
+			x--;
+		}
+	}
+	
+	current_state = SwordState.KICKED;
+}

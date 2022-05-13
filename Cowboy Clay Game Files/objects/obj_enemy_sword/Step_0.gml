@@ -17,11 +17,11 @@ if current_state == SwordState.FLYING
 	collision_check(sprite_index, collision_mask, false, false);
 }
 
-if falling{
-	Gravity(global.enemy_sword_grav, global.enemy_sword_grav_max, sprite_index, collision_mask);
+if current_state==SwordState.KICKED {
+	Gravity(global.sword_grav, global.sword_grav_max,sprite_index,collision_mask);
 	if collision_check_edge(x,y,sprite_index,Direction.DOWN,collision_mask){
-		audio_play_sound(sfx_moose_knife_plant,-5,false);
 		EnemySwordStickInGround();
+		return;
 	}
 }
 
