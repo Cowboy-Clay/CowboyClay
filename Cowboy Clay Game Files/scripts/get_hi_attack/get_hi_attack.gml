@@ -33,6 +33,14 @@ global.player_hi_attack_sprites = [
 // Sprites where Moose is hi blocking
 global.moose_hi_attack_sprites = [
 
+								 //stab
+								 spr_moose_stab,
+								 spr_moose_stab_noHelm,
+								 spr_moose_stab_empty,
+								 
+								 //plunge
+								 spr_moose_plunging,
+								 spr_moose_plunging_noHelm
 								 
 								 
 								 ];
