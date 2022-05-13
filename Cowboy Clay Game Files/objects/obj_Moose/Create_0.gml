@@ -5,10 +5,16 @@ instance_create_layer(0,0,layer, obj_enemy_blockbox);
 instance_create_layer(0,0,layer, obj_enemy_hitbox);
 instance_create_layer(0,0,layer, obj_enemy_hurtbox);
 instance_create_layer(0,0,layer,obj_enemy_sword);
-
-enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT, BLOCK, LOCK, DEAD, PULLING, LUNGE_ANTI, LUNGE, STAB_ANTI, STAB, JUMP_ANTI, JUMP, DIVE_ANTI, DIVE, STUCK, SPIN, PROJECTILE_ANTI, PROJECTILE, PROJECTILE_FOLLOW, STUN, BURP_ANTI, BURP_SWING, BURP_FOLLOW, SLEEP};
+enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT, BLOCK, LOCK, DEAD, PULLING, LUNGE_ANTI, LUNGE, STAB_ANTI, STAB, JUMP_ANTI, JUMP, DIVE_ANTI, DIVE, STUCK, SPIN, PROJECTILE_ANTI, PROJECTILE, PROJECTILE_FOLLOW, STUN, BURP_ANTI, BURP_SWING, BURP_FOLLOW, SLEEP,PANIC_WAIT};
 
 time_limit_jump = 240;
+
+max_hp = 10;
+hp = max_hp;
+panicking = false;
+hp_regen_timer = 0;
+hp_regen_time_long = 600;
+hp_regen_time_short = 100;
 
 dead_timer = 90;
 
@@ -125,10 +131,12 @@ function MooseStateBasedActions()
 	switch current_state
 	{
 		case MooseState.IDLE:
+			panicking = false;
 			MooseFacePlayer();
 			MooseCheckBlock();
 			break;
 		case MooseState.WANDER:
+			panicking = false;
 			MooseFacePlayer();
 			MooseWander();
 			MooseCheckBlock();
@@ -187,6 +195,20 @@ function MooseStateBasedActions()
 		case MooseState.SLEEP:
 			sleep();
 			break;
+		case MooseState.PANIC_WAIT:
+			panic_wait();
+			break;
+	}
+}
+
+function to_panic_wait(){
+	state_timer = global.moose_panic_wait_time;
+	current_state = MooseState.PANIC_WAIT;
+}
+function panic_wait(){
+	state_timer --;
+	if state_timer < 0 {
+		choose_panic_attack();
 	}
 }
 
@@ -488,6 +510,7 @@ function to_spin() {
 }
 function spin() {
 	if collision_check_edge(x,y,spr_enemy_collision,Direction.DOWN,collision_mask) {
+		panicking = false;
 		MooseWanderToIdle();
 		audio_play_sound(sfx_moose_land, 3, false);
 	}
@@ -1116,6 +1139,7 @@ function retalliation() {
 		case MooseState.STUCK: return; break;
 		case MooseState.STUN: return; break;
 		case MooseState.WAITING: return; break;
+		case MooseState.SLEEP: return; break;
 	}
 	
 	var dist_to_player = distance_to_object(obj_player);
@@ -1185,4 +1209,52 @@ function check_frame_sounds() {
 			return;
 		}
 	}
+}
+
+function take_hit_minor() {
+	hp_regen_timer = 0;
+	
+	if panicking {
+		hp -= 2;
+		panicking = false;
+		if hp > 0 
+			to_stun();
+		else 
+			take_hit_major();
+	} else {
+		hp -= 1;
+		panicking = true;
+		if hp > 0 
+			to_panic_wait();
+		else 
+			take_hit_major();
+	}
+}
+
+function take_hit_major() {
+	hp_regen_timer = 0;
+	
+	MooseGetHit();
+	hp = max_hp;
+}
+
+function choose_panic_attack() {
+	var _phase = get_phase();
+	if _phase == 1 
+		to_jump_anti();
+	else if _phase == 2 
+		to_lunge_anti();
+	else
+		MooseIdleToChargeAnti();
+}
+
+function regen_hp() {
+	if hp_regen_timer == hp_regen_time_long {
+		hp = hp + 1> max_hp ? max_hp : hp + 1;
+	} else if hp_regen_timer > hp_regen_time_long {
+		if (hp_regen_timer - hp_regen_time_long) % hp_regen_time_short == 0 {
+			hp = hp + 1> max_hp ? max_hp : hp + 1;
+		}
+	}
+	hp_regen_timer ++;
 }

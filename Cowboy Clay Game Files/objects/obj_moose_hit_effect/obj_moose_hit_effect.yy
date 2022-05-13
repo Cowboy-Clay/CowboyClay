@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_eff_loBlockShine",
-    "path": "sprites/spr_eff_loBlockShine/spr_eff_loBlockShine.yy",
+    "name": "spr_eff_strike",
+    "path": "sprites/spr_eff_strike/spr_eff_strike.yy",
   },
   "solid": false,
   "visible": true,
@@ -22,17 +22,15 @@
   "physicsShapePoints": [],
   "eventList": [
     {"isDnD":false,"eventNum":7,"eventType":7,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Effects",
-    "path": "folders/Objects/Player/Effects.yy",
+    "name": "Enemy",
+    "path": "folders/Objects/Enemy.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_player_lo_block_spark",
+  "name": "obj_moose_hit_effect",
   "tags": [],
   "resourceType": "GMObject",
 }

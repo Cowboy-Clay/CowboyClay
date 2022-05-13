@@ -42,4 +42,5 @@ global.moose_hi_attack_sprites = [
 								 spr_moose_plunging,
 								 spr_moose_plunging_noHelm
 								 
+								 
 								 ];

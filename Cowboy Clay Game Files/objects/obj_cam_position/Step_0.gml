@@ -42,6 +42,14 @@ if y > max_y && max_y != 0 {
 if y < min_y && min_y != 0 {
 	y = min_y;
 }
+var xx = x;
+var yy = y;
 
-camera_set_view_pos(cam,x-camera_get_view_width(cam)/2,y-camera_get_view_height(cam)/2);
+if shake >= 0 {
+	xx += sign(random_range(-1,1)) * random_range(min_mag,max_mag);
+	yy += sign(random_range(-1,1)) * random_range(min_mag,max_mag);
+	shake --;
+}
+
+camera_set_view_pos(cam,xx-camera_get_view_width(cam)/2,yy-camera_get_view_height(cam)/2);
 audio_listener_set_position(0,camera_get_view_x(cam),camera_get_view_y(cam),0);

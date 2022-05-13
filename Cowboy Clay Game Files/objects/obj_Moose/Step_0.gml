@@ -2,6 +2,8 @@
 // You can write your code in this editor
 if !global.paused
 {
+	regen_hp();
+	
 	if current_state != MooseState.LOCK && current_state != MooseState.DEAD
 	{
 		UpdateMooseState();

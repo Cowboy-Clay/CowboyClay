@@ -90,6 +90,7 @@ sheathTimer = 0;
 global.player_plungeFrames = 7;
 
 global.player_block_frames = 45;
+global.player_block_active_frames = 20;
 global.player_block_success_frames = 25;
 global.player_block_failure_frames = 35;
 
@@ -276,20 +277,6 @@ function to_kick_swing() {
 	kick_swing();
 }
 function kick_swing() {
-	if facing == Direction.LEFT &&
-	   collision_check_edge(x,y,spr_player_collision,Direction.LEFT,collision_mask) && 
-	   instance_exists(obj_player_sword) &&
-	   obj_player_sword.current_state == SwordState.STUCK_WALL_LEFT &&
-	   abs(obj_player_sword.x - x) < 200 {
-		obj_player_sword.to_kicked(); 
-	} else if facing == Direction.RIGHT &&
-	          collision_check_edge(x,y,spr_player_collision,Direction.RIGHT, collision_mask) &&
-			  instance_exists(obj_player_sword) &&
-			  obj_player_sword.current_state == SwordState.STUCK_WALL_RIGHT &&
-			  abs(obj_player_sword.x - x) < 200 {
-		obj_player_sword.to_kicked();	  
-	}
-	   
 	
 	if state_timer <= 0 {
 		to_kick_follow();
@@ -445,6 +432,7 @@ function check_blocks() {
 		} else {
 			hiblock = 0;
 		}
+		hiblock = 0;
 		to_block();
 		return true;
 	}
