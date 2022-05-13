@@ -9,7 +9,7 @@ enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING,
 
 time_limit_jump = 240;
 
-max_hp = 20;
+max_hp = 10;
 hp = max_hp;
 panicking = false;
 hp_regen_timer = 0;
@@ -1201,7 +1201,7 @@ function take_hit_minor() {
 	hp_regen_timer = 0;
 	
 	if panicking {
-		hp -= 3;
+		hp -= 2;
 		panicking = false;
 		if hp > 0 
 			to_stun();

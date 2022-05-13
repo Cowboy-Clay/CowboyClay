@@ -1,8 +1,10 @@
 var _center_x = camera_get_view_width(view_camera[0]) / 2;
 var _y = 25;
 
+if obj_player.current_state == PlayerState.DEAD return;
+
 // Draw frame
-draw_sprite(frame_spr,0,_center_x,_y);
+//draw_sprite(frame_spr,0,_center_x,_y);
 // Draw third healthbar
 var _xscale = lerp(bar_min_width, bar_max_width, third_healthbar_visual_percentage);
 var _yscale = (sprite_get_height(frame_spr) - 4 +3) / sprite_get_height(third_healthbar_spr);
