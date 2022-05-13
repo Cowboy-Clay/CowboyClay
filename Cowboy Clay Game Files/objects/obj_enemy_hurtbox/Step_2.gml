@@ -11,6 +11,7 @@ if place_meeting(x,y,obj_player_hitbox) && obj_player_hitbox.sprite_index != spr
 	if variable_instance_exists(obj_Moose.id, "invuln") && variable_instance_get(obj_Moose.id, "invuln") == true {
 		
 	}
+	else if obj_Moose.current_state == MooseState.PANIC_WAIT {}
 	
 	// check for matching attacks and blocks
 	else if (get_instance_hi_block(obj_Moose.id) && get_instance_hi_attack(obj_player.id)) ||
