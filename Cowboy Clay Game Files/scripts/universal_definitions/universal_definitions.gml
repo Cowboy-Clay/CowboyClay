@@ -1,3 +1,5 @@
+global.smart_control_detection = true;
+
 global.player_object = obj_player;
 global.moose_object = obj_Moose;
 
