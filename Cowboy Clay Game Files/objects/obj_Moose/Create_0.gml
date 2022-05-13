@@ -107,7 +107,7 @@ function UpdateMooseState()
 		case MooseState.CHARGE:
 			break;
 		case MooseState.WAITING:
-			if armed
+			if armed || obj_enemy_sword.current_state == SwordState.STUCK_FLOOR
 			{
 				MooseWaitToIdle();
 				return;
@@ -898,12 +898,19 @@ function update_animation() {
 			else if armed a = spr_moose_burpFollow_helmless;
 			else a = spr_moose_burpFollow_empty;
 			SetMooseAnimation(a,8,AnimationType.HOLD);
+			break;
 		case MooseState.SLEEP:
 			var a = noone;
 			if armor > 0 a = spr_moose_sleep;
 			else if armed a = spr_moose_sleep_helmless;
 			else a = spr_moose_sleep_empty;
 			SetMooseAnimation(a,12,AnimationType.LOOP);
+			break;
+		case MooseState.PANIC_WAIT:
+			var a = spr_moose_chargeBounce;
+			if armor == 0 a = spr_moose_chargeBounce_helmless;
+			SetMooseAnimation(a,1,AnimationType.FIRST_FRAME);
+			break;
 	}
 }
 function PlayMooseAnimation()
