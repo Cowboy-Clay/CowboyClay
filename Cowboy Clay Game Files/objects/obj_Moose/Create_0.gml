@@ -320,6 +320,8 @@ function to_burp_swing() {
 	burp_swing();
 }
 function burp_swing() {
+	MooseFacePlayer();
+	
 	if facing == Direction.LEFT {
 		hspeed += global.moose_burp_swing_acceleration;
 	}else {
