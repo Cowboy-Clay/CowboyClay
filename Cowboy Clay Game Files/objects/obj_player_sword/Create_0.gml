@@ -1,5 +1,10 @@
 enum SwordState { INACTIVE, FLYING, STUCK_FLOOR, STUCK_WALL_LEFT, STUCK_WALL_RIGHT, KICKED };
 current_state = stuckOnStart ? SwordState.STUCK_FLOOR : SwordState.INACTIVE;
+if stuckOnStart{
+	if in_wall_on_start {
+		current_state = left_wall ? SwordState.STUCK_WALL_LEFT : SwordState.STUCK_WALL_RIGHT;
+	}
+}
 
 collision_mask = [obj_tile_coll, obj_plate, obj_elevator, obj_box, obj_door];
 
