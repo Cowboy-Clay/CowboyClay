@@ -40,5 +40,7 @@ global.moose_lo_block_sprites = [
 								spr_moose_blockLo_helmless,
 								spr_moose_blockLo_empty,
 								spr_moose_walkBlock,
-								spr_moose_walkBlock_noHelm
+								spr_moose_walkBlock_noHelm,
+								spr_moose_chargeBounce,
+								spr_moose_chargeBounce_helmless
 								];

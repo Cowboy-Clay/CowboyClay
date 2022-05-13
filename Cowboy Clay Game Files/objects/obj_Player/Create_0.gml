@@ -90,7 +90,7 @@ sheathTimer = 0;
 global.player_plungeFrames = 7;
 
 global.player_block_frames = 45;
-global.player_block_active_frames = 20;
+global.player_block_active_frames = 15;
 global.player_block_success_frames = 25;
 global.player_block_failure_frames = 35;
 

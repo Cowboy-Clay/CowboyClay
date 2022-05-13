@@ -1007,7 +1007,6 @@ function MakeMooseInvulnerable(_time)
 
 function MooseGetHit()
 {
-	if invuln return;
 	if armor > 0 {
 		y-= 2;
 		vspeed -= 20;
@@ -1219,7 +1218,7 @@ function check_frame_sounds() {
 }
 
 function take_hit_minor() {
-	MakeMooseInvulnerable(50);
+	MakeMooseInvulnerable(10);
 	
 	hp_regen_timer = 0;
 	
@@ -1241,7 +1240,7 @@ function take_hit_minor() {
 }
 
 function take_hit_major() {
-	MakeMooseInvulnerable(90);
+	MakeMooseInvulnerable(5);
 	hp_regen_timer = 0;
 	
 	MooseGetHit();
