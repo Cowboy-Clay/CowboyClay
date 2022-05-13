@@ -89,8 +89,8 @@ sheathTimer = 0;
 
 global.player_plungeFrames = 7;
 
-global.player_block_frames = 15;
-global.player_block_success_frames = 3;
+global.player_block_frames = 45;
+global.player_block_success_frames = 25;
 global.player_block_failure_frames = 35;
 
 global.player_pain_frames = 45;
@@ -438,7 +438,7 @@ function sling_attack_follow() {
 }
 
 function check_blocks() {
-	if !armed return;
+	//if !armed return;
 	if input_check_pressed(input_action.block) {
 		if input_check(input_action.up) && !input_check(input_action.down) {
 			hiblock = 1;
@@ -1232,15 +1232,25 @@ function update_animation() {
 			break;
 		case PlayerState.BLOCK:
 			a = hiblock == 1 ? global.player_animation_block_hi : global.player_animation_block_lo;
+			if !armed
+			{
+			a = global.player_animation_block_lo_disarmed;
+			}
 			break;
 		case PlayerState.BLOCK_FOLLOW:
 			if block_success == true {
 				a = hiblock == 1 ? global.player_animation_block_hi_recoil : global.player_animation_block_lo_recoil;
-				break;
+				if !armed
+				{
+					a = global.player_animation_block_lo_recoil_disarmed;
+				}
 			} else {
-				a = global.player_animation_block_failure;
-				break;
+				a = global.player_animation_block_failure;	
+				if !armed {
+					a = global.player_animation_block_lo_failure_disarmed;
+				}			
 			}
+				break;
 		case PlayerState.DEAD:
 			a = global.player_animation_death;
 			break;

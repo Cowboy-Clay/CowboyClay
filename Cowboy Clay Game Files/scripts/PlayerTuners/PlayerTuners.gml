@@ -67,10 +67,14 @@ global.player_animation_attack_cancel = [spr_player_blockMiss, 1, AnimationType.
 global.player_animation_attack_cancel_disarmed = [spr_player_blockMiss, 1, AnimationType.FIRST_FRAME];
 
 global.player_animation_block_hi = [spr_player_hiBlock, 3, AnimationType.HOLD];
-global.player_animation_block_lo = [spr_player_loBlock, 3, AnimationType.HOLD];
+global.player_animation_block_lo = [spr_player_parryAnti, 6, AnimationType.HOLD];
 global.player_animation_block_hi_recoil = [spr_player_hiBlock_stun, 1, AnimationType.FIRST_FRAME];
-global.player_animation_block_lo_recoil = [spr_player_loBlock_stun, 1, AnimationType.FIRST_FRAME];
-global.player_animation_block_failure = [spr_player_blockMiss, 1, AnimationType.FIRST_FRAME];
+global.player_animation_block_lo_recoil = [spr_player_parry, 1, AnimationType.FIRST_FRAME];
+global.player_animation_block_failure = [spr_player_parryFollow, 1, AnimationType.FIRST_FRAME];
+
+global.player_animation_block_lo_disarmed = [spr_player_parryAnti_disarmed, 6, AnimationType.HOLD];
+global.player_animation_block_lo_recoil_disarmed = [spr_player_parry_disarmed, 1, AnimationType.FIRST_FRAME];
+global.player_animation_block_lo_failure_disarmed = [spr_player_parryFollow_disarmed, 1, AnimationType.FIRST_FRAME];
 
 global.player_animation_pain = [spr_player_damaged, 1, AnimationType.FIRST_FRAME];
 global.player_animation_pain_disarmed = [spr_player_damaged_disarmed, 1, AnimationType.FIRST_FRAME];
