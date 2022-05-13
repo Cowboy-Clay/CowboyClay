@@ -38,7 +38,7 @@ global.moose_dive_speed = 20;
 global.moose_stuck_frames = 60;
 global.moose_spin_x_speed = 10;
 global.moose_spin_y_speed = -10;
-global.moose_spin_y_offset = 25;
+global.moose_spin_y_offset = -25;
 
 // Slide
 global.moose_slideAntiDuration = 40;
