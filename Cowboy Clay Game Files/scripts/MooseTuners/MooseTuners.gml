@@ -1,3 +1,5 @@
+global.moose_panic_wait_time = 35;
+
 // Idle
 global.moose_wandersPerIdle = 4;
 global.moose_minIdleTime = 40;

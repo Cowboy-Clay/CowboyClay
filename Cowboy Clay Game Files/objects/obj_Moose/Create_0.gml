@@ -5,7 +5,7 @@ instance_create_layer(0,0,layer, obj_enemy_blockbox);
 instance_create_layer(0,0,layer, obj_enemy_hitbox);
 instance_create_layer(0,0,layer, obj_enemy_hurtbox);
 instance_create_layer(0,0,layer,obj_enemy_sword);
-enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT, BLOCK, LOCK, DEAD, PULLING, LUNGE_ANTI, LUNGE, STAB_ANTI, STAB, JUMP_ANTI, JUMP, DIVE_ANTI, DIVE, STUCK, SPIN, PROJECTILE_ANTI, PROJECTILE, PROJECTILE_FOLLOW, STUN, BURP_ANTI, BURP_SWING, BURP_FOLLOW, SLEEP};
+enum MooseState { IDLE, WANDER, SLIDE_ANTI, SLIDE, CHARGE_ANTI, CHARGE, WAITING, HIT, BLOCK, LOCK, DEAD, PULLING, LUNGE_ANTI, LUNGE, STAB_ANTI, STAB, JUMP_ANTI, JUMP, DIVE_ANTI, DIVE, STUCK, SPIN, PROJECTILE_ANTI, PROJECTILE, PROJECTILE_FOLLOW, STUN, BURP_ANTI, BURP_SWING, BURP_FOLLOW, SLEEP,PANIC_WAIT};
 
 time_limit_jump = 240;
 
@@ -195,6 +195,20 @@ function MooseStateBasedActions()
 		case MooseState.SLEEP:
 			sleep();
 			break;
+		case MooseState.PANIC_WAIT:
+			panic_wait();
+			break;
+	}
+}
+
+function to_panic_wait(){
+	state_timer = global.moose_panic_wait_time;
+	current_state = MooseState.PANIC_WAIT;
+}
+function panic_wait(){
+	state_timer --;
+	if state_timer < 0 {
+		choose_panic_attack();
 	}
 }
 
@@ -1211,7 +1225,7 @@ function take_hit_minor() {
 		hp -= 1;
 		panicking = true;
 		if hp > 0 
-			choose_panic_attack();
+			to_panic_wait();
 		else 
 			take_hit_major();
 	}
