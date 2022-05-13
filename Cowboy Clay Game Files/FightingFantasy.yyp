@@ -24,6 +24,7 @@
     {"id":{"name":"obj_instance_starter","path":"objects/obj_instance_starter/obj_instance_starter.yy",},"order":16,},
     {"id":{"name":"spr_yellow","path":"sprites/spr_yellow/spr_yellow.yy",},"order":37,},
     {"id":{"name":"tset_bush","path":"tilesets/tset_bush/tset_bush.yy",},"order":1,},
+    {"id":{"name":"debug","path":"scripts/debug/debug.yy",},"order":15,},
     {"id":{"name":"spr_enemy_sword","path":"sprites/spr_enemy_sword/spr_enemy_sword.yy",},"order":1,},
     {"id":{"name":"obj_player_projectile_spark","path":"objects/obj_player_projectile_spark/obj_player_projectile_spark.yy",},"order":8,},
     {"id":{"name":"spr_moose_slide_noHelm","path":"sprites/spr_moose_slide_noHelm/spr_moose_slide_noHelm.yy",},"order":29,},

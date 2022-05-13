@@ -1,3 +1,5 @@
+frames++;
+
 //var _maxpad = gamepad_get_device_count();
 
 //for (var i = 0; i < _maxpad; i++) {
@@ -30,3 +32,10 @@
 //show_debug_message("Left: " + string(input_check(input_action.left)));
 //show_debug_message("Left_Pressed: " + string(input_check_pressed(input_action.left)));
 //show_debug_message("Left_released: " + string(input_check_released(input_action.left)));
+
+if keyboard_check_pressed(vk_f1) {
+	if room_get_name(room) == "FinalLevelDesign" && frames> 30{
+		obj_player.x = 7008;
+		obj_player.y = 704;
+	}
+}
