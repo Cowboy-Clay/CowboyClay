@@ -999,10 +999,10 @@ function MooseInvuln()
 	}
 }
 
-function MakeMooseInvulnerable()
+function MakeMooseInvulnerable(_time)
 {
 	invuln = true;
-	invulnTimer = global.moose_invulTime;
+	invulnTimer = _time;
 }
 
 function MooseGetHit()
@@ -1013,7 +1013,7 @@ function MooseGetHit()
 		vspeed -= 20;
 		if obj_player.x > x hspeed = obj_player.x > x ? -20 : 20;
 		armor --;
-		MakeMooseInvulnerable();
+		MakeMooseInvulnerable(global.moose_invulTime);
 		current_state = MooseState.HIT;
 		state_timer = 60;
 		wanderCounter = 0;
@@ -1028,7 +1028,7 @@ function MooseGetHit()
 		armed = false;
 		h = obj_player.x < x ? -1 : 1;
 		obj_enemy_sword.EnemySwordFling(h,-1.67,17);
-		MakeMooseInvulnerable();
+		MakeMooseInvulnerable(global.moose_invulTime);
 		current_state = MooseState.HIT;
 		wanderCounter = 0;
 		audio_play_sound(sfx_moose_dehelm, 2, false);
@@ -1219,6 +1219,8 @@ function check_frame_sounds() {
 }
 
 function take_hit_minor() {
+	MakeMooseInvulnerable(50);
+	
 	hp_regen_timer = 0;
 	
 	if panicking {
@@ -1239,6 +1241,7 @@ function take_hit_minor() {
 }
 
 function take_hit_major() {
+	MakeMooseInvulnerable(90);
 	hp_regen_timer = 0;
 	
 	MooseGetHit();
