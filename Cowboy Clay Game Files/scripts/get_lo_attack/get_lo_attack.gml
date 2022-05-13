@@ -53,5 +53,13 @@ global.moose_lo_attack_sprites = [
 								 //spinning
 								 spr_moose_spin,
 								 spr_moose_spin_noHelm,
-								 spr_moose_spinning_empty
+								 spr_moose_spinning_empty,
+								 //stab
+								 spr_moose_stab,
+								 spr_moose_stab_noHelm,
+								 spr_moose_stab_empty,
+								 
+								 //plunge
+								 spr_moose_plunging,
+								 spr_moose_plunging_noHelm
 								 ];

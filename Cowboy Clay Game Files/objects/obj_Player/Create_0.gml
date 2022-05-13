@@ -431,6 +431,7 @@ function check_blocks() {
 		} else {
 			hiblock = 0;
 		}
+		hiblock = 0;
 		to_block();
 		return true;
 	}

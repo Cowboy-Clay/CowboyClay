@@ -46,8 +46,8 @@ var xx = x;
 var yy = y;
 
 if shake >= 0 {
-	xx += sign(random_range(-1,1)) * random_range(5,10);
-	yy += sign(random_range(-1,1)) * random_range(5,10);
+	xx += sign(random_range(-1,1)) * random_range(min_mag,max_mag);
+	yy += sign(random_range(-1,1)) * random_range(min_mag,max_mag);
 	shake --;
 }
 

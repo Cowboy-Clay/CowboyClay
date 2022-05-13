@@ -1,0 +1,1 @@
+wallkick_cooldown = false;
