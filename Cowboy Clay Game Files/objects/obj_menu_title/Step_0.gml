@@ -2,12 +2,12 @@ if keyboard_check_pressed(vk_f11){
 	window_set_fullscreen(!window_get_fullscreen());
 }
 
-if ((keyboard_check_pressed(ord("X")) || gamepad_button_check_pressed_anypad(gp_face3)) || gamepad_button_check_pressed_anypad(gp_face2)) && sprite_index == CowboyClayTitle1 {
+if ((keyboard_check_pressed(ord("X")) || gamepad_button_check_pressed_anypad(gp_face3)) /*|| gamepad_button_check_pressed_anypad(gp_face2)*/) && sprite_index == CowboyClayTitle1 {
 	if global.smart_control_detection == true {
 		global.smart_control_detection = false;
 		if keyboard_check_pressed(ord("X")) input_set_binds_keyboard();
 		else if gamepad_button_check_pressed_anypad(gp_face3) input_set_binds_xbox();
-		else if gamepad_button_check_pressed_anypad(gp_face2) input_set_binds_playstation();
+		//else if gamepad_button_check_pressed_anypad(gp_face2) input_set_binds_playstation();
 	}
 	
 	if array_length(sequence) == 0 {
