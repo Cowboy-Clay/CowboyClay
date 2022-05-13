@@ -1,6 +1,7 @@
 enum SwordState { INACTIVE, FLYING, STUCK_FLOOR, STUCK_WALL_LEFT, STUCK_WALL_RIGHT, KICKED };
 current_state = stuckOnStart ? SwordState.STUCK_FLOOR : SwordState.INACTIVE;
 if stuckOnStart{
+	sprite_index = spr_player_sword_stuck;
 	if in_wall_on_start {
 		current_state = left_wall ? SwordState.STUCK_WALL_LEFT : SwordState.STUCK_WALL_RIGHT;
 	}
@@ -55,14 +56,14 @@ function PlayerSwordStickInWall(s)
 	current_state = s;
 	if s == SwordState.STUCK_WALL_LEFT x -= global.sword_stickInWallBump;
 	else x += global.sword_stickInWallBump;
-	SetSwordAnimation(global.sword_defaultAnim, global.sword_defaultAnimFPI, global.sword_defaultAnimType);
+	SetSwordAnimation(spr_player_sword_stuck, global.sword_defaultAnimFPI, global.sword_defaultAnimType);
 }
 
 function PlayerSwordStickInGround()
 {
 	current_state = SwordState.STUCK_FLOOR;
 	y += global.sword_stickInFloorBump;
-	SetSwordAnimation(global.sword_defaultAnim, global.sword_defaultAnimFPI, global.sword_defaultAnimType);
+	SetSwordAnimation(spr_player_sword_stuck, global.sword_defaultAnimFPI, global.sword_defaultAnimType);
 }
 
 function SetPlayerSwordRotation()
@@ -140,7 +141,7 @@ function teleport_to(xPos,yPos)
 
 function to_kicked() {
 	if current_state != SwordState.STUCK_WALL_LEFT && current_state != SwordState.STUCK_WALL_RIGHT return;
-	SetSwordAnimation(spr_player_sword,1,AnimationType.FIRST_FRAME);
+	SetSwordAnimation(spr_player_sword_spin,global.sword_spinAnimFPI,AnimationType.LOOP);
 	if current_state == SwordState.STUCK_WALL_LEFT {
 		while(collision_check_edge(x,y,sprite_index, Direction.LEFT,collision_mask)) {
 			x++;

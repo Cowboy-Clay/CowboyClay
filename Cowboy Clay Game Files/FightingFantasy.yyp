@@ -353,6 +353,7 @@
     {"id":{"name":"spr_envi_tallGrass","path":"sprites/spr_envi_tallGrass/spr_envi_tallGrass.yy",},"order":18,},
     {"id":{"name":"obj_player_jump_charge","path":"objects/obj_player_jump_charge/obj_player_jump_charge.yy",},"order":7,},
     {"id":{"name":"sfx_moose_crash","path":"sounds/sfx_moose_crash/sfx_moose_crash.yy",},"order":2,},
+    {"id":{"name":"spr_player_sword_stuck","path":"sprites/spr_player_sword_stuck/spr_player_sword_stuck.yy",},"order":114,},
     {"id":{"name":"spr_mech_breakableWall","path":"sprites/spr_mech_breakableWall/spr_mech_breakableWall.yy",},"order":9,},
     {"id":{"name":"sfx_moose_charge","path":"sounds/sfx_moose_charge/sfx_moose_charge.yy",},"order":1,},
     {"id":{"name":"Ambird_ambiance","path":"sounds/Ambird_ambiance/Ambird_ambiance.yy",},"order":6,},
