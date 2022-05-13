@@ -107,7 +107,7 @@ function UpdateMooseState()
 		case MooseState.CHARGE:
 			break;
 		case MooseState.WAITING:
-			if armed
+			if armed || obj_enemy_sword.current_state == SwordState.STUCK_FLOOR
 			{
 				MooseWaitToIdle();
 				return;
