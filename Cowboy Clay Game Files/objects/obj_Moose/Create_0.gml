@@ -1194,7 +1194,7 @@ function retalliation() {
 			to_spin();
 		}
 	}
-	if head_jump_counter > 0 && floor(current_time/500) % 2  == 0 {
+	if head_jump_counter > 0 && floor(current_time/100) % 2  == 0 {
 		head_jump_counter --;
 	}
 }
