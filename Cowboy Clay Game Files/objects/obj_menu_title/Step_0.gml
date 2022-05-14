@@ -1,3 +1,12 @@
+// Attract mode timer
+timer ++;
+show_debug_message(timer);
+// Seconds * 60fps for accurate timing
+if timer > 8.2 * 60 {
+	instance_create_layer(x,y,layer,obj_attract);
+	instance_destroy(id);
+}
+
 if keyboard_check_pressed(vk_f11){
 	window_set_fullscreen(!window_get_fullscreen());
 }

@@ -6,5 +6,3 @@ audio_group_load(sfx_moose);
 
 last_sprite = sprite_index;
 last_image = image_index;
-
-timer = 0;

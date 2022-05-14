@@ -1,7 +1,8 @@
 currently_playing = noone;
 
+audio_stop_all();
 
-audio_stop_all();if start_on_create {
+if start_on_create {
 	currently_playing = audio_play_sound(track,0,true);
 }
 
