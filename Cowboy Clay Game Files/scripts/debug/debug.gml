@@ -1,1 +1,1 @@
-global.debug_enabled = true;
+global.debug_enabled = false;
