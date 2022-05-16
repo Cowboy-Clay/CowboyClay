@@ -371,6 +371,7 @@ function basic_attack_charge() {
 	if basic_attack_charge_timer == global.player_basic_attack_charge_min {
 		instance_create_depth(x,y,depth-10, obj_player_charge_spark);
 		audio_play_sound(sfx_sword_anti, 10, false);
+		basic_attack_charge_timer ++;
 	}
 	
 	if basic_attack_charge_timer == 0 && input_check_pressed(input_action.attack) && sling_attack_charge_timer == 0{
