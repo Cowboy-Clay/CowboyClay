@@ -22,7 +22,7 @@ function input_set_binds_xbox(){
 	input_set_bind_unbind(input_action.jump, false);
 	
 	input_set_bind(input_action.block, true, input_type.button, gp_face4);
-	input_set_bind(input_action.block, false, input_type.button, gp_shoulderr);
+	input_set_bind_unbind(input_action.block, false);
 	
 	input_set_bind(input_action.sling, true, input_type.button, gp_shoulderrb);
 	input_set_bind_unbind(input_action.sling, false);
