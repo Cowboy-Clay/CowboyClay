@@ -77,7 +77,7 @@ global.player_sling_anti_frames = 2;
 global.player_sling_swing_frames = 6;
 global.player_sling_follow_frames = 16;
 #region Kick Attack Variables
-global.player_kickAntiFrames = 7;
+global.player_kickAntiFrames = 4;
 global.player_kickSwingFrames = 25;
 global.player_kickFollowFrames = 6;
 global.player_kick_force = 5;
