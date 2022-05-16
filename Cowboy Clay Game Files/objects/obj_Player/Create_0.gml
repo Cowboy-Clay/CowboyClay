@@ -272,6 +272,7 @@ function to_kick_anti() {
 	kick_anti();
 }
 function kick_anti() {
+	hspeed += facing == Direction.RIGHT ? .5 : -.5;
 	if input_check(input_action.attack) == false kick_held_flag = false;
 	if state_timer <= 0 {
 		to_kick_swing();
