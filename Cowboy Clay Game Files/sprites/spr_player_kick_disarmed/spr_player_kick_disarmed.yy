@@ -9,7 +9,7 @@
   "swfPrecision": 2.525,
   "bbox_left": 82,
   "bbox_right": 277,
-  "bbox_top": 94,
+  "bbox_top": 66,
   "bbox_bottom": 215,
   "HTile": false,
   "VTile": false,
@@ -24,6 +24,9 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
+    {"compositeImage":{"FrameId":{"name":"83796089-d247-4eb6-a56a-2c1b3255d2e4","path":"sprites/spr_player_kick_disarmed/spr_player_kick_disarmed.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"83796089-d247-4eb6-a56a-2c1b3255d2e4","path":"sprites/spr_player_kick_disarmed/spr_player_kick_disarmed.yy",},"LayerId":{"name":"31c56d5d-1bb0-410b-9942-c2dd5a81a287","path":"sprites/spr_player_kick_disarmed/spr_player_kick_disarmed.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_player_kick_disarmed","path":"sprites/spr_player_kick_disarmed/spr_player_kick_disarmed.yy",},"resourceVersion":"1.0","name":"83796089-d247-4eb6-a56a-2c1b3255d2e4","tags":[],"resourceType":"GMSpriteFrame",},
     {"compositeImage":{"FrameId":{"name":"d635f534-fac4-4a41-8a9a-6401f0a34611","path":"sprites/spr_player_kick_disarmed/spr_player_kick_disarmed.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
         {"FrameId":{"name":"d635f534-fac4-4a41-8a9a-6401f0a34611","path":"sprites/spr_player_kick_disarmed/spr_player_kick_disarmed.yy",},"LayerId":{"name":"31c56d5d-1bb0-410b-9942-c2dd5a81a287","path":"sprites/spr_player_kick_disarmed/spr_player_kick_disarmed.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
       ],"parent":{"name":"spr_player_kick_disarmed","path":"sprites/spr_player_kick_disarmed/spr_player_kick_disarmed.yy",},"resourceVersion":"1.0","name":"d635f534-fac4-4a41-8a9a-6401f0a34611","tags":[],"resourceType":"GMSpriteFrame",},
@@ -36,12 +39,13 @@
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
-    "length": 1.0,
+    "length": 2.0,
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"8ea895c0-c9c8-42a9-8bd6-ff5409520040","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"d635f534-fac4-4a41-8a9a-6401f0a34611","path":"sprites/spr_player_kick_disarmed/spr_player_kick_disarmed.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"74954a75-9b6f-4dee-bc92-fccf074b8252","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"83796089-d247-4eb6-a56a-2c1b3255d2e4","path":"sprites/spr_player_kick_disarmed/spr_player_kick_disarmed.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"8ea895c0-c9c8-42a9-8bd6-ff5409520040","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"d635f534-fac4-4a41-8a9a-6401f0a34611","path":"sprites/spr_player_kick_disarmed/spr_player_kick_disarmed.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
