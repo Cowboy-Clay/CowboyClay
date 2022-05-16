@@ -591,9 +591,7 @@
   "isEcma": false,
   "configs": {
     "name": "Default",
-    "children": [
-      {"name":"Mac","children":[],},
-    ],
+    "children": [],
   },
   "RoomOrderNodes": [
     {"roomId":{"name":"Menu","path":"rooms/Menu/Menu.yy",},},
