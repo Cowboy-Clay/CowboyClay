@@ -1,8 +1,8 @@
 // Attract mode timer
 timer ++;
-show_debug_message(timer);
+//show_debug_message(timer);
 // Seconds * 60fps for accurate timing
-if timer > 8.2 * 60 {
+if timer > 8.2 * 60 && sprite_index == CowboyClayTitle1 {
 	instance_create_layer(x,y,layer,obj_attract);
 	instance_destroy(id);
 }

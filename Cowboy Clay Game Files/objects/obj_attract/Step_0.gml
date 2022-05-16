@@ -3,6 +3,8 @@ if keyboard_check_pressed(vk_f11){
 }
 
 if input_check_pressed_any() {
+	var _l = layer_get_id("Wipe");
+	instance_create_layer(0,0,_l,obj_wipe_in);
 	instance_create_layer(x,y,layer,obj_menu_title);
 	instance_destroy(id);
 	return;
