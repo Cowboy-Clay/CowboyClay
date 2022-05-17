@@ -4,6 +4,12 @@ global.object_to_pause = [obj_player, obj_player_sword, obj_player_attackEffect,
 function pause(){
 	global.paused = !global.paused;
 	
+	if global.paused {
+		if instance_exists(obj_pause_menu) == false instance_create_depth(0,0,-500,obj_pause_menu);
+	} else {
+		if instance_exists(obj_pause_menu) instance_destroy(obj_pause_menu);
+	}
+	
 	for (var i = 0; i < array_length(global.object_to_pause); i++){
 		var _current_object = global.object_to_pause[i];
 		var _object_count = instance_number(_current_object);

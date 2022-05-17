@@ -138,7 +138,8 @@ function PlayerStateBasedMethods()
 	if jump_buffer >= 0 jump_buffer --;
 	if kick_buffer >= 0 kick_buffer--;
 	if input_check_pressed(input_action.jump) {
-		jump_buffer = global.player_jump_buffer_frames;
+		if jump_buffer == -5 jump_buffer = 0;
+		else jump_buffer = global.player_jump_buffer_frames;
 	}
 	
 	if input_check_pressed(input_action.attack) && (
