@@ -82,6 +82,8 @@ global.player_kickSwingFrames = 25;
 global.player_kickFollowFrames = 6;
 global.player_kick_force = 5;
 kick_held_flag = false;
+kick_buffer = -1;
+global.player_kick_buffer_time = 10;
 #endregion
 
 global.player_sheathFrames = 40;
@@ -131,9 +133,19 @@ function PlayerStateBasedMethods()
 	// show_debug_message(player_state_to_string(current_state));
 	if current_state != PlayerState.KICK_ANTI kick_held_flag = false;
 	
-	jump_buffer --;
+	if jump_buffer >= 0 jump_buffer --;
+	if kick_buffer >= 0 kick_buffer--;
 	if input_check_pressed(input_action.jump) {
 		jump_buffer = global.player_jump_buffer_frames;
+	}
+	
+	if input_check_pressed(input_action.attack) && (
+		current_state == PlayerState.IDLE ||
+		current_state == PlayerState.WALKING ||
+		current_state == PlayerState.JUMPING ||
+		current_state == PlayerState.FALLING
+	){
+		kick_buffer = global.player_kick_buffer_time;
 	}
 	
 	switch current_state {
@@ -147,7 +159,7 @@ function PlayerStateBasedMethods()
 				GoToPlayerJumpAnti();
 				break;
 			}
-			if basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 && input_check_pressed(input_action.attack) {
+			if basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 && (kick_buffer > 0) {
 				to_kick_anti();
 				break;
 			}
@@ -167,7 +179,7 @@ function PlayerStateBasedMethods()
 				GoToPlayerJumpAnti();
 				break;
 			}
-			if basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 && input_check_pressed(input_action.attack) {
+			if basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 && kick_buffer > 0 {
 				to_kick_anti();
 				break;
 			}
@@ -266,6 +278,7 @@ function PlayerStateBasedMethods()
 }
 
 function to_kick_anti() {
+	kick_buffer = 0;
 	kick_held_flag = true;
 	state_timer = global.player_kickAntiFrames;
 	current_state = PlayerState.KICK_ANTI;
