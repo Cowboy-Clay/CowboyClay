@@ -1,20 +1,20 @@
-if menu_state == 0 && button_check_pressed(buttons.jump)
-{
-	menu_state = 1;
-	instance_destroy(obj_menu_title);
+if keyboard_check_pressed(ord("X")) && !flash_flag {
+	flash_flag = true;
+	timer = global.menu_flash_time;
 }
-else if menu_state == 1
-{
-	if button_check_pressed(buttons.down) next();
-	if button_check_pressed(buttons.up) previous();
-	if button_check_pressed(buttons.jump)
-	{
-		menu_state = 2;
-		obj_menu_controls.visible = true;
+
+if !flash_flag && !fade_flag {
+	timer++;
+	if timer >= global.menu_flash_frames_per {
+		obj_menu_title.image_index = obj_menu_title.image_index == 0 ? 1 : 0;
+		timer = 0;
 	}
-}
-else if menu_state == 2
-{
+} else if flash_flag && !fade_flag {
 	timer--;
-	if timer <= 0 || button_check_pressed(buttons.jump) load();
+	if timer % global.menu_flash_frames_per_fast == 0 {
+		obj_menu_title.image_index = obj_menu_title.image_index == 0 ? 1 : 0;
+	}
+	if timer <= 0 fade_flag = true;
+} else if fade_flag {
+	room_goto(global.menu_scene_to_load);
 }
