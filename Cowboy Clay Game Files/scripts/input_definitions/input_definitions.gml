@@ -1,5 +1,5 @@
 enum input_type {key, button, hat, axis};
-enum input_action {up, down, left, right, attack, jump, sling, face, block, kick};
+enum input_action {up, down, left, right, attack, jump, sling, face, block, kick, menu};
 
 enum input_setting {keyboard, xbox_controller, playstation_controller, custom};
 global.input_current_setting = input_setting.keyboard;
@@ -63,3 +63,9 @@ global.input_kick_secondary = noone;
 global.input_kick_value = false;
 global.input_kick_pressed_value = false;
 global.input_kick_released_value = false;
+
+global.input_menu_primary = [input_type.key, vk_escape];
+global.input_menu_secondary = noone;
+global.input_menu_value = false;
+global.input_menu_pressed_value = false;
+global.input_menu_released_value = false;

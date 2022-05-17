@@ -1,3 +1,4 @@
+if !global.paused{
 if current_state == SwordState.INACTIVE {
 	EnemySwordAnimate();
 	return;
@@ -33,3 +34,4 @@ if current_state==SwordState.KICKED {
 SetEnemySwordRotation();
 
 EnemySwordAnimate();
+}

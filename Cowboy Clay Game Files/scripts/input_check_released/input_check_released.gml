@@ -31,6 +31,9 @@ function input_check_released(_input_action){
 		case input_action.kick:
 			return global.input_kick_released_value;
 			break;
+		case input_action.menu:
+			return global.input_menu_released_value;
+			break;
 	}
 	return false;
 }

@@ -4,8 +4,9 @@ collision_mask = [obj_wall_breakable, obj_Ground, obj_Wall, obj_plate, obj_door,
 audio_group_load(sfx_clay);
 
 #region Master Variables
-global.paused = false; // true if the game should be paused
+global.paused = false;
 global.showDebugMessages = true; // set to true if you want to print debug messages
+pause_flag = false;
 #endregion
 
 #region State Variables
@@ -137,7 +138,8 @@ function PlayerStateBasedMethods()
 	if jump_buffer >= 0 jump_buffer --;
 	if kick_buffer >= 0 kick_buffer--;
 	if input_check_pressed(input_action.jump) {
-		jump_buffer = global.player_jump_buffer_frames;
+		if jump_buffer == -5 jump_buffer = 0;
+		else jump_buffer = global.player_jump_buffer_frames;
 	}
 	
 	if input_check_pressed(input_action.attack) && (

@@ -32,4 +32,7 @@ function input_set_binds_xbox(){
 	
 	input_set_bind(input_action.face, true, input_type.button, gp_shoulderlb);
 	input_set_bind_unbind(input_action.face, false);	
+	
+	input_set_bind(input_action.menu, true, input_type.button, gp_start);
+	input_set_bind_unbind(input_action.menu, false);
 }

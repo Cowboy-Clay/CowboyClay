@@ -1,3 +1,4 @@
+if !global.paused{
 if distance_to_object(obj_player) > sqrt(1248*1248+1088*1088) return;
 
 check_mounted();
@@ -52,4 +53,5 @@ switch(current_state)
 while place_meeting(x,y+1,obj_player) && mounted
 {
 	obj_player.y --;
+}
 }

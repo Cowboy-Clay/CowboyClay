@@ -1,3 +1,5 @@
+if global.paused return;
+
 h += h_drag;
 hspeed = facing == Direction.RIGHT ? h : -1 * h;
 vspeed += v;

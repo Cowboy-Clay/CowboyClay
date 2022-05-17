@@ -31,6 +31,9 @@ function input_check_pressed(_input_action){
 		case input_action.kick:
 			return global.input_kick_pressed_value;
 			break;
+		case input_action.menu:
+			return global.input_menu_pressed_value;
+			break;
 	}
 	return false;
 }

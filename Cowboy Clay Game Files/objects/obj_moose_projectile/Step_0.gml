@@ -1,3 +1,5 @@
+if global.paused return;
+
 image_angle += rotation_speed;
 
 timer++;

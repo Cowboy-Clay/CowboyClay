@@ -59,6 +59,12 @@ function input_update() {
 	global.input_kick_value = _kick_new;
 	global.input_kick_pressed_value = !_kick_old && _kick_new;
 	global.input_kick_released_value = _kick_old && !_kick_new;
+	// menu
+	var _menu_old = global.input_menu_value;
+	var _menu_new = input_check(input_action.menu);
+	global.input_menu_value = _menu_new;
+	global.input_menu_pressed_value = !_menu_old && _menu_new;
+	global.input_menu_released_value = _menu_old && !_menu_new;
 }
 
 input_update();
