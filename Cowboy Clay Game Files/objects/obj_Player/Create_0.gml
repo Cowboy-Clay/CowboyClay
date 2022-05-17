@@ -18,6 +18,7 @@ grounded = false;
 hiblock = 0;
 block_success = false;
 special_fall = 0;
+locked_on = noone;
 #endregion
 
 #region Physics Variables
@@ -274,6 +275,23 @@ function PlayerStateBasedMethods()
 				if instance_exists(obj_Moose) obj_Moose.to_sleep();
 				state_timer = -1;
 			}
+	}
+}
+
+function lock_on() {
+	if locked_on == obj_Moose && instance_exists(obj_Moose) {
+		facing = obj_Moose.x < x ? Direction.LEFT : Direction.RIGHT;
+	}
+	
+	if input_check_pressed(input_action.face) == false return;
+	if locked_on == noone{
+		if instance_exists(obj_Moose) {
+			locked_on = obj_Moose;
+		} else {
+			locked_on = facing;
+		}
+	} else {
+		locked_on = noone;
 	}
 }
 
@@ -798,8 +816,8 @@ function walk()
 		hspeed += curAc;
 	}
 	
-	if hspeed > 0 && input_check(input_action.right) && !input_check(input_action.face) && basic_attack_charge_timer <= global.player_attack_turn_buffer && sling_attack_charge_timer <= global.player_attack_turn_buffer facing = Direction.RIGHT;
-	else if hspeed < 0 && input_check(input_action.left) && !input_check(input_action.face) && basic_attack_charge_timer<= global.player_attack_turn_buffer && sling_attack_charge_timer <= global.player_attack_turn_buffer facing = Direction.LEFT;
+	if hspeed > 0 && input_check(input_action.right) && locked_on == noone && basic_attack_charge_timer <= global.player_attack_turn_buffer && sling_attack_charge_timer <= global.player_attack_turn_buffer facing = Direction.RIGHT;
+	else if hspeed < 0 && input_check(input_action.left) && locked_on == noone && basic_attack_charge_timer<= global.player_attack_turn_buffer && sling_attack_charge_timer <= global.player_attack_turn_buffer facing = Direction.LEFT;
 	
 	var max_speed = global.player_maxWalkSpeed;
 	if basic_attack_charge_timer > 0 || sling_attack_charge_timer > 0 {
@@ -1119,9 +1137,9 @@ function update_animation() {
 				}
 				break;
 			} else if armed {
-				a = input_check(input_action.face) ? global.player_animation_stra_idle : global.player_animation_idle;
+				a = locked_on != noone ? global.player_animation_stra_idle : global.player_animation_idle;
 			} else {
-				a = input_check(input_action.face) ? global.player_animation_stra_idle_disarmed : global.player_animation_idle_disarmed;
+				a = locked_on != noone ? global.player_animation_stra_idle_disarmed : global.player_animation_idle_disarmed;
 			}
 			break;
 		case PlayerState.WALKING:
@@ -1137,10 +1155,10 @@ function update_animation() {
 					}
 					break;
 				} else if armed {
-					a = input_check(input_action.face) ? global.player_animation_strastep : global.player_animation_walk;
+					a = locked_on != noone ? global.player_animation_strastep : global.player_animation_walk;
 					break;
 				} else {
-					a = input_check(input_action.face) ? global.player_animation_strastep_disarmed : global.player_animation_walk_disarmed;
+					a = locked_on != noone ? global.player_animation_strastep_disarmed : global.player_animation_walk_disarmed;
 				}
 			}
 			// Backward
