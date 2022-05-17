@@ -591,9 +591,7 @@
   "isEcma": false,
   "configs": {
     "name": "Default",
-    "children": [
-      {"name":"Mac","children":[],},
-    ],
+    "children": [],
   },
   "RoomOrderNodes": [
     {"roomId":{"name":"Menu","path":"rooms/Menu/Menu.yy",},},
@@ -665,10 +663,8 @@
   ],
   "IncludedFiles": [
     {"CopyToMask":153157610357391598,"filePath":"datafiles","resourceVersion":"1.0","name":"Idle.aseprite","resourceType":"GMIncludedFile",},
-
     {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"SIMSUN.TTC","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"regina-script-font.zip","resourceType":"GMIncludedFile",},
-
   ],
   "MetaData": {
     "IDEVersion": "2022.3.0.625",

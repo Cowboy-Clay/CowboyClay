@@ -20,6 +20,8 @@ if sling_attack_charge_timer > 0 || current_state == PlayerState.SLING_ANTI {
 
 if !global.paused
 {	
+	lock_on();
+	
 	// Physics
 	Friction(PickPlayerFrict());
 	Gravity(PickPlayerGravi(), global.player_gravityMax, spr_player_collision, collision_mask);

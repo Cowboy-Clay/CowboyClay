@@ -1225,6 +1225,8 @@ function check_frame_sounds() {
 }
 
 function take_hit_minor() {
+	show_debug_message("Moose taking minor hit");
+	show_debug_message("Health before hit: " + string(hp));
 	MakeMooseInvulnerable(10);
 	
 	hp_regen_timer = 0;
@@ -1244,14 +1246,18 @@ function take_hit_minor() {
 		else 
 			take_hit_major();
 	}
+	show_debug_message("Health after minor hit: " + string(hp));
 }
 
 function take_hit_major() {
+	show_debug_message("Moose taking major hit");
+	show_debug_message("Health before major hit: " + string(hp));
 	MakeMooseInvulnerable(5);
 	hp_regen_timer = 0;
 	
 	MooseGetHit();
 	hp = max_hp;
+	show_debug_message("Health after major hit: " + string(hp));
 }
 
 function choose_panic_attack() {

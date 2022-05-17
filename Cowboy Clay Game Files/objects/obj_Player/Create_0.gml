@@ -18,6 +18,7 @@ grounded = false;
 hiblock = 0;
 block_success = false;
 special_fall = 0;
+locked_on = noone;
 #endregion
 
 #region Physics Variables
@@ -77,11 +78,13 @@ global.player_sling_anti_frames = 2;
 global.player_sling_swing_frames = 6;
 global.player_sling_follow_frames = 16;
 #region Kick Attack Variables
-global.player_kickAntiFrames = 10;
+global.player_kickAntiFrames = 4;
 global.player_kickSwingFrames = 25;
 global.player_kickFollowFrames = 6;
 global.player_kick_force = 5;
 kick_held_flag = false;
+kick_buffer = -1;
+global.player_kick_buffer_time = 10;
 #endregion
 
 global.player_sheathFrames = 40;
@@ -131,9 +134,19 @@ function PlayerStateBasedMethods()
 	// show_debug_message(player_state_to_string(current_state));
 	if current_state != PlayerState.KICK_ANTI kick_held_flag = false;
 	
-	jump_buffer --;
+	if jump_buffer >= 0 jump_buffer --;
+	if kick_buffer >= 0 kick_buffer--;
 	if input_check_pressed(input_action.jump) {
 		jump_buffer = global.player_jump_buffer_frames;
+	}
+	
+	if input_check_pressed(input_action.attack) && (
+		current_state == PlayerState.IDLE ||
+		current_state == PlayerState.WALKING ||
+		current_state == PlayerState.JUMPING ||
+		current_state == PlayerState.FALLING
+	){
+		kick_buffer = global.player_kick_buffer_time;
 	}
 	
 	switch current_state {
@@ -147,7 +160,7 @@ function PlayerStateBasedMethods()
 				GoToPlayerJumpAnti();
 				break;
 			}
-			if basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 && input_check_pressed(input_action.attack) {
+			if basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 && (kick_buffer > 0) {
 				to_kick_anti();
 				break;
 			}
@@ -167,7 +180,7 @@ function PlayerStateBasedMethods()
 				GoToPlayerJumpAnti();
 				break;
 			}
-			if basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 && input_check_pressed(input_action.attack) {
+			if basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 && kick_buffer > 0 {
 				to_kick_anti();
 				break;
 			}
@@ -265,13 +278,32 @@ function PlayerStateBasedMethods()
 	}
 }
 
+function lock_on() {
+	if locked_on == obj_Moose && instance_exists(obj_Moose) {
+		facing = obj_Moose.x < x ? Direction.LEFT : Direction.RIGHT;
+	}
+	
+	if input_check_pressed(input_action.face) == false return;
+	if locked_on == noone{
+		if instance_exists(obj_Moose) {
+			locked_on = obj_Moose;
+		} else {
+			locked_on = facing;
+		}
+	} else {
+		locked_on = noone;
+	}
+}
+
 function to_kick_anti() {
+	kick_buffer = 0;
 	kick_held_flag = true;
 	state_timer = global.player_kickAntiFrames;
 	current_state = PlayerState.KICK_ANTI;
 	kick_anti();
 }
 function kick_anti() {
+	hspeed += facing == Direction.RIGHT ? .5 : -.5;
 	if input_check(input_action.attack) == false kick_held_flag = false;
 	if state_timer <= 0 {
 		to_kick_swing();
@@ -300,7 +332,7 @@ function kick_swing() {
 		return;
 	}
 	state_timer --;
-	show_debug_message(state_timer);
+	//show_debug_message(state_timer);
 }
 function to_kick_follow() {
 	state_timer = global.player_kickFollowFrames;
@@ -371,6 +403,7 @@ function basic_attack_charge() {
 	if basic_attack_charge_timer == global.player_basic_attack_charge_min {
 		instance_create_depth(x,y,depth-10, obj_player_charge_spark);
 		audio_play_sound(sfx_sword_anti, 10, false);
+		basic_attack_charge_timer ++;
 	}
 	
 	if basic_attack_charge_timer == 0 && input_check_pressed(input_action.attack) && sling_attack_charge_timer == 0{
@@ -783,8 +816,8 @@ function walk()
 		hspeed += curAc;
 	}
 	
-	if hspeed > 0 && input_check(input_action.right) && !input_check(input_action.face) && basic_attack_charge_timer <= global.player_attack_turn_buffer && sling_attack_charge_timer <= global.player_attack_turn_buffer facing = Direction.RIGHT;
-	else if hspeed < 0 && input_check(input_action.left) && !input_check(input_action.face) && basic_attack_charge_timer<= global.player_attack_turn_buffer && sling_attack_charge_timer <= global.player_attack_turn_buffer facing = Direction.LEFT;
+	if hspeed > 0 && input_check(input_action.right) && locked_on == noone && basic_attack_charge_timer <= global.player_attack_turn_buffer && sling_attack_charge_timer <= global.player_attack_turn_buffer facing = Direction.RIGHT;
+	else if hspeed < 0 && input_check(input_action.left) && locked_on == noone && basic_attack_charge_timer<= global.player_attack_turn_buffer && sling_attack_charge_timer <= global.player_attack_turn_buffer facing = Direction.LEFT;
 	
 	var max_speed = global.player_maxWalkSpeed;
 	if basic_attack_charge_timer > 0 || sling_attack_charge_timer > 0 {
@@ -1104,9 +1137,9 @@ function update_animation() {
 				}
 				break;
 			} else if armed {
-				a = input_check(input_action.face) ? global.player_animation_stra_idle : global.player_animation_idle;
+				a = locked_on != noone ? global.player_animation_stra_idle : global.player_animation_idle;
 			} else {
-				a = input_check(input_action.face) ? global.player_animation_stra_idle_disarmed : global.player_animation_idle_disarmed;
+				a = locked_on != noone ? global.player_animation_stra_idle_disarmed : global.player_animation_idle_disarmed;
 			}
 			break;
 		case PlayerState.WALKING:
@@ -1122,10 +1155,10 @@ function update_animation() {
 					}
 					break;
 				} else if armed {
-					a = input_check(input_action.face) ? global.player_animation_strastep : global.player_animation_walk;
+					a = locked_on != noone ? global.player_animation_strastep : global.player_animation_walk;
 					break;
 				} else {
-					a = input_check(input_action.face) ? global.player_animation_strastep_disarmed : global.player_animation_walk_disarmed;
+					a = locked_on != noone ? global.player_animation_strastep_disarmed : global.player_animation_walk_disarmed;
 				}
 			}
 			// Backward

@@ -37,13 +37,14 @@ if place_meeting(x,y,obj_player_hitbox) && obj_player_hitbox.sprite_index != spr
 		// Take an actual hit
 		if obj_player.current_state == PlayerState.KICK_SWING && !obj_player_hitbox.wallkick_cooldown{
 			obj_Moose.take_hit_minor();
-			obj_player.to_kick_follow();
+			//obj_player.to_kick_follow();
 			var xx = (x + obj_player.x)/2;
 			var yy = (y + obj_player.y)/2;
+			knock_away_from(obj_Moose, obj_player.x, obj_player.y+100, 20);
 			var inst = instance_create_depth(xx,yy,obj_player.depth-100,obj_moose_hit_effect);
 			inst.image_xscale = .5;
 			inst.image_yscale = .5;
-		} else {
+		} else if obj_player.current_state == PlayerState.BASIC_ATTACK_SWING{
 			var xx = (x + obj_player.x)/2;
 			var yy = (y + obj_player.y)/2;
 			var inst = instance_create_depth(xx,yy,obj_player.depth-100,obj_moose_hit_effect);

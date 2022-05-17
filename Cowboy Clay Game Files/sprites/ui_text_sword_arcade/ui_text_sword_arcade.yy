@@ -7,15 +7,15 @@
   "edgeFiltering": false,
   "collisionTolerance": 0,
   "swfPrecision": 2.525,
-  "bbox_left": 13,
-  "bbox_right": 322,
-  "bbox_top": 17,
-  "bbox_bottom": 148,
+  "bbox_left": 18,
+  "bbox_right": 327,
+  "bbox_top": 8,
+  "bbox_bottom": 139,
   "HTile": false,
   "VTile": false,
   "For3D": false,
-  "width": 338,
-  "height": 173,
+  "width": 342,
+  "height": 156,
   "textureGroupId": {
     "name": "Default",
     "path": "texturegroups/Default",
@@ -24,9 +24,9 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"1259c62d-2b5c-4411-8dc4-b007a7fde1cd","path":"sprites/ui_text_sword_arcade/ui_text_sword_arcade.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"1259c62d-2b5c-4411-8dc4-b007a7fde1cd","path":"sprites/ui_text_sword_arcade/ui_text_sword_arcade.yy",},"LayerId":{"name":"354b6ca4-4f7b-44eb-993b-c02e1ec4cfaa","path":"sprites/ui_text_sword_arcade/ui_text_sword_arcade.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"ui_text_sword_arcade","path":"sprites/ui_text_sword_arcade/ui_text_sword_arcade.yy",},"resourceVersion":"1.0","name":"1259c62d-2b5c-4411-8dc4-b007a7fde1cd","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"6f33953f-acf0-48f5-a1fb-53b494b5c641","path":"sprites/ui_text_sword_arcade/ui_text_sword_arcade.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"6f33953f-acf0-48f5-a1fb-53b494b5c641","path":"sprites/ui_text_sword_arcade/ui_text_sword_arcade.yy",},"LayerId":{"name":"751eead8-b45b-4afc-8351-cd1e18c4c507","path":"sprites/ui_text_sword_arcade/ui_text_sword_arcade.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"ui_text_sword_arcade","path":"sprites/ui_text_sword_arcade/ui_text_sword_arcade.yy",},"resourceVersion":"1.0","name":"6f33953f-acf0-48f5-a1fb-53b494b5c641","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"ui_text_sword_arcade","path":"sprites/ui_text_sword_arcade/ui_text_sword_arcade.yy",},
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"691ba758-7f7f-4c96-b48d-eba04acb870c","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"1259c62d-2b5c-4411-8dc4-b007a7fde1cd","path":"sprites/ui_text_sword_arcade/ui_text_sword_arcade.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"d8695e93-9624-47fc-b26b-0f285a00adca","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"6f33953f-acf0-48f5-a1fb-53b494b5c641","path":"sprites/ui_text_sword_arcade/ui_text_sword_arcade.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
@@ -65,7 +65,7 @@
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"354b6ca4-4f7b-44eb-993b-c02e1ec4cfaa","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"751eead8-b45b-4afc-8351-cd1e18c4c507","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": null,
   "parent": {
