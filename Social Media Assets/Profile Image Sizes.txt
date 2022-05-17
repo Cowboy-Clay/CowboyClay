@@ -1,0 +1,5 @@
+Twitter:
+	Profile Picture: 400x400 pixels - Circle cutout
+	Header: 1500x500 pixels
+Instagram:
+	Profile Picture: 360x360 pixels - Circle cutout
