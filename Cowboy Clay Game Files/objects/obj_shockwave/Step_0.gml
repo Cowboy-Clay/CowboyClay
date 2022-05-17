@@ -1,3 +1,5 @@
+if !global.paused {
+
 image_xscale = direct == Direction.LEFT ? 1 : -1;
 
 if timer >= lifetime {
@@ -27,4 +29,5 @@ if in_use {
 	}
 	
 	timer ++;
+}
 }

@@ -73,5 +73,12 @@ function input_set_bind_unbind(_input_action, _primary){
 				global.input_kick_secondary = noone;
 			}
 			break;
+		case input_action.menu:
+			if _primary {
+				global.input_menu_primary = noone;
+			}else {
+				global.input_menu_secondary = noone;
+			}
+			break;
 	}
 }

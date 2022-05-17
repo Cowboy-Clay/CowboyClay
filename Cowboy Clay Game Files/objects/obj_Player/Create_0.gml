@@ -4,8 +4,9 @@ collision_mask = [obj_wall_breakable, obj_Ground, obj_Wall, obj_plate, obj_door,
 audio_group_load(sfx_clay);
 
 #region Master Variables
-global.paused = false; // true if the game should be paused
+global.paused = false;
 global.showDebugMessages = true; // set to true if you want to print debug messages
+pause_flag = false;
 #endregion
 
 #region State Variables

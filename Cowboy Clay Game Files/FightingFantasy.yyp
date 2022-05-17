@@ -483,6 +483,7 @@
     {"id":{"name":"spr_moose_charge_empty","path":"sprites/spr_moose_charge_empty/spr_moose_charge_empty.yy",},"order":52,},
     {"id":{"name":"spr_moose_slide_disarmedHelm","path":"sprites/spr_moose_slide_disarmedHelm/spr_moose_slide_disarmedHelm.yy",},"order":25,},
     {"id":{"name":"spr_moose_slideAnti_hurtbox","path":"sprites/spr_moose_slideAnti_hurtbox/spr_moose_slideAnti_hurtbox.yy",},"order":24,},
+    {"id":{"name":"pause","path":"scripts/pause/pause.yy",},"order":16,},
     {"id":{"name":"spr_player_run","path":"sprites/spr_player_run/spr_player_run.yy",},"order":62,},
     {"id":{"name":"spr_player_aimStartFall","path":"sprites/spr_player_aimStartFall/spr_player_aimStartFall.yy",},"order":104,},
     {"id":{"name":"spr_moose_block_blockbox","path":"sprites/spr_moose_block_blockbox/spr_moose_block_blockbox.yy",},"order":14,},

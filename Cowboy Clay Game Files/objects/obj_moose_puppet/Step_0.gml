@@ -1,3 +1,5 @@
+if global.paused return;
+
 if activated {
 	if instance_exists(obj_enemy_healthbar) == false instance_create_layer(0,0,layer, obj_enemy_healthbar);
 

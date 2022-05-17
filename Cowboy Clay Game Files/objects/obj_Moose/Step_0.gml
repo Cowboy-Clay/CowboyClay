@@ -35,7 +35,7 @@ if !global.paused
 	SetMooseDirection();
 	
 	MooseInvuln();
-}
+
 
 if current_state == MooseState.DEAD {
 	dead_timer --;
@@ -45,7 +45,7 @@ if !instance_exists(obj_wipe_out) && dead_timer <= 0 {
 }
 
 collision_check(spr_enemy_collision,collision_mask, false, false);
-
+}
 var pl, pr;
 with(obj_player) {
 	pl = collision_check_edge(x,y,spr_player_collision,Direction.LEFT,collision_mask);

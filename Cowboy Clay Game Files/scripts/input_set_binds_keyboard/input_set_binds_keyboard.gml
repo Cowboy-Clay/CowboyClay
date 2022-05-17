@@ -31,5 +31,8 @@ function input_set_binds_keyboard(){
 	input_set_bind_unbind(input_action.kick, false);
 	
 	input_set_bind(input_action.face, true, input_type.key, vk_shift);
-	input_set_bind_unbind(input_action.face, false);	
+	input_set_bind_unbind(input_action.face, false);
+	
+	input_set_bind(input_action.menu, true, input_type.key, vk_escape);
+	input_set_bind_unbind(input_action.menu, false);
 }

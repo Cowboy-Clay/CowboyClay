@@ -1,3 +1,5 @@
+if global.paused return;
+
 if current_state == SwordState.FLYING
 {
 	if audio_is_playing(sfx_clay_sword_spin) == false {

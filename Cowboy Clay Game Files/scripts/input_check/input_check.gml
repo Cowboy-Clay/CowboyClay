@@ -403,5 +403,45 @@ function input_check(_input_action){
 			if _kick_primary_value || _kick_secondary_value return true;
 			return false;
 			break;
+		case input_action.menu:
+			var _menu_primary_value = false;
+			var _menu_secondary_value = false;
+			if global.input_menu_primary != noone {
+				var _menu_primary_type = global.input_menu_primary[0];
+				// Get the value of the primary input
+				switch(_menu_primary_type) {
+					case input_type.key:
+						_menu_primary_value = keyboard_check(global.input_menu_primary[1]);
+						break;
+					case input_type.button:
+						_menu_primary_value = gamepad_button_check_anypad(global.input_menu_primary[1]);
+						break;
+					case input_type.hat:
+						_menu_primary_value = gamepad_hat_check(global.input_menu_primary[1]);
+						break;
+					case input_type.axis:
+						_menu_primary_value = gamepad_axis_check(global.input_menu_primary[1]);
+				}
+			}
+			if global.input_menu_secondary != noone {
+				var _menu_secondary_type = global.input_menu_secondary[0];
+				// Get the value of the secondary input
+				switch(_menu_secondary_type) {
+					case input_type.key:
+						_menu_secondary_value = keyboard_check(global.input_menu_secondary[1]);
+						break;
+					case input_type.button:
+						_menu_secondary_value = gamepad_button_check_anypad(global.input_menu_secondary[1]);
+						break;
+					case input_type.hat:
+						_menu_secondary_value = gamepad_hat_check(global.input_menu_secondary[1]);
+						break;
+					case input_type.axis:
+						_menu_secondary_value = gamepad_axis_check(global.input_menu_secondary[1]);
+				}
+			}
+			if _menu_primary_value || _menu_secondary_value return true;
+			return false;
+			break;
 	}
 }
