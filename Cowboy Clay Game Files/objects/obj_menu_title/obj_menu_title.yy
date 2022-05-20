@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "CowboyClayTitle1",
-    "path": "sprites/CowboyClayTitle1/CowboyClayTitle1.yy",
+    "name": "CowboyClayTitle2",
+    "path": "sprites/CowboyClayTitle2/CowboyClayTitle2.yy",
   },
   "solid": false,
   "visible": true,
