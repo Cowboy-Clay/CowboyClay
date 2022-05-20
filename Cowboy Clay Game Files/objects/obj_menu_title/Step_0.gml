@@ -13,8 +13,11 @@ if keyboard_check_pressed(vk_f11){
 	window_set_fullscreen(!window_get_fullscreen());
 }
 
-if (keyboard_check_pressed(vk_anykey) /*|| gamepad_button_check_pressed_anypad(gp_face2)*/) && sprite_index == CowboyClayTitle1 {
-	keyboard_check_pressed(ord("X")) input_set_binds_keyboard();
+if (keyboard_check_pressed(vk_anykey) || gamepad_button_check_pressed_anypad(gp_face1) || gamepad_button_check_pressed_anypad(gp_face2)|| gamepad_button_check_pressed_anypad(gp_face3)|| gamepad_button_check_pressed_anypad(gp_face4)/*|| gamepad_button_check_pressed_anypad(gp_face2)*/) && sprite_index == CowboyClayTitle1 {
+	input_set_binds_keyboard();
+	if gamepad_button_check_pressed_anypad(gp_face1) || gamepad_button_check_pressed_anypad(gp_face2)|| gamepad_button_check_pressed_anypad(gp_face3)|| gamepad_button_check_pressed_anypad(gp_face4) {
+		input_set_binds_xbox();
+	}
 	
 	if array_length(sequence) == 0 {
 		room_goto(FinalLevelDesign);
