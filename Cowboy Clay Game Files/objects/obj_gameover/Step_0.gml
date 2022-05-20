@@ -1,19 +1,29 @@
 switch (current_state) {
+	// wipe
 	case 0:
 		
 		break;
+	// game over text appears
 	case 1:
 		if keyboard_check_pressed(vk_anykey){
 			current_state = 2;
 		}
 		break;
+	// waiting for end
 	case 2:
-		if keyboard_check_pressed(global.keybind_jump) || gamepad_button_check_pressed(0,gp_face3) {
+		timer --;;
+	
+		if input_check_pressed (input_action.jump)|| 
+		input_check_pressed (input_action.attack) || 
+		input_check_pressed (input_action.sling) || 
+		input_check_pressed (input_action.menu) || 
+		input_check_pressed (input_action.face) || 
+		input_check_pressed (input_action.block) {
 			current_state = 3;
-		} else if keyboard_check_pressed(ord("B")) || gamepad_button_check_pressed(0,gp_face2) {
-			room_goto(Menu);
-		}
+		} 
+		if timer <= 0 room_goto(Menu);
 		break;
+	// respawning
 	case 3:
 		image_alpha -= 1/45;
 		if image_alpha <= 0 {

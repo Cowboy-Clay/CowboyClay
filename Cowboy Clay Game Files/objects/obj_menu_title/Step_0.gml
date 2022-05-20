@@ -1,3 +1,5 @@
+if keyboard_check_pressed(vk_escape) game_end();
+
 // Attract mode timer
 timer ++;
 //show_debug_message(timer);
