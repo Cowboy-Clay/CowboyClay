@@ -13,7 +13,7 @@ if keyboard_check_pressed(vk_f11){
 	window_set_fullscreen(!window_get_fullscreen());
 }
 
-if (keyboard_check_pressed(vk_anykey) || gamepad_button_check_pressed_anypad(gp_face1) || gamepad_button_check_pressed_anypad(gp_face2)|| gamepad_button_check_pressed_anypad(gp_face3)|| gamepad_button_check_pressed_anypad(gp_face4)/*|| gamepad_button_check_pressed_anypad(gp_face2)*/) && sprite_index == CowboyClayTitle2 {
+if (keyboard_check_pressed(vk_anykey) || gamepad_button_check_pressed_anypad(gp_face1) || gamepad_button_check_pressed_anypad(gp_face2)|| gamepad_button_check_pressed_anypad(gp_face3)|| gamepad_button_check_pressed_anypad(gp_face4)/*|| gamepad_button_check_pressed_anypad(gp_face2)*/) && sprite_index == CowboyClayTitle2  && timer > 5{
 	input_set_binds_keyboard();
 	if gamepad_button_check_pressed_anypad(gp_face1) || gamepad_button_check_pressed_anypad(gp_face2)|| gamepad_button_check_pressed_anypad(gp_face3)|| gamepad_button_check_pressed_anypad(gp_face4) {
 		input_set_binds_xbox();
@@ -27,9 +27,9 @@ if (keyboard_check_pressed(vk_anykey) || gamepad_button_check_pressed_anypad(gp_
 	audio_play_sound(sfx_start,0,false);
 	sprite_index = sequence[0];
 	image_index = 0;
-} else if (input_check_pressed(input_action.jump) || input_check_pressed(input_action.attack) ||
+} else if( (input_check_pressed(input_action.jump) || input_check_pressed(input_action.attack) ||
 input_check_pressed(input_action.block) || input_check_pressed(input_action.face) ||
-input_check_pressed(input_action.kick) || input_check_pressed(input_action.sling)) {
+input_check_pressed(input_action.kick) || input_check_pressed(input_action.sling))) && timer > 5 {
 	room_goto(FinalLevelDesign);
 	return;
 }
