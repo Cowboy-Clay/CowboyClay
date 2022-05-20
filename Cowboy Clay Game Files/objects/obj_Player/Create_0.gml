@@ -285,8 +285,7 @@ function lock_on() {
 		facing = obj_Moose.x < x ? Direction.LEFT : Direction.RIGHT;
 	}
 	
-	if input_check_pressed(input_action.face) == false return;
-	if locked_on == noone{
+	if input_check(input_action.face){
 		if instance_exists(obj_Moose) {
 			locked_on = obj_Moose;
 		} else {
