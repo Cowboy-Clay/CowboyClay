@@ -27,7 +27,7 @@ if (keyboard_check_pressed(vk_anykey) || gamepad_button_check_pressed_anypad(gp_
 	audio_play_sound(sfx_start,0,false);
 	sprite_index = sequence[0];
 	image_index = 0;
-} else if (keyboard_check_pressed(vk_anykey)) {
+} else if (keyboard_check_pressed(vk_anykey)) || gamepad_button_check_pressed_anypad(gp_face1) || gamepad_button_check_pressed_anypad(gp_face2)|| gamepad_button_check_pressed_anypad(gp_face3)|| gamepad_button_check_pressed_anypad(gp_face4) {
 	room_goto(FinalLevelDesign);
 	return;
 }
