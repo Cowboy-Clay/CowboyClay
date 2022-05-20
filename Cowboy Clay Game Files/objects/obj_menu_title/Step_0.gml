@@ -11,13 +11,8 @@ if keyboard_check_pressed(vk_f11){
 	window_set_fullscreen(!window_get_fullscreen());
 }
 
-if ((keyboard_check_pressed(ord("X")) || gamepad_button_check_pressed_anypad(gp_face3)) /*|| gamepad_button_check_pressed_anypad(gp_face2)*/) && sprite_index == CowboyClayTitle1 {
-	if global.smart_control_detection == true {
-		global.smart_control_detection = false;
-		if keyboard_check_pressed(ord("X")) input_set_binds_keyboard();
-		else if gamepad_button_check_pressed_anypad(gp_face3) input_set_binds_xbox();
-		//else if gamepad_button_check_pressed_anypad(gp_face2) input_set_binds_playstation();
-	}
+if (keyboard_check_pressed(vk_anykey) /*|| gamepad_button_check_pressed_anypad(gp_face2)*/) && sprite_index == CowboyClayTitle1 {
+	keyboard_check_pressed(ord("X")) input_set_binds_keyboard();
 	
 	if array_length(sequence) == 0 {
 		room_goto(FinalLevelDesign);
@@ -27,7 +22,7 @@ if ((keyboard_check_pressed(ord("X")) || gamepad_button_check_pressed_anypad(gp_
 	audio_play_sound(sfx_start,0,false);
 	sprite_index = sequence[0];
 	image_index = 0;
-} else if (keyboard_check_pressed(ord("X")) && global.input_current_setting == input_setting.keyboard) || (gamepad_button_check_pressed_anypad(gp_face3) && global.input_current_setting == input_setting.xbox_controller) || (gamepad_button_check_pressed_anypad(gp_face2) && global.input_current_setting == input_setting.playstation_controller){
+} else if (keyboard_check_pressed(vk_anykey)) {
 	room_goto(FinalLevelDesign);
 	return;
 }

@@ -7,6 +7,8 @@ if input_check_pressed(input_action.down) {
 if input_check_pressed(input_action.up) {
 	previous();
 }
-if input_check_pressed(input_action.jump) {
+if input_check_pressed(input_action.jump) || input_check_pressed(input_action.attack) ||
+input_check_pressed(input_action.block) || input_check_pressed(input_action.face) ||
+input_check_pressed(input_action.kick) || input_check_pressed(input_action.sling){
 	select();
 }
