@@ -73,5 +73,12 @@ function input_set_bind(_input_action, _primary, _input_type, _input_value){
 				global.input_kick_secondary = [_input_type, _input_value];
 			}
 			break;
+		case input_action.menu:
+			if _primary {
+				global.input_menu_primary = [_input_type, _input_value];
+			}else {
+				global.input_menu_secondary = [_input_type, _input_value];
+			}
+			break;
 	}
 }

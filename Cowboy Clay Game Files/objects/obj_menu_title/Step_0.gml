@@ -1,4 +1,4 @@
-// if keyboard_check_pressed(vk_escape) game_end();
+if keyboard_check_pressed(vk_escape) game_end();
 
 // Attract mode timer
 timer ++;
@@ -13,7 +13,7 @@ if keyboard_check_pressed(vk_f11){
 	window_set_fullscreen(!window_get_fullscreen());
 }
 
-if (keyboard_check_pressed(vk_anykey) || gamepad_button_check_pressed_anypad(gp_face1) || gamepad_button_check_pressed_anypad(gp_face2)|| gamepad_button_check_pressed_anypad(gp_face3)|| gamepad_button_check_pressed_anypad(gp_face4)/*|| gamepad_button_check_pressed_anypad(gp_face2)*/) && sprite_index == CowboyClayTitle1 {
+if (keyboard_check_pressed(vk_anykey) || gamepad_button_check_pressed_anypad(gp_face1) || gamepad_button_check_pressed_anypad(gp_face2)|| gamepad_button_check_pressed_anypad(gp_face3)|| gamepad_button_check_pressed_anypad(gp_face4)/*|| gamepad_button_check_pressed_anypad(gp_face2)*/) && sprite_index == CowboyClayTitle2 {
 	input_set_binds_keyboard();
 	if gamepad_button_check_pressed_anypad(gp_face1) || gamepad_button_check_pressed_anypad(gp_face2)|| gamepad_button_check_pressed_anypad(gp_face3)|| gamepad_button_check_pressed_anypad(gp_face4) {
 		input_set_binds_xbox();
