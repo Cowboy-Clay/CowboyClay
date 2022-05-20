@@ -137,6 +137,7 @@
     {"id":{"name":"input_create_manager","path":"scripts/input_create_manager/input_create_manager.yy",},"order":1,},
     {"id":{"name":"spr_envi_woodplank","path":"sprites/spr_envi_woodplank/spr_envi_woodplank.yy",},"order":9,},
     {"id":{"name":"spr_envi_tallGrass_cut","path":"sprites/spr_envi_tallGrass_cut/spr_envi_tallGrass_cut.yy",},"order":19,},
+    {"id":{"name":"CowboyClayTitle2","path":"sprites/CowboyClayTitle2/CowboyClayTitle2.yy",},"order":12,},
     {"id":{"name":"spr_moose_burpAnti","path":"sprites/spr_moose_burpAnti/spr_moose_burpAnti.yy",},"order":121,},
     {"id":{"name":"bg1_map2","path":"sprites/bg1_map2/bg1_map2.yy",},"order":13,},
     {"id":{"name":"spr_envi_grossWater","path":"sprites/spr_envi_grossWater/spr_envi_grossWater.yy",},"order":29,},
