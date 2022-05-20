@@ -82,6 +82,7 @@
     {"id":{"name":"spr_player_stomp","path":"sprites/spr_player_stomp/spr_player_stomp.yy",},"order":95,},
     {"id":{"name":"obj_wipe_in","path":"objects/obj_wipe_in/obj_wipe_in.yy",},"order":2,},
     {"id":{"name":"tset_bridge","path":"tilesets/tset_bridge/tset_bridge.yy",},"order":2,},
+    {"id":{"name":"ui_text_gear_arcade","path":"sprites/ui_text_gear_arcade/ui_text_gear_arcade.yy",},"order":14,},
     {"id":{"name":"spr_moose_stabAnti","path":"sprites/spr_moose_stabAnti/spr_moose_stabAnti.yy",},"order":61,},
     {"id":{"name":"sfx_clay_die","path":"sounds/sfx_clay_die/sfx_clay_die.yy",},"order":10,},
     {"id":{"name":"spr_player_aimStartJumpAnti_disarmed","path":"sprites/spr_player_aimStartJumpAnti_disarmed/spr_player_aimStartJumpAnti_disarmed.yy",},"order":113,},
