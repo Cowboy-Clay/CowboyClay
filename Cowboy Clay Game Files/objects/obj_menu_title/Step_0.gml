@@ -1,10 +1,10 @@
-if keyboard_check_pressed(vk_escape) game_end();
+// if keyboard_check_pressed(vk_escape) game_end();
 
 // Attract mode timer
 timer ++;
 //show_debug_message(timer);
 // Seconds * 60fps for accurate timing
-if timer > 8.2 * 60 && sprite_index == CowboyClayTitle1 {
+if timer > 10 * 60 && sprite_index == CowboyClayTitle2 {
 	instance_create_layer(x,y,layer,obj_attract);
 	instance_destroy(id);
 }
@@ -13,7 +13,9 @@ if keyboard_check_pressed(vk_f11){
 	window_set_fullscreen(!window_get_fullscreen());
 }
 
-if (keyboard_check_pressed(vk_anykey) /*|| gamepad_button_check_pressed_anypad(gp_face2)*/) && sprite_index == CowboyClayTitle1 {
+if (input_check_pressed(input_action.jump) || input_check_pressed(input_action.attack) ||
+input_check_pressed(input_action.block) || input_check_pressed(input_action.face) ||
+input_check_pressed(input_action.kick) || input_check_pressed(input_action.sling)/*|| gamepad_button_check_pressed_anypad(gp_face2)*/) && sprite_index == CowboyClayTitle2 {
 	keyboard_check_pressed(ord("X")) input_set_binds_keyboard();
 	
 	if array_length(sequence) == 0 {
@@ -24,7 +26,9 @@ if (keyboard_check_pressed(vk_anykey) /*|| gamepad_button_check_pressed_anypad(g
 	audio_play_sound(sfx_start,0,false);
 	sprite_index = sequence[0];
 	image_index = 0;
-} else if (keyboard_check_pressed(vk_anykey)) {
+} else if (input_check_pressed(input_action.jump) || input_check_pressed(input_action.attack) ||
+input_check_pressed(input_action.block) || input_check_pressed(input_action.face) ||
+input_check_pressed(input_action.kick) || input_check_pressed(input_action.sling)) {
 	room_goto(FinalLevelDesign);
 	return;
 }

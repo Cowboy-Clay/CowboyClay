@@ -2,7 +2,9 @@ if keyboard_check_pressed(vk_f11){
 	window_set_fullscreen(!window_get_fullscreen());
 }
 
-if input_check_pressed_any() {
+if input_check_pressed(input_action.jump) || input_check_pressed(input_action.attack) ||
+input_check_pressed(input_action.block) || input_check_pressed(input_action.face) ||
+input_check_pressed(input_action.kick) || input_check_pressed(input_action.sling) {
 	var _l = layer_get_id("Wipe");
 	instance_create_layer(0,0,_l,obj_wipe_in);
 	instance_create_layer(x,y,layer,obj_menu_title);
