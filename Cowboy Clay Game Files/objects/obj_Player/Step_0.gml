@@ -1,5 +1,5 @@
 // @description All code run each frame
-if input_check_pressed(input_action.menu) {
+if input_check_pressed(input_action.menu) && instance_exists(obj_gameover) == false{
 	pause_flag = true;
 }
 
