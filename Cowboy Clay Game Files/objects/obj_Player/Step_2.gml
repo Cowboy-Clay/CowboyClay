@@ -8,5 +8,6 @@ if collision_check_edge(x,y,spr_player_collision,Direction.LEFT,[obj_Moose]) && 
 
 if pause_flag {
 	pause_flag = false;
+	jump_buffer = -5;
 	pause();
 }

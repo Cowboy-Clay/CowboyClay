@@ -135,11 +135,11 @@ function PlayerStateBasedMethods()
 	// show_debug_message(player_state_to_string(current_state));
 	if current_state != PlayerState.KICK_ANTI kick_held_flag = false;
 	
-	if jump_buffer >= 0 jump_buffer --;
-	if kick_buffer >= 0 kick_buffer--;
-	if input_check_pressed(input_action.jump) {
-		if jump_buffer == -5 jump_buffer = 0;
-		else jump_buffer = global.player_jump_buffer_frames;
+	if jump_buffer > 0 jump_buffer --;
+	else if jump_buffer < 0 jump_buffer ++;
+	if kick_buffer > 0 kick_buffer--;
+	if input_check_pressed(input_action.jump) && jump_buffer >= 0{
+		jump_buffer = global.player_jump_buffer_frames;
 	}
 	
 	if input_check_pressed(input_action.attack) && (

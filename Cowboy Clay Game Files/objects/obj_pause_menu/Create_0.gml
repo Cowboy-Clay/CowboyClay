@@ -12,7 +12,6 @@ function previous() {
 function select() {
 	switch(current) {
 		case 0:
-			obj_player.jump_buffer = -5;
 			pause();
 			break;
 		case 1:

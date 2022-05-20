@@ -28,8 +28,6 @@ if !global.paused {
 	Friction(PickPlayerFrict());
 	Gravity(PickPlayerGravi(), global.player_gravityMax, spr_player_collision, collision_mask);
 	
-	jump_buffer--;
-	
 	if current_state != PlayerState.LOCK
 	{
 		// State system
