@@ -31,7 +31,7 @@
     "path": "folders/Objects/Environment.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_cutable_grass",
+  "name": "obj_cuttable_grass",
   "tags": [],
   "resourceType": "GMObject",
 }

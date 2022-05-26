@@ -196,7 +196,7 @@
     {"id":{"name":"spr_envi_longHouse","path":"sprites/spr_envi_longHouse/spr_envi_longHouse.yy",},"order":59,},
     {"id":{"name":"spr_envi_midHouseCollision","path":"sprites/spr_envi_midHouseCollision/spr_envi_midHouseCollision.yy",},"order":64,},
     {"id":{"name":"spr_moose_throw","path":"sprites/spr_moose_throw/spr_moose_throw.yy",},"order":105,},
-    {"id":{"name":"obj_cutable_grass","path":"objects/obj_cutable_grass/obj_cutable_grass.yy",},"order":6,},
+    {"id":{"name":"obj_cuttable_grass","path":"objects/obj_cuttable_grass/obj_cuttable_grass.yy",},"order":6,},
     {"id":{"name":"spr_metra_kick","path":"sprites/spr_metra_kick/spr_metra_kick.yy",},"order":1,},
     {"id":{"name":"spr_moose_charge","path":"sprites/spr_moose_charge/spr_moose_charge.yy",},"order":50,},
     {"id":{"name":"Shot6_2","path":"sprites/Shot6_2/Shot6_2.yy",},"order":9,},
