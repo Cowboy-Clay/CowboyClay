@@ -64,6 +64,7 @@
     {"id":{"name":"spr_player_resurrect","path":"sprites/spr_player_resurrect/spr_player_resurrect.yy",},"order":99,},
     {"id":{"name":"obj_door","path":"objects/obj_door/obj_door.yy",},"order":0,},
     {"id":{"name":"tset_battlements5","path":"tilesets/tset_battlements5/tset_battlements5.yy",},"order":4,},
+    {"id":{"name":"obj_ui_manager","path":"objects/obj_ui_manager/obj_ui_manager.yy",},"order":0,},
     {"id":{"name":"sfx_clay_hit","path":"sounds/sfx_clay_hit/sfx_clay_hit.yy",},"order":11,},
     {"id":{"name":"spr_moose_jumping_hurtbox","path":"sprites/spr_moose_jumping_hurtbox/spr_moose_jumping_hurtbox.yy",},"order":86,},
     {"id":{"name":"obj_player_sword","path":"objects/obj_player_sword/obj_player_sword.yy",},"order":2,},
@@ -663,6 +664,7 @@
     {"folderPath":"folders/Rooms/Old.yy","order":10,"resourceVersion":"1.0","name":"Old","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Scripts/Input.yy","order":14,"resourceVersion":"1.0","name":"Input","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Sprites/UI/Pause_Menu.yy","order":13,"resourceVersion":"1.0","name":"Pause_Menu","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Objects/UI.yy","order":42,"resourceVersion":"1.0","name":"UI","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
