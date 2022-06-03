@@ -123,6 +123,7 @@
     {"id":{"name":"spr_mech_pressurePlate1","path":"sprites/spr_mech_pressurePlate1/spr_mech_pressurePlate1.yy",},"order":0,},
     {"id":{"name":"spr_eff_enemyBlockSparks","path":"sprites/spr_eff_enemyBlockSparks/spr_eff_enemyBlockSparks.yy",},"order":2,},
     {"id":{"name":"spr_moose_throw_empty","path":"sprites/spr_moose_throw_empty/spr_moose_throw_empty.yy",},"order":106,},
+    {"id":{"name":"TestEnemy1","path":"rooms/TestEnemy1/TestEnemy1.yy",},"order":11,},
     {"id":{"name":"spr_player_slash","path":"sprites/spr_player_slash/spr_player_slash.yy",},"order":59,},
     {"id":{"name":"obj_elevator","path":"objects/obj_elevator/obj_elevator.yy",},"order":3,},
     {"id":{"name":"fnt_simsun_large","path":"fonts/fnt_simsun_large/fnt_simsun_large.yy",},"order":2,},
@@ -381,6 +382,7 @@
     {"id":{"name":"sfx_panicCue","path":"sounds/sfx_panicCue/sfx_panicCue.yy",},"order":16,},
     {"id":{"name":"spr_player_sword_stuck","path":"sprites/spr_player_sword_stuck/spr_player_sword_stuck.yy",},"order":114,},
     {"id":{"name":"spr_mech_breakableWall","path":"sprites/spr_mech_breakableWall/spr_mech_breakableWall.yy",},"order":9,},
+    {"id":{"name":"obj_parry_guy","path":"objects/obj_parry_guy/obj_parry_guy.yy",},"order":0,},
     {"id":{"name":"sfx_moose_charge","path":"sounds/sfx_moose_charge/sfx_moose_charge.yy",},"order":1,},
     {"id":{"name":"Ambird_ambiance","path":"sounds/Ambird_ambiance/Ambird_ambiance.yy",},"order":6,},
     {"id":{"name":"obj_moose_helmet","path":"objects/obj_moose_helmet/obj_moose_helmet.yy",},"order":7,},
@@ -606,8 +608,9 @@
     "children": [],
   },
   "RoomOrderNodes": [
-    {"roomId":{"name":"Menu","path":"rooms/Menu/Menu.yy",},},
+    {"roomId":{"name":"TestEnemy1","path":"rooms/TestEnemy1/TestEnemy1.yy",},},
     {"roomId":{"name":"FinalLevelDesign","path":"rooms/FinalLevelDesign/FinalLevelDesign.yy",},},
+    {"roomId":{"name":"Menu","path":"rooms/Menu/Menu.yy",},},
     {"roomId":{"name":"End","path":"rooms/End/End.yy",},},
     {"groupName":"Old","children":[
         {"roomId":{"name":"PlayerTestRoom","path":"rooms/PlayerTestRoom/PlayerTestRoom.yy",},},
@@ -663,6 +666,7 @@
     {"folderPath":"folders/Rooms/Old.yy","order":10,"resourceVersion":"1.0","name":"Old","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Scripts/Input.yy","order":14,"resourceVersion":"1.0","name":"Input","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Sprites/UI/Pause_Menu.yy","order":13,"resourceVersion":"1.0","name":"Pause_Menu","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Objects/Enemy/Parry Enemy.yy","order":14,"resourceVersion":"1.0","name":"Parry Enemy","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
