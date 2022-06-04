@@ -5,6 +5,7 @@
     {"id":{"name":"spr_moose_tauntAnti","path":"sprites/spr_moose_tauntAnti/spr_moose_tauntAnti.yy",},"order":39,},
     {"id":{"name":"spr_moose_slideAnti_helmless","path":"sprites/spr_moose_slideAnti_helmless/spr_moose_slideAnti_helmless.yy",},"order":33,},
     {"id":{"name":"collision_point_mask","path":"scripts/collision_point_mask/collision_point_mask.yy",},"order":3,},
+    {"id":{"name":"spr_ui_healthBar","path":"sprites/spr_ui_healthBar/spr_ui_healthBar.yy",},"order":0,},
     {"id":{"name":"sfx_elevator_rising","path":"sounds/sfx_elevator_rising/sfx_elevator_rising.yy",},"order":7,},
     {"id":{"name":"obj_player_hi_block_spark","path":"objects/obj_player_hi_block_spark/obj_player_hi_block_spark.yy",},"order":3,},
     {"id":{"name":"spr_moose_sit","path":"sprites/spr_moose_sit/spr_moose_sit.yy",},"order":47,},
@@ -448,6 +449,7 @@
     {"id":{"name":"obj_player_hurtbox","path":"objects/obj_player_hurtbox/obj_player_hurtbox.yy",},"order":4,},
     {"id":{"name":"spr_continue","path":"sprites/spr_continue/spr_continue.yy",},"order":1,},
     {"id":{"name":"obj_house","path":"objects/obj_house/obj_house.yy",},"order":2,},
+    {"id":{"name":"spr_ui_healthBar_filling","path":"sprites/spr_ui_healthBar_filling/spr_ui_healthBar_filling.yy",},"order":1,},
     {"id":{"name":"spr_envi_impassable","path":"sprites/spr_envi_impassable/spr_envi_impassable.yy",},"order":15,},
     {"id":{"name":"sfx_switch_down","path":"sounds/sfx_switch_down/sfx_switch_down.yy",},"order":0,},
     {"id":{"name":"obj_menu_controller","path":"objects/obj_menu_controller/obj_menu_controller.yy",},"order":1,},
@@ -664,6 +666,7 @@
     {"folderPath":"folders/Rooms/Old.yy","order":10,"resourceVersion":"1.0","name":"Old","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Scripts/Input.yy","order":14,"resourceVersion":"1.0","name":"Input","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Sprites/UI/Pause_Menu.yy","order":13,"resourceVersion":"1.0","name":"Pause_Menu","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/UI/Health Bars.yy","order":15,"resourceVersion":"1.0","name":"Health Bars","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Objects/UI.yy","order":42,"resourceVersion":"1.0","name":"UI","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
