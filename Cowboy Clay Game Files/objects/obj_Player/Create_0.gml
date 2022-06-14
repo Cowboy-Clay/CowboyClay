@@ -10,7 +10,7 @@ pause_flag = false;
 #endregion
 
 #region State Variables
-enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, ATTACK_CHARGE_CANCEL,BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW, LOCK, DEAD, KICK_ANTI, KICK_SWING, KICK_FOLLOW, SHEATHING, UNSHEATHING, PLUNGING, BLOCK, BLOCK_FOLLOW, SLING_ANTI, SLING_SWING, SLING_FOLLOW, PAIN, REVIVING };
+enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, ATTACK_CHARGE_CANCEL,BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW, LOCK, DEAD, KICK_ANTI, KICK_SWING, KICK_FOLLOW, SHEATHING, UNSHEATHING, PLUNGING, PARRY, PARRY_FOLLOW, BLOCK, BLOCK_FOLLOW, SLING_ANTI, SLING_SWING, SLING_FOLLOW, PAIN, REVIVING };
 current_state = _skip_revive ? PlayerState.IDLE : PlayerState.REVIVING;
 facing = Direction.RIGHT; // The direction the player is facing
 armed = startArmed; // Is the player armed. startArmed is set in the variable menu
@@ -20,6 +20,7 @@ hiblock = 0;
 block_success = false;
 special_fall = 0;
 locked_on = noone;
+blocking = false;
 #endregion
 
 #region Physics Variables
@@ -94,6 +95,8 @@ sheathTimer = 0;
 
 global.player_plungeFrames = 7;
 
+global.player_parry_frames = 25;
+
 global.player_block_frames = 45;
 global.player_block_active_frames = 15;
 global.player_block_success_frames = 25;
@@ -153,6 +156,7 @@ function PlayerStateBasedMethods()
 	
 	switch current_state {
 		case PlayerState.IDLE:
+			block();
 			walk();
 			sling_attack_charge();
 			basic_attack_charge();
@@ -173,6 +177,7 @@ function PlayerStateBasedMethods()
 			}
 			break;
 		case PlayerState.WALKING:
+			block();
 			walk();
 			sling_attack_charge();
 			basic_attack_charge();
@@ -191,12 +196,14 @@ function PlayerStateBasedMethods()
 			}
 			break;
 		case PlayerState.JUMP_ANTI:
+			block();
 			sling_attack_charge();
 			basic_attack_charge();
 			check_falling();
 			PlayerJumpAnti();
 			break;
 		case PlayerState.JUMPING:
+			block();
 			sling_attack_charge();
 			basic_attack_charge();
 			if basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 {
@@ -209,6 +216,7 @@ function PlayerStateBasedMethods()
 			}
 			break;
 		case PlayerState.FALLING:
+			block();
 			if !check_falling(){
 				audio_play_sound(sfx_clay_land, 5, false);
 				instance_create_depth(x,y,depth-100, obj_player_land_dust);
@@ -221,55 +229,77 @@ function PlayerStateBasedMethods()
 			}
 			break;
 		case PlayerState.BASIC_ATTACK_ANTI:
+			block();
 			PlayerAttack();
 			break;
 		case PlayerState.BASIC_ATTACK_SWING:
+			block();
 			PlayerAttack();
 			break;
 		case PlayerState.BASIC_ATTACK_FOLLOW:
+			block();
 			PlayerAttack();
 			break;
 		case PlayerState.KICK_ANTI:
+			block();
 			kick_anti();
 			break;
 		case PlayerState.KICK_SWING:
+			block();
 			kick_swing();
 			break;
 		case PlayerState.KICK_FOLLOW:
+			block();
 			kick_follow();
 			break;
 		case PlayerState.DASH_ANTI:
-			break;
-		case PlayerState.DASH:
-			break;
-		case PlayerState.SHEATHING:
-			break;
-		case PlayerState.UNSHEATHING:
-			break;
-		case PlayerState.PLUNGING:
-			break;
-		case PlayerState.BLOCK:
 			block();
 			break;
+		case PlayerState.DASH:
+			block();
+			break;
+		case PlayerState.SHEATHING:
+			block();
+			break;
+		case PlayerState.UNSHEATHING:
+			block();
+			break;
+		case PlayerState.PLUNGING:
+			block();
+			break;
+		case PlayerState.PARRY:
+			block();
+			parry();
+			break;
+		case PlayerState.BLOCK:
+			// block();
+			break;
 		case PlayerState.BLOCK_FOLLOW:
+			block();
 			block_follow();
 			break;
 		case PlayerState.ATTACK_CHARGE_CANCEL:
+			block();
 			attack_cancel();
 			break;
 		case PlayerState.SLING_ANTI:
+			block();
 			sling_attack_anti();
 			break;
 		case PlayerState.SLING_SWING:
+			block();
 			sling_attack_swing();
 			break;
 		case PlayerState.SLING_FOLLOW:
+			block();
 			sling_attack_follow();
 			break;
 		case PlayerState.PAIN:
+			block();
 			pain();
 			break;
 		case PlayerState.DEAD:
+			block();
 			if state_timer != -1 state_timer ++;
 			if state_timer > 60 {
 				show_debug_message("Spawning game over screen");
@@ -487,28 +517,52 @@ function check_blocks() {
 			hiblock = 0;
 		}
 		hiblock = 0;
-		to_block();
+		to_parry();
 		return true;
 	}
 	return false;
 }
 
-function to_block() {
+function to_parry() {
 	if hiblock == 1 {
 		instance_create_depth(x,y,depth-100, obj_player_hi_block_spark);
 	} else {
 		instance_create_depth(x,y,depth-100, obj_player_lo_block_spark);
 	}
-	current_state = PlayerState.BLOCK;
-	state_timer = global.player_block_frames;
+	
+	current_state = PlayerState.PARRY;
+	state_timer = global.player_parry_frames;
 }
-function block() {
+
+function parry() {
 	state_timer --;
-	// if block state has run out then the block was a failure
 	if state_timer < 0 {
-		to_block_follow(false);
+		to_block();
 	}
 }
+
+function to_block() {
+	blocking = true;
+	to_idle();
+}
+function block() {
+	if !blocking {
+		locked_on = noone;
+		return;
+	}
+	
+	if instance_exists(obj_Moose) {
+		locked_on = obj_Moose;
+	} else {
+		locked_on = facing;
+	}
+	
+	if input_check_released(input_action.block) {
+		blocking = false;
+		locked_on = noone;
+	}
+}
+
 function to_block_follow(success) {
 	//show_debug_message(success);
 	if !success {
@@ -1128,6 +1182,11 @@ function update_animation() {
 	var a = noone;
 	switch(current_state) {
 		case PlayerState.IDLE:
+			if blocking == true {
+				a = armed ? global.player_animation_idle_blocking : global.player_animation_idle_blocking_disarmed;
+				break;
+			}
+			
 			if basic_attack_charge_timer > 0 {
 				a = global.player_animation_idle_sword_charge;
 				break;
@@ -1384,5 +1443,7 @@ function player_state_to_string(_state) {
 		case PlayerState.SLING_SWING: return "sling_swing"; break;
 		case PlayerState.UNSHEATHING: return "unsheathing"; break;
 		case PlayerState.WALKING: return "walking"; break;
+		case PlayerState.PARRY: return "parry"; break;
+		case PlayerState.PARRY_FOLLOW: return "parry_follow"; break;
 	}
 }

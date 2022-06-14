@@ -8,6 +8,9 @@ global.player_animation_idle_sling_charge_disarmed = [spr_player_aim_disarmed, 6
 global.player_animation_stra_idle = [spr_player_strafe, 1, AnimationType.FIRST_FRAME];
 global.player_animation_stra_idle_disarmed = [spr_player_strafe_disarmed, 1, AnimationType.FIRST_FRAME];
 
+global.player_animation_idle_blocking = [noone, 1, AnimationType.FIRST_FRAME];
+global.player_animation_idle_blocking_disarmed = [noone, 1, AnimationType.FIRST_FRAME];
+
 global.player_animation_walk = [spr_player_run, 8, AnimationType.LOOP];
 global.player_animation_walk_disarmed = [spr_player_run_disarmed, 10, AnimationType.LOOP];
 global.player_animation_walk_sword_charge = [spr_player_charging, 12, AnimationType.LOOP];
