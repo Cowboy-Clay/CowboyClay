@@ -8,7 +8,7 @@ global.player_animation_idle_sling_charge_disarmed = [spr_player_aim_disarmed, 6
 global.player_animation_stra_idle = [spr_player_strafe, 1, AnimationType.FIRST_FRAME];
 global.player_animation_stra_idle_disarmed = [spr_player_strafe_disarmed, 1, AnimationType.FIRST_FRAME];
 
-global.player_animation_idle_blocking = [noone, 1, AnimationType.FIRST_FRAME];
+global.player_animation_idle_blocking = [spr_player_idle_loBlock, 1, AnimationType.FIRST_FRAME];
 global.player_animation_idle_blocking_disarmed = [noone, 1, AnimationType.FIRST_FRAME];
 
 global.player_animation_walk = [spr_player_run, 8, AnimationType.LOOP];
@@ -78,6 +78,9 @@ global.player_animation_block_failure = [spr_player_parryFollow, 1, AnimationTyp
 global.player_animation_block_lo_disarmed = [spr_player_parryAnti_disarmed, 6, AnimationType.HOLD];
 global.player_animation_block_lo_recoil_disarmed = [spr_player_parry_disarmed, 1, AnimationType.FIRST_FRAME];
 global.player_animation_block_lo_failure_disarmed = [spr_player_parryFollow_disarmed, 1, AnimationType.FIRST_FRAME];
+
+global.player_animation_parry = [spr_player_parry, 1, AnimationType.FIRST_FRAME];
+global.player_animation_parry_disarmed = [spr_player_parry_disarmed, 1, AnimationType.FIRST_FRAME];
 
 global.player_animation_pain = [spr_player_damaged, 1, AnimationType.FIRST_FRAME];
 global.player_animation_pain_disarmed = [spr_player_damaged_disarmed, 1, AnimationType.FIRST_FRAME];

@@ -272,7 +272,7 @@ function PlayerStateBasedMethods()
 			parry();
 			break;
 		case PlayerState.BLOCK:
-			// block();
+			block();
 			break;
 		case PlayerState.BLOCK_FOLLOW:
 			block();
@@ -542,7 +542,7 @@ function parry() {
 }
 
 function to_block() {
-	blocking = true;
+	if armed blocking = true;
 	to_idle();
 }
 function block() {
@@ -557,7 +557,7 @@ function block() {
 		locked_on = facing;
 	}
 	
-	if input_check_released(input_action.block) {
+	if input_check(input_action.block) == false {
 		blocking = false;
 		locked_on = noone;
 	}
@@ -1377,6 +1377,9 @@ function update_animation() {
 			instance_activate_object(obj_player_hitbox);
 			instance_activate_object(obj_player_hurtbox);
 			return;
+			break;
+		case PlayerState.PARRY:
+			a = armed == true ? global.player_animation_parry : global.player_animation_parry_disarmed;
 			break;
 	}
 	if a == noone {
