@@ -21,6 +21,8 @@ block_success = false;
 special_fall = 0;
 locked_on = noone;
 blocking = false;
+max_hp = 7;
+hp = max_hp;
 #endregion
 
 #region Physics Variables
