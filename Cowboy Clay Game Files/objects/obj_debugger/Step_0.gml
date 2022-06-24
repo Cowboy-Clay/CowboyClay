@@ -1,5 +1,13 @@
 frames++;
 
+//if instance_exists(obj_player) show_debug_message(obj_player.hp);
+
+if keyboard_check_pressed(ord("O")){
+	with obj_player{
+		take_hit_minor();
+	}
+}
+
 //var _maxpad = gamepad_get_device_count();
 
 //for (var i = 0; i < _maxpad; i++) {

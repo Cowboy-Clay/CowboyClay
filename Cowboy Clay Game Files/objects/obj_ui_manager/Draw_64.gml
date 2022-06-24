@@ -1,6 +1,8 @@
+// Get size of the screen
 var screen_width = camera_get_view_width(view_camera[0]);
 var screen_height = camera_get_view_height(view_camera[0]);
 
+#region Frame
 // Corners
 // Top left
 draw_sprite_part_ext(global.ui_frame_sprite, 1, 0, 0, global.ui_frame_corner_width, global.ui_frame_corner_height, 0+frame_left_padding, 0+frame_top_padding, 1, 1, c_white, global.ui_frame_alpha);
@@ -35,3 +37,30 @@ if frame_right_padding > 0 {
 if frame_bottom_padding > 0 {
 	draw_rectangle_color(frame_left_padding, screen_height, screen_width-frame_right_padding, screen_height-frame_bottom_padding-1,c_black,c_black,c_black,c_black,false);
 }
+#endregion
+
+#region Player Health Bar
+if draw_player_health_bar {
+	var health_bar_x = screen_width/2;
+	var health_bar_y = screen_height - global.ui_health_bar_y_offset;
+	// Frame
+	draw_sprite_ext(global.ui_health_bar_sprite, 0, health_bar_x, health_bar_y, global.ui_health_bar_xscale_multiplier,1,0,c_white,1);
+	// Fill
+	var player_health_fill_percent = 1 - (obj_player.hp /obj_player.max_hp);
+	player_health_fill_percent *= global.ui_health_bar_xscale_multiplier;
+	draw_sprite_ext(global.ui_health_bar_fill_sprite, 0, health_bar_x, health_bar_y, player_health_fill_percent, 1,0,c_white,1);
+}
+#endregion
+#region Enemy Health Bar
+if draw_enemy_health_bar {
+	var health_bar_x = screen_width/2;
+	var health_bar_y = screen_height - global.ui_health_bar_y_offset;
+	// Frame
+	draw_sprite_ext(global.ui_health_bar_sprite, 0, health_bar_x, health_bar_y, -global.ui_health_bar_xscale_multiplier,1,0,c_white,1);
+	// Fill
+	var enemy = tag_get_instance("enemy",0);
+	var enemy_health_fill_percent = 1 - (enemy.hp /enemy.max_hp);
+	enemy_health_fill_percent *= -global.ui_health_bar_xscale_multiplier;
+	draw_sprite_ext(global.ui_health_bar_fill_sprite, 0, health_bar_x, health_bar_y, enemy_health_fill_percent, 1,0,c_white,1);
+}
+#endregion

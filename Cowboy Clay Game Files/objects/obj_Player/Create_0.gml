@@ -23,6 +23,9 @@ locked_on = noone;
 blocking = false;
 max_hp = 7;
 hp = max_hp;
+hp_regen_timer = 0;
+hp_regen_time_long = 60 * 3;
+hp_regen_time_short = 60;
 #endregion
 
 #region Physics Variables
@@ -1450,5 +1453,22 @@ function player_state_to_string(_state) {
 		case PlayerState.WALKING: return "walking"; break;
 		case PlayerState.PARRY: return "parry"; break;
 		case PlayerState.PARRY_FOLLOW: return "parry_follow"; break;
+	}
+}
+
+function take_hit_minor_personal() {}
+function take_hit_major_personal() {
+	if armed
+	{
+		armed = false;
+		h = 1;
+		obj_player_sword.PlayerSwordFling(h,-1.67,17);
+		MakePlayerInvulnerable();
+		to_pain();
+	}
+	else
+	{
+		//hitstun(.,false);
+		GoToPlayerDead();
 	}
 }

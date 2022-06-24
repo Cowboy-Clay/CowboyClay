@@ -36,7 +36,9 @@ if place_meeting(x,y,obj_player_hitbox) && obj_player_hitbox.sprite_index != spr
 	
 		// Take an actual hit
 		if obj_player.current_state == PlayerState.KICK_SWING && !obj_player_hitbox.wallkick_cooldown{
-			obj_Moose.take_hit_minor();
+			with obj_Moose{
+				take_hit_minor();
+			}
 			//obj_player.to_kick_follow();
 			var xx = (x + obj_player.x)/2;
 			var yy = (y + obj_player.y)/2;
@@ -50,7 +52,9 @@ if place_meeting(x,y,obj_player_hitbox) && obj_player_hitbox.sprite_index != spr
 			var inst = instance_create_depth(xx,yy,obj_player.depth-100,obj_moose_hit_effect);
 			inst.image_xscale = 1;
 			inst.image_yscale = 1;
-			obj_Moose.take_hit_major();
+			with obj_Moose{
+				take_hit_major();
+			}
 			//hitstun(.30);
 		}
 	}
@@ -73,5 +77,7 @@ if place_meeting(x,y,obj_player_projectile) {
 		}
 	}
 	instance_destroy(instance_nearest(x,y,obj_player_projectile));
-	obj_Moose.take_hit_minor();
+	with obj_Moose{
+		take_hit_minor();
+	}
 }

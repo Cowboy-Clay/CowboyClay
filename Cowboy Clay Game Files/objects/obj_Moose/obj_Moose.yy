@@ -5,6 +5,7 @@
   },
   "solid": false,
   "visible": true,
+  "managed": true,
   "spriteMaskId": {
     "name": "spr_enemy_collision",
     "path": "sprites/spr_enemy_collision/spr_enemy_collision.yy",
@@ -38,6 +39,8 @@
   },
   "resourceVersion": "1.0",
   "name": "obj_Moose",
-  "tags": [],
+  "tags": [
+    "enemy",
+  ],
   "resourceType": "GMObject",
 }

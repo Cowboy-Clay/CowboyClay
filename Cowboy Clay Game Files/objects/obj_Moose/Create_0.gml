@@ -1224,39 +1224,31 @@ function check_frame_sounds() {
 	}
 }
 
-function take_hit_minor() {
+function take_hit_minor_personal() {
 	show_debug_message("Moose taking minor hit");
 	show_debug_message("Health before hit: " + string(hp));
 	MakeMooseInvulnerable(10);
-	
-	hp_regen_timer = 0;
+
 	
 	if panicking {
-		hp -= 2;
+		hp -= 1;
 		panicking = false;
 		if hp > 0 
 			to_stun();
-		else 
-			take_hit_major();
 	} else {
-		hp -= 1;
 		panicking = true;
 		if hp > 0 
 			to_panic_wait();
-		else 
-			take_hit_major();
 	}
 	show_debug_message("Health after minor hit: " + string(hp));
 }
 
-function take_hit_major() {
+function take_hit_major_personal() {
 	show_debug_message("Moose taking major hit");
 	show_debug_message("Health before major hit: " + string(hp));
 	MakeMooseInvulnerable(5);
-	hp_regen_timer = 0;
 	
 	MooseGetHit();
-	hp = max_hp;
 	show_debug_message("Health after major hit: " + string(hp));
 }
 
@@ -1268,15 +1260,4 @@ function choose_panic_attack() {
 		to_lunge_anti();
 	else
 		MooseIdleToChargeAnti();
-}
-
-function regen_hp() {
-	if hp_regen_timer == hp_regen_time_long {
-		hp = hp + 1> max_hp ? max_hp : hp + 1;
-	} else if hp_regen_timer > hp_regen_time_long {
-		if (hp_regen_timer - hp_regen_time_long) % hp_regen_time_short == 0 {
-			hp = hp + 1> max_hp ? max_hp : hp + 1;
-		}
-	}
-	hp_regen_timer ++;
 }

@@ -14,6 +14,8 @@ if !global.paused {
 
 	if keyboard_check_pressed(ord("P")) GoToPlayerDead();
 	
+	regen_hp();
+	
 	if sling_attack_charge_timer > 0 || current_state == PlayerState.SLING_ANTI {
 	if(audio_is_playing(sfx_clay_sling) == false) {
 		audio_play_sound(sfx_clay_sling, 5, true);
