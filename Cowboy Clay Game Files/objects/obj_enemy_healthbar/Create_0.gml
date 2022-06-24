@@ -1,3 +1,6 @@
+// This has been deprecated and should not be used
+instance_destroy(id);
+
 frame_spr = spr_HPFrame;
 
 first_healthbar_spr = spr_MooseHP2;
