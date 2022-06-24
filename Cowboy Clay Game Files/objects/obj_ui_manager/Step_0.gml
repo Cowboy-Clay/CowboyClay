@@ -12,7 +12,7 @@ if tag_exists("enemy") {
 #endregion
 
 if draw_player_health_bar {
-	frame_bottom_padding = 60;
+	frame_bottom_padding = 80;
 }
 else {
 	frame_bottom_padding = 0;

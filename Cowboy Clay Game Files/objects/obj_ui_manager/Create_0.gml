@@ -7,8 +7,10 @@ global.ui_frame_alpha = 1;
 
 global.ui_health_bar_sprite = spr_ui_halfBar;
 global.ui_health_bar_fill_sprite = spr_ui_halfBarFilling;
+global.ui_health_bar_dot_sprite = spr_ui_halfBarDot;
 global.ui_health_bar_y_offset = 25;
 global.ui_health_bar_xscale_multiplier = 1.8;
+global.ui_health_bar_dot_spacing = 32;
 
 frame_top_padding = 0;
 frame_bottom_padding = 0;

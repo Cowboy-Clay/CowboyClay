@@ -49,6 +49,10 @@ if draw_player_health_bar {
 	var player_health_fill_percent = 1 - (obj_player.hp /obj_player.max_hp);
 	player_health_fill_percent *= global.ui_health_bar_xscale_multiplier;
 	draw_sprite_ext(global.ui_health_bar_fill_sprite, 0, health_bar_x, health_bar_y, player_health_fill_percent, 1,0,c_white,1);
+	
+	if obj_player.armed {
+		draw_sprite_ext(global.ui_health_bar_dot_sprite,0,health_bar_x, health_bar_y, 1,1,0,c_white, 1);
+	}
 }
 #endregion
 #region Enemy Health Bar
@@ -62,5 +66,13 @@ if draw_enemy_health_bar {
 	var enemy_health_fill_percent = 1 - (enemy.hp /enemy.max_hp);
 	enemy_health_fill_percent *= -global.ui_health_bar_xscale_multiplier;
 	draw_sprite_ext(global.ui_health_bar_fill_sprite, 0, health_bar_x, health_bar_y, enemy_health_fill_percent, 1,0,c_white,1);
+	
+	var enemy_phase = enemy.get_phase();
+	var enemy_max_phase = enemy.max_phase;
+	var enemy_dots = enemy_max_phase - enemy_phase;
+	for(var i = 0; i < enemy_dots; i ++) {
+		var dot_x = health_bar_x + global.ui_health_bar_dot_spacing*i;
+		draw_sprite_ext(global.ui_health_bar_dot_sprite, 0, dot_x, health_bar_y, -1,1,0,c_white,1);
+	}
 }
 #endregion

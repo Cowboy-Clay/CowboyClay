@@ -17,6 +17,7 @@ panicking = false;
 hp_regen_timer = 0;
 hp_regen_time_long = 600;
 hp_regen_time_short = 100;
+max_phase = 3;
 
 dead_timer = 90;
 
