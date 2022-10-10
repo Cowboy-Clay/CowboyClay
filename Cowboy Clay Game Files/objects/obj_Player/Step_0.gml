@@ -53,7 +53,7 @@ if !global.paused {
 	
 	// Animation
 	update_animation();
-	PlayPlayerAnimation();
+	animation_play();
 	SetPlayerFacingDirection();
 
 	if instance_exists(obj_Moose){

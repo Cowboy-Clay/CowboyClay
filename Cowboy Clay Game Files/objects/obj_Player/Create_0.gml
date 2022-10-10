@@ -116,10 +116,9 @@ global.player_graviMulti_attacking = 0.2;
 
 #region Animation Variables
 // Animation
-currentAnimType = AnimationType.LOOP;
-animFrameCounter = 0;
-currentFPI = 6;
-
+animation_type_current = animation_type.loop;
+animation_fps_current = 10;
+animation_frame_counter = 0;
 #endregion
 
 layer_create(-300, "PlayerTools");
@@ -1328,7 +1327,8 @@ function update_animation() {
 		show_debug_message("Animation array was not the right length.");
 		return;
 	}
-	SetPlayerAnimation(a[0], a[1], a[2]);
+	
+	animation_set(a);
 }
 
 function check_frame_sounds() {

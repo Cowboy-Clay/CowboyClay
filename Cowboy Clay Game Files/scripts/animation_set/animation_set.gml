@@ -12,13 +12,13 @@ function animation_set(animation_array){
 	}
 	
 	if sprite_index == animation_array[0] &&
-	animation_fps_current == animation_array[2] &&
-	animation_type_current == animation_array[1] {
+	animation_fps_current == animation_array[1] &&
+	animation_type_current == animation_array[2] {
 		return;
 	}
 	
 	sprite_index = animation_array[0];
-	animation_fps_current = animation_array[2];
-	animation_type_current = animation_array[1];
+	animation_fps_current = animation_array[1];
+	animation_type_current = animation_array[2];
 	animation_frame_counter = 0;
 }
