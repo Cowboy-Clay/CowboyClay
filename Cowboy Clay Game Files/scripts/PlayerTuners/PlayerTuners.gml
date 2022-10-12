@@ -1,6 +1,6 @@
 // [sprite, fpi, type]
-global.player_animation_idle = [spr_player_idle, 60, animation_type.first_frame];
-global.player_animation_idle_disarmed = [spr_player_idle_disarmed, 60, animation_type.first_frame];
+global.player_animation_idle = [spr_clay_f_idle, 60, animation_type.first_frame];
+global.player_animation_idle_disarmed = [spr_clay_n_idle, 60, animation_type.first_frame];
 global.player_animation_idle_sword_charge = [spr_player_charging, 60, animation_type.first_frame];
 global.player_animation_idle_sling_charge = [spr_player_aim, 10, animation_type.loop];
 global.player_animation_idle_sling_charge_disarmed = [spr_player_aim_disarmed, 10, animation_type.loop];

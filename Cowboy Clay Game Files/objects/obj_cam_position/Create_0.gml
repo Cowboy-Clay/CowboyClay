@@ -3,8 +3,14 @@
 
 cam = view_camera[0];
 
-x = obj_player.x;
-y = obj_player.y;
+target = noone;
+if instance_exists(obj_player_neutral) target = obj_player_neutral;
+else if instance_exists(obj_player_sitting) target = obj_player_sitting;
+else if instance_exists(obj_player) target = obj_player;
+else return;
+
+x = target.x;
+y = target.y;
 
 cam_width = camera_get_view_width(cam);
 cam_height = camera_get_view_height(cam);

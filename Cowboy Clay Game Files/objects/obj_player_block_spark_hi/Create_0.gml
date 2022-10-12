@@ -1,9 +1,15 @@
 global.player_block_spark_hi_offset = [29,-41];
 
-if obj_player.facing == Direction.RIGHT {
-	x = obj_player.x+global.player_block_spark_hi_offset[0];
-	y = obj_player.y+global.player_block_spark_hi_offset[1];
+target = noone;
+if instance_exists(obj_player_neutral) target = obj_player_neutral;
+else if instance_exists(obj_player_sitting) target = obj_player_sitting;
+else if instance_exists(obj_player) target = obj_player;
+else return;
+
+if target.facing == Direction.RIGHT {
+	x = target.x+global.player_block_spark_hi_offset[0];
+	y = target.y+global.player_block_spark_hi_offset[1];
 }else {
-	x = obj_player.x-global.player_block_spark_hi_offset[0];
-	y = obj_player.y+global.player_block_spark_hi_offset[1];
+	x = target.x-global.player_block_spark_hi_offset[0];
+	y = target.y+global.player_block_spark_hi_offset[1];
 }

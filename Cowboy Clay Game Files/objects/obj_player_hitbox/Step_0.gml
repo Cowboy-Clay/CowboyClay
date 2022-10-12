@@ -1,11 +1,19 @@
-if obj_player.current_state == PlayerState.KICK_SWING && (place_meeting(x,y,obj_tile_coll) || place_meeting(x,y,obj_Moose)) && !wallkick_cooldown {
+target = noone;
+if instance_exists(obj_player_neutral) target = obj_player_neutral;
+else if instance_exists(obj_player_sitting) target = obj_player_sitting;
+else if instance_exists(obj_player) target = obj_player;
+else return;
+
+if target.current_stance != stance.fighting return;
+
+if target.current_state == PlayerState.KICK_SWING && (place_meeting(x,y,obj_tile_coll) || place_meeting(x,y,obj_Moose)) && !wallkick_cooldown {
 	wallkick_cooldown = true;
-	if obj_player.facing == Direction.LEFT {
-		obj_player.hspeed = 5;
-		obj_player.vspeed = -8;
+	if target.facing == Direction.LEFT {
+		target.hspeed = 5;
+		target.vspeed = -8;
 	} else {
-		obj_player.hspeed = -5;
-		obj_player.vspeed = -8;
+		target.hspeed = -5;
+		target.vspeed = -8;
 	}
 	
 	if instance_exists(obj_cam_position) {
@@ -14,11 +22,11 @@ if obj_player.current_state == PlayerState.KICK_SWING && (place_meeting(x,y,obj_
 	
 	if instance_exists(obj_player_sword) {
 		if obj_player_sword.current_state == SwordState.STUCK_WALL_LEFT || obj_player_sword.current_state == SwordState.STUCK_WALL_RIGHT {
-			if abs(obj_player_sword.x - obj_player.x) < 300 {
+			if abs(obj_player_sword.x - target.x) < 300 {
 				obj_player_sword.to_kicked();
 			}
 		}
 	}
 }
 
-if obj_player.current_state != PlayerState.KICK_SWING && wallkick_cooldown wallkick_cooldown = false;
+if target.current_state != PlayerState.KICK_SWING && wallkick_cooldown wallkick_cooldown = false;

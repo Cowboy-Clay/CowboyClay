@@ -1,5 +1,7 @@
 /// @description Code to be executed when player is created
-collision_mask = [obj_wall_breakable, obj_Ground, obj_Wall, obj_plate, obj_door,obj_box, obj_elevator, obj_tile_coll, obj_house, obj_tallHouse, obj_longHouse, obj_midHouse];
+collision_mask = [obj_wall_breakable, obj_Ground, obj_Wall, obj_plate, obj_door,obj_box, obj_elevator, obj_tile_coll, obj_house, obj_tallHouse, obj_longHouse, obj_midHouse, obj_punching_bag];
+
+current_stance = stance.fighting;
 
 audio_group_load(sfx_clay);
 
@@ -10,6 +12,7 @@ pause_flag = false;
 #endregion
 
 #region State Variables
+current_stance = stance.neutral;
 enum PlayerState { IDLE, WALKING, JUMP_ANTI, JUMPING, FALLING, ATTACK_CHARGE_CANCEL,BASIC_ATTACK_ANTI, BASIC_ATTACK_SWING, BASIC_ATTACK_FOLLOW, DASH_ANTI, DASH, DASH_FOLLOW, LOCK, DEAD, KICK_ANTI, KICK_SWING, KICK_FOLLOW, SHEATHING, UNSHEATHING, PLUNGING, BLOCK, BLOCK_FOLLOW, SLING_ANTI, SLING_SWING, SLING_FOLLOW, PAIN, REVIVING };
 current_state = _skip_revive ? PlayerState.IDLE : PlayerState.REVIVING;
 facing = Direction.RIGHT; // The direction the player is facing

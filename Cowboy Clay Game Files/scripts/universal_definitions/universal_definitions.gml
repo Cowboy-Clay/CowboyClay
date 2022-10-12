@@ -9,3 +9,5 @@ enum Direction { LEFT, RIGHT, UP, DOWN };
 enum AnimationType { LOOP, HOLD, FIRST_FRAME, REVERSE_LOOP};
 enum animation_type { loop, hold, first_frame, loop_reverse};
 enum Curve { LINEAR, PARABOLA, EXPONENTIAL, ROOT };
+
+enum stance { neutral, fighting, sitting };

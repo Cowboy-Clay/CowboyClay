@@ -1,5 +1,11 @@
-ideal_x = obj_player.x + offset_x;
-ideal_y = obj_player.y + offset_y;
+target = noone;
+if instance_exists(obj_player_neutral) target = obj_player_neutral;
+else if instance_exists(obj_player_sitting) target = obj_player_sitting;
+else if instance_exists(obj_player) target = obj_player;
+else return;
+
+ideal_x = target.x + offset_x;
+ideal_y = target.y + offset_y;
 
 if instance_exists(obj_cam_anchor)
 {

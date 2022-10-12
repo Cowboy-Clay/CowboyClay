@@ -12,7 +12,13 @@ global.playerSprRef =
 
 function GetPlayerHitBox()
 {
-	var a = obj_player.sprite_index;
+	var target = noone;
+	if instance_exists(obj_player_neutral) target = obj_player_neutral;
+	else if instance_exists(obj_player_sitting) target = obj_player_sitting;
+	else if instance_exists(obj_player) target = obj_player;
+	else return;
+
+	var a = target.sprite_index;
 	for (i = 0; i < array_length(global.playerSprRef); i+=1)
 	{
 		if global.playerSprRef[i][0][0] == a return global.playerSprRef[i][1];
@@ -22,7 +28,13 @@ function GetPlayerHitBox()
 
 function GetPlayerHurtBox()
 {
-	var a = obj_player.sprite_index;
+	var target = noone;
+	if instance_exists(obj_player_neutral) target = obj_player_neutral;
+	else if instance_exists(obj_player_sitting) target = obj_player_sitting;
+	else if instance_exists(obj_player) target = obj_player;
+	else return;
+	
+	var a = target.sprite_index;
 	for (i = 0; i < array_length(global.playerSprRef); i += 1)
 	{
 		if global.playerSprRef[i][0][0] == a return global.playerSprRef[i][2];

@@ -1,0 +1,1 @@
+global.player_animation_sitting_idle = [spr_clay_s_idle, 60, animation_type.first_frame];
