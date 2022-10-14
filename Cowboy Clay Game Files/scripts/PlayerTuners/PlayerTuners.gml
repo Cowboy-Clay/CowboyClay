@@ -8,7 +8,7 @@ global.player_animation_idle_sling_charge_disarmed = [spr_player_aim_disarmed, 1
 global.player_animation_stra_idle = [spr_player_strafe, 60, animation_type.first_frame];
 global.player_animation_stra_idle_disarmed = [spr_player_strafe_disarmed, 60, animation_type.first_frame];
 
-global.player_animation_walk = [spr_clay_f_step, 7.5, animation_type.loop];
+global.player_animation_walk = [spr_clay_f_step, 20, animation_type.loop];
 global.player_animation_walk_disarmed = [spr_player_run_disarmed, 6, animation_type.loop];
 global.player_animation_walk_sword_charge = [spr_player_charging, 5, animation_type.loop];
 global.player_animation_walk_sling_charge = [spr_player_aimWalk, 10, animation_type.loop];
@@ -24,19 +24,19 @@ global.player_animation_strastep_sling_charge = [spr_player_aimWalk, 10, animati
 global.player_animation_backstep_sling_charge = [spr_player_aimWalkBack, 10, animation_type.loop];
 global.player_animation_backstep_sling_charge_disarmed = [spr_player_aimWalkBack_disarmed, 10, animation_type.loop];
 
-global.player_animation_jump_anti = [spr_player_jumpAnti, 60, animation_type.first_frame];
+global.player_animation_jump_anti = [spr_clay_f_idle, 60, animation_type.first_frame];
 global.player_animation_jump_anti_disarmed = [spr_player_jumpAnti_disarmed, 60, animation_type.first_frame];
 global.player_animation_jump_anti_sword_charge = [spr_player_chargeJumpAnti, 60, animation_type.first_frame];
 global.player_animation_jump_anti_sling_charge = [spr_player_slingJumpAnti, 10, animation_type.loop];
 global.player_animation_jump_anti_sling_charge_disarmed = [spr_player_slingJumpAnti_disarmed, 10, animation_type.loop];
 
-global.player_animation_jump = [spr_player_jump, 30, animation_type.loop];
+global.player_animation_jump = [spr_clay_f_jump, 10, animation_type.loop];
 global.player_animation_jump_disarmed = [spr_player_jump_disarmed, 30, animation_type.loop];
 global.player_animation_jump_sword_charge = [spr_player_chargeJump, 60, animation_type.first_frame];
 global.player_animation_jump_sling_charge = [spr_player_aimJump, 10, animation_type.loop];
 global.player_animation_jump_sling_charge_disarmed = [spr_player_aimJump_disarmed, 10, animation_type.loop];
 
-global.player_animation_fall = [spr_player_falling, 15, animation_type.loop];
+global.player_animation_fall = [spr_clay_f_jump, 10, animation_type.loop];
 global.player_animation_fall_disarmed = [spr_player_falling_disarmed, 15, animation_type.loop];
 global.player_animation_fall_sword_charge = [spr_player_chargeJump, 10, animation_type.first_frame];
 global.player_animation_fall_sling_charge = [spr_player_aimFalling, 10, animation_type.loop];
