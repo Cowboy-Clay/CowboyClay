@@ -1,13 +1,13 @@
 global.playerSprRef = 
 [
-	[global.player_animation_idle, spr_empty, spr_player_collision],
-	[global.player_animation_idle_disarmed, spr_empty, spr_player_collision],
-	[global.player_animation_sword_anti, spr_empty, spr_player_collision],
-	[global.player_animation_sword_swing, spr_player_attackSwing_hitbox, spr_player_collision],
-	[global.player_animation_sword_follow , spr_empty, spr_player_collision],
-	[global.player_animation_sword_hi_swing, spr_player_jumpAttack_Slash, spr_player_collision],
-	[global.player_animation_kick_swing, spr_player_kickHitbox,spr_player_collision],
-	[global.player_animation_kick_swing_disarmed, spr_player_kickHitbox,spr_player_collision],
+	[global.player_animation_idle, spr_empty, spr_clay_n_collision],
+	[global.player_animation_idle_disarmed, spr_empty, spr_clay_n_collision],
+	[global.player_animation_attack_mid_anti, spr_empty, spr_clay_n_collision],
+	[global.player_animation_attack_mid_swing, spr_player_attackSwing_hitbox, spr_clay_n_collision],
+	[global.player_animation_attack_mid_follow , spr_empty, spr_clay_n_collision],
+	[global.player_animation_sword_hi_swing, spr_player_jumpAttack_Slash, spr_clay_n_collision],
+	[global.player_animation_kick_swing, spr_player_kickHitbox,spr_clay_n_collision],
+	[global.player_animation_kick_swing_disarmed, spr_player_kickHitbox,spr_clay_n_collision],
 ]
 
 function GetPlayerHitBox()
@@ -39,5 +39,5 @@ function GetPlayerHurtBox()
 	{
 		if global.playerSprRef[i][0][0] == a return global.playerSprRef[i][2];
 	}
-	return spr_player_collision;
+	return spr_clay_n_collision;
 }

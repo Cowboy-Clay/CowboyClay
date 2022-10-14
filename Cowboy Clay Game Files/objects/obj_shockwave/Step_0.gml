@@ -20,10 +20,10 @@ if in_use {
 	if place_meeting(x,y,obj_player) {
 		var dir = direct;
 		with (obj_player) {
-			var stucko = dir == Direction.RIGHT ? collision_check_edge(x,y,spr_player_collision, Direction.RIGHT, collision_mask) : collision_check_edge(x,y,spr_player_collision, Direction.LEFT, collision_mask);
+			var stucko = dir == Direction.RIGHT ? collision_check_edge(x,y,spr_clay_n_collision, Direction.RIGHT, collision_mask) : collision_check_edge(x,y,spr_clay_n_collision, Direction.LEFT, collision_mask);
 			while !stucko && place_meeting(x,y,obj_shockwave) {
 				x += dir == Direction.RIGHT ? 1 : -1;
-				stucko = dir == Direction.RIGHT ? collision_check_edge(x,y,spr_player_collision, Direction.RIGHT, collision_mask) : collision_check_edge(x,y,spr_player_collision, Direction.LEFT, collision_mask);
+				stucko = dir == Direction.RIGHT ? collision_check_edge(x,y,spr_clay_n_collision, Direction.RIGHT, collision_mask) : collision_check_edge(x,y,spr_clay_n_collision, Direction.LEFT, collision_mask);
 			}
 		}
 	}

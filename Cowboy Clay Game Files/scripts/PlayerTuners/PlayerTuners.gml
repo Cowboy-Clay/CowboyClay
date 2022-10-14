@@ -8,7 +8,7 @@ global.player_animation_idle_sling_charge_disarmed = [spr_player_aim_disarmed, 1
 global.player_animation_stra_idle = [spr_player_strafe, 60, animation_type.first_frame];
 global.player_animation_stra_idle_disarmed = [spr_player_strafe_disarmed, 60, animation_type.first_frame];
 
-global.player_animation_walk = [spr_player_run, 7.5, animation_type.loop];
+global.player_animation_walk = [spr_clay_f_step, 7.5, animation_type.loop];
 global.player_animation_walk_disarmed = [spr_player_run_disarmed, 6, animation_type.loop];
 global.player_animation_walk_sword_charge = [spr_player_charging, 5, animation_type.loop];
 global.player_animation_walk_sling_charge = [spr_player_aimWalk, 10, animation_type.loop];
@@ -42,9 +42,23 @@ global.player_animation_fall_sword_charge = [spr_player_chargeJump, 10, animatio
 global.player_animation_fall_sling_charge = [spr_player_aimFalling, 10, animation_type.loop];
 global.player_animation_fall_sling_charge_disarmed = [spr_player_aimFalling_disarmed, 10, animation_type.loop];
 
-global.player_animation_sword_anti = [spr_player_charging, 60, animation_type.first_frame];
-global.player_animation_sword_swing = [spr_player_slash, 60, animation_type.first_frame];
-global.player_animation_sword_follow = [spr_player_slashFollow, 60, animation_type.first_frame];
+#region New Attacks
+global.player_animation_attack_high_anti = [spr_clay_f_hSlash_anti, 20, animation_type.hold];
+global.player_animation_attack_high_swing = [spr_clay_f_hSlash_hit, 20, animation_type.hold];
+global.player_animation_attack_high_follow = [spr_clay_f_hSlash_follow, 20, animation_type.hold];
+global.player_animation_attack_high_blocked = [spr_clay_f_hSlash_blocked, 20, animation_type.hold];
+
+global.player_animation_attack_mid_anti = [spr_clay_f_mStab_anti, 20, animation_type.hold];
+global.player_animation_attack_mid_swing = [spr_clay_f_mStab_hit, 20, animation_type.hold];
+global.player_animation_attack_mid_follow = [spr_clay_f_mStab_follow, 20, animation_type.hold];
+global.player_animation_attack_mid_blocked = [spr_clay_f_mStab_blocked, 20, animation_type.hold];
+
+global.player_animation_attack_low_anti = [spr_clay_f_LSlash_anti, 20, animation_type.hold];
+global.player_animation_attack_low_swing = [spr_clay_f_LSlash_hit, 20, animation_type.hold];
+global.player_animation_attack_low_follow = [spr_clay_f_LSlash_follow, 20, animation_type.hold];
+global.player_animation_attack_low_blocked = [spr_clay_f_hSlash_blocked, 20, animation_type.hold];
+#endregion
+
 global.player_animation_sword_hi_anti = [spr_player_jumpAttack_Anti, 60, animation_type.first_frame];
 global.player_animation_sword_hi_swing = [spr_player_jumpAttack_Swing, 60, animation_type.first_frame];
 global.player_animation_sword_hi_follow = [spr_player_jumpAttack_Follow, 10, animation_type.loop];

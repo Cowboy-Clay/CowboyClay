@@ -27,7 +27,7 @@ function get_lo_attack(){
 
 // Sprites where the player is lo attacking
 global.player_lo_attack_sprites = [
-								  global.player_animation_sword_swing[0],
+								  global.player_animation_attack_mid_swing[0],
 								  global.player_animation_kick_swing[0],
 								  global.player_animation_kick_swing_disarmed[0]
 								  ];

@@ -48,8 +48,8 @@ collision_check(spr_enemy_collision,collision_mask, false, false);
 }
 var pl, pr;
 with(obj_player) {
-	pl = collision_check_edge(x,y,spr_player_collision,Direction.LEFT,collision_mask);
-	pr = collision_check_edge(x,y,spr_player_collision,Direction.RIGHT,collision_mask);
+	pl = collision_check_edge(x,y,spr_clay_n_collision,Direction.LEFT,collision_mask);
+	pr = collision_check_edge(x,y,spr_clay_n_collision,Direction.RIGHT,collision_mask);
 }
 if pl {
 	while collision_check_edge(x,y,spr_enemy_collision,Direction.LEFT,[obj_player]) {

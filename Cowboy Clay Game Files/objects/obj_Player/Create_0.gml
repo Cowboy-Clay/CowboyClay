@@ -70,11 +70,28 @@ global.player_attack_turn_buffer = 18;
 basic_attack_charge_timer = 0;
 global.player_basic_attack_charge_min = 45;
 global.player_attack_cancel_frames = 20;
-global.player_attackAntiFrames = 2; // # of frames the attack anti is shown
-global.player_attackSwingFrames = 10;
+global.player_attackAntiFrames = 5; // # of frames the attack anti is shown
+global.player_attackSwingFrames = 18;
 global.player_attackFollowFrames = 15;
 attackTimer = 0; // Frame counter to determine how long the player has been in each attack state
+attack_height = 0;
 #endregion
+
+global.player_attack_high_anti_frames = 5;
+global.player_attack_high_swing_frames = 30;
+global.player_attack_high_follow_frames = 15;
+global.player_attack_high_blocked_frames = 12;
+
+global.player_attack_mid_anti_frames = 5;
+global.player_attack_mid_swing_frames = 18;
+global.player_attack_mid_follow_frames = 15;
+global.player_attack_mid_blocked_frames = 12;
+
+global.player_attack_low_anti_frames = 5;
+global.player_attack_low_swing_frames = 18;
+global.player_attack_low_follow_frames = 18;
+global.player_attack_low_blocked_frames = 15;
+
 sling_attack_charge_timer = 0;
 global.player_sling_attack_charge_min = 30;
 global.player_sling_attack_charge_full = 80;
@@ -164,10 +181,6 @@ function PlayerStateBasedMethods()
 				GoToPlayerJumpAnti();
 				break;
 			}
-			if basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 && (kick_buffer > 0) {
-				to_kick_anti();
-				break;
-			}
 			// Go to walk if you are moving
 			if abs(hspeed) > 0.1 && current_state == PlayerState.IDLE{
 				GoToPlayerWalk();
@@ -182,10 +195,6 @@ function PlayerStateBasedMethods()
 			if check_blocks() && basic_attack_charge_timer == 0 break;
 			if jump_buffer > 0 {
 				GoToPlayerJumpAnti();
-				break;
-			}
-			if basic_attack_charge_timer == 0 && sling_attack_charge_timer == 0 && kick_buffer > 0 {
-				to_kick_anti();
 				break;
 			}
 			if abs(hspeed) <= 0.1 {
@@ -206,7 +215,7 @@ function PlayerStateBasedMethods()
 			}
 			check_falling();
 			state_timer ++;
-			if state_timer > 5 && collision_check_edge(x,y,spr_player_collision,Direction.DOWN, collision_mask) {
+			if state_timer > 5 && collision_check_edge(x,y,spr_clay_n_collision,Direction.DOWN, collision_mask) {
 				to_idle();
 			}
 			break;
@@ -375,7 +384,7 @@ function check_falling() {
 		return false;
 	}
 	
-	if vspeed > 0 && !collision_check_edge(x,y,spr_player_collision, Direction.DOWN, collision_mask) {
+	if vspeed > 0 && !collision_check_edge(x,y,spr_clay_n_collision, Direction.DOWN, collision_mask) {
 		GoToPlayerFall();
 		return true;
 	}
@@ -399,6 +408,17 @@ function to_attack_cancel() {
 function basic_attack_charge() {
 	if !armed {
 		basic_attack_charge_timer = 0;
+		return;
+	}
+	if input_check_pressed(input_action.attack){
+		if input_check(input_action.up) and not input_check(input_action.down) {
+			attack_height = 2;
+		} else if input_check(input_action.down) and not input_check(input_action.up) {
+			attack_height = 0;
+		} else {
+			attack_height = 1;
+		}
+		GoToPlayerBasicAttack();
 		return;
 	}
 	if basic_attack_charge_timer == 0 return;
@@ -544,7 +564,7 @@ function to_idle()
 }
 function GoToPlayerJumpAnti()
 {
-	var g = collision_check_edge(x,y,spr_player_collision,Direction.DOWN,collision_mask) == false;
+	var g = collision_check_edge(x,y,spr_clay_n_collision,Direction.DOWN,collision_mask) == false;
 	if g return;
 	jumpTimer = 0;
 	jump_buffer = -1;
@@ -910,6 +930,43 @@ function PlayerJumpAnti()
 
 function PlayerAttack()
 {
+	var anti_f = noone;
+	var swing_f = noone;
+	var follow_f = noone;
+	var blocked_f = noone;
+	var anti_a = noone;
+	var swing_a = noone;
+	var follow_a = noone;
+	var blocked_a = noone;
+	if attack_height == 0 {
+		anti_f = global.player_attack_low_anti_frames;
+		swing_f = global.player_attack_low_swing_frames;
+		follow_f = global.player_attack_low_follow_frames;
+		blocked_f = global.player_attack_low_blocked_frames;
+		anti_a = global.player_animation_attack_low_anti;
+		swing_a = global.player_animation_attack_low_swing;
+		follow_a = global.player_animation_attack_low_follow;
+		blocked_a = global.player_animation_attack_low_blocked;
+	} else if attack_height = 1 {
+		anti_f = global.player_attack_mid_anti_frames;
+		swing_f = global.player_attack_mid_swing_frames;
+		follow_f = global.player_attack_mid_follow_frames;
+		blocked_f = global.player_attack_mid_blocked_frames;
+		anti_a = global.player_animation_attack_mid_anti;
+		swing_a = global.player_animation_attack_mid_swing;
+		follow_a = global.player_animation_attack_mid_follow;
+		blocked_a = global.player_animation_attack_mid_blocked;
+	} else if attack_height = 2 {
+		anti_f = global.player_attack_high_anti_frames;
+		swing_f = global.player_attack_high_swing_frames;
+		follow_f = global.player_attack_high_follow_frames;
+		blocked_f = global.player_attack_high_blocked_frames;
+		anti_a = global.player_animation_attack_high_anti;
+		swing_a = global.player_animation_attack_high_swing;
+		follow_a = global.player_animation_attack_high_follow;
+		blocked_a = global.player_animation_attack_high_blocked;
+	}
+	
 	if current_state == PlayerState.BASIC_ATTACK_ANTI || current_state == PlayerState.BASIC_ATTACK_SWING || current_state == PlayerState.BASIC_ATTACK_FOLLOW
 	{
 		// Increment the attack timer
@@ -920,14 +977,14 @@ function PlayerAttack()
 			if vspeed > 0 vspeed *= 0.2;
 			current_state = PlayerState.BASIC_ATTACK_SWING;
 			obj_player_attackEffect.ShowPlayerAttack(get_hi_attack_player(id, 10) ? spr_player_jumpAttack_Slash : spr_player_attackEffect,1);
-			attackTimer = global.player_attackSwingFrames;
+			attackTimer = swing_f;
 		}
 		if current_state == PlayerState.BASIC_ATTACK_SWING && attackTimer <= 0
 		{
 			current_state = PlayerState.BASIC_ATTACK_FOLLOW;
 			special_fall = 1;
 			obj_player_attackEffect.HidePlayerAttack();
-			attackTimer = global.player_attackFollowFrames;
+			attackTimer = follow_f;
 		}
 		if current_state == PlayerState.BASIC_ATTACK_FOLLOW && attackTimer <= 0
 		{
@@ -1127,6 +1184,27 @@ function PlayerNotAttacking()
 }
 
 function update_animation() {
+	var anti_a = noone;
+	var swing_a = noone;
+	var follow_a = noone;
+	var blocked_a = noone;
+	if attack_height == 0 {
+		anti_a = global.player_animation_attack_low_anti;
+		swing_a = global.player_animation_attack_low_swing;
+		follow_a = global.player_animation_attack_low_follow;
+		blocked_a = global.player_animation_attack_low_blocked;
+	} else if attack_height = 1 {
+		anti_a = global.player_animation_attack_mid_anti;
+		swing_a = global.player_animation_attack_mid_swing;
+		follow_a = global.player_animation_attack_mid_follow;
+		blocked_a = global.player_animation_attack_mid_blocked;
+	} else if attack_height = 2 {
+		anti_a = global.player_animation_attack_high_anti;
+		swing_a = global.player_animation_attack_high_swing;
+		follow_a = global.player_animation_attack_high_follow;
+		blocked_a = global.player_animation_attack_high_blocked;
+	}
+	
 	var a = noone;
 	switch(current_state) {
 		case PlayerState.IDLE:
@@ -1241,13 +1319,13 @@ function update_animation() {
 			}
 			break;
 		case PlayerState.BASIC_ATTACK_ANTI:
-			a = get_hi_attack_player(id, 10) ? global.player_animation_sword_hi_anti : global.player_animation_sword_anti;
+			a = anti_a;
 			break;
 		case PlayerState.BASIC_ATTACK_SWING:
-			a = get_hi_attack_player(id, 10) ? global.player_animation_sword_hi_swing : global.player_animation_sword_swing;
+			a = swing_a;
 			break;
 		case PlayerState.BASIC_ATTACK_FOLLOW:
-			a = get_hi_attack_player(id, 10) ? global.player_animation_sword_hi_follow : global.player_animation_sword_follow;
+			a = follow_a;
 			break;
 		case PlayerState.SLING_ANTI:
 			if get_hi_attack_player(id, 10) {

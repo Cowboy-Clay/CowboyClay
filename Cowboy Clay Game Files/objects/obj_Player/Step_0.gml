@@ -26,7 +26,7 @@ if !global.paused {
 	
 	// Physics
 	Friction(PickPlayerFrict());
-	Gravity(PickPlayerGravi(), global.player_gravityMax, spr_player_collision, collision_mask);
+	Gravity(PickPlayerGravi(), global.player_gravityMax, spr_clay_n_collision, collision_mask);
 	
 	if current_state != PlayerState.LOCK
 	{
@@ -66,5 +66,5 @@ if !global.paused {
 		}
 	}
 	
-	collision_check_player(spr_player_collision, collision_mask, false, false);
+	collision_check_player(spr_clay_n_collision, collision_mask, false, false);
 }

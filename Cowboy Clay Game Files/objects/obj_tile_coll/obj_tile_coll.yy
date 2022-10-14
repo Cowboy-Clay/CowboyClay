@@ -4,7 +4,7 @@
     "path": "sprites/spr_tile_coll/spr_tile_coll.yy",
   },
   "solid": false,
-  "visible": true,
+  "visible": false,
   "managed": true,
   "spriteMaskId": null,
   "persistent": true,
