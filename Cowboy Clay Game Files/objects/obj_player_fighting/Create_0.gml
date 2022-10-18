@@ -149,7 +149,7 @@ if startArmed == true instance_create_layer(x,y,"PlayerTools", obj_player_sword)
 if instance_exists(obj_cam_position) == false instance_create_layer(x,y,"PlayerTools", obj_cam_position);
 
 #region Animation Variables
-draw_hat = true;
+draw_hat = false;
 draw_shirt = true;
 draw_shoes = true;
 #endregion

@@ -431,6 +431,7 @@
     {"id":{"name":"obj_tumbleweed_spawner","path":"objects/obj_tumbleweed_spawner/obj_tumbleweed_spawner.yy",},"order":11,},
     {"id":{"name":"spr_player_aimFalling_disarmed","path":"sprites/spr_player_aimFalling_disarmed/spr_player_aimFalling_disarmed.yy",},"order":57,},
     {"id":{"name":"spr_clay_f_LSlash_anti","path":"sprites/spr_clay_f_LSlash_anti/spr_clay_f_LSlash_anti.yy",},"order":12,},
+    {"id":{"name":"animation_player_cels","path":"scripts/animation_player_cels/animation_player_cels.yy",},"order":2,},
     {"id":{"name":"spr_clay_f_mStab_hit","path":"sprites/spr_clay_f_mStab_hit/spr_clay_f_mStab_hit.yy",},"order":9,},
     {"id":{"name":"spr_envi_woodBlock3","path":"sprites/spr_envi_woodBlock3/spr_envi_woodBlock3.yy",},"order":11,},
     {"id":{"name":"spr_eff_blockSparks","path":"sprites/spr_eff_blockSparks/spr_eff_blockSparks.yy",},"order":1,},

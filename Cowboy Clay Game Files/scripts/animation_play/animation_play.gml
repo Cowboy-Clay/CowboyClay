@@ -40,4 +40,6 @@ function animation_play(){
 			else if animation_type_current == animation_type.hold image_index = sprite_get_number(sprite_index) - 1;
 		}
 	}
+	
+	show_debug_message("Image index: " + string(image_index));
 }
