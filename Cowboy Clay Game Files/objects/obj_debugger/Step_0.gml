@@ -35,7 +35,7 @@ frames++;
 
 if keyboard_check_pressed(vk_f1) {
 	if room_get_name(room) == "FinalLevelDesign" && frames> 30{
-		obj_player.x = 7008;
-		obj_player.y = 704;
+		obj_player_fighting.x = 7008;
+		obj_player_fighting.y = 704;
 	}
 }

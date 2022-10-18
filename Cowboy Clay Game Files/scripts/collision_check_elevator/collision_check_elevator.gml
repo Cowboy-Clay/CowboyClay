@@ -17,18 +17,18 @@ function collision_check_elevator(sprite, mask, x_bouncy, y_bouncy){
 			while (!collision_check_edge(xx,yy,sprite, Direction.DOWN, mask))
 			{
 				yy++;
-				if mounted obj_player.y++;
+				if mounted obj_player_fighting.y++;
 			}
 		}
 		else{
 			while (!collision_check_edge(xx,yy,sprite, Direction.UP, mask)) {
-				if mounted obj_player.y--;
+				if mounted obj_player_fighting.y--;
 				yy --;
 			}
 		}
 		y = yy;
 		vspeed = y_bouncy == true? -1*vspeed : 0;
-		if mounted obj_player.vspeed= 0;
+		if mounted obj_player_fighting.vspeed= 0;
 	}
 	
 	/* 

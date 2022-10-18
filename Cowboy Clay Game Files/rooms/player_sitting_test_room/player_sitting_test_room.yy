@@ -14,12 +14,7 @@
   ],
   "layers": [
     {"instances":[
-        {"properties":[],"isDnd":false,"objectId":{"name":"obj_player_sitting","path":"objects/obj_player_sitting/obj_player_sitting.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":416.0,"y":576.0,"resourceVersion":"1.0","name":"inst_3974019C","tags":[],"resourceType":"GMRInstance",},
-        {"properties":[],"isDnd":false,"objectId":{"name":"obj_player_neutral","path":"objects/obj_player_neutral/obj_player_neutral.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":416.0,"y":576.0,"resourceVersion":"1.0","name":"inst_2564101A","tags":[],"resourceType":"GMRInstance",},
-        {"properties":[
-            {"propertyId":{"name":"startArmed","path":"objects/obj_player/obj_player.yy",},"objectId":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"value":"True","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
-            {"propertyId":{"name":"_skip_revive","path":"objects/obj_player/obj_player.yy",},"objectId":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"value":"True","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
-          ],"isDnd":false,"objectId":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":416.0,"y":576.0,"resourceVersion":"1.0","name":"inst_7C1322D3","tags":[],"resourceType":"GMRInstance",},
+        {"properties":[],"isDnd":false,"objectId":{"name":"obj_player_master","path":"objects/obj_player_master/obj_player_master.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":416.0,"y":576.0,"resourceVersion":"1.0","name":"inst_52454445","tags":[],"resourceType":"GMRInstance",},
       ],"visible":true,"depth":0,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":32,"gridY":32,"layers":[],"hierarchyFrozen":false,"effectEnabled":true,"effectType":null,"properties":[],"resourceVersion":"1.0","name":"Player","tags":[],"resourceType":"GMRInstanceLayer",},
     {"instances":[
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_tilemap_collision_spawner","path":"objects/obj_tilemap_collision_spawner/obj_tilemap_collision_spawner.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":0.0,"y":0.0,"resourceVersion":"1.0","name":"inst_5ABFC81_1","tags":[],"resourceType":"GMRInstance",},
@@ -39,9 +34,7 @@
   "inheritCode": false,
   "instanceCreationOrder": [
     {"name":"inst_5ABFC81_1","path":"rooms/Player_Sitting_Test_Room/Player_Sitting_Test_Room.yy",},
-    {"name":"inst_3974019C","path":"rooms/Player_Sitting_Test_Room/Player_Sitting_Test_Room.yy",},
-    {"name":"inst_2564101A","path":"rooms/Player_Sitting_Test_Room/Player_Sitting_Test_Room.yy",},
-    {"name":"inst_7C1322D3","path":"rooms/Player_Sitting_Test_Room/Player_Sitting_Test_Room.yy",},
+    {"name":"inst_52454445","path":"rooms/Player_Sitting_Test_Room/Player_Sitting_Test_Room.yy",},
   ],
   "inheritCreationOrder": false,
   "sequenceId": null,

@@ -34,8 +34,8 @@ function PlayerSwordFling(run, rise, m)
 	// Set state
 	current_state = SwordState.FLYING;
 	// Set starting position
-	x = obj_player.x;
-	y = obj_player.y-100;
+	x = obj_player_fighting.x;
+	y = obj_player_fighting.y-100;
 	// Normalize run and rise
 	a = run;
 	b = rise;

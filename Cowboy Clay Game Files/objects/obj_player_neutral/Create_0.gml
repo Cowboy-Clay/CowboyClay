@@ -19,9 +19,6 @@ global.player_walkAccel = .8; // The basic rate of acceloration from walking
 global.player_maxWalkSpeed = 8; // The basic max walking speed
 #endregion
 
-instance_deactivate_object(obj_player_sitting);
-instance_deactivate_object(obj_player);
-
 animation_set(global.player_animation_neutral_idle);
 
 function walk()

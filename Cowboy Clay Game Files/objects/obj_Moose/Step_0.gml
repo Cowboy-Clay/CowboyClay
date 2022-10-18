@@ -23,7 +23,7 @@ if !global.paused
 	{
 		MooseWanderToIdle();
 	}
-	else if current_state == MooseState.DEAD obj_player.current_state = PlayerState.LOCK;
+	else if current_state == MooseState.DEAD obj_player_fighting.current_state = PlayerState.LOCK;
 	
 	Friction(GetMooseFriction());
 	Gravity(get_gravity(),50,spr_enemy_collision, collision_mask);
@@ -47,17 +47,17 @@ if !instance_exists(obj_wipe_out) && dead_timer <= 0 {
 collision_check(spr_enemy_collision,collision_mask, false, false);
 }
 var pl, pr;
-with(obj_player) {
+with(obj_player_fighting) {
 	pl = collision_check_edge(x,y,spr_clay_n_collision,Direction.LEFT,collision_mask);
 	pr = collision_check_edge(x,y,spr_clay_n_collision,Direction.RIGHT,collision_mask);
 }
 if pl {
-	while collision_check_edge(x,y,spr_enemy_collision,Direction.LEFT,[obj_player]) {
+	while collision_check_edge(x,y,spr_enemy_collision,Direction.LEFT,[obj_player_fighting]) {
 		x ++;
 	}
 }
 if pr {
-	while collision_check_edge(x,y,spr_enemy_collision,Direction.RIGHT,[obj_player]) {
+	while collision_check_edge(x,y,spr_enemy_collision,Direction.RIGHT,[obj_player_fighting]) {
 		x --;
 	}
 }

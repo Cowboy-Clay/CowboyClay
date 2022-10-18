@@ -1,9 +1,9 @@
 if !global.paused{
-if distance_to_object(obj_player) > sqrt(1248*1248+1088*1088) return;
+if distance_to_object(obj_player_fighting) > sqrt(1248*1248+1088*1088) return;
 
 check_mounted();
 
-if mounted && ((obj_player.facing == Direction.LEFT && image_xscale == 1)||(obj_player.facing == Direction.RIGHT && image_xscale == -1)) && obj_player.current_state == PlayerState.BASIC_ATTACK_SWING && cooldown_timer <= 0
+if mounted && ((obj_player_fighting.facing == Direction.LEFT && image_xscale == 1)||(obj_player_fighting.facing == Direction.RIGHT && image_xscale == -1)) && obj_player_fighting.current_state == PlayerState.BASIC_ATTACK_SWING && cooldown_timer <= 0
 {
 	get_hit();
 }
@@ -50,8 +50,8 @@ switch(current_state)
 		break;
 }
 
-while place_meeting(x,y+1,obj_player) && mounted
+while place_meeting(x,y+1,obj_player_fighting) && mounted
 {
-	obj_player.y --;
+	obj_player_fighting.y --;
 }
 }

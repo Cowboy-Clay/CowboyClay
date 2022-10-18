@@ -9,8 +9,8 @@ function hitstun(seconds, pause_music){
 }
 
 function insure_visibility() {
-	if instance_exists(obj_player) {
-		obj_player.visible = true;
+	if instance_exists(obj_player_fighting) {
+		obj_player_fighting.visible = true;
 	}
 	
 	if instance_exists(obj_Moose) {

@@ -122,7 +122,7 @@ function UpdateMooseState()
 			}
 			break;
 		case MooseState.BLOCK:
-			if obj_player.PlayerNotAttacking()
+			if obj_player_fighting.PlayerNotAttacking()
 				MooseWanderToIdle();
 			break;
 	}
@@ -216,9 +216,9 @@ function panic_wait(){
 
 function to_sleep() {
 	current_state = MooseState.SLEEP;
-	if instance_exists(obj_player) {
+	if instance_exists(obj_player_fighting) {
 		var i = 1;
-		while (place_meeting(x,y,obj_player) || collision_check_edge(x,y,spr_enemy_collision,Direction.LEFT, collision_mask) || collision_check_edge(x,y,spr_enemy_collision,Direction.RIGHT, collision_mask)) {
+		while (place_meeting(x,y,obj_player_fighting) || collision_check_edge(x,y,spr_enemy_collision,Direction.LEFT, collision_mask) || collision_check_edge(x,y,spr_enemy_collision,Direction.RIGHT, collision_mask)) {
 			x += i;
 			i = -1 * sign(i) * (abs(i)+1);
 		}
@@ -226,7 +226,7 @@ function to_sleep() {
 }
 
 function sleep() {
-	if instance_exists(obj_player) && obj_player.armed {
+	if instance_exists(obj_player_fighting) && obj_player_fighting.armed {
 		if instance_exists(obj_music_controller) obj_music_controller.resume();
 		to_idle();
 	}
@@ -234,7 +234,7 @@ function sleep() {
 
 function choose_attack() {
 	
-	var dist_to_player = distance_to_object(obj_player);
+	var dist_to_player = distance_to_object(obj_player_fighting);
 	switch get_phase() {
 		case 1:
 			if dist_to_player < global.moose_attack_close_distance {
@@ -282,7 +282,7 @@ function choose_attack() {
 
 function MooseCheckBlock()
 {
-	if obj_player.current_state == PlayerState.BASIC_ATTACK_ANTI && distance_to_object(obj_player) <= global.moose_blockDistance
+	if obj_player_fighting.current_state == PlayerState.BASIC_ATTACK_ANTI && distance_to_object(obj_player_fighting) <= global.moose_blockDistance
 	{
 		MooseToBlock();
 	}
@@ -318,7 +318,7 @@ function to_burp_swing() {
 	current_state = MooseState.BURP_SWING;
 	state_timer = global.moose_burp_swing_time;
 	audio_play_sound(sfx_moose_burp, -5, false);
-	spawn_shockwave(depth-100,x,y,(obj_player.x < x ? Direction.LEFT : Direction.RIGHT), 75, 300, Curve.LINEAR);
+	spawn_shockwave(depth-100,x,y,(obj_player_fighting.x < x ? Direction.LEFT : Direction.RIGHT), 75, 300, Curve.LINEAR);
 	burp_swing();
 }
 function burp_swing() {
@@ -374,7 +374,7 @@ function to_lunge_anti() {
 	current_state = MooseState.LUNGE_ANTI;
 	state_timer = global.moose_lunge_anti_frames;
 	lunge_starting_pos = [x,y];
-	facing = obj_player.x < x ? Direction.LEFT : Direction.RIGHT;
+	facing = obj_player_fighting.x < x ? Direction.LEFT : Direction.RIGHT;
 }
 function lunge_anti() {
 	if state_timer <= 0{
@@ -387,7 +387,7 @@ function to_lunge() {
 function lunge() {
 	if (facing == Direction.LEFT && collision_check_edge(x,y,spr_enemy_collision,Direction.LEFT, collision_mask)) ||
 	  (facing == Direction.RIGHT && collision_check_edge(x,y,spr_enemy_collision,Direction.RIGHT,collision_mask)) ||
-	  distance_to_object(obj_player) <= global.moose_lunge_target_distance_to_player ||
+	  distance_to_object(obj_player_fighting) <= global.moose_lunge_target_distance_to_player ||
 	  distance_to_point(lunge_starting_pos[0], lunge_starting_pos[1]) > global.moose_lunge_distance_max {
 		  to_stab_anti();
 		  return;
@@ -415,7 +415,7 @@ function stab() {
 function to_jump_anti() {
 	current_state = MooseState.JUMP_ANTI;
 	state_timer = global.moose_jump_anti_frames;
-	facing = obj_player.x < x ? Direction.LEFT : Direction.RIGHT;
+	facing = obj_player_fighting.x < x ? Direction.LEFT : Direction.RIGHT;
 }
 function jump_anti() {
 	if state_timer <= 0 to_jump();
@@ -424,7 +424,7 @@ function to_jump() {
 	audio_play_sound(sfx_moose_jump, 2, false);
 	current_state = MooseState.JUMP;
 	state_timer = 0;
-	jump_target = [obj_player.x, y-global.moose_jump_y_height];
+	jump_target = [obj_player_fighting.x, y-global.moose_jump_y_height];
 	jump_direction = jump_target[0] < x ? Direction.LEFT : Direction.RIGHT;
 }
 function jump() {
@@ -473,7 +473,7 @@ function dive() {
 		if place_meeting(x,y,obj_player_hurtbox) {
 			with obj_Moose {
 				MooseWanderToIdle();
-				knock_away_from(obj_Moose,obj_player.x + 300*(obj_player.x > x ? 1 : -1), obj_player.y, 20);
+				knock_away_from(obj_Moose,obj_player_fighting.x + 300*(obj_player_fighting.x > x ? 1 : -1), obj_player_fighting.y, 20);
 				return;
 			}
 		}
@@ -508,7 +508,7 @@ function stuck() {
 }
 function to_spin() {
 	current_state = MooseState.SPIN;
-	hspeed = obj_player.x < x ? global.moose_spin_x_speed : -1*global.moose_spin_x_speed;
+	hspeed = obj_player_fighting.x < x ? global.moose_spin_x_speed : -1*global.moose_spin_x_speed;
 	vspeed = global.moose_spin_y_speed;
 	y += global.moose_spin_y_offset;
 }
@@ -525,7 +525,7 @@ function to_projectile_anti() {
 	current_state = MooseState.PROJECTILE_ANTI;
 }
 function projectile_anti() {
-	if obj_player.x < x {
+	if obj_player_fighting.x < x {
 		hspeed += global.moose_wanderAccel;
 		if collision_check_edge(x,y,spr_enemy_collision, Direction.RIGHT, collision_mask) {
 			to_projectile();
@@ -542,8 +542,8 @@ function projectile_anti() {
 function to_projectile() {
 	current_state = MooseState.PROJECTILE;
 	state_timer = 90;
-	var furthest = obj_player.x < x ? -1400 : 1400;
-	var nearest = obj_player.x < x ? -200 : 200;
+	var furthest = obj_player_fighting.x < x ? -1400 : 1400;
+	var nearest = obj_player_fighting.x < x ? -200 : 200;
 	var projectile_count = 6;
 	var blank = floor(random(projectile_count));
 	for (var i = 0; i < projectile_count; i++) {
@@ -564,14 +564,14 @@ function MooseCharge()
 {
 	if facing == Direction.LEFT {
 		hspeed -= global.moose_chargeAccel;
-		if collision_check_edge(x,y,spr_enemy_collision,Direction.LEFT, collision_mask) || (collision_check_edge(x,y,spr_enemy_collision,Direction.LEFT, [obj_player]) && collision_check_edge_other(obj_player, obj_player.x, obj_player.y, spr_clay_n_collision, Direction.LEFT, obj_player.collision_mask))  {
+		if collision_check_edge(x,y,spr_enemy_collision,Direction.LEFT, collision_mask) || (collision_check_edge(x,y,spr_enemy_collision,Direction.LEFT, [obj_player_fighting]) && collision_check_edge_other(obj_player_fighting, obj_player_fighting.x, obj_player_fighting.y, spr_clay_n_collision, Direction.LEFT, obj_player_fighting.collision_mask))  {
 			MooseChargeToWait();
 		}
 		return;
 	}
 	else {
 		hspeed += global.moose_chargeAccel;
-		if collision_check_edge(x,y,spr_enemy_collision,Direction.RIGHT, collision_mask)|| (collision_check_edge(x,y,spr_enemy_collision,Direction.RIGHT, [obj_player]) && collision_check_edge_other(obj_player, obj_player.x, obj_player.y, spr_clay_n_collision, Direction.RIGHT, obj_player.collision_mask)) {
+		if collision_check_edge(x,y,spr_enemy_collision,Direction.RIGHT, collision_mask)|| (collision_check_edge(x,y,spr_enemy_collision,Direction.RIGHT, [obj_player_fighting]) && collision_check_edge_other(obj_player_fighting, obj_player_fighting.x, obj_player_fighting.y, spr_clay_n_collision, Direction.RIGHT, obj_player_fighting.collision_mask)) {
 			MooseChargeToWait();
 		}
 		return;
@@ -586,7 +586,7 @@ function MooseWander()
 
 function MooseFacePlayer()
 {
-	if obj_player.x < x facing = Direction.LEFT;
+	if obj_player_fighting.x < x facing = Direction.LEFT;
 	else facing = Direction.RIGHT;
 }
 
@@ -636,7 +636,7 @@ function MooseIdleToChargeAnti()
 		if obj_enemy_sword.x < x facing = Direction.LEFT;
 		else facing = Direction.RIGHT;
 	} else {
-		if obj_player.x < x facing = Direction.LEFT;
+		if obj_player_fighting.x < x facing = Direction.LEFT;
 		else facing = Direction.RIGHT;
 	}
 	
@@ -656,15 +656,15 @@ function MooseIdleToWander()
 	wanderCounter ++;
 	
 	// Decide direction to wander
-	var distToPlayer = distance_to_object(obj_player);
+	var distToPlayer = distance_to_object(obj_player_fighting);
 	if distToPlayer < global.moose_minDistance
 	{
-		if obj_player.x < x wanderDir = Direction.RIGHT;
+		if obj_player_fighting.x < x wanderDir = Direction.RIGHT;
 		else wanderDir = Direction.LEFT;
 	}
 	else if distToPlayer > global.moose_maxDistance
 	{
-		if obj_player.x < x wanderDir = Direction.LEFT;
+		if obj_player_fighting.x < x wanderDir = Direction.LEFT;
 		else wanderDir = Direction.RIGHT;
 	}
 	else 
@@ -740,13 +740,13 @@ function update_animation() {
 	switch(current_state) {
 		case MooseState.IDLE:
 			if phase == 1 {
-				if distance_to_object(obj_player) < 400 {
+				if distance_to_object(obj_player_fighting) < 400 {
 					var a = spr_moose_blockLo;
 				} else {
 					var a = spr_moose_idle;
 				}
 			} else if phase == 2 {
-				with(obj_player) {
+				with(obj_player_fighting) {
 					if collision_check_edge(x,y,spr_clay_n_collision, Direction.DOWN, collision_mask) {
 						var a = spr_moose_blockLo_helmless;
 					} else {
@@ -760,13 +760,13 @@ function update_animation() {
 			break;
 		case MooseState.WANDER:
 			if phase == 1 {
-				if distance_to_object(obj_player) < 400 {
+				if distance_to_object(obj_player_fighting) < 400 {
 					var a = global.moose_animation_walk_blockLo;
 				} else {
 					var a = global.moose_animation_wander;
 				}
 			} else if phase == 2 {
-				with(obj_player) {
+				with(obj_player_fighting) {
 					if collision_check_edge(x,y,spr_clay_n_collision, Direction.DOWN, collision_mask) {
 						var a = global.moose_animation_walk_blockLo_helmless;
 					} else {
@@ -1016,22 +1016,22 @@ function MooseGetHit()
 	if armor > 0 {
 		y-= 2;
 		vspeed -= 20;
-		if obj_player.x > x hspeed = obj_player.x > x ? -20 : 20;
+		if obj_player_fighting.x > x hspeed = obj_player_fighting.x > x ? -20 : 20;
 		armor --;
 		MakeMooseInvulnerable(global.moose_invulTime);
 		current_state = MooseState.HIT;
 		state_timer = 60;
 		wanderCounter = 0;
 		var helm = instance_create_depth(x,y-100,depth-100, obj_moose_helmet);
-		helm.activate(obj_player.x < x ? Direction.RIGHT : Direction.LEFT);
+		helm.activate(obj_player_fighting.x < x ? Direction.RIGHT : Direction.LEFT);
 		audio_play_sound(sfx_moose_dehelm, 2, false);
 	} else if armed {
 		state_timer = 60;
 		y-= 2;
 		vspeed -= 20;
-		if obj_player.x > x hspeed = obj_player.x > x ? -20 : 20;
+		if obj_player_fighting.x > x hspeed = obj_player_fighting.x > x ? -20 : 20;
 		armed = false;
-		h = obj_player.x < x ? -1 : 1;
+		h = obj_player_fighting.x < x ? -1 : 1;
 		var s = instance_create_layer(x,y,layer,obj_enemy_sword);
 		s.EnemySwordFling(h,-1.67,17);
 		MakeMooseInvulnerable(global.moose_invulTime);
@@ -1039,7 +1039,7 @@ function MooseGetHit()
 		wanderCounter = 0;
 		audio_play_sound(sfx_moose_dehelm, 2, false);
 	} else {
-		if obj_player.x > x hspeed =  -20;
+		if obj_player_fighting.x > x hspeed =  -20;
 		else hspeed = 20;
 		vspeed = -20;
 		MooseToDead();
@@ -1155,14 +1155,14 @@ function retalliation() {
 		case MooseState.SLEEP: return; break;
 	}
 	
-	var dist_to_player = distance_to_object(obj_player);
+	var dist_to_player = distance_to_object(obj_player_fighting);
 	
 	// Player too close
 	if dist_to_player < global.moose_player_too_close_distance {
 		player_too_close_timer ++;
 		if player_too_close_timer > global.moose_player_too_close_time {
 			player_too_close_timer = 0;
-			var p = obj_player.x < x ? distance_to_wall(Direction.RIGHT) : distance_to_wall(Direction.LEFT);
+			var p = obj_player_fighting.x < x ? distance_to_wall(Direction.RIGHT) : distance_to_wall(Direction.LEFT);
 			
 			if p > 300 {
 				to_projectile_anti();
@@ -1176,23 +1176,23 @@ function retalliation() {
 		player_too_close_timer = 0;
 	}
 	// Basic attack charge too long
-	if obj_player.basic_attack_charge_timer > global.moose_player_basic_charge_too_long_time {
+	if obj_player_fighting.basic_attack_charge_timer > global.moose_player_basic_charge_too_long_time {
 		to_projectile_anti();
 		return;
 	}
 	// Sling attack charge too long
-	if obj_player.sling_attack_charge_timer > global.moose_player_sling_charge_too_long_time {
+	if obj_player_fighting.sling_attack_charge_timer > global.moose_player_sling_charge_too_long_time {
 		to_jump_anti();
 		return;
 	}
 	// Jump charge too long
-	if obj_player.jumpTimer > global.moose_player_jump_charge_too_long_time {
+	if obj_player_fighting.jumpTimer > global.moose_player_jump_charge_too_long_time {
 		MooseIdleToSlideAnti();
 		return;
 	}
 	
 	// head jumps
-	if collision_check_edge(x,y-10,spr_enemy_collision, Direction.UP, [obj_player]){
+	if collision_check_edge(x,y-10,spr_enemy_collision, Direction.UP, [obj_player_fighting]){
 		head_jump_counter++;
 		if head_jump_counter >= global.moose_too_many_head_jumps {
 			to_spin();

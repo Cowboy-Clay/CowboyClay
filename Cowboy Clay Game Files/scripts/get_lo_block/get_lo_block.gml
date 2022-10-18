@@ -22,7 +22,7 @@ function get_lo_block(){
 	for (var i = 0; i < array_length(a); i++) {
 		if sprite_index == a[i] {
 			if sprite_index == global.player_animation_block_lo[0] || sprite_index == global.player_animation_block_lo_disarmed[0] {
-				if obj_player.state_timer + global.player_block_active_frames < global.player_block_frames return false;
+				if obj_player_fighting.state_timer + global.player_block_active_frames < global.player_block_frames return false;
 			}
 			return true;
 		}

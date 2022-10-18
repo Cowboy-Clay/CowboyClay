@@ -1,7 +1,7 @@
 var _center_x = camera_get_view_width(view_camera[0]) / 2;
 var _y = 25;
 
-if obj_player.current_state == PlayerState.DEAD return;
+if obj_player_fighting.current_state == PlayerState.DEAD return;
 
 // Draw frame
 //draw_sprite(frame_spr,0,_center_x,_y);

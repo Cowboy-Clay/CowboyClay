@@ -27,7 +27,7 @@ switch (current_state) {
 	case 3:
 		image_alpha -= 1/45;
 		if image_alpha <= 0 {
-			obj_player.current_state = PlayerState.REVIVING;
+			obj_player_fighting.current_state = PlayerState.REVIVING;
 			instance_destroy(id);
 		}
 		break;

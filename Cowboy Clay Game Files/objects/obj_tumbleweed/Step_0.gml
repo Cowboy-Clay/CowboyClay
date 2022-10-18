@@ -12,5 +12,5 @@ var angular_velocity = sqrt(sqr(hspeed) + sqr(vspeed));
 image_angle += lerp(rotation_min, rotation_max, angular_velocity / 5);
 
 if place_meeting(x+hspeed, y+vspeed, obj_player_hitbox) {
-	hspeed = sign(x-obj_player.x) * max_hspeed * 2;
+	hspeed = sign(x-obj_player_fighting.x) * max_hspeed * 2;
 }

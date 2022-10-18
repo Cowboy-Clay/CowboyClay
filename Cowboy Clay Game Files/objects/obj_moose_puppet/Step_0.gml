@@ -3,7 +3,7 @@ if global.paused return;
 if activated {
 	if instance_exists(obj_enemy_healthbar) == false instance_create_layer(0,0,layer, obj_enemy_healthbar);
 
-	if obj_player.basic_attack_charge_timer > 0 || obj_player.sling_attack_charge_timer > 0 || obj_player.current_state == PlayerState.KICK_ANTI {
+	if obj_player_fighting.basic_attack_charge_timer > 0 || obj_player_fighting.sling_attack_charge_timer > 0 || obj_player_fighting.current_state == PlayerState.KICK_ANTI {
 		var m = instance_create_layer(x,y,layer,obj_Moose);
 		m.facing = Direction.RIGHT;
 		instance_destroy(id);
@@ -54,7 +54,7 @@ if activated {
 			}
 			break;
 	}
-} else if x < obj_player.x && distance_to_object(obj_player) > 600 && distance_to_object(obj_player) < 6000 && abs(y - obj_player.y) < 200 {
+} else if x < obj_player_fighting.x && distance_to_object(obj_player_fighting) > 600 && distance_to_object(obj_player_fighting) < 6000 && abs(y - obj_player_fighting.y) < 200 {
 	activated = true;
 	if instance_exists(obj_music_controller) obj_music_controller.switch_track(Ferrymans_Fumble);
 }

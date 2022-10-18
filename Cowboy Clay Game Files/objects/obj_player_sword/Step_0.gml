@@ -44,4 +44,4 @@ SetPlayerSwordRotation();
 
 SwordAnimate();
 
-if plungeFlag && place_meeting(x,y,obj_player) == false plungeFlag = false;
+if plungeFlag && place_meeting(x,y,obj_player_fighting) == false plungeFlag = false;

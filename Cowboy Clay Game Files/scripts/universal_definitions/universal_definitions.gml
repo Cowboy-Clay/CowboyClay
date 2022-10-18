@@ -1,6 +1,6 @@
 global.smart_control_detection = true;
 
-global.player_object = obj_player;
+global.player_object = obj_player_fighting;
 global.moose_object = obj_Moose;
 
 global.dont_stop_music_on_load = false;

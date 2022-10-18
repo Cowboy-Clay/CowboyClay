@@ -1,4 +1,4 @@
-if place_meeting(x,y,obj_player) && !triggered
+if place_meeting(x,y,obj_player_fighting) && !triggered
 {
 	triggered = true;
 	layer_destroy(moose_silo_layer);

@@ -31,7 +31,7 @@ animation_counter = 0;
 
 function check_mounted()
 {
-	mounted = collision_check_edge(x,y-1,spr_mech_elevator_coll,Direction.UP,[obj_player]);
+	mounted = collision_check_edge(x,y-1,spr_mech_elevator_coll,Direction.UP,[obj_player_fighting]);
 }
 
 function get_hit()
@@ -62,7 +62,7 @@ function rise()
 		go_to_holding();
 	}
 	collision_check_elevator(spr_mech_elevator_coll, collision_mask,false, false);
-	if mounted obj_player.vspeed = vspeed;
+	if mounted obj_player_fighting.vspeed = vspeed;
 }
 
 function go_to_holding()
@@ -94,7 +94,7 @@ function fall()
 		audio_play_sound(sfx_elevator_crash,-10,false);
 		//show_debug_message("Going to sitting");
 	}
-	if mounted obj_player.vspeed = vspeed;
+	if mounted obj_player_fighting.vspeed = vspeed;
 }
 
 function sit()
